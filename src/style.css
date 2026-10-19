@@ -1,0 +1,8 @@
+/* ==========================================================================
+   OMAR PORTFOLIO — MAIN STYLESHEET ENTRY
+   ========================================================================== */
+
+@import './styles/variables.css';
+@import './styles/base.css';
+@import './styles/components.css';
+@import './styles/sections.css';

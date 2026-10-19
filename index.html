@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7P STUDIO — عمر | مواقع عصرية وتفاعلية وسريعة</title>
+    <meta name="description" content="7P STUDIO / عمر - مطور ويب يبني مواقع نظيفة، عصرية، تفاعلية ويحل مشاكل المواقع بسرعة. تصميم وتطوير مواقع، أبعاد ثلاثية 3D، وحل فوري للمشاكل." />
+    <meta name="keywords" content="7P Studio, 7P, Omar, Web Developer, مطور ويب, تصميم مواقع, Three.js, GSAP, عُمَر, برمجة مواقع" />
+    <meta name="author" content="Omar (7P Studio)" />
+
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="7P STUDIO — عمر | مواقع عصرية وتفاعلية" />
+    <meta property="og:description" content="ببني مواقع عصرية للعملاء، بحل مشاكل وأخطاء المواقع القائمة بسرعة، وبخصص المواقع لتناسب طلبك." />
+    <meta property="og:image" content="./projects/elmo7taref-preview.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+    <!-- Explicit Stylesheet Link (Guarantees zero FOUC & instant styling) -->
+    <link rel="stylesheet" href="./src/style.css" />
+
+    <!-- Preconnect & Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
+    <!-- Orange Flood Handoff Overlay (Shape Wipe Transition) -->
+    <div id="orange-handoff-overlay"></div>
+
+    <!-- 3-Second Deterministic Welcome Intro Stage -->
+    <div id="intro-screen">
+      <canvas id="intro-canvas"></canvas>
+
+      <div class="intro-controls">
+        <button id="intro-sound-toggle" class="intro-hud-btn" aria-label="Toggle Sound">
+          <i class="fa-solid fa-volume-high" id="intro-sound-icon"></i>
+          <span id="intro-sound-text">SOUND ON</span>
+        </button>
+        <button id="intro-skip" class="intro-hud-btn">
+          <span>SKIP</span>
+          <i class="fa-solid fa-forward-step"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating Navigation Bar -->
+    <header class="navbar-wrapper">
+      <nav class="navbar">
+        <div class="nav-brand-group">
+          <a href="#hero" class="nav-brand" aria-label="7P Studio">
+            <span class="brand-badge">7P</span>
+            <span class="brand-title" data-i18n="navBrand">STUDIO</span>
+            <span class="nav-brand-dot"></span>
+          </a>
+          <div class="availability-pill" title="متاح لاستلام مواقع ومشاريع جديدة">
+            <span class="status-pulse-dot"></span>
+            <span class="availability-text" data-i18n="availableBadge">متاح لمشاريع</span>
+          </div>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link" data-i18n="navAbout">عني</a></li>
+          <li><a href="#projects" class="nav-link" data-i18n="navWork">أعمالي</a></li>
+          <li><a href="#services" class="nav-link" data-i18n="navServices">خدماتي</a></li>
+          <li><a href="#process" class="nav-link" data-i18n="navProcess">طريقة الشغل</a></li>
+          <li><a href="#contact" class="nav-link" data-i18n="navContact">تواصل معايا</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <!-- Language Toggle Segmented Pill -->
+          <div class="lang-toggle" role="group" aria-label="Language Toggle">
+            <button class="lang-btn active" data-lang="ar">عربي</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+
+          <!-- Sound Toggle Button -->
+          <button class="sound-toggle-btn" id="nav-sound-toggle" title="Toggle Sound" aria-label="Toggle Sound">
+            <i class="fa-solid fa-volume-high" id="nav-sound-icon"></i>
+          </button>
+
+          <!-- Theme Toggle Button (Light / Dark Mode) -->
+          <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Dark / Light Mode" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon" id="theme-icon"></i>
+          </button>
+
+          <!-- CTA Button -->
+          <a href="#contact" class="btn btn-primary" style="padding: 0.55rem 1.35rem; font-size: 0.88rem;">
+            <span data-i18n="navCta">تكلم معايا</span>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Navigation Drawer Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav">
+      <ul class="mobile-nav-links">
+        <li><a href="#hero" class="mobile-nav-link" data-i18n="navHome">الرئيسية</a></li>
+        <li><a href="#about" class="mobile-nav-link" data-i18n="navAbout">عني</a></li>
+        <li><a href="#projects" class="mobile-nav-link" data-i18n="navWork">أعمالي</a></li>
+        <li><a href="#services" class="mobile-nav-link" data-i18n="navServices">خدماتي</a></li>
+        <li><a href="#process" class="mobile-nav-link" data-i18n="navProcess">طريقة الشغل</a></li>
+        <li><a href="#contact" class="mobile-nav-link" data-i18n="navContact">تواصل معايا</a></li>
+      </ul>
+
+      <!-- Language & Theme Toggle inside Mobile Drawer -->
+      <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 2rem;">
+        <div class="lang-toggle" role="group" aria-label="Mobile Language Toggle">
+          <button class="lang-btn active" data-lang="ar">عربي</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <button class="theme-toggle-btn" id="mobile-theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon" id="mobile-theme-icon"></i>
+        </button>
+      </div>
+
+      <div>
+        <a href="#contact" class="btn btn-primary" id="mobile-cta-btn">
+          <span data-i18n="mobileCta">ابدأ موقعك دلوقتي</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Application Container -->
+    <main id="main-content">
+      <!-- 1. HERO SECTION -->
+      <section id="hero" class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge-wrap">
+              <div class="badge-pill">
+                <span class="status-dot"></span>
+                <span data-i18n="heroBadge1">متاح لشغل ومشاريع جديدة</span>
+              </div>
+              <div class="badge-pill badge-pill-teal">
+                <i class="fa-solid fa-cube"></i>
+                <span data-i18n="heroBadge2">ويبسايت على كيفك وحركات 3D</span>
+              </div>
+            </div>
+
+            <h1 class="hero-title" data-i18n="heroTitle">
+              ويبسايت على كيفك، <span class="highlight">شكله رايق،</span> وسريع.
+            </h1>
+
+            <p class="hero-subtitle" data-i18n="heroSubtitle">
+              أهلاً، أنا <strong>عمر</strong>. بعمل مواقع لعملاء وبيزنس، بحل أي باجات أو مشاكل في مواقع موجودة، وبظبط الموقع على طلبك بالظبط ومن غير تعقيد.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#projects" class="btn btn-primary magnetic">
+                <span data-i18n="heroCtaWork">شوف شغلي</span>
+                <i class="fa-solid fa-arrow-down"></i>
+              </a>
+              <a href="#contact" class="btn btn-secondary magnetic">
+                <span data-i18n="heroCtaContact">كلمني</span>
+                <i class="fa-regular fa-paper-plane"></i>
+              </a>
+            </div>
+
+            <div class="hero-stats-row">
+              <div class="hero-stat-item">
+                <span class="hero-stat-icon"><i class="fa-solid fa-bolt"></i></span>
+                <span data-i18n="heroStat1">حل المشاكل والباجات بسرعة</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="hero-stat-icon" style="color: var(--accent-teal);"><i class="fa-solid fa-mobile-screen"></i></span>
+                <span data-i18n="heroStat2">مضبوط على الموبايل والكمبيوتر</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="hero-stat-icon" style="color: var(--accent-violet);"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                <span data-i18n="heroStat3">حركات 3D خفيفة وناعمة</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero 3D Centerpiece -->
+          <div class="hero-3d-wrap">
+            <canvas id="hero-3d-canvas"></canvas>
+            <span class="hero-3d-hint">
+              <i class="fa-solid fa-arrows-spin" style="margin-inline-end: 4px;"></i>
+              <span data-i18n="hero3dHint">حرك الماوس لتلف المجسم 3D</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1.5 PARTNERS & DELIVERED PROJECTS SHOWCASE (HOVER POPOVER PREVIEWS) -->
+      <section id="projects" class="partners-section">
+        <div class="container">
+          <div class="partners-header text-center">
+            <div class="badge-pill badge-pill-blue" style="margin-inline: auto;">
+              <i class="fa-solid fa-briefcase"></i>
+              <span data-i18n="partnersBadge">أعمال ومشاريع</span>
+            </div>
+            <h2 class="partners-title" data-i18n="partnersTitle">
+              شغلي <span class="highlight">ومشاريع نفذتها</span>
+            </h2>
+            <p class="partners-subtitle" data-i18n="partnersSubtitle">
+              دوس على أي موقع عشان تفتحه، أو وقّف الماوس عليه عشان تشوف تفاصيله
+            </p>
+          </div>
+
+          <div class="partners-track">
+            <!-- Brand 1: Aya Accessories -->
+            <div class="partner-item" data-project="aya">
+              <a href="https://aya-accessories.vercel.app/" target="_blank" rel="noopener noreferrer" class="partner-card" aria-label="Aya Accessories">
+                <div class="partner-logo-mark" style="color: #DB2777; background: rgba(236, 72, 153, 0.1);">
+                  <i class="fa-solid fa-gem"></i>
+                </div>
+                <div class="partner-info">
+                  <span class="partner-name">AYA</span>
+                  <span class="partner-tag">ACCESSORIES</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square partner-arrow-icon"></i>
+              </a>
+
+              <!-- Animated Classy Popover Card -->
+              <div class="project-popover-card">
+                <div class="popover-arrow"></div>
+                <div class="popover-thumb">
+                  <img src="./projects/aya-preview.jpg" alt="Aya Accessories Preview" loading="lazy" />
+                  <span class="popover-badge badge-client">
+                    <i class="fa-solid fa-circle-check"></i> <span data-i18n="badgeClientWork">مشروع اتسلم لعميل</span>
+                  </span>
+                </div>
+                <div class="popover-content">
+                  <div class="popover-meta">
+                    <h4 class="popover-title" data-i18n="p1Title">متجر آية للاكسسوارات (Aya Accessories)</h4>
+                    <span class="popover-tag">E-Commerce</span>
+                  </div>
+                  <p class="popover-desc" data-i18n="p1Short">
+                    متجر إكسسوارات وباندانات هاندميد، مع فلاتر سريعة وسلة لطلب الأوردر على الواتساب علطول.
+                  </p>
+                  <div class="popover-highlights">
+                    <span><i class="fa-solid fa-cart-shopping"></i> سلة طلب</span>
+                    <span><i class="fa-brands fa-whatsapp"></i> واتساب فوري</span>
+                    <span><i class="fa-solid fa-mobile-screen"></i> Mobile-First</span>
+                  </div>
+                  <div class="popover-btn-group">
+                    <a href="https://aya-accessories.vercel.app/" target="_blank" rel="noopener noreferrer" class="popover-visit-btn">
+                      <span data-i18n="visitLiveBtn">افتح الموقع لايف</span>
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <button class="popover-copy-btn copy-btn" data-copy="https://aya-accessories.vercel.app/" title="نسخ رابط الموقع" aria-label="Copy project URL">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Brand 2: Festival Pastry -->
+            <div class="partner-item" data-project="festival">
+              <a href="https://festival-fivestar.vercel.app/" target="_blank" rel="noopener noreferrer" class="partner-card" aria-label="Festival Pastry">
+                <div class="partner-logo-mark" style="color: #D97706; background: rgba(245, 158, 11, 0.1);">
+                  <i class="fa-solid fa-crown"></i>
+                </div>
+                <div class="partner-info">
+                  <span class="partner-name">FESTIVAL</span>
+                  <span class="partner-tag">PASTRY 5★</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square partner-arrow-icon"></i>
+              </a>
+
+              <div class="project-popover-card">
+                <div class="popover-arrow"></div>
+                <div class="popover-thumb">
+                  <img src="./projects/festival-preview.jpg" alt="Festival Pastry Preview" loading="lazy" />
+                  <span class="popover-badge badge-client">
+                    <i class="fa-solid fa-circle-check"></i> <span data-i18n="badgeClientWork">مشروع اتسلم لعميل</span>
+                  </span>
+                </div>
+                <div class="popover-content">
+                  <div class="popover-meta">
+                    <h4 class="popover-title" data-i18n="p2Title">حلواني فيستيفال فايف ستار (Festival Pastry)</h4>
+                    <span class="popover-tag">Food & Pastry</span>
+                  </div>
+                  <p class="popover-desc" data-i18n="p2Short">
+                    موقع لحلواني تورت وحلويات في الهرم، بيعرض الأصناف والأسعار وفروع المحل والطلب أونلاين.
+                  </p>
+                  <div class="popover-highlights">
+                    <span><i class="fa-solid fa-cookie-bite"></i> منيو وتورت تفاعلية</span>
+                    <span><i class="fa-solid fa-map-location-dot"></i> فروع ومواعيد</span>
+                    <span><i class="fa-solid fa-bolt"></i> خفيف وسريع</span>
+                  </div>
+                  <div class="popover-btn-group">
+                    <a href="https://festival-fivestar.vercel.app/" target="_blank" rel="noopener noreferrer" class="popover-visit-btn">
+                      <span data-i18n="visitLiveBtn">افتح الموقع لايف</span>
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <button class="popover-copy-btn copy-btn" data-copy="https://festival-fivestar.vercel.app/" title="نسخ رابط الموقع" aria-label="Copy project URL">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Brand 3: Elmo7taref Restaurant -->
+            <div class="partner-item" data-project="elmo7taref">
+              <a href="https://elmo7taref.vercel.app/" target="_blank" rel="noopener noreferrer" class="partner-card" aria-label="Elmo7taref Restaurant">
+                <div class="partner-logo-mark" style="color: #EF4444; background: rgba(239, 68, 68, 0.1);">
+                  <i class="fa-solid fa-utensils"></i>
+                </div>
+                <div class="partner-info">
+                  <span class="partner-name">ELMO7TAREF</span>
+                  <span class="partner-tag">GRILL & BURGER</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square partner-arrow-icon"></i>
+              </a>
+
+              <div class="project-popover-card">
+                <div class="popover-arrow"></div>
+                <div class="popover-thumb">
+                  <img src="./projects/elmo7taref-preview.jpg" alt="Elmo7taref Preview" loading="lazy" />
+                  <span class="popover-badge badge-ready">
+                    <i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="badgeReadyDesign">شغال وجاهز يتعدل ليك</span>
+                  </span>
+                </div>
+                <div class="popover-content">
+                  <div class="popover-meta">
+                    <h4 class="popover-title" data-i18n="p3Title">مطعم المحترف (Elmo7taref)</h4>
+                    <span class="popover-tag">Restaurant</span>
+                  </div>
+                  <p class="popover-desc" data-i18n="p3Short">
+                    موقع لمطعم وجبات ومشويات، فيه فلاتر سريعة للأكل ومعاينة للساندوتشات وطلب واتساب مباشر.
+                  </p>
+                  <div class="popover-highlights">
+                    <span><i class="fa-solid fa-burger"></i> فلاتر أطباق وساندوتشات</span>
+                    <span><i class="fa-brands fa-whatsapp"></i> شات طلب فوري</span>
+                    <span><i class="fa-solid fa-wand-magic-sparkles"></i> تصميم ديناميكي</span>
+                  </div>
+                  <div class="popover-btn-group">
+                    <a href="https://elmo7taref.vercel.app/" target="_blank" rel="noopener noreferrer" class="popover-visit-btn">
+                      <span data-i18n="visitLiveBtn">افتح الموقع لايف</span>
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <button class="popover-copy-btn copy-btn" data-copy="https://elmo7taref.vercel.app/" title="نسخ رابط الموقع" aria-label="Copy project URL">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Brand 4: Kayan Clothes -->
+            <div class="partner-item" data-project="kayan">
+              <a href="https://kayan-clothes.vercel.app/" target="_blank" rel="noopener noreferrer" class="partner-card" aria-label="Kayan Clothes">
+                <div class="partner-logo-mark" style="color: #6366F1; background: rgba(99, 102, 241, 0.1);">
+                  <i class="fa-solid fa-shirt"></i>
+                </div>
+                <div class="partner-info">
+                  <span class="partner-name">KAYAN</span>
+                  <span class="partner-tag">LUXURY FASHION</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square partner-arrow-icon"></i>
+              </a>
+
+              <div class="project-popover-card">
+                <div class="popover-arrow"></div>
+                <div class="popover-thumb">
+                  <img src="./projects/kayan-preview.jpg" alt="Kayan Clothes Preview" loading="lazy" />
+                  <span class="popover-badge badge-ready">
+                    <i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="badgeReadyDesign">شغال وجاهز يتعدل ليك</span>
+                  </span>
+                </div>
+                <div class="popover-content">
+                  <div class="popover-meta">
+                    <h4 class="popover-title" data-i18n="p4Title">كيان للملابس (Kayan)</h4>
+                    <span class="popover-tag">Fashion & Apparel</span>
+                  </div>
+                  <p class="popover-desc" data-i18n="p4Short">
+                    موقع لبراند ملابس، بيعرض الكولكشن بشكل شيك وسلس مع سلة مشتريات.
+                  </p>
+                  <div class="popover-highlights">
+                    <span><i class="fa-solid fa-layer-group"></i> مجموعات نساء ورجال</span>
+                    <span><i class="fa-solid fa-cart-shopping"></i> درج سلة تفاعلي</span>
+                    <span><i class="fa-solid fa-film"></i> أنيميشن 60FPS</span>
+                  </div>
+                  <div class="popover-btn-group">
+                    <a href="https://kayan-clothes.vercel.app/" target="_blank" rel="noopener noreferrer" class="popover-visit-btn">
+                      <span data-i18n="visitLiveBtn">افتح الموقع لايف</span>
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <button class="popover-copy-btn copy-btn" data-copy="https://kayan-clothes.vercel.app/" title="نسخ رابط الموقع" aria-label="Copy project URL">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Brand 5: El Veranda Workspace -->
+            <div class="partner-item" data-project="elveranda">
+              <a href="https://elvaranda.vercel.app/" target="_blank" rel="noopener noreferrer" class="partner-card" aria-label="El Veranda Workspace">
+                <div class="partner-logo-mark" style="color: #0EA5E9; background: rgba(14, 165, 233, 0.1);">
+                  <i class="fa-solid fa-mug-hot"></i>
+                </div>
+                <div class="partner-info">
+                  <span class="partner-name">EL VERANDA</span>
+                  <span class="partner-tag">COWORKING HUB</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square partner-arrow-icon"></i>
+              </a>
+
+              <div class="project-popover-card">
+                <div class="popover-arrow"></div>
+                <div class="popover-thumb">
+                  <img src="./projects/elveranda.jpg" alt="El Veranda Preview" loading="lazy" />
+                  <span class="popover-badge badge-ready">
+                    <i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="badgeReadyDesign">شغال وجاهز يتعدل ليك</span>
+                  </span>
+                </div>
+                <div class="popover-content">
+                  <div class="popover-meta">
+                    <h4 class="popover-title" data-i18n="p5Title">مساحة عمل الڤراندا (El Veranda)</h4>
+                    <span class="popover-tag">Coworking Space</span>
+                  </div>
+                  <p class="popover-desc" data-i18n="p5Short">
+                    موقع لوورك سبيس ومكان مذاكرة في شبرا، فيه أسعار الساعات والغرف والحجز.
+                  </p>
+                  <div class="popover-highlights">
+                    <span><i class="fa-solid fa-clock"></i> محاسبة وحجز بالساعة</span>
+                    <span><i class="fa-solid fa-wifi"></i> سرعات ومشروبات</span>
+                    <span><i class="fa-solid fa-bolt"></i> تسليم سريع</span>
+                  </div>
+                  <div class="popover-btn-group">
+                    <a href="https://elvaranda.vercel.app/" target="_blank" rel="noopener noreferrer" class="popover-visit-btn">
+                      <span data-i18n="visitLiveBtn">افتح الموقع لايف</span>
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <button class="popover-copy-btn copy-btn" data-copy="https://elvaranda.vercel.app/" title="نسخ رابط الموقع" aria-label="Copy project URL">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. ABOUT SECTION -->
+      <section id="about" class="about-section">
+        <div class="container">
+          <div class="section-header">
+            <div class="badge-pill badge-pill-orange">
+              <i class="fa-solid fa-user"></i>
+              <span data-i18n="aboutBadge">مين عمر</span>
+            </div>
+            <h2 class="section-title" data-i18n="aboutTitle">من غير لف ودوران.. موقعك معمول على كيفك وبدون صداع.</h2>
+            <p class="section-desc" data-i18n="aboutDesc">
+              هدفي إن الموقع يكون شكله حلو، سريع على الموبايل والكمبيوتر، ومريح للعميل اللي بيفتحه.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-bio">
+              <p data-i18n="aboutP1">
+                أنا عمر، بعمل مواقع من الصفر أو بعدل على موقعك القديم، وبصلح أي حاجة بايظة فيه عشان يرجع يشتغل تمام.
+              </p>
+              <p data-i18n="aboutP2">
+                لو عندك فكرة موقع جديدة، أو عندك موقع حالي وفيه باجات أو شكله مش مظبوط على الموبايل وعايز تظبطه، أو محتاج تضيف صفحات وميزات زيادة — بعملهولك خطوة بخطوة وبطريقة تناسبك.
+              </p>
+
+              <div class="about-pillars">
+                <div class="pillar-card">
+                  <div class="pillar-icon" style="color: #2563EB; background: rgba(37, 99, 235, 0.1);">
+                    <i class="fa-solid fa-code"></i>
+                  </div>
+                  <h3 class="pillar-title" data-i18n="pillar1Title">سريع وخفيف في التصفح</h3>
+                  <p class="pillar-desc" data-i18n="pillar1Desc">الموقع بيفتح في ثواني وخفيف في التصفح على أي موبايل ومفيهوش تقل.</p>
+                </div>
+
+                <div class="pillar-card">
+                  <div class="pillar-icon" style="color: #0EA5E9; background: rgba(14, 165, 233, 0.1);">
+                    <i class="fa-solid fa-bug-slash"></i>
+                  </div>
+                  <h3 class="pillar-title" data-i18n="pillar2Title">تصليح الباجات والمشاكل</h3>
+                  <p class="pillar-desc" data-i18n="pillar2Desc">بلاقي سبب المشكلة في الكود أو التصميم وبحلها علطول بدل ما تضيع وقت.</p>
+                </div>
+
+                <div class="pillar-card">
+                  <div class="pillar-icon" style="color: #06B6D4; background: rgba(6, 182, 212, 0.1);">
+                    <i class="fa-solid fa-cubes"></i>
+                  </div>
+                  <h3 class="pillar-title" data-i18n="pillar3Title">لمسات 3D وحركات خفيفة</h3>
+                  <p class="pillar-desc" data-i18n="pillar3Desc">حركات ناعمة ومجسم 3D Three.js يدي موقعك شكل مميز وعصري.</p>
+                </div>
+
+                <div class="pillar-card">
+                  <div class="pillar-icon" style="color: #3B82F6; background: rgba(59, 130, 246, 0.1);">
+                    <i class="fa-solid fa-sliders"></i>
+                  </div>
+                  <h3 class="pillar-title" data-i18n="pillar4Title">تعديل وتفصيل على طلبك</h3>
+                  <p class="pillar-desc" data-i18n="pillar4Desc">بظبط الألوان والتصميم والأقسام على حسب طلبك ونوع شغلك.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive 3D Skills Display -->
+            <div class="skills-container">
+              <div class="skills-interactive-box">
+                <div class="skills-canvas-wrap">
+                  <canvas id="skills-canvas"></canvas>
+                </div>
+
+                <div class="skills-matrix">
+                  <div class="skill-tag" data-skill="JavaScript">
+                    <span class="skill-icon"><i class="fa-brands fa-js"></i></span>
+                    <span data-i18n="skillJs">جافاسكريبت (JavaScript)</span>
+                  </div>
+                  <div class="skill-tag" data-skill="HTML5">
+                    <span class="skill-icon"><i class="fa-brands fa-html5"></i></span>
+                    <span data-i18n="skillHtml">HTML5</span>
+                  </div>
+                  <div class="skill-tag" data-skill="CSS3">
+                    <span class="skill-icon"><i class="fa-brands fa-css3-alt"></i></span>
+                    <span data-i18n="skillCss">CSS3 وتصميم متجاوب</span>
+                  </div>
+                  <div class="skill-tag" data-skill="Responsive">
+                    <span class="skill-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                    <span data-i18n="skillResp">شغال مظبوط على الموبايل</span>
+                  </div>
+                  <div class="skill-tag" data-skill="Animations">
+                    <span class="skill-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                    <span data-i18n="skillAnim">أنيميشن وحركات GSAP</span>
+                  </div>
+                  <div class="skill-tag" data-skill="Bug Fixing">
+                    <span class="skill-icon"><i class="fa-solid fa-wrench"></i></span>
+                    <span data-i18n="skillBug">حل وتصليح المشاكل</span>
+                  </div>
+                  <div class="skill-tag" data-skill="Customization">
+                    <span class="skill-icon"><i class="fa-solid fa-palette"></i></span>
+                    <span data-i18n="skillCustom">تعديل وتخصيص المواقع</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SERVICES SECTION -->
+      <section id="services" class="services-section">
+        <div class="container">
+          <div class="section-header">
+            <div class="badge-pill badge-pill-orange">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+              <span data-i18n="servicesBadge">خدماتي</span>
+            </div>
+            <h2 class="section-title" data-i18n="servicesTitle">إيه اللي أقدر أساعدك فيه؟</h2>
+            <p class="section-desc" data-i18n="servicesDesc">
+              شغل واضح ومحدد حسب اللي محتاجه بالظبط:
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+              <span class="service-num">01</span>
+              <div class="service-icon-box">
+                <i class="fa-solid fa-laptop-code" style="font-size: 1.4rem;"></i>
+              </div>
+              <h3 class="service-title" data-i18n="s1Title">عمل موقع كامل من الصفر</h3>
+              <p class="service-desc" data-i18n="s1Desc">
+                من أول فكرة وتصميم لحد كود شغال وسريع، ومرفوع ومتاح أونلاين على النت.
+              </p>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card">
+              <span class="service-num">02</span>
+              <div class="service-icon-box" style="color: var(--accent-coral); background: rgba(255, 107, 107, 0.12); border-color: rgba(255, 107, 107, 0.25);">
+                <i class="fa-solid fa-bug-slash" style="font-size: 1.4rem;"></i>
+              </div>
+              <h3 class="service-title" data-i18n="s2Title">تصليح المشاكل والباجات</h3>
+              <p class="service-desc" data-i18n="s2Desc">
+                موقعك فيه زراير مش شغالة؟ التنسيق بايظ على الموبايل؟ أخطاء في الكود؟ بدخل أصلح العيب علطول.
+              </p>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card">
+              <span class="service-num">03</span>
+              <div class="service-icon-box" style="color: var(--accent-teal); background: rgba(45, 212, 191, 0.12); border-color: rgba(45, 212, 191, 0.25);">
+                <i class="fa-solid fa-pen-ruler" style="font-size: 1.4rem;"></i>
+              </div>
+              <h3 class="service-title" data-i18n="s3Title">تعديل وتطوير موقع موجود</h3>
+              <p class="service-desc" data-i18n="s3Desc">
+                عندك موقع وعايز تغير ألوان، تضيف منتجات أو أقسام، أو تعدل أي صفحة؟ بظبطهالك زي ما تحب.
+              </p>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card">
+              <span class="service-num">04</span>
+              <div class="service-icon-box" style="color: var(--accent-amber); background: rgba(251, 191, 36, 0.12); border-color: rgba(251, 191, 36, 0.25);">
+                <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 1.4rem;"></i>
+              </div>
+              <h3 class="service-title" data-i18n="s4Title">إضافة حركات ومؤثرات 3D</h3>
+              <p class="service-desc" data-i18n="s4Desc">
+                لو عايز موقعك يشد العين بحركات Three.js وتفاعل 3D يخليه مختلف عن المواقع العادية.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. PROCESS SECTION -->
+      <section id="process" class="process-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <div class="badge-pill" style="margin-inline: auto;">
+              <i class="fa-solid fa-route"></i>
+              <span data-i18n="processBadge">طريقة الشغل</span>
+            </div>
+            <h2 class="section-title" data-i18n="processTitle">بشتغل إزاي؟</h2>
+            <p class="section-desc" data-i18n="processDesc">
+              أربع خطوات بسيطة بدون تضييع وقت:
+            </p>
+          </div>
+
+          <div class="process-timeline">
+            <div class="process-step-card">
+              <div class="process-step-icon">
+                <i class="fa-regular fa-comments"></i>
+              </div>
+              <span class="process-step-badge" data-i18n="pr1Step">الخطوة 01</span>
+              <h3 class="process-step-title" data-i18n="pr1Title">نتفق على المطلوب</h3>
+              <p class="process-step-desc" data-i18n="pr1Desc">
+                بنتكلم شات أو مكالمة سريعة، بعرف منك محتاج إيه بالظبط وبنحدد الوقت والتكلفة.
+              </p>
+            </div>
+
+            <div class="process-step-card">
+              <div class="process-step-icon">
+                <i class="fa-solid fa-compass-drafting"></i>
+              </div>
+              <span class="process-step-badge" data-i18n="pr2Step">الخطوة 02</span>
+              <h3 class="process-step-title" data-i18n="pr2Title">الشكل والتوزيع</h3>
+              <p class="process-step-desc" data-i18n="pr2Desc">
+                بنستقر على التصميم والألوان وتقسيمة الصفحات المناسبة لفكرتك.
+              </p>
+            </div>
+
+            <div class="process-step-card">
+              <div class="process-step-icon">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <span class="process-step-badge" data-i18n="pr3Step">الخطوة 03</span>
+              <h3 class="process-step-title" data-i18n="pr3Title">الكود والتنفيذ</h3>
+              <p class="process-step-desc" data-i18n="pr3Desc">
+                ببني الموقع وبضيف الحركات، وبجرب كل حاجة عشان تتأكد إنها شغالة 100% على أي شاشة.
+              </p>
+            </div>
+
+            <div class="process-step-card">
+              <div class="process-step-icon">
+                <i class="fa-solid fa-rocket"></i>
+              </div>
+              <span class="process-step-badge" data-i18n="pr4Step">الخطوة 04</span>
+              <h3 class="process-step-title" data-i18n="pr4Title">التسليم والمراجعة</h3>
+              <p class="process-step-desc" data-i18n="pr4Desc">
+                بنرفع الموقع لايف، بنجرب كل زرار وكل رابط، وبتستلم موقعك جاهز وشغال تمام.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CONTACT SECTION -->
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <div class="section-header">
+            <div class="badge-pill badge-pill-teal">
+              <i class="fa-solid fa-comment-dots"></i>
+              <span data-i18n="contactBadge">تواصل معايا</span>
+            </div>
+            <h2 class="section-title" data-i18n="contactTitle">عندك فكرة أو مشكلة في موقعك؟</h2>
+            <p class="section-desc" data-i18n="contactDesc">
+              تقدر تبعتلي علطول على الواتساب أو تتصل بيا، وممكن برضه تسيب رسالتك في الفورم وهرد عليك بسرعة.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <!-- Direct Contact Methods -->
+            <div class="contact-info">
+              <div class="contact-methods">
+                <!-- WhatsApp -->
+                <div class="contact-method-card interactive-hover">
+                  <div class="contact-method-left">
+                    <div class="contact-method-icon whatsapp">
+                      <i class="fa-brands fa-whatsapp" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                      <div class="contact-method-label" data-i18n="cMethodPhone">واتساب / اتصال</div>
+                      <div class="contact-method-val">01221576360</div>
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 0.5rem;">
+                    <a href="https://wa.me/201221576360" target="_blank" rel="noopener noreferrer" class="btn btn-icon magnetic" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+                      <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <button class="btn btn-icon magnetic copy-btn" data-copy="01221576360" title="Copy Phone Number" aria-label="Copy Phone Number">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-method-card interactive-hover">
+                  <div class="contact-method-left">
+                    <div class="contact-method-icon">
+                      <i class="fa-regular fa-envelope" style="font-size: 1.3rem;"></i>
+                    </div>
+                    <div>
+                      <div class="contact-method-label" data-i18n="cMethodEmail">الإيميل</div>
+                      <div class="contact-method-val" style="font-size: 0.98rem;">om058166@gmail.com</div>
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 0.5rem;">
+                    <a href="mailto:om058166@gmail.com" class="btn btn-icon magnetic" title="Send Email" aria-label="Send Email">
+                      <i class="fa-regular fa-paper-plane"></i>
+                    </a>
+                    <button class="btn btn-icon magnetic copy-btn" data-copy="om058166@gmail.com" title="Copy Email Address" aria-label="Copy Email Address">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Instagram -->
+                <div class="contact-method-card interactive-hover">
+                  <div class="contact-method-left">
+                    <div class="contact-method-icon instagram">
+                      <i class="fa-brands fa-instagram" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                      <div class="contact-method-label" data-i18n="cMethodInsta">انستجرام</div>
+                      <div class="contact-method-val">@omar_thegratt</div>
+                    </div>
+                  </div>
+                  <a href="https://instagram.com/omar_thegratt" target="_blank" rel="noopener noreferrer" class="btn btn-icon magnetic" title="Open Instagram" aria-label="Open Instagram">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Replay Welcome Intro button -->
+              <div style="margin-top: 1.5rem;">
+                <button id="replay-intro-btn" class="btn btn-secondary magnetic" style="font-size: 0.85rem; padding: 0.6rem 1.25rem;">
+                  <i class="fa-solid fa-rotate-left" style="margin-inline-end: 6px;"></i>
+                  <span data-i18n="replayIntroBtn">إعادة تشغيل الإنترو 3D</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Interactive Contact Form -->
+            <div class="contact-form-card">
+              <form id="portfolio-contact-form">
+                <div class="form-group">
+                  <label for="form-name" class="form-label" data-i18n="formNameLabel">اسمك</label>
+                  <input type="text" id="form-name" class="form-input" data-i18n-placeholder="formNamePlaceholder" placeholder="مثلاً: كريم، أحمد، سارة" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="form-contact" class="form-label" data-i18n="formContactLabel">طريقة التواصل</label>
+                  <input type="text" id="form-contact" class="form-input" data-i18n-placeholder="formContactPlaceholder" placeholder="رقم الواتساب أو الإيميل" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="form-service" class="form-label" data-i18n="formServiceLabel">محتاج إيه؟</label>
+                  <select id="form-service" class="form-select">
+                    <option value="scratch" data-i18n="formOptScratch">عمل موقع جديد من الصفر</option>
+                    <option value="ready-made" data-i18n="formOptReady">تعديل تصميم جاهز من المعروضين</option>
+                    <option value="bugfix" data-i18n="formOptBug">تصليح مشاكل وباجات في موقع موجود</option>
+                    <option value="customization" data-i18n="formOptCustom">تعديل وإضافة صفحات لموقع موجود</option>
+                    <option value="3d-animations" data-i18n="formOpt3d">إضافة مؤثرات وحركات 3D</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-message" class="form-label" data-i18n="formMsgLabel">تفاصيل طلبك</label>
+                  <textarea id="form-message" class="form-textarea" data-i18n-placeholder="formMsgPlaceholder" placeholder="اكتب باختصار محتاج موقع جديد، ولا عندك مشكلة معينة عايز تصلحها..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary magnetic" style="width: 100%; padding: 1rem; font-size: 1.05rem;">
+                  <span data-i18n="formSubmitBtn">ابعت الرسالة</span>
+                  <i class="fa-solid fa-paper-plane" style="margin-inline-start: 6px;"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FOOTER SECTION -->
+      <footer class="footer">
+        <div class="container footer-inner">
+          <div class="footer-copy" data-i18n="footerCopy">
+            عمر &copy; 2026 — بعمل ويبسايتات على كيفك لكل المجالات.
+          </div>
+          <div class="footer-links">
+            <button class="footer-back-to-top magnetic">
+              <span data-i18n="backToTopBtn">للأعلى</span>
+              <i class="fa-solid fa-arrow-up"></i>
+            </button>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Floating Quick Actions (WhatsApp Direct & Scroll to Top) -->
+    <div class="floating-dock" id="floating-dock">
+      <!-- Back to Top Button -->
+      <button id="floating-back-top" class="floating-btn scroll-top-btn" title="الرجوع للأعلى" aria-label="Scroll to top">
+        <i class="fa-solid fa-arrow-up"></i>
+      </button>
+
+      <!-- WhatsApp Floating Trigger -->
+      <div class="floating-whatsapp-container">
+        <div class="whatsapp-tooltip-card">
+          <span class="wa-status-dot"></span>
+          <div class="wa-tooltip-content">
+            <span class="wa-tooltip-title" data-i18n="waTooltipTitle">متاح للشات دلوقتي</span>
+            <span class="wa-tooltip-sub" data-i18n="waTooltipSub">كلمنا واتساب مباشر</span>
+          </div>
+        </div>
+        <a href="https://wa.me/201221576360?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%B9%D9%85%D8%B1%D8%8C%20%D8%B4%D9%88%D9%81%D8%AA%20%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%AA%D9%81%D9%88%D9%84%D9%8A%D9%88%20%D9%88%D8%AD%D8%A7%D8%A8%D8%A8%20%D9%86%D8%AA%D9%83%D9%84%D9%85%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="floating-btn whatsapp-floating-btn" 
+           title="تواصل عبر واتساب" 
+           aria-label="Chat on WhatsApp">
+          <span class="whatsapp-ping"></span>
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Main JavaScript Application Entry -->
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
