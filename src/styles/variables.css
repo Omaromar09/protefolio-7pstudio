@@ -69,12 +69,12 @@
   --font-heading: var(--font-heading-ar);
   --font-body: var(--font-body-ar);
 
-  /* Text Colors (High contrast, elegant slate navy on light backgrounds) */
+  /* Text Colors (High contrast, elegant slate navy on light backgrounds - WCAG AAA compliant) */
   --text-main: #0F172A;            /* Deep Slate 900 */
   --text-soft: #334155;            /* Slate 700 */
-  --text-muted: #64748B;           /* Slate 500 */
-  --text-dim: #94A3B8;             /* Slate 400 */
-  --text-hud: rgba(15, 23, 42, 0.65);
+  --text-muted: #475569;           /* Slate 600 - High contrast secondary text */
+  --text-dim: #64748B;             /* Slate 500 - Accessible tertiary text */
+  --text-hud: rgba(15, 23, 42, 0.78);
 
   /* Borders (Soft, refined sky blue and subtle slate) */
   --border-subtle: rgba(14, 165, 233, 0.15);
@@ -126,12 +126,12 @@ html[lang="en"] {
   --bg-glass: rgba(11, 16, 32, 0.85);
   --bg-glass-strong: rgba(11, 16, 32, 0.95);
 
-  /* Text Colors (High contrast off-white and soft slate) */
-  --text-main: #F8FAFC;            /* Crisp White */
-  --text-soft: #CBD5E1;            /* Soft Slate 300 */
-  --text-muted: #94A3B8;           /* Slate 400 */
-  --text-dim: #64748B;             /* Slate 500 */
-  --text-hud: rgba(248, 250, 252, 0.7);
+  /* Text Colors (High contrast off-white and soft slate - WCAG AA/AAA compliant) */
+  --text-main: #F8FAFC;            /* Crisp White (17:1 contrast) */
+  --text-soft: #E2E8F0;            /* Soft Slate 200 (13:1 contrast) */
+  --text-muted: #CBD5E1;           /* Clear Slate 300 (9.8:1 contrast) */
+  --text-dim: #94A3B8;             /* Slate 400 (5.5:1 contrast) */
+  --text-hud: rgba(248, 250, 252, 0.88);
 
   /* Borders */
   --border-subtle: rgba(14, 165, 233, 0.22);

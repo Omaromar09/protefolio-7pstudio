@@ -22,8 +22,8 @@ export class HeroScene {
 
   init() {
     const rect = this.canvas.parentElement.getBoundingClientRect();
-    const width = rect.width || 480;
-    const height = rect.height || 480;
+    const width = Math.min(rect.width || window.innerWidth, window.innerWidth);
+    const height = rect.height || 380;
     const isMobile = window.innerWidth < 768;
 
     // Camera
@@ -37,8 +37,8 @@ export class HeroScene {
       alpha: true,
       powerPreference: 'high-performance'
     });
-    this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
+    this.renderer.setSize(width, height, false);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.0 : 1.75));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.2;
 
@@ -84,27 +84,22 @@ export class HeroScene {
   createCenterpiece(isMobile) {
     this.group = new THREE.Group();
 
-    // 1. Core Complex Torus Knot (Vibrant Crystalline Royal Blue)
-    const tubularSegments = isMobile ? 64 : 128;
-    const radialSegments = isMobile ? 18 : 32;
+    // 1. Core Complex Torus Knot (Vibrant Crystalline Royal Blue) - Optimized geometry
+    const tubularSegments = isMobile ? 32 : 64;
+    const radialSegments = isMobile ? 12 : 18;
     const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.38, tubularSegments, radialSegments, 2, 3);
-    const knotMat = new THREE.MeshPhysicalMaterial({
+    const knotMat = new THREE.MeshStandardMaterial({
       color: 0x1E40AF,
       emissive: 0x0284C7,
       emissiveIntensity: 0.35,
-      roughness: 0.1,
-      metalness: 0.85,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.08,
-      reflectivity: 0.95,
-      transmission: 0.3,
-      thickness: 1.2
+      roughness: 0.15,
+      metalness: 0.85
     });
     this.knot = new THREE.Mesh(knotGeo, knotMat);
     this.group.add(this.knot);
 
     // 2. Translucent wireframe cage (Sky Blue / Labany accent)
-    const wireGeo = new THREE.TorusKnotGeometry(1.24, 0.40, isMobile ? 32 : 64, 16, 2, 3);
+    const wireGeo = new THREE.TorusKnotGeometry(1.24, 0.40, isMobile ? 20 : 36, 10, 2, 3);
     const wireMat = new THREE.MeshBasicMaterial({
       color: 0x38BDF8,
       wireframe: true,
@@ -116,14 +111,12 @@ export class HeroScene {
 
     // 3. Inner glowing gem (Electric Blue Core)
     const gemGeo = new THREE.OctahedronGeometry(0.68, 0);
-    const gemMat = new THREE.MeshPhysicalMaterial({
+    const gemMat = new THREE.MeshStandardMaterial({
       color: 0x2563EB,
       emissive: 0x0EA5E9,
       emissiveIntensity: 0.75,
-      roughness: 0.1,
-      metalness: 0.4,
-      transmission: 0.65,
-      thickness: 1.0
+      roughness: 0.2,
+      metalness: 0.5
     });
     this.gem = new THREE.Mesh(gemGeo, gemMat);
     this.group.add(this.gem);
@@ -134,7 +127,7 @@ export class HeroScene {
     const ringColors = [0x2563EB, 0x0EA5E9, 0x38BDF8];
 
     ringRadii.forEach((rad, idx) => {
-      const ringGeo = new THREE.TorusGeometry(rad, 0.016, 16, isMobile ? 48 : 96);
+      const ringGeo = new THREE.TorusGeometry(rad, 0.016, 8, isMobile ? 24 : 44);
       const ringMat = new THREE.MeshStandardMaterial({
         color: ringColors[idx],
         emissive: ringColors[idx],
@@ -154,11 +147,11 @@ export class HeroScene {
 
   createOrbiters(isMobile) {
     this.orbiters = new THREE.Group();
-    const orbiterCount = isMobile ? 3 : 6;
+    const orbiterCount = isMobile ? 2 : 4;
     this.orbiterMeshes = [];
 
     const geom = new THREE.DodecahedronGeometry(0.14);
-    const colors = [0x2563EB, 0x0EA5E9, 0x38BDF8, 0x0284C7, 0x60A5FA, 0x06B6D4];
+    const colors = [0x2563EB, 0x0EA5E9, 0x38BDF8, 0x0284C7];
 
     for (let i = 0; i < orbiterCount; i++) {
       const mat = new THREE.MeshStandardMaterial({
@@ -182,7 +175,7 @@ export class HeroScene {
   }
 
   createParticleCloud(isMobile) {
-    const count = isMobile ? 40 : 85;
+    const count = isMobile ? 20 : 45;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
@@ -272,12 +265,12 @@ export class HeroScene {
   onResize() {
     if (!this.canvas.parentElement) return;
     const rect = this.canvas.parentElement.getBoundingClientRect();
-    const width = rect.width || 480;
-    const height = rect.height || 480;
+    const width = Math.min(rect.width || window.innerWidth, window.innerWidth);
+    const height = rect.height || 380;
 
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height);
+    this.renderer.setSize(width, height, false);
   }
 
   animate() {

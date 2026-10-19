@@ -32,8 +32,8 @@ export class SkillsScene {
 
   init() {
     const parent = this.canvas.parentElement;
-    const width = parent.clientWidth || 360;
-    const height = parent.clientHeight || 250;
+    const width = Math.min(parent ? parent.clientWidth : window.innerWidth, window.innerWidth);
+    const height = parent ? parent.clientHeight : 250;
     const isMobile = window.innerWidth < 768;
 
     // Camera
@@ -47,8 +47,8 @@ export class SkillsScene {
       alpha: true,
       powerPreference: 'high-performance'
     });
-    this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
+    this.renderer.setSize(width, height, false);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.0 : 1.75));
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
@@ -90,22 +90,18 @@ export class SkillsScene {
   }
 
   createCore() {
-    const coreGeo = new THREE.SphereGeometry(0.72, 32, 32);
-    const coreMat = new THREE.MeshPhysicalMaterial({
+    const coreGeo = new THREE.SphereGeometry(0.72, 16, 16);
+    const coreMat = new THREE.MeshStandardMaterial({
       color: 0x1E40AF,
       emissive: 0x0EA5E9,
       emissiveIntensity: 0.65,
-      roughness: 0.12,
-      metalness: 0.85,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.1,
-      transparent: true,
-      opacity: 0.92
+      roughness: 0.2,
+      metalness: 0.85
     });
     this.coreMesh = new THREE.Mesh(coreGeo, coreMat);
     this.group.add(this.coreMesh);
 
-    const wireGeo = new THREE.IcosahedronGeometry(0.92, 1);
+    const wireGeo = new THREE.IcosahedronGeometry(0.92, 0);
     const wireMat = new THREE.MeshBasicMaterial({
       color: 0x38BDF8,
       wireframe: true,
@@ -135,7 +131,7 @@ export class SkillsScene {
       const mesh = new THREE.Mesh(geom, mat);
       nodeGroup.add(mesh);
 
-      const glowGeo = new THREE.SphereGeometry(0.28, 16, 16);
+      const glowGeo = new THREE.SphereGeometry(0.28, 8, 8);
       const glowMat = new THREE.MeshBasicMaterial({
         color: colorNum,
         transparent: true,
@@ -216,7 +212,7 @@ export class SkillsScene {
   }
 
   createDust(isMobile) {
-    const count = isMobile ? 80 : 180;
+    const count = isMobile ? 25 : 50;
     const geo = new THREE.BufferGeometry();
     const pos = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
@@ -297,11 +293,11 @@ export class SkillsScene {
   onResize() {
     const parent = this.canvas.parentElement;
     if (!parent) return;
-    const width = parent.clientWidth || 360;
+    const width = Math.min(parent.clientWidth || window.innerWidth, window.innerWidth);
     const height = parent.clientHeight || 250;
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height);
+    this.renderer.setSize(width, height, false);
   }
 
   highlightSkill(skillName) {

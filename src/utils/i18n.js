@@ -21,15 +21,15 @@ export const translations = {
     copyLinkSuccess: 'تم نسخ رابط المشروع!',
 
     // Hero Section
-    heroBadge1: 'متاح لشغل ومشاريع جديدة',
-    heroBadge2: 'ويبسايت على كيفك وحركات 3D',
+    heroBadge1: '⚡ جاهز لنقل بيزنسك للرقمية أسرع وبدون صداع',
+    heroBadge2: 'ويبسايت على كيفك وحركات 3D خفيفة',
     heroTitle: 'ويبسايت على كيفك، <span class="highlight">شكله رايق،</span> وسريع.',
     heroSubtitle: 'أهلاً، أنا <strong>عمر</strong>. بعمل مواقع لعملاء وبيزنس، بحل أي باجات أو مشاكل في مواقع موجودة، وبظبط الموقع على طلبك بالظبط ومن غير تعقيد.',
     heroCtaWork: 'شوف شغلي',
-    heroCtaContact: 'كلمني',
-    heroStat1: 'حل المشاكل والباجات بسرعة',
-    heroStat2: 'مضبوط على الموبايل والكمبيوتر',
-    heroStat3: 'حركات 3D خفيفة وناعمة',
+    heroCtaContact: 'ابدأ مشروعك معايا 🚀',
+    heroStat1: 'تسليم سريع وفي الميعاد بالظبط',
+    heroStat2: 'مضبوط 100% على الموبايل والكمبيوتر',
+    heroStat3: 'دعم فني وتعديلات بعد التسليم',
     hero3dHint: 'حرك الماوس لتلف المجسم 3D',
 
     // About Section
@@ -104,15 +104,15 @@ export const translations = {
     // Services Section
     servicesBadge: 'خدماتي',
     servicesTitle: 'إيه اللي أقدر أساعدك فيه؟',
-    servicesDesc: 'شغل واضح ومحدد حسب اللي محتاجه بالظبط:',
-    s1Title: 'عمل موقع كامل من الصفر',
-    s1Desc: 'من أول فكرة وتصميم لحد كود شغال وسريع، ومرفوع ومتاح أونلاين على النت.',
-    s2Title: 'تصليح المشاكل والباجات',
-    s2Desc: 'موقعك فيه زراير مش شغالة؟ التنسيق بايظ على الموبايل؟ أخطاء في الكود؟ بدخل أصلح العيب علطول.',
-    s3Title: 'تعديل وتطوير موقع موجود',
-    s3Desc: 'عندك موقع وعايز تغير ألوان، تضيف منتجات أو أقسام، أو تعدل أي صفحة؟ بظبطهالك زي ما تحب.',
-    s4Title: 'إضافة حركات ومؤثرات 3D',
-    s4Desc: 'لو عايز موقعك يشد العين بحركات Three.js وتفاعل 3D يخليه مختلف عن المواقع العادية.',
+    servicesDesc: 'شغل واضح ومحدد حسب اللي محتاجه بيزنسك بالظبط:',
+    s1Title: 'تطوير موقع كامل (Landing Page / E-commerce)',
+    s1Desc: 'من الفكرة والتصميم لحد كود شغال وسريع، متوافق مع الموبايل ومربوط بسلة شراء ودومين واستضافة جاهزة.',
+    s2Title: 'حل الباجات والصيانة السريعة',
+    s2Desc: 'لو موقعك فيه مشكلة، بطيء، أزرار مش شغالة، أو شكله متلخبط على التليفون، بصلحهولك فوري وبدون صداع.',
+    s3Title: 'تعديل وتطوير الـ UI/UX',
+    s3Desc: 'تظبيط وتحديث شكل موقعك الحالي وتحويله لتصميم عصري جذاب يريح الزبون ويزود ثقته في بيزنسك.',
+    s4Title: 'ربط واتساب وميزات تفاعلية ذكية',
+    s4Desc: 'ربط مباشر لطلبات الشراء على الواتساب، فورمات تواصل وحجز سريعة، ولمسات تفاعلية 3D تميزك عن غيرك.',
 
     // Process Section
     processBadge: 'طريقة الشغل',
@@ -133,8 +133,11 @@ export const translations = {
 
     // Contact Section
     contactBadge: 'تواصل معايا',
-    contactTitle: 'عندك فكرة أو مشكلة في موقعك؟',
-    contactDesc: 'تقدر تبعتلي علطول على الواتساب أو تتصل بيا، وممكن برضه تسيب رسالتك في الفورم وهرد عليك بسرعة.',
+    contactTitle: 'عندك فكرة مشروع وعايز تحولها لويبسايت جامد؟',
+    contactDesc: 'كلمني فوراً وخلينا نبدأ — شات واتساب فوري وسريع، أو سيب بياناتك في الفورم وهرد عليك علطول.',
+    waFastBadge: 'أسرع طريقة للتواصل',
+    waDirectBtn: 'شات مباشر على واتساب 🚀',
+    waDirectSub: 'رد فوري لمناقشة فكرتك والبدء علطول',
     cMethodPhone: 'واتساب / اتصال',
     cMethodEmail: 'الإيميل',
     cMethodInsta: 'انستجرام',
@@ -144,17 +147,17 @@ export const translations = {
     formContactLabel: 'طريقة التواصل',
     formContactPlaceholder: 'رقم الواتساب أو الإيميل',
     formServiceLabel: 'محتاج إيه؟',
-    formOptScratch: 'عمل موقع جديد من الصفر',
-    formOptReady: 'تعديل تصميم جاهز من المعروضين',
-    formOptBug: 'تصليح مشاكل وباجات في موقع موجود',
-    formOptCustom: 'تعديل وإضافة صفحات لموقع موجود',
-    formOpt3d: 'إضافة مؤثرات وحركات 3D',
+    formOptScratch: 'تطوير موقع كامل من الصفر (Landing Page / E-commerce)',
+    formOptReady: 'تعديل وتخصيص نموذج جاهز لبيزنسي',
+    formOptBug: 'حل باجات وصيانة سريعة لموقع موجود',
+    formOptCustom: 'تطوير الـ UI/UX وإضافة صفحات وميزات',
+    formOpt3d: 'ربط واتساب وميزات تفاعلية 3D',
     formMsgLabel: 'تفاصيل طلبك',
     formMsgPlaceholder: 'اكتب باختصار محتاج موقع جديد، ولا عندك مشكلة معينة عايز تصلحها...',
     formSubmitBtn: 'ابعت الرسالة',
 
     // Footer
-    footerCopy: 'عمر © 2026 — بعمل ويبسايتات على كيفك لكل المجالات',
+    footerCopy: '© 2026 7P Studio (عمر) — جميع الحقوق محفوظة. مواقع عصرية معمولة على كيفك.',
     backToTopBtn: 'للأعلى'
   },
 
@@ -175,15 +178,15 @@ export const translations = {
     copyLinkSuccess: 'Project link copied!',
 
     // Hero Section
-    heroBadge1: 'Available for projects & quick bug fixes',
-    heroBadge2: 'Websites made your way & 3D motion',
+    heroBadge1: '⚡ Ready to take your business digital faster & headache-free',
+    heroBadge2: 'Websites made your way & smooth 3D motion',
     heroTitle: 'Websites made your way, <span class="highlight">looking sharp,</span> and lightning fast.',
     heroSubtitle: "Hey, I'm <strong>Omar</strong>. I build websites for clients, fix annoying bugs on existing sites, and tweak layouts to fit exactly what you need.",
     heroCtaWork: 'Check My Work',
-    heroCtaContact: 'Get in Touch',
-    heroStat1: 'Quick bug fixing & repairs',
-    heroStat2: 'Fits mobile & desktop screens',
-    heroStat3: 'Smooth motion & 3D touches',
+    heroCtaContact: 'Start Your Project 🚀',
+    heroStat1: 'Fast on-time delivery guaranteed',
+    heroStat2: '100% responsive on mobile & desktop',
+    heroStat3: 'Post-delivery support & tweaks',
     hero3dHint: 'Drag or hover to rotate 3D',
 
     // About Section
@@ -259,14 +262,14 @@ export const translations = {
     servicesBadge: 'Services',
     servicesTitle: 'How I Can Help You',
     servicesDesc: 'Clear, straightforward work tailored to what you actually need:',
-    s1Title: 'Build a Site From Scratch',
-    s1Desc: 'From initial design to clean, working code deployed live on the web.',
-    s2Title: 'Fixing Bugs & Broken Layouts',
-    s2Desc: 'Broken buttons, mobile layout glitches, or JavaScript errors? I jump in and fix them fast.',
-    s3Title: 'Customizing & Editing Existing Sites',
-    s3Desc: 'Want to tweak colors, add new sections or products, or update pages on an existing site? Done.',
-    s4Title: 'Animations & 3D Touches',
-    s4Desc: 'Lightweight Three.js 3D and smooth motion that gives your site a modern, unique feel.',
+    s1Title: 'Full Website & E-commerce Development',
+    s1Desc: 'From idea to delivery: complete, fast, mobile-first websites with custom domain, hosting, and order carts.',
+    s2Title: 'Instant Bug Fixing & Maintenance',
+    s2Desc: 'Got broken buttons, slow load times, or layout glitches on mobile? I troubleshoot and fix them immediately.',
+    s3Title: 'UI/UX Redesign & Modernization',
+    s3Desc: 'Revamp your existing website with a fresh, modern aesthetic, sharper colors, and better user experience.',
+    s4Title: 'WhatsApp Integration & Smart Features',
+    s4Desc: 'Direct WhatsApp checkout, interactive booking forms, and sleek 3D motion that sets your business apart.',
 
     // Process Section
     processBadge: 'How It Works',
@@ -287,8 +290,11 @@ export const translations = {
 
     // Contact Section
     contactBadge: 'Get in Touch',
-    contactTitle: 'Got a project or a bug to fix?',
-    contactDesc: 'Feel free to reach out directly via WhatsApp, call me, or leave a message below. I reply quickly.',
+    contactTitle: 'Got a project idea and want a standout website?',
+    contactDesc: 'Reach out right now and let’s get started — direct WhatsApp chat, or drop a message below.',
+    waFastBadge: 'Fastest way to talk',
+    waDirectBtn: 'Chat Directly on WhatsApp 🚀',
+    waDirectSub: 'Instant response to discuss your project',
     cMethodPhone: 'WhatsApp / Phone',
     cMethodEmail: 'Email',
     cMethodInsta: 'Instagram',
@@ -298,17 +304,17 @@ export const translations = {
     formContactLabel: 'Contact Info',
     formContactPlaceholder: 'WhatsApp number or email',
     formServiceLabel: 'What do you need?',
-    formOptScratch: 'Build a site from scratch',
+    formOptScratch: 'Build a full site from scratch (Landing Page / E-commerce)',
     formOptReady: 'Customize one of the showcase designs',
-    formOptBug: 'Fix bugs/issues in an existing site',
-    formOptCustom: 'Add pages or edit an existing site',
-    formOpt3d: 'Add 3D effects or animations',
+    formOptBug: 'Fix bugs and fast maintenance on existing site',
+    formOptCustom: 'UI/UX revamp and add new pages/features',
+    formOpt3d: 'WhatsApp integration & interactive 3D touches',
     formMsgLabel: 'Details',
     formMsgPlaceholder: 'Briefly describe what you want to build or what needs fixing...',
     formSubmitBtn: 'Send Message',
 
     // Footer
-    footerCopy: 'Omar © 2026 — Websites built your way, done right.',
+    footerCopy: '© 2026 7P Studio (Omar). All rights reserved. Websites crafted your way.',
     backToTopBtn: 'Back to Top'
   }
 };

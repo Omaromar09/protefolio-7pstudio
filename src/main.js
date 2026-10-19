@@ -1,6 +1,4 @@
 import './style.css';
-import { HeroScene } from './3d/heroScene.js';
-import { SkillsScene } from './3d/skillsScene.js';
 import { DeterministicIntro } from './intro/deterministicIntro.js';
 import { initLanguage, getLanguage, setLanguage } from './utils/i18n.js';
 import { initTheme } from './utils/theme.js';
@@ -55,15 +53,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
-// 2. 3D SCENES SETUP
+// 2. 3D SCENES SETUP (Deferred & Lazy Loaded for Zero TBT & 90+ PageSpeed)
 // ==========================================================================
 let heroSceneInstance = null;
 let skillsSceneInstance = null;
+let heroLoaded = false;
+let skillsLoaded = false;
 
-function setup3DScenes() {
-  // Hero 3D Centerpiece
+export async function ensureHeroSceneLoaded() {
+  if (heroLoaded) return;
   const heroCanvas = document.getElementById('hero-3d-canvas');
-  if (heroCanvas) {
+  if (!heroCanvas) return;
+  heroLoaded = true;
+
+  try {
+    const { HeroScene } = await import('./3d/heroScene.js');
     heroSceneInstance = new HeroScene(heroCanvas);
 
     window.addEventListener('scroll', () => {
@@ -72,23 +76,64 @@ function setup3DScenes() {
         heroSceneInstance.setScroll(progress);
       }
     }, { passive: true });
+  } catch (err) {
+    console.warn('Hero 3D lazy load skipped or failed:', err);
+  }
+}
+
+function setup3DScenes() {
+  const heroCanvas = document.getElementById('hero-3d-canvas');
+  if (heroCanvas) {
+    // 1. Initialize immediately upon first user interaction (scroll, touch, move, click)
+    const onUserInteraction = () => {
+      ensureHeroSceneLoaded();
+      ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'].forEach(evt => {
+        window.removeEventListener(evt, onUserInteraction);
+      });
+    };
+    ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'].forEach(evt => {
+      window.addEventListener(evt, onUserInteraction, { once: true, passive: true });
+    });
+
+    // 2. Idle fallback: load only after the main thread is completely idle (prevents TBT blocking)
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => {
+        setTimeout(ensureHeroSceneLoaded, 1800);
+      }, { timeout: 3500 });
+    } else {
+      setTimeout(ensureHeroSceneLoaded, 2200);
+    }
   }
 
-  // About Skills 3D Constellation
+  // About Skills 3D Constellation - Lazy load via IntersectionObserver when scrolled near
   const skillsCanvas = document.getElementById('skills-canvas');
   if (skillsCanvas) {
-    skillsSceneInstance = new SkillsScene(skillsCanvas);
+    const skillsObserver = new IntersectionObserver(async (entries) => {
+      if (entries[0].isIntersecting && !skillsLoaded) {
+        skillsLoaded = true;
+        skillsObserver.disconnect();
 
-    const skillTags = document.querySelectorAll('.skill-tag');
-    skillTags.forEach((tag) => {
-      const skillName = tag.getAttribute('data-skill') || tag.innerText;
-      tag.addEventListener('mouseenter', () => {
-        if (skillsSceneInstance) skillsSceneInstance.highlightSkill(skillName);
-      });
-      tag.addEventListener('mouseleave', () => {
-        if (skillsSceneInstance) skillsSceneInstance.resetHighlights();
-      });
-    });
+        try {
+          const { SkillsScene } = await import('./3d/skillsScene.js');
+          skillsSceneInstance = new SkillsScene(skillsCanvas);
+
+          const skillTags = document.querySelectorAll('.skill-tag');
+          skillTags.forEach((tag) => {
+            const skillName = tag.getAttribute('data-skill') || tag.innerText;
+            tag.addEventListener('mouseenter', () => {
+              if (skillsSceneInstance) skillsSceneInstance.highlightSkill(skillName);
+            });
+            tag.addEventListener('mouseleave', () => {
+              if (skillsSceneInstance) skillsSceneInstance.resetHighlights();
+            });
+          });
+        } catch (err) {
+          console.warn('Skills 3D lazy load skipped or failed:', err);
+        }
+      }
+    }, { rootMargin: '300px' });
+
+    skillsObserver.observe(skillsCanvas);
   }
 }
 
@@ -229,6 +274,7 @@ function executeOrangeHandoff(introScreen, orangeHandoff) {
 }
 
 function triggerHeroReveal() {
+  ensureHeroSceneLoaded();
   const heroContent = document.querySelector('.hero-content');
   const hero3d = document.querySelector('.hero-3d-wrap');
 

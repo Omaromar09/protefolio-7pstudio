@@ -9,6 +9,19 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: false
+    sourcemap: false,
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/three')) {
+            return 'three-vendor';
+          }
+          if (id.includes('node_modules/gsap')) {
+            return 'gsap-vendor';
+          }
+        }
+      }
+    }
   }
 });
