@@ -1,11 +1,36 @@
 /**
- * Bilingual i18n Dictionary and Translation Switcher
- * Arabic (Default) + English
+ * ==========================================================================
+ * BILINGUAL i18n SYSTEM — ARABIC (DEFAULT) & ENGLISH
+ * 7P Studio (Omar) — High Performance, Clean Web Development
+ * ==========================================================================
  */
 
+import { renderTestimonials } from './testimonials.js';
+
+// ==========================================================================
+// 1. EASILY EDITABLE CONSTANTS (تعديل الأسعار والملاحظات بسهولة هنا)
+// ==========================================================================
+export const PRICING_CONFIG = {
+  // غير القيمة دي في أي وقت لتعديل سعر البداية لصفحات الهبوط
+  landingPageStartingFrom_ar: '[X]',
+  landingPageStartingFrom_en: '[X]'
+};
+
+// ==========================================================================
+// 2. COMPLETE TRANSLATIONS DICTIONARY
+// ==========================================================================
 export const translations = {
   ar: {
-    // Navigation
+    // Page Meta
+    pageTitle: '7P STUDIO — عمر | مواقع عصرية وتفاعلية وسريعة',
+    pageMetaDesc: '7P STUDIO / عمر - مطور ويب يبني مواقع نظيفة، عصرية، تفاعلية ويحل مشاكل المواقع بسرعة. تصميم وتطوير مواقع، أبعاد ثلاثية 3D، وحل فوري للمشاكل.',
+
+    // Intro Stage
+    soundOn: 'تشغيل الصوت',
+    soundOff: 'كتم الصوت',
+    skipIntro: 'تخطي',
+
+    // Navigation & Header
     navBrand: 'STUDIO',
     navHome: 'الرئيسية',
     navAbout: 'عني',
@@ -18,7 +43,7 @@ export const translations = {
     availableBadge: 'متاح لمشاريع',
     waTooltipTitle: 'متاح للشات دلوقتي',
     waTooltipSub: 'كلمنا واتساب مباشر',
-    copyLinkSuccess: 'تم نسخ رابط المشروع!',
+    copyLinkSuccess: 'تم نسخ رابط المشروع بنجاح!',
 
     // Hero Section
     heroBadge1: '⚡ جاهز لنقل بيزنسك للرقمية أسرع وبدون صداع',
@@ -31,6 +56,49 @@ export const translations = {
     heroStat2: 'مضبوط 100% على الموبايل والكمبيوتر',
     heroStat3: 'دعم فني وتعديلات بعد التسليم',
     hero3dHint: 'حرك الماوس لتلف المجسم 3D',
+
+    // Partners & Projects Showcase
+    partnersBadge: 'أعمال ومشاريع',
+    partnersTitle: 'شغلي <span class="highlight">ومشاريع نفذتها</span>',
+    partnersSubtitle: 'دوس على أي موقع عشان تفتحه، أو وقّف الماوس عليه عشان تشوف تفاصيله',
+    badgeClientWork: 'مشروع اتسلم لعميل',
+    badgeReadyDesign: 'شغال وجاهز يتعدل ليك',
+    visitLiveBtn: 'افتح الموقع لايف',
+
+    p1Title: 'متجر آية للاكسسوارات (Aya Accessories)',
+    p1Short: 'متجر إكسسوارات وباندانات هاندميد، مع فلاتر سريعة وسلة لطلب الأوردر على الواتساب علطول.',
+    p1Tag1: 'سلة طلب',
+    p1Tag2: 'واتساب فوري',
+    p1Tag3: 'Mobile-First',
+
+    p2Title: 'حلواني فيستيفال فايف ستار (Festival Pastry)',
+    p2Short: 'موقع لحلواني تورت وحلويات في الهرم، بيعرض الأصناف والأسعار وفروع المحل والطلب أونلاين.',
+    p2Tag1: 'منيو وتورت تفاعلية',
+    p2Tag2: 'فروع ومواعيد',
+    p2Tag3: 'خفيف وسريع',
+
+    p3Title: 'مطعم المحترف (Elmo7taref Restaurant)',
+    p3Short: 'موقع لمطعم وجبات ومشويات، فيه فلاتر سريعة للأكل ومعاينة للساندوتشات وطلب واتساب مباشر.',
+    p3Tag1: 'أصناف ومعاينة',
+    p3Tag2: 'حساب فاتورة',
+    p3Tag3: 'طلب مباشر',
+
+    p4Title: 'كيان للملابس (Kayan Apparel)',
+    p4Short: 'موقع لبراند ملابس، بيعرض الكولكشن بشكل شيك وسلس مع سلة مشتريات تفاعلية.',
+    p4Tag1: 'كولكشن وسلايدر',
+    p4Tag2: 'سلة مشتريات',
+    p4Tag3: 'أنيق وعصري',
+
+    p5Title: 'مساحة عمل الڤراندا (El Veranda)',
+    p5Short: 'موقع لوورك سبيس ومكان مذاكرة في شبرا، فيه أسعار الساعات والغرف والحجز.',
+    p5Tag1: 'محاسبة بالساعة',
+    p5Tag2: 'تفاصيل الغرف',
+    p5Tag3: 'تسليم سريع',
+
+    // Testimonials / Social Proof (Placeholder/Configured)
+    testimonialsBadge: 'آراء العملاء',
+    testimonialsTitle: 'كلام من <span class="highlight">أصحاب المشاريع</span>',
+    testimonialsDesc: 'تجارب حقيقية لعملاء اشتغلنا سوا وطلعنا بمواقع لايف ناجحة:',
 
     // About Section
     aboutBadge: 'مين عمر',
@@ -49,57 +117,16 @@ export const translations = {
     pillar4Title: 'تعديل وتفصيل على طلبك',
     pillar4Desc: 'بظبط الألوان والتصميم والأقسام على حسب طلبك ونوع شغلك.',
 
-    // Skills
+    // Skills Matrix (Strictly Web Development)
     skillsTitle: 'تقنيات وأدوات بشتغل بيها',
     skillJs: 'جافاسكريبت (JavaScript)',
-    skillHtml: 'HTML5',
+    skillHtml: 'HTML5 القياسي',
     skillCss: 'CSS3 وتصميم متجاوب',
-    skillResp: ' لغة البايثون(Python)',
-    skillAnim: 'ويبسايت مخصوص لمشروعك',
+    skillGsap: 'أنيميشن وحركات GSAP',
+    skillThree: 'أبعاد ثلاثية Three.js',
+    skillResp: 'تصميم متجاوب للموبايل',
     skillBug: 'حل وتصليح المشاكل',
     skillCustom: 'تعديل وتخصيص المواقع',
-
-    // Partners / Projects Showcase Section
-    partnersBadge: 'أعمال ومشاريع',
-    partnersTitle: 'شغلي <span class="highlight">ومشاريع نفذتها</span>',
-    partnersSubtitle: 'دوس على أي موقع عشان تفتحه، أو وقّف الماوس عليه عشان تشوف تفاصيله',
-    p1Short: 'متجر إكسسوارات وباندانات هاندميد، مع فلاتر سريعة وسلة لطلب الأوردر على الواتساب علطول.',
-    p2Short: 'موقع لحلواني تورت وحلويات في الهرم، بيعرض الأصناف والأسعار وفروع المحل والطلب أونلاين.',
-    p3Short: 'موقع لمطعم وجبات ومشويات، فيه فلاتر سريعة للأكل ومعاينة للساندوتشات وطلب واتساب مباشر.',
-    p4Short: 'موقع لبراند ملابس، بيعرض الكولكشن بشكل شيك وسلس مع سلة مشتريات.',
-    p5Short: 'موقع لوورك سبيس ومكان مذاكرة في شبرا، فيه أسعار الساعات والغرف والحجز.',
-
-    // Projects Section
-    projectsBadge: 'معرض الأعمال',
-    projectsTitle: 'مشاريع نفذتها ونماذج جاهزة للتعديل',
-    projectsDesc: 'مشاريع حقيقية اتسلمت لعملاء، ونماذج مواقع شغالة جاهزة تتعدل وتتظبط على طلبك وتتسلم بسرعة.',
-    noticeTitle: 'عجبك شكل أي موقع من دول؟',
-    noticeDesc: 'كل النماذج دي مواقع حقيقية وشغالة. لو عجبك أي واحد فيهم، أقدر أغير الألوان واللوجو والمنتجات والأقسام لبيزنسك ونسلمه لايف بسرعة!',
-    filterAll: 'كل المشاريع (5)',
-    filterClient: 'أعمال لعملاء (2)',
-    filterReady: 'نماذج جاهزة للتعديل (3)',
-
-    // Project Cards & Popovers
-    badgeClientWork: 'مشروع اتسلم لعميل',
-    badgeReadyDesign: 'شغال وجاهز يتعدل ليك',
-    visitLiveBtn: 'افتح الموقع لايف',
-    deliveredLabel: 'تم التسليم',
-    customFastLabel: 'تعديل وتسليم سريع',
-
-    p1Title: 'متجر آية للاكسسوارات (Aya Accessories)',
-    p1Desc: 'متجر وكتالوج إلكتروني لاكسسوارات الهاندميد (باندانات، سلاسل، خواتم، أساور) بواجهة عربية مريحة، وفلاتر سريعة وسلة لطلب الأوردر على الواتساب.',
-
-    p2Title: 'حلواني فيستيفال فايف ستار (Festival Pastry)',
-    p2Desc: 'موقع لمحل حلويات وتورتات في الهرم، بيعرض تشكيلة التورت والأصناف والأسعار وفروع المحل مع إمكانية الطلب المباشر من الموبايل.',
-
-    p3Title: 'مطعم المحترف (Elmo7taref)',
-    p3Desc: 'موقع لمطعم وجبات ومشويات فيه فلاتر سريعة للأكل، نافذة لمعاينة الساندوتشات، وحساب الفاتورة مع طلب فوري عبر الواتساب. جاهز يتظبط لأي مطعم أو كافيه.',
-
-    p4Title: 'كيان للملابس (Kayan)',
-    p4Desc: 'موقع لبراند ملابس بتصميم شيك، بيعرض الأقسام والكولكشن بسلاسة مع سلة مشتريات تفاعلية. جاهز يتعدل لبراندك.',
-
-    p5Title: 'مساحة عمل الڤراندا (El Veranda)',
-    p5Desc: 'موقع لمساحة عمل ومذاكرة في شبرا، بيوضح تفاصيل الغرف، أسعار الساعات، الخدمات المتاحة، واستمارة الحجز. جاهز يتعدل لأي وورك سبيس أو سنتر.',
 
     // Services Section
     servicesBadge: 'خدماتي',
@@ -113,6 +140,13 @@ export const translations = {
     s3Desc: 'تظبيط وتحديث شكل موقعك الحالي وتحويله لتصميم عصري جذاب يريح الزبون ويزود ثقته في بيزنسك.',
     s4Title: 'ربط واتساب وميزات تفاعلية ذكية',
     s4Desc: 'ربط مباشر لطلبات الشراء على الواتساب، فورمات تواصل وحجز سريعة، ولمسات تفاعلية 3D تميزك عن غيرك.',
+
+    // Pricing Hint (No Fixed Numbers)
+    pricingHintTag: 'تكلفة تقديرية',
+    pricingHintTitle: 'عايز تعرف متوسط التكلفة؟',
+    pricingHintDesc: `صفحات الهبوط بتبدأ من <strong class="pricing-highlight">${PRICING_CONFIG.landingPageStartingFrom_ar}</strong>. المتاجر والمشاريع الأكبر بنحدد تكلفتها بدقة بعد ما نتكلم ونفهم تفاصيل طلبك.`,
+    pricingLandingStart: PRICING_CONFIG.landingPageStartingFrom_ar,
+    pricingHintCta: 'اطلب عرض سعر لمشروعك',
 
     // Process Section
     processBadge: 'طريقة الشغل',
@@ -147,6 +181,7 @@ export const translations = {
     formContactLabel: 'طريقة التواصل',
     formContactPlaceholder: 'رقم الواتساب أو الإيميل',
     formServiceLabel: 'محتاج إيه؟',
+    formOptBuildProject: 'بناء موقع لمشروع',
     formOptScratch: 'تطوير موقع كامل من الصفر (Landing Page / E-commerce)',
     formOptReady: 'تعديل وتخصيص نموذج جاهز لبيزنسي',
     formOptBug: 'حل باجات وصيانة سريعة لموقع موجود',
@@ -155,6 +190,16 @@ export const translations = {
     formMsgLabel: 'تفاصيل طلبك',
     formMsgPlaceholder: 'اكتب باختصار محتاج موقع جديد، ولا عندك مشكلة معينة عايز تصلحها...',
     formSubmitBtn: 'ابعت الرسالة',
+    formPrivacyNote: 'بياناتك بتتبعت على واتساب بس ومش بنحفظها',
+    privacyPolicyLink: 'سياسة الخصوصية',
+
+    // Privacy Modal
+    privacyModalTitle: 'سياسة الخصوصية وحماية البيانات',
+    privacyModalP1: 'في 7P Studio، خصوصيتك خط أحمر وبسيطة جداً وبدون أي تعقيد:',
+    privacyModalItem1: '<strong>لا يوجد سيرفر تخزين أو قاعدة بيانات:</strong> الموقع لا يحفظ أو يسجل أي بيانات تدخلها في نموذج التواصل.',
+    privacyModalItem2: '<strong>تواصل مباشر عبر واتساب:</strong> عند إرسال النموذج، يتم تحويل بياناتك إلى رسالة مشفرة ومجهزة على تطبيق واتساب الخاص بك مباشرة دون المرور بأي طرف ثالث.',
+    privacyModalItem3: '<strong>خالٍ من أدوات التتبع:</strong> لا نستخدم أي ملفات كوكيز (Cookies) تتبعية أو إعلانية تتبع نشاطك.',
+    privacyModalCloseBtn: 'فهمت، إغلاق',
 
     // Footer
     footerCopy: '© 2026 7P Studio (عمر) — جميع الحقوق محفوظة. مواقع عصرية معمولة على كيفك.',
@@ -162,7 +207,16 @@ export const translations = {
   },
 
   en: {
-    // Navigation
+    // Page Meta
+    pageTitle: '7P STUDIO — Omar | Modern Interactive Web Development',
+    pageMetaDesc: '7P STUDIO / Omar - Modern, interactive web developer creating fast, high-converting websites and fixing bugs on existing sites.',
+
+    // Intro Stage
+    soundOn: 'Sound On',
+    soundOff: 'Sound Off',
+    skipIntro: 'Skip',
+
+    // Navigation & Header
     navBrand: 'STUDIO',
     navHome: 'Home',
     navAbout: 'About',
@@ -189,6 +243,49 @@ export const translations = {
     heroStat3: 'Post-delivery support & tweaks',
     hero3dHint: 'Drag or hover to rotate 3D',
 
+    // Partners & Projects Showcase
+    partnersBadge: 'Selected Projects',
+    partnersTitle: 'Work & <span class="highlight">Projects I Built</span>',
+    partnersSubtitle: 'Click any site to visit it live, or hover to preview project details',
+    badgeClientWork: 'Delivered Client Project',
+    badgeReadyDesign: 'Ready to Customize',
+    visitLiveBtn: 'Open Live Site',
+
+    p1Title: 'Aya Accessories (Handmade Boutique)',
+    p1Short: 'Handmade accessories boutique with instant product filters and direct WhatsApp ordering.',
+    p1Tag1: 'Direct Cart',
+    p1Tag2: 'WhatsApp Orders',
+    p1Tag3: 'Mobile-First',
+
+    p2Title: 'Festival Pastry Five Star',
+    p2Short: 'Commercial website for a pastry and torte brand in Haram, showcasing items, prices, and branches.',
+    p2Tag1: 'Interactive Menu',
+    p2Tag2: 'Branches & Hours',
+    p2Tag3: 'Fast & Lightweight',
+
+    p3Title: 'Elmo7taref Restaurant & Grill',
+    p3Short: 'Fast-casual restaurant site with meal filters, burger preview modal, and instant WhatsApp orders.',
+    p3Tag1: 'Meal Preview',
+    p3Tag2: 'Bill Summary',
+    p3Tag3: 'Direct Checkout',
+
+    p4Title: 'Kayan Apparel Store',
+    p4Short: 'Modern apparel brand storefront showcasing collections smoothly with an interactive cart.',
+    p4Tag1: 'Sleek Catalog',
+    p4Tag2: 'Slide-out Cart',
+    p4Tag3: 'Smooth Motion',
+
+    p5Title: 'El Veranda Workspace',
+    p5Short: 'Coworking and study hub web presence in Shubra with room rates and booking inquiries.',
+    p5Tag1: 'Hourly Rates',
+    p5Tag2: 'Room Amenities',
+    p5Tag3: 'Fast Delivery',
+
+    // Testimonials / Social Proof
+    testimonialsBadge: 'What Clients Say',
+    testimonialsTitle: 'Words from <span class="highlight">Business Owners</span>',
+    testimonialsDesc: 'Real experiences from clients we teamed up with to launch live, successful websites:',
+
     // About Section
     aboutBadge: 'About Me',
     aboutTitle: 'No fluff, no headache. Built exactly how you want.',
@@ -206,57 +303,16 @@ export const translations = {
     pillar4Title: 'Full Customization',
     pillar4Desc: 'Tuning colors, layout, and sections to match exactly what you want.',
 
-    // Skills
+    // Skills Matrix (Strictly Web Development)
     skillsTitle: 'Tools & Technologies',
     skillJs: 'JavaScript (ES6+)',
-    skillHtml: 'HTML5',
+    skillHtml: 'Semantic HTML5',
     skillCss: 'CSS3 & Responsive Layouts',
-    skillResp: 'Mobile-Optimized',
-    skillAnim: 'GSAP Motion & Animations',
+    skillGsap: 'GSAP Animations & Motion',
+    skillThree: 'Three.js 3D Interactive',
+    skillResp: 'Mobile-First Responsive',
     skillBug: 'Bug Fixing & Debugging',
-    skillCustom: 'Site Customization',
-
-    // Partners / Projects Showcase Section
-    partnersBadge: 'Selected Projects',
-    partnersTitle: 'Work & <span class="highlight">Projects I Built</span>',
-    partnersSubtitle: 'Click any site to visit it live, or hover to preview the project',
-    p1Short: 'Handmade accessories boutique with instant product filters and direct WhatsApp ordering.',
-    p2Short: 'Commercial website for a pastry and torte brand in Haram, showcasing items, prices, and branches.',
-    p3Short: 'Fast-casual restaurant site with meal filters, burger preview modal, and instant WhatsApp orders.',
-    p4Short: 'Modern apparel brand storefront showcasing collections smoothly with an interactive cart.',
-    p5Short: 'Coworking and study hub web presence in Shubra with room rates and booking inquiries.',
-
-    // Projects Section
-    projectsBadge: 'Portfolio',
-    projectsTitle: 'Client Work & Ready-Made Concepts',
-    projectsDesc: 'Real projects delivered to clients, plus working site concepts ready to customize for your business.',
-    noticeTitle: 'Like any of these designs?',
-    noticeDesc: 'All these are live, working websites. If you like one, I can adapt the colors, logo, items, and pages to your business and launch it fast!',
-    filterAll: 'All Projects (5)',
-    filterClient: 'Client Work (2)',
-    filterReady: 'Ready to Customize (3)',
-
-    // Project Cards
-    badgeClientWork: 'Delivered Client Project',
-    badgeReadyDesign: 'Ready to Customize',
-    visitLiveBtn: 'Open Live Site',
-    deliveredLabel: 'Delivered Project',
-    customFastLabel: 'Fast Customization',
-
-    p1Title: 'Aya Accessories (Handmade Store)',
-    p1Desc: 'Online boutique and jewelry catalog featuring category filtering (bandanas, bracelets, rings), clean Arabic layout, and direct WhatsApp checkout.',
-
-    p2Title: 'Festival Pastry Five Star',
-    p2Desc: 'Commercial website for a pastry brand in Al-Haram, Cairo. Includes an appetizing showcase of tortes, item prices, branch info, and mobile ordering.',
-
-    p3Title: 'Elmo7taref Restaurant',
-    p3Desc: 'Vibrant restaurant and grill platform with categorized meal filters, dish modals, bill calculations, and direct WhatsApp ordering. Ready to customize.',
-
-    p4Title: 'Kayan Apparel',
-    p4Desc: 'Modern fashion storefront with sleek layouts, slide-out cart drawer, and smooth transitions. Ready to be adapted for your clothing brand.',
-
-    p5Title: 'El Veranda Workspace',
-    p5Desc: 'Coworking and study hub site with room details, hourly pricing, amenities, and booking request form. Ready to customize for your workspace.',
+    skillCustom: 'Custom Site Tweaks',
 
     // Services Section
     servicesBadge: 'Services',
@@ -270,6 +326,13 @@ export const translations = {
     s3Desc: 'Revamp your existing website with a fresh, modern aesthetic, sharper colors, and better user experience.',
     s4Title: 'WhatsApp Integration & Smart Features',
     s4Desc: 'Direct WhatsApp checkout, interactive booking forms, and sleek 3D motion that sets your business apart.',
+
+    // Pricing Hint (No Fixed Numbers)
+    pricingHintTag: 'Estimated Investment',
+    pricingHintTitle: 'Wondering about project pricing?',
+    pricingHintDesc: `Landing pages start from <strong class="pricing-highlight">${PRICING_CONFIG.landingPageStartingFrom_en}</strong>. Stores and bigger projects are priced after we talk through your exact needs.`,
+    pricingLandingStart: PRICING_CONFIG.landingPageStartingFrom_en,
+    pricingHintCta: 'Get a custom quote',
 
     // Process Section
     processBadge: 'How It Works',
@@ -304,6 +367,7 @@ export const translations = {
     formContactLabel: 'Contact Info',
     formContactPlaceholder: 'WhatsApp number or email',
     formServiceLabel: 'What do you need?',
+    formOptBuildProject: 'Build a website for a project',
     formOptScratch: 'Build a full site from scratch (Landing Page / E-commerce)',
     formOptReady: 'Customize one of the showcase designs',
     formOptBug: 'Fix bugs and fast maintenance on existing site',
@@ -312,6 +376,16 @@ export const translations = {
     formMsgLabel: 'Details',
     formMsgPlaceholder: 'Briefly describe what you want to build or what needs fixing...',
     formSubmitBtn: 'Send Message',
+    formPrivacyNote: 'Your details go to WhatsApp only and are not stored.',
+    privacyPolicyLink: 'Privacy Policy',
+
+    // Privacy Modal
+    privacyModalTitle: 'Privacy Policy & Data Transparency',
+    privacyModalP1: 'At 7P Studio, your privacy is straightforward and strictly respected:',
+    privacyModalItem1: '<strong>Zero Backend Storage:</strong> This website does not log, save, or store any personal information submitted through forms.',
+    privacyModalItem2: '<strong>Direct WhatsApp Transmission:</strong> Submitting the contact form creates an instant pre-filled message directly on your own WhatsApp client.',
+    privacyModalItem3: '<strong>No Ad Tracking:</strong> We do not use tracking or advertising cookies of any kind.',
+    privacyModalCloseBtn: 'Got it, Close',
 
     // Footer
     footerCopy: '© 2026 7P Studio (Omar). All rights reserved. Websites crafted your way.',
@@ -319,7 +393,25 @@ export const translations = {
   }
 };
 
-let currentLang = localStorage.getItem('omar_lang') || 'ar';
+// ==========================================================================
+// 3. STORAGE & LANGUAGE RETRIEVAL (Safe localStorage with try/catch)
+// ==========================================================================
+export function getSavedLanguage() {
+  try {
+    const val = localStorage.getItem('omar_lang');
+    return (val === 'ar' || val === 'en') ? val : 'ar';
+  } catch (e) {
+    return 'ar';
+  }
+}
+
+export function saveLanguage(lang) {
+  try {
+    localStorage.setItem('omar_lang', lang);
+  } catch (e) {}
+}
+
+let currentLang = getSavedLanguage();
 
 export function getLanguage() {
   return currentLang;
@@ -328,46 +420,55 @@ export function getLanguage() {
 export function setLanguage(lang) {
   if (lang !== 'ar' && lang !== 'en') return;
   currentLang = lang;
-  localStorage.setItem('omar_lang', lang);
+  saveLanguage(lang);
 
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
   applyTranslations(lang);
   updateToggleButtons(lang);
+  renderTestimonials(lang);
+
+  // Dispatch custom event for any listeners (sound, scenes, etc.)
+  window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
 }
 
+// ==========================================================================
+// 4. TRANSLATIONS DOM APPLICATION
+// ==========================================================================
 export function applyTranslations(lang) {
   const dict = translations[lang];
   if (!dict) return;
 
+  // 1. Text elements
   const elements = document.querySelectorAll('[data-i18n]');
   elements.forEach((el) => {
     const key = el.getAttribute('data-i18n');
-    if (dict[key]) {
-      // If element contains HTML tags like <span> or <strong>, use innerHTML
+    if (dict[key] !== undefined) {
       if (dict[key].includes('<')) {
         el.innerHTML = dict[key];
       } else {
-        el.innerText = dict[key];
+        el.textContent = dict[key];
       }
     }
   });
 
-  // Handle placeholders
+  // 2. Placeholders
   const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
   placeholderElements.forEach((el) => {
     const key = el.getAttribute('data-i18n-placeholder');
-    if (dict[key]) {
+    if (dict[key] !== undefined) {
       el.setAttribute('placeholder', dict[key]);
     }
   });
 
-  // Dynamic Document Title
-  if (lang === 'ar') {
-    document.title = '7P STUDIO — عمر | مواقع عصرية وتفاعلية وسريعة';
-  } else {
-    document.title = '7P STUDIO — Omar | Modern Interactive Web Development';
+  // 3. Document Title & Meta Description
+  if (dict.pageTitle) {
+    document.title = dict.pageTitle;
+  }
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc && dict.pageMetaDesc) {
+    metaDesc.setAttribute('content', dict.pageMetaDesc);
   }
 }
 
@@ -376,22 +477,29 @@ function updateToggleButtons(lang) {
   buttons.forEach((btn) => {
     if (btn.getAttribute('data-lang') === lang) {
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
     } else {
       btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
     }
   });
 }
 
+// ==========================================================================
+// 5. INITIALIZATION
+// ==========================================================================
 export function initLanguage() {
-  const saved = localStorage.getItem('omar_lang') || 'ar';
-  setLanguage(saved);
+  const initial = getSavedLanguage();
+  setLanguage(initial);
 
-  // Bind clicks on toggle buttons
+  // Bind clicks on all toggle buttons (desktop + mobile drawer)
   document.querySelectorAll('.lang-btn').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const lang = btn.getAttribute('data-lang');
-      setLanguage(lang);
+      const targetLang = btn.getAttribute('data-lang');
+      if (targetLang) {
+        setLanguage(targetLang);
+      }
     });
   });
 }

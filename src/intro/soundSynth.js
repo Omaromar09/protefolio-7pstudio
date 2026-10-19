@@ -4,7 +4,7 @@
  */
 
 let audioCtx = null;
-let isSoundEnabled = true;
+let isSoundEnabled = false;
 
 export function initAudio() {
   try {
@@ -15,7 +15,6 @@ export function initAudio() {
     if (audioCtx && audioCtx.state === 'suspended') {
       audioCtx.resume();
     }
-    isSoundEnabled = true;
   } catch (e) {
     console.warn('AudioContext not allowed or supported', e);
   }

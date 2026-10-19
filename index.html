@@ -8,19 +8,81 @@
     <meta name="keywords" content="7P Studio, 7P, Omar, Web Developer, مطور ويب, تصميم مواقع, Three.js, GSAP, عُمَر, برمجة مواقع" />
     <meta name="author" content="Omar (7P Studio)" />
 
-    <!-- Canonical & Open Graph URL -->
+    <!-- Canonical & Base URLs -->
     <link rel="canonical" href="https://7pstudio.tech/" />
-    <meta property="og:url" content="https://7pstudio.tech/" />
 
-    <!-- Open Graph / Social Meta -->
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="7P STUDIO — عمر | مواقع عصرية وتفاعلية" />
-    <meta property="og:description" content="ببني مواقع عصرية للعملاء، بحل مشاكل وأخطاء المواقع القائمة بسرعة، وبخصص المواقع لتناسب طلبك." />
-    <meta property="og:image" content="./projects/elmo7taref-preview.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:site_name" content="7P Studio" />
+    <meta property="og:locale" content="ar_EG" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:url" content="https://7pstudio.tech/" />
+    <meta property="og:title" content="7P STUDIO — عمر | مواقع عصرية وتفاعلية وسريعة" />
+    <meta property="og:description" content="7P STUDIO / عمر - مطور ويب يبني مواقع نظيفة، عصرية، تفاعلية ويحل مشاكل المواقع بسرعة. تصميم وتطوير مواقع، أبعاد ثلاثية 3D، وحل فوري للمشاكل." />
+    <meta property="og:image" content="https://7pstudio.tech/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://7pstudio.tech/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="7P Studio — مواقع عصرية وتفاعلية وسريعة" />
 
-    <!-- Favicon -->
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@7p__studio" />
+    <meta name="twitter:creator" content="@7p__studio" />
+    <meta name="twitter:title" content="7P STUDIO — عمر | مواقع عصرية وتفاعلية وسريعة" />
+    <meta name="twitter:description" content="مطور ويب يبني مواقع نظيفة، عصرية، تفاعلية ويحل مشاكل المواقع بسرعة. تصميم وتطوير مواقع، أبعاد ثلاثية 3D، وحل فوري للمشاكل." />
+    <meta name="twitter:image" content="https://7pstudio.tech/og-image.jpg" />
+
+    <!-- Favicon & Touch Icons -->
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <meta name="theme-color" content="#070a14" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://7pstudio.tech/#website",
+          "url": "https://7pstudio.tech/",
+          "name": "7P Studio",
+          "description": "مواقع عصرية وتفاعلية وسريعة - Modern Interactive Web Development",
+          "inLanguage": ["ar-EG", "en-US"]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://7pstudio.tech/#service",
+          "name": "7P Studio",
+          "url": "https://7pstudio.tech/",
+          "logo": "https://7pstudio.tech/og-image.jpg",
+          "image": "https://7pstudio.tech/og-image.jpg",
+          "description": "7P STUDIO / عمر - مطور ويب يبني مواقع نظيفة، عصرية، تفاعلية ويحل مشاكل المواقع بسرعة. تصميم وتطوير مواقع، أبعاد ثلاثية 3D، وحل فوري للمشاكل.",
+          "founder": {
+            "@type": "Person",
+            "name": "Omar",
+            "jobTitle": "Web Developer",
+            "sameAs": [
+              "https://instagram.com/7p__studio",
+              "https://wa.me/201515047449"
+            ]
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+201515047449",
+            "contactType": "customer service",
+            "email": "om058166@gmail.com",
+            "availableLanguage": ["Arabic", "English"]
+          },
+          "sameAs": [
+            "https://instagram.com/7p__studio"
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Explicit Stylesheet Link (Guarantees zero FOUC & instant styling) -->
     <link rel="stylesheet" href="./src/style.css" />
@@ -49,12 +111,12 @@
       <canvas id="intro-canvas"></canvas>
 
       <div class="intro-controls">
-        <button id="intro-sound-toggle" class="intro-hud-btn" aria-label="Toggle Sound">
-          <i class="fa-solid fa-volume-high" id="intro-sound-icon"></i>
-          <span id="intro-sound-text">SOUND ON</span>
+        <button id="intro-sound-toggle" class="intro-hud-btn is-muted" aria-label="Toggle Sound">
+          <i class="fa-solid fa-volume-xmark" id="intro-sound-icon"></i>
+          <span id="intro-sound-text" data-i18n="soundOff">SOUND OFF</span>
         </button>
-        <button id="intro-skip" class="intro-hud-btn">
-          <span>SKIP</span>
+        <button id="intro-skip" class="intro-hud-btn" aria-label="Skip Intro">
+          <span data-i18n="skipIntro">SKIP</span>
           <i class="fa-solid fa-forward-step"></i>
         </button>
       </div>
@@ -86,13 +148,13 @@
         <div class="nav-actions">
           <!-- Language Toggle Segmented Pill -->
           <div class="lang-toggle" role="group" aria-label="Language Toggle">
-            <button class="lang-btn active" data-lang="ar">عربي</button>
-            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn active" data-lang="ar" aria-pressed="true">عربي</button>
+            <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
           </div>
 
-          <!-- Sound Toggle Button -->
-          <button class="sound-toggle-btn" id="nav-sound-toggle" title="Toggle Sound" aria-label="Toggle Sound">
-            <i class="fa-solid fa-volume-high" id="nav-sound-icon"></i>
+          <!-- Sound Toggle Button (Default OFF) -->
+          <button class="sound-toggle-btn" id="nav-sound-toggle" title="Sound: Off" aria-label="Toggle Sound">
+            <i class="fa-solid fa-volume-xmark" id="nav-sound-icon"></i>
           </button>
 
           <!-- Theme Toggle Button (Light / Dark Mode) -->
@@ -243,7 +305,7 @@
               <div class="project-popover-card">
                 <div class="popover-arrow"></div>
                 <div class="popover-thumb">
-                  <img src="./projects/aya-preview.jpg" alt="Aya Accessories Preview" loading="lazy" />
+                  <img src="./projects/aya-preview.jpg" alt="معاينة موقع متجر آية للاكسسوارات - Aya Accessories Boutique Preview" loading="lazy" />
                   <span class="popover-badge badge-client">
                     <i class="fa-solid fa-circle-check"></i> <span data-i18n="badgeClientWork">مشروع اتسلم لعميل</span>
                   </span>
@@ -290,7 +352,7 @@
               <div class="project-popover-card">
                 <div class="popover-arrow"></div>
                 <div class="popover-thumb">
-                  <img src="./projects/festival-preview.jpg" alt="Festival Pastry Preview" loading="lazy" />
+                  <img src="./projects/festival-preview.jpg" alt="معاينة موقع حلواني فيستيفال فايف ستار - Festival Pastry 5-Star Preview" loading="lazy" />
                   <span class="popover-badge badge-client">
                     <i class="fa-solid fa-circle-check"></i> <span data-i18n="badgeClientWork">مشروع اتسلم لعميل</span>
                   </span>
@@ -304,9 +366,9 @@
                     موقع لحلواني تورت وحلويات في الهرم، بيعرض الأصناف والأسعار وفروع المحل والطلب أونلاين.
                   </p>
                   <div class="popover-highlights">
-                    <span><i class="fa-solid fa-cookie-bite"></i> منيو وتورت تفاعلية</span>
-                    <span><i class="fa-solid fa-map-location-dot"></i> فروع ومواعيد</span>
-                    <span><i class="fa-solid fa-bolt"></i> خفيف وسريع</span>
+                    <span><i class="fa-solid fa-cookie-bite"></i> <span data-i18n="p2Tag1">منيو وتورت تفاعلية</span></span>
+                    <span><i class="fa-solid fa-map-location-dot"></i> <span data-i18n="p2Tag2">فروع ومواعيد</span></span>
+                    <span><i class="fa-solid fa-bolt"></i> <span data-i18n="p2Tag3">خفيف وسريع</span></span>
                   </div>
                   <div class="popover-btn-group">
                     <a href="https://festival-fivestar.vercel.app/" target="_blank" rel="noopener noreferrer" class="popover-visit-btn">
@@ -337,7 +399,7 @@
               <div class="project-popover-card">
                 <div class="popover-arrow"></div>
                 <div class="popover-thumb">
-                  <img src="./projects/elmo7taref-preview.jpg" alt="Elmo7taref Preview" loading="lazy" />
+                  <img src="./projects/elmo7taref-preview.jpg" alt="معاينة موقع مطعم المحترف - Elmo7taref Restaurant & Grill Preview" loading="lazy" />
                   <span class="popover-badge badge-ready">
                     <i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="badgeReadyDesign">شغال وجاهز يتعدل ليك</span>
                   </span>
@@ -351,9 +413,9 @@
                     موقع لمطعم وجبات ومشويات، فيه فلاتر سريعة للأكل ومعاينة للساندوتشات وطلب واتساب مباشر.
                   </p>
                   <div class="popover-highlights">
-                    <span><i class="fa-solid fa-burger"></i> فلاتر أطباق وساندوتشات</span>
-                    <span><i class="fa-brands fa-whatsapp"></i> شات طلب فوري</span>
-                    <span><i class="fa-solid fa-wand-magic-sparkles"></i> تصميم ديناميكي</span>
+                    <span><i class="fa-solid fa-burger"></i> <span data-i18n="p3Tag1">أصناف ومعاينة</span></span>
+                    <span><i class="fa-brands fa-whatsapp"></i> <span data-i18n="p3Tag2">حساب فاتورة</span></span>
+                    <span><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="p3Tag3">طلب مباشر</span></span>
                   </div>
                   <div class="popover-btn-group">
                     <a href="https://elmo7taref.vercel.app/" target="_blank" rel="noopener noreferrer" class="popover-visit-btn">
@@ -384,7 +446,7 @@
               <div class="project-popover-card">
                 <div class="popover-arrow"></div>
                 <div class="popover-thumb">
-                  <img src="./projects/kayan-preview.jpg" alt="Kayan Clothes Preview" loading="lazy" />
+                  <img src="./projects/kayan-preview.jpg" alt="معاينة موقع كيان للملابس - Kayan Apparel Store Preview" loading="lazy" />
                   <span class="popover-badge badge-ready">
                     <i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="badgeReadyDesign">شغال وجاهز يتعدل ليك</span>
                   </span>
@@ -398,9 +460,9 @@
                     موقع لبراند ملابس، بيعرض الكولكشن بشكل شيك وسلس مع سلة مشتريات.
                   </p>
                   <div class="popover-highlights">
-                    <span><i class="fa-solid fa-layer-group"></i> مجموعات نساء ورجال</span>
-                    <span><i class="fa-solid fa-cart-shopping"></i> درج سلة تفاعلي</span>
-                    <span><i class="fa-solid fa-film"></i> أنيميشن 60FPS</span>
+                    <span><i class="fa-solid fa-layer-group"></i> <span data-i18n="p4Tag1">كولكشن وسلايدر</span></span>
+                    <span><i class="fa-solid fa-cart-shopping"></i> <span data-i18n="p4Tag2">سلة مشتريات</span></span>
+                    <span><i class="fa-solid fa-film"></i> <span data-i18n="p4Tag3">أنيق وعصري</span></span>
                   </div>
                   <div class="popover-btn-group">
                     <a href="https://kayan-clothes.vercel.app/" target="_blank" rel="noopener noreferrer" class="popover-visit-btn">
@@ -431,7 +493,7 @@
               <div class="project-popover-card">
                 <div class="popover-arrow"></div>
                 <div class="popover-thumb">
-                  <img src="./projects/elveranda.jpg" alt="El Veranda Preview" loading="lazy" />
+                  <img src="./projects/elveranda.jpg" alt="معاينة موقع مساحة عمل الڤراندا - El Veranda Coworking Space Preview" loading="lazy" />
                   <span class="popover-badge badge-ready">
                     <i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="badgeReadyDesign">شغال وجاهز يتعدل ليك</span>
                   </span>
@@ -461,6 +523,35 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1.8 CLIENT TESTIMONIALS / SOCIAL PROOF (RENDERED WHEN REAL REVIEWS ARE PROVIDED) -->
+      <!-- 
+        ==========================================================================
+        تعديل آراء العملاء (Client Reviews):
+        عشان تضيف آراء حقيقية، افتح ملف src/utils/testimonials.js وشيل علامة التعليق.
+        السكشن ده بيظهر تلقائياً أول ما تحط رأي حقيقي، وبيختفي لو مفيش آراء للمصداقية.
+        ==========================================================================
+      -->
+      <section id="testimonials" class="testimonials-section" style="display: none;">
+        <div class="container">
+          <div class="section-header text-center">
+            <div class="badge-pill badge-pill-blue" style="margin-inline: auto;">
+              <i class="fa-solid fa-quote-left"></i>
+              <span data-i18n="testimonialsBadge">آراء العملاء</span>
+            </div>
+            <h2 class="section-title" data-i18n="testimonialsTitle">
+              كلام من <span class="highlight">أصحاب المشاريع</span>
+            </h2>
+            <p class="section-desc" data-i18n="testimonialsDesc">
+              تجارب حقيقية لعملاء اشتغلنا سوا وطلعنا بمواقع لايف ناجحة:
+            </p>
+          </div>
+
+          <div class="testimonials-grid" id="testimonials-container">
+            <!-- Dynamically populated from src/utils/testimonials.js when real reviews are provided -->
           </div>
         </div>
       </section>
@@ -543,13 +634,17 @@
                     <span class="skill-icon"><i class="fa-brands fa-css3-alt"></i></span>
                     <span data-i18n="skillCss">CSS3 وتصميم متجاوب</span>
                   </div>
+                  <div class="skill-tag" data-skill="GSAP">
+                    <span class="skill-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                    <span data-i18n="skillGsap">أنيميشن وحركات GSAP</span>
+                  </div>
+                  <div class="skill-tag" data-skill="Three.js">
+                    <span class="skill-icon"><i class="fa-solid fa-cubes"></i></span>
+                    <span data-i18n="skillThree">أبعاد ثلاثية Three.js</span>
+                  </div>
                   <div class="skill-tag" data-skill="Responsive">
                     <span class="skill-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
-                    <span data-i18n="skillResp"> لغة البايثون(Python)</span>
-                  </div>
-                  <div class="skill-tag" data-skill="Animations">
-                    <span class="skill-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
-                    <span data-i18n="skillAnim">أنيميشن وحركات GSAP</span>
+                    <span data-i18n="skillResp">تصميم متجاوب للموبايل</span>
                   </div>
                   <div class="skill-tag" data-skill="Bug Fixing">
                     <span class="skill-icon"><i class="fa-solid fa-wrench"></i></span>
@@ -628,6 +723,24 @@
                 ربط مباشر لطلبات الشراء على الواتساب، فورمات تواصل وحجز سريعة، ولمسات تفاعلية 3D تميزك عن غيرك.
               </p>
             </div>
+          </div>
+
+          <!-- Pricing Expectation Hint Card -->
+          <div class="pricing-hint-banner">
+            <div class="pricing-hint-content">
+              <div class="pricing-hint-tag">
+                <i class="fa-solid fa-tags"></i>
+                <span data-i18n="pricingHintTag">تكلفة تقديرية</span>
+              </div>
+              <h3 class="pricing-hint-title" data-i18n="pricingHintTitle">عايز تعرف متوسط التكلفة؟</h3>
+              <p class="pricing-hint-desc" data-i18n="pricingHintDesc">
+                صفحات الهبوط بتبدأ من <strong class="pricing-highlight" data-i18n="pricingLandingStart">[X]</strong>. المتاجر والمشاريع الأكبر بنحدد تكلفتها بدقة بعد ما نتكلم ونفهم تفاصيل طلبك.
+              </p>
+            </div>
+            <a href="#contact" class="btn btn-primary pricing-hint-cta">
+              <span data-i18n="pricingHintCta">اطلب عرض سعر لمشروعك</span>
+              <i class="fa-solid fa-arrow-down-long" style="margin-inline-start: 6px;"></i>
+            </a>
           </div>
         </div>
       </section>
@@ -712,7 +825,7 @@
             <!-- Direct Contact Methods -->
             <div class="contact-info">
               <!-- Prominent WhatsApp Action Card -->
-              <a href="https://wa.me/201221576360?text=%D9%85%D8%B3%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%20%D9%8A%D8%A7%20%D8%B9%D9%85%D8%B1%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D9%85%D9%88%D9%82%D8%B9%20%D9%84%D8%A8%D9%8A%D8%B2%D9%86%D8%B3%D9%8A" target="_blank" rel="noopener noreferrer" class="whatsapp-hero-cta-card">
+              <a href="https://wa.me/201515047449?text=%D9%85%D8%B3%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%20%D9%8A%D8%A7%20%D8%B9%D9%85%D8%B1%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D9%85%D9%88%D9%82%D8%B9%20%D9%84%D8%A7%E2%A6%A5%E2%A6%A5%E2%A6%A5%E2%A6%A5%E2%A6%A5%E2%A6%A5%E2%A6%A5%E2%A6%A5%E2%A6%A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5" target="_blank" rel="noopener noreferrer" class="whatsapp-hero-cta-card">
                 <div class="wa-card-content">
                   <div class="wa-badge-pill">
                     <span class="wa-status-dot"></span>
@@ -735,14 +848,14 @@
                     </div>
                     <div>
                       <div class="contact-method-label" data-i18n="cMethodPhone">واتساب / اتصال</div>
-                      <div class="contact-method-val">01221576360</div>
+                      <div class="contact-method-val">01515047449</div>
                     </div>
                   </div>
                   <div style="display: flex; gap: 0.5rem;">
-                    <a href="https://wa.me/201221576360" target="_blank" rel="noopener noreferrer" class="btn btn-icon magnetic" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+                    <a href="https://wa.me/201515047449" target="_blank" rel="noopener noreferrer" class="btn btn-icon magnetic" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
                       <i class="fa-brands fa-whatsapp"></i>
                     </a>
-                    <button class="btn btn-icon magnetic copy-btn" data-copy="01221576360" title="Copy Phone Number" aria-label="Copy Phone Number">
+                    <button class="btn btn-icon magnetic copy-btn" data-copy="01515047449" title="Copy Phone Number" aria-label="Copy Phone Number">
                       <i class="fa-regular fa-copy"></i>
                     </button>
                   </div>
@@ -777,10 +890,10 @@
                     </div>
                     <div>
                       <div class="contact-method-label" data-i18n="cMethodInsta">انستجرام</div>
-                      <div class="contact-method-val">@omar_thegreatt</div>
+                      <div class="contact-method-val">@7p__studio</div>
                     </div>
                   </div>
-                  <a href="https://instagram.com/omar_thegreatt" target="_blank" rel="noopener noreferrer" class="btn btn-icon magnetic" title="Open Instagram" aria-label="Open Instagram">
+                  <a href="https://instagram.com/7p__studio" target="_blank" rel="noopener noreferrer" class="btn btn-icon magnetic" title="Open Instagram" aria-label="Open Instagram">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                   </a>
                 </div>
@@ -811,6 +924,7 @@
                 <div class="form-group">
                   <label for="form-service" class="form-label" data-i18n="formServiceLabel">محتاج إيه؟</label>
                   <select id="form-service" class="form-select">
+                    <option value="build-project" data-i18n="formOptBuildProject">بناء موقع لمشروع</option>
                     <option value="scratch" data-i18n="formOptScratch">تطوير موقع كامل من الصفر (Landing Page / E-commerce)</option>
                     <option value="ready-made" data-i18n="formOptReady">تعديل وتخصيص نموذج جاهز لبيزنسي</option>
                     <option value="bugfix" data-i18n="formOptBug">حل باجات وصيانة سريعة لموقع موجود</option>
@@ -828,6 +942,14 @@
                   <span data-i18n="formSubmitBtn">ابعت الرسالة</span>
                   <i class="fa-solid fa-paper-plane" style="margin-inline-start: 6px;"></i>
                 </button>
+
+                <!-- Privacy Transparency Note -->
+                <div class="form-privacy-note">
+                  <i class="fa-solid fa-shield-halved"></i>
+                  <span data-i18n="formPrivacyNote">بياناتك بتتبعت على واتساب بس ومش بنحفظها</span>
+                  <span class="privacy-note-sep">•</span>
+                  <button type="button" class="privacy-modal-btn" id="open-privacy-btn" data-i18n="privacyPolicyLink">سياسة الخصوصية</button>
+                </div>
               </form>
             </div>
           </div>
@@ -866,7 +988,7 @@
             <span class="wa-tooltip-sub" data-i18n="waTooltipSub">كلمنا واتساب مباشر</span>
           </div>
         </div>
-        <a href="https://wa.me/201221576360?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%B9%D9%85%D8%B1%D8%8C%20%D8%B4%D9%88%D9%81%D8%AA%20%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%AA%D9%81%D9%88%D9%84%D9%8A%D9%88%20%D9%88%D8%AD%D8%A7%D8%A8%D8%A8%20%D9%86%D8%AA%D9%83%D9%84%D9%85%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9" 
+        <a href="https://wa.me/201515047449?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%B9%D9%85%D8%B1%D8%8C%20%D8%B4%D9%88%D9%81%D8%AA%20%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%AA%D9%81%D9%88%D9%84%D9%8A%D9%88%20%D9%88%D8%AD%D8%A7%D8%A8%D8%A8%20%D9%86%D8%AA%D9%83%D9%84_mD9%85%20%D8%B9&D9%466360?text=%D9%45%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5%E2%A6*A5" 
            target="_blank" 
            rel="noopener noreferrer" 
            class="floating-btn whatsapp-floating-btn" 
@@ -875,6 +997,34 @@
           <span class="whatsapp-ping"></span>
           <i class="fa-brands fa-whatsapp"></i>
         </a>
+      </div>
+    </div>
+
+    <!-- Minimal Privacy Policy Modal -->
+    <div class="privacy-modal-backdrop" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title" style="display: none;">
+      <div class="privacy-modal-card">
+        <div class="privacy-modal-header">
+          <div class="privacy-modal-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="privacy-modal-title" id="privacy-modal-title" data-i18n="privacyModalTitle">سياسة الخصوصية وحماية البيانات</h3>
+          <button type="button" class="privacy-modal-close" id="close-privacy-btn" aria-label="Close Privacy Modal">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="privacy-modal-body">
+          <p data-i18n="privacyModalP1">في 7P Studio، خصوصيتك خط أحمر وبسيطة جداً وبدون أي تعقيد:</p>
+          <ul class="privacy-modal-list">
+            <li data-i18n="privacyModalItem1"><strong>لا يوجد سيرفر تخزين أو قاعدة بيانات:</strong> الموقع لا يحفظ أو يسجل أي بيانات تدخلها في نموذج التواصل.</li>
+            <li data-i18n="privacyModalItem2"><strong>تواصل مباشر عبر واتساب:</strong> عند إرسال النموذج، يتم تحويل بياناتك إلى رسالة مشفرة ومجهزة على تطبيق واتساب الخاص بك مباشرة دون المرور بأي طرف ثالث.</li>
+            <li data-i18n="privacyModalItem3"><strong>خالٍ من أدوات التتبع:</strong> لا نستخدم أي ملفات كوكيز (Cookies) تتبعية أو إعلانية تتبع نشاطك.</li>
+          </ul>
+        </div>
+        <div class="privacy-modal-footer">
+          <button type="button" class="btn btn-primary" id="confirm-privacy-btn" style="width: 100%; padding: 0.75rem;">
+            <span data-i18n="privacyModalCloseBtn">فهمت، إغلاق</span>
+          </button>
+        </div>
       </div>
     </div>
 

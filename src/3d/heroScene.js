@@ -277,7 +277,7 @@ export class HeroScene {
   animate() {
     requestAnimationFrame(() => this.animate());
 
-    if (!this.isVisible) return;
+    if (!this.isVisible || document.hidden) return;
 
     const delta = this.clock.getDelta();
     const time = this.clock.getElapsedTime();

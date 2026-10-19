@@ -6,6 +6,7 @@ import { initSmoothScroll } from './motion/scroll.js';
 import { initCustomCursor } from './motion/cursor.js';
 import { initScrollAnimations } from './motion/animations.js';
 import { initProjectPopovers } from './motion/popovers.js';
+import { renderTestimonials } from './utils/testimonials.js';
 import { showToast } from './utils/toast.js';
 import { fireSuccessConfetti } from './utils/confetti.js';
 import { initAudio, toggleAudio, getAudioState } from './intro/soundSynth.js';
@@ -33,7 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Interactive Partner Project Popovers
   initProjectPopovers();
 
-  // Setup Sound Controls & Synthesizer
+  // Initialize Client Testimonials / Social Proof
+  renderTestimonials(getLanguage());
+
+  // Setup Sound Controls & Synthesizer (Default Muted / No Autoplay)
   setupSoundControls();
 
   // Setup 3D Scenes (Hero Centerpiece + Skills Constellation)
@@ -138,7 +142,7 @@ function setup3DScenes() {
 }
 
 // ==========================================================================
-// 3. SOUND SYNTHESIZER & CONTROLS
+// 3. SOUND SYNTHESIZER & CONTROLS (STRICTLY OPT-IN, NEVER AUTOPLAYS)
 // ==========================================================================
 function setupSoundControls() {
   const introSoundToggle = document.getElementById('intro-sound-toggle');
@@ -147,28 +151,34 @@ function setupSoundControls() {
   const introSoundText = document.getElementById('intro-sound-text');
   const navSoundIcon = document.getElementById('nav-sound-icon');
 
-  // Resume Web Audio context safely on first user gesture
-  const unlockAudio = () => {
-    initAudio();
-  };
-  ['click', 'keydown', 'touchstart'].forEach(evt => window.addEventListener(evt, unlockAudio, { once: true }));
-
   function updateSoundUI(isOn) {
+    const lang = getLanguage();
+    const onText = lang === 'ar' ? 'تشغيل الصوت' : 'SOUND ON';
+    const offText = lang === 'ar' ? 'كتم الصوت' : 'SOUND OFF';
+
     if (introSoundIcon) {
       introSoundIcon.className = isOn ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
     }
     if (introSoundText) {
-      introSoundText.textContent = isOn ? 'SOUND ON' : 'SOUND OFF';
+      introSoundText.textContent = isOn ? onText : offText;
     }
     if (navSoundIcon) {
       navSoundIcon.className = isOn ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
     }
     if (navSoundToggle) {
       navSoundToggle.classList.toggle('is-on', isOn);
-      navSoundToggle.setAttribute('title', isOn ? 'Sound: On' : 'Sound: Off');
+      navSoundToggle.setAttribute('title', isOn 
+        ? (lang === 'ar' ? 'الصوت: شغال' : 'Sound: On') 
+        : (lang === 'ar' ? 'الصوت: مكتوم' : 'Sound: Off'));
+      navSoundToggle.setAttribute('aria-label', isOn 
+        ? (lang === 'ar' ? 'كتم الصوت' : 'Mute sound') 
+        : (lang === 'ar' ? 'تشغيل الصوت' : 'Enable sound'));
     }
     if (introSoundToggle) {
       introSoundToggle.classList.toggle('is-muted', !isOn);
+      introSoundToggle.setAttribute('aria-label', isOn 
+        ? (lang === 'ar' ? 'كتم الصوت' : 'Mute sound') 
+        : (lang === 'ar' ? 'تشغيل الصوت' : 'Enable sound'));
     }
   }
 
@@ -180,7 +190,13 @@ function setupSoundControls() {
   if (introSoundToggle) introSoundToggle.addEventListener('click', handleToggle);
   if (navSoundToggle) navSoundToggle.addEventListener('click', handleToggle);
 
-  updateSoundUI(getAudioState());
+  // Sync sound labels on language change
+  window.addEventListener('languagechange', () => {
+    updateSoundUI(getAudioState());
+  });
+
+  // Initial UI state (strictly default OFF)
+  updateSoundUI(false);
 }
 
 // ==========================================================================
@@ -205,6 +221,7 @@ function setupIntroFlow() {
     }
   });
 
+  // Skip works instantly from frame 0
   if (skipBtn) {
     skipBtn.addEventListener('click', () => {
       if (introInstance) {
@@ -213,11 +230,13 @@ function setupIntroFlow() {
     });
   }
 
+  // Replay from contact section
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
-      initAudio();
       window.scrollTo({ top: 0, behavior: 'instant' });
-      sessionStorage.removeItem('omar_intro_seen');
+      try {
+        sessionStorage.removeItem('omar_intro_seen');
+      } catch (e) {}
 
       if (orangeHandoff) {
         orangeHandoff.classList.remove('active');
@@ -233,10 +252,17 @@ function setupIntroFlow() {
     });
   }
 
-  const hasSeenIntro = sessionStorage.getItem('omar_intro_seen');
+  // Safe sessionStorage check with try/catch
+  let hasSeenIntro = false;
+  try {
+    hasSeenIntro = sessionStorage.getItem('omar_intro_seen') === 'true';
+  } catch (e) {
+    hasSeenIntro = false;
+  }
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (hasSeenIntro === 'true' || prefersReducedMotion) {
+  // Respect prefers-reduced-motion & single-play per session
+  if (hasSeenIntro || prefersReducedMotion) {
     introScreen.classList.add('is-hidden');
     triggerHeroReveal();
   } else {
@@ -245,7 +271,9 @@ function setupIntroFlow() {
 }
 
 function executeOrangeHandoff(introScreen, orangeHandoff) {
-  sessionStorage.setItem('omar_intro_seen', 'true');
+  try {
+    sessionStorage.setItem('omar_intro_seen', 'true');
+  } catch (e) {}
 
   if (orangeHandoff) {
     // 1. Activate flat overlay
@@ -373,39 +401,117 @@ function setupInteractiveControls() {
     });
   });
 
-  // Contact Form Submission
+  // Contact Form Submission (Validation, WhatsApp Direct & Success State)
   const contactForm = document.getElementById('portfolio-contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('form-name').value;
-      const contact = document.getElementById('form-contact').value;
-      const service = document.getElementById('form-service').options[document.getElementById('form-service').selectedIndex].text;
-      const message = document.getElementById('form-message').value;
+      const nameInput = document.getElementById('form-name');
+      const contactInput = document.getElementById('form-contact');
+      const serviceSelect = document.getElementById('form-service');
+      const messageInput = document.getElementById('form-message');
 
+      const name = nameInput.value.trim();
+      const contact = contactInput.value.trim();
+      const service = serviceSelect.options[serviceSelect.selectedIndex].text;
+      const message = messageInput.value.trim();
+      const lang = getLanguage();
+
+      // Reset previous error indicators
+      [nameInput, contactInput, messageInput].forEach(inp => inp.classList.remove('input-error'));
+      const existingError = contactForm.querySelector('.form-error-banner');
+      if (existingError) existingError.remove();
+
+      // Validation check
+      if (!name || !contact || !message) {
+        if (!name) nameInput.classList.add('input-error');
+        if (!contact) contactInput.classList.add('input-error');
+        if (!message) messageInput.classList.add('input-error');
+
+        const errorMsg = lang === 'ar'
+          ? 'من فضلك املأ جميع الحقول المطلوبة (الاسم، طريقة التواصل، والتفاصيل).'
+          : 'Please fill in all required fields (Name, Contact info, and Details).';
+        
+        const errDiv = document.createElement('div');
+        errDiv.className = 'form-error-banner';
+        errDiv.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <span>${errorMsg}</span>`;
+        contactForm.prepend(errDiv);
+        showToast(errorMsg, '⚠️');
+        return;
+      }
+
+      // Success Confetti
       fireSuccessConfetti();
 
-      const successToast = getLanguage() === 'ar'
-        ? `شكراً ليك يا ${name}! تم استلام رسالتك وهرد عليك فوراً.`
-        : `Thank you, ${name}! Your message has been received.`;
+      const whatsappText = lang === 'ar'
+        ? `👋 أهلاً يا عمر، أنا *${name}*\n\n📱 وسيلة التواصل: ${contact}\n🎯 محتاج: *${service}*\n\n📝 تفاصيل مشروعي:\n${message}\n\n---\n🌐 مرسلة من موقع 7P Studio (7pstudio.tech)`
+        : `👋 Hi Omar, I am *${name}*\n\n📱 Contact: ${contact}\n🎯 Requested: *${service}*\n\n📝 Project details:\n${message}\n\n---\n🌐 Sent from 7P Studio (7pstudio.tech)`;
+
+      const encodedMsg = encodeURIComponent(whatsappText);
+      const whatsappUrl = `https://wa.me/201515047449?text=${encodedMsg}`;
+
+      const successToast = lang === 'ar'
+        ? `شكراً ليك يا ${name}! بنحولك على واتساب الآن بالرسالة جاهزة...`
+        : `Thank you, ${name}! Redirecting to WhatsApp with your details...`;
       showToast(successToast, '🚀');
 
-      const encodedMsg = encodeURIComponent(
-        `أهلاً يا عمر، أنا ${name} (${contact}).\nالخدمة المطلوبة: ${service}\nالتفاصيل: ${message}`
-      );
+      // Visual success state on submit button
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.classList.add('btn-success-state');
+      submitBtn.innerHTML = `<i class="fa-solid fa-check"></i> <span>${lang === 'ar' ? 'تم تجهيز الرسالة!' : 'Message Ready!'}</span>`;
 
+      // Open WhatsApp directly
       setTimeout(() => {
-        const confirmText = getLanguage() === 'ar'
-          ? 'تحب تفتح الواتساب دلوقتي وتتكلم مع عمر مباشرة؟'
-          : 'Would you like to open WhatsApp to chat with Omar right now?';
-        const confirmWa = confirm(confirmText);
-        if (confirmWa) {
-          window.open(`https://wa.me/201221576360?text=${encodedMsg}`, '_blank');
+        const opened = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        if (!opened || opened.closed || typeof opened.closed === 'undefined') {
+          window.location.href = whatsappUrl;
         }
-      }, 800);
+        contactForm.reset();
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('btn-success-state');
+          submitBtn.innerHTML = originalBtnHTML;
+        }, 2500);
+      }, 400);
+    });
+  }
 
-      contactForm.reset();
+  // Privacy Policy Modal Handlers
+  const privacyModal = document.getElementById('privacy-modal');
+  const openPrivacyBtn = document.getElementById('open-privacy-btn');
+  const closePrivacyBtn = document.getElementById('close-privacy-btn');
+  const confirmPrivacyBtn = document.getElementById('confirm-privacy-btn');
+
+  if (privacyModal && openPrivacyBtn) {
+    const openModal = () => {
+      privacyModal.style.display = 'flex';
+      setTimeout(() => privacyModal.classList.add('is-open'), 10);
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      privacyModal.classList.remove('is-open');
+      setTimeout(() => {
+        privacyModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 250);
+    };
+
+    openPrivacyBtn.addEventListener('click', openModal);
+    if (closePrivacyBtn) closePrivacyBtn.addEventListener('click', closeModal);
+    if (confirmPrivacyBtn) confirmPrivacyBtn.addEventListener('click', closeModal);
+
+    privacyModal.addEventListener('click', (e) => {
+      if (e.target === privacyModal) closeModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && privacyModal.classList.contains('is-open')) {
+        closeModal();
+      }
     });
   }
 

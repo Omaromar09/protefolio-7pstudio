@@ -20,9 +20,10 @@ export class SkillsScene {
       { name: 'JavaScript', color: '#0284C7', emissive: 0x0369a1, icon: 'JS' },
       { name: 'HTML5', color: '#2563EB', emissive: 0x1d4ed8, icon: '<>' },
       { name: 'CSS3', color: '#0EA5E9', emissive: 0x0284c7, icon: '#' },
+      { name: 'GSAP', color: '#6366F1', emissive: 0x4f46e5, icon: '✦' },
+      { name: 'Three.js', color: '#06B6D4', emissive: 0x0891b2, icon: '3D' },
       { name: 'Responsive', color: '#38BDF8', emissive: 0x0ea5e9, icon: '📱' },
-      { name: 'Animations', color: '#6366F1', emissive: 0x4f46e5, icon: '✦' },
-      { name: 'Bug Fixing', color: '#06B6D4', emissive: 0x0891b2, icon: '⚡' },
+      { name: 'Bug Fixing', color: '#EF4444', emissive: 0xb91c1c, icon: '⚡' },
       { name: 'Customization', color: '#3B82F6', emissive: 0x2563eb, icon: '⚙' }
     ];
 
@@ -338,7 +339,7 @@ export class SkillsScene {
 
   animate() {
     requestAnimationFrame(() => this.animate());
-    if (!this.isVisible) return;
+    if (!this.isVisible || document.hidden) return;
 
     const delta = this.clock.getDelta();
     const time = this.clock.getElapsedTime();

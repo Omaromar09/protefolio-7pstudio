@@ -200,3 +200,29 @@ img, video {
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   LANGUAGE-AWARE FONT SWITCHING & BIDIRECTIONAL LAYOUT RULES
+   ========================================================================== */
+html[lang="ar"], html[dir="rtl"] {
+  --font-display: var(--font-display-ar);
+  --font-heading: var(--font-heading-ar);
+  --font-body: var(--font-body-ar);
+}
+
+html[lang="en"], html[dir="ltr"] {
+  --font-display: var(--font-display-en);
+  --font-heading: var(--font-heading-en);
+  --font-body: var(--font-body-en);
+}
+
+/* Numerical & LTR Data Isolation */
+.contact-phone,
+.contact-method-val,
+a[href^="tel:"],
+a[href^="mailto:"],
+.dir-ltr {
+  direction: ltr !important;
+  unicode-bidi: isolate;
+  text-align: start;
+}

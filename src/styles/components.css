@@ -913,8 +913,8 @@
    -------------------------------------------------------------------------- */
 .floating-dock {
   position: fixed;
-  bottom: 2rem;
-  inset-inline-end: 2rem;
+  bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+  inset-inline-end: calc(2rem + env(safe-area-inset-right, 0px));
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -1078,8 +1078,8 @@
 
 @media (max-width: 640px) {
   .floating-dock {
-    bottom: 1.25rem;
-    inset-inline-end: 1.25rem;
+    bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    inset-inline-end: calc(1.25rem + env(safe-area-inset-right, 0px));
     gap: 0.65rem;
   }
   .floating-btn {
