@@ -31,7 +31,7 @@ export class IntroScene {
       powerPreference: 'high-performance'
     });
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
     this.container.appendChild(this.renderer.domElement);
 
     // Lights
@@ -190,6 +190,7 @@ export class IntroScene {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
   }
 
   warpOut(onComplete) {

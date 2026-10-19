@@ -30,17 +30,17 @@ export class HeroScene {
     this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
     this.camera.position.z = isMobile ? 6.8 : 6.0;
 
-    // Renderer (capped DPR for high FPS)
+    // Renderer (Ultra HD Retina DPR with full Anti-Aliasing)
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
-      antialias: !isMobile,
+      antialias: true,
       alpha: true,
       powerPreference: 'high-performance'
     });
     this.renderer.setSize(width, height, false);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.0 : 1.75));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.2;
+    this.renderer.toneMappingExposure = 1.25;
 
     // Lighting setup
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
@@ -271,6 +271,7 @@ export class HeroScene {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height, false);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
   }
 
   animate() {

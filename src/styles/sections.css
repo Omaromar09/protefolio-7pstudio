@@ -815,11 +815,11 @@
 
 .skills-canvas-wrap {
   width: 100%;
-  height: 250px;
+  height: 290px;
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: radial-gradient(circle at center, rgba(239, 76, 36, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
   margin-bottom: 1.5rem;
 }
 

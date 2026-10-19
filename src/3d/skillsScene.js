@@ -38,27 +38,29 @@ export class SkillsScene {
 
     // Camera
     this.camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 100);
-    this.camera.position.z = isMobile ? 5.6 : 5.0;
+    this.camera.position.z = isMobile ? 6.2 : 5.0;
 
-    // Renderer
+    // Renderer - Ultra HD Retina DPR with full Anti-Aliasing
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
-      antialias: !isMobile,
+      antialias: true,
       alpha: true,
       powerPreference: 'high-performance'
     });
     this.renderer.setSize(width, height, false);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.0 : 1.75));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 1.25;
 
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
     this.scene.add(ambientLight);
 
-    this.light1 = new THREE.PointLight(0x2563EB, 4.5, 20);
+    this.light1 = new THREE.PointLight(0x2563EB, 5.5, 25);
     this.light1.position.set(3, 2, 3);
     this.scene.add(this.light1);
 
-    this.light2 = new THREE.PointLight(0x0EA5E9, 4.0, 20);
+    this.light2 = new THREE.PointLight(0x0EA5E9, 5.0, 25);
     this.light2.position.set(-3, -2, 2);
     this.scene.add(this.light2);
 
@@ -114,50 +116,52 @@ export class SkillsScene {
 
   createSkillSatellites() {
     const total = this.skills.length;
-    const baseRadius = 2.15;
+    const isMobile = window.innerWidth < 768;
+    const baseRadius = isMobile ? 2.35 : 2.15;
 
     this.skills.forEach((skill, index) => {
       const nodeGroup = new THREE.Group();
 
-      const geom = new THREE.DodecahedronGeometry(0.22);
+      const geom = new THREE.DodecahedronGeometry(0.24);
       const colorNum = new THREE.Color(skill.color);
       const mat = new THREE.MeshStandardMaterial({
         color: colorNum,
         emissive: skill.emissive,
-        emissiveIntensity: 0.65,
-        roughness: 0.25,
-        metalness: 0.75
+        emissiveIntensity: 0.8,
+        roughness: 0.18,
+        metalness: 0.82
       });
       const mesh = new THREE.Mesh(geom, mat);
       nodeGroup.add(mesh);
 
-      const glowGeo = new THREE.SphereGeometry(0.28, 8, 8);
+      const glowGeo = new THREE.SphereGeometry(0.32, 10, 10);
       const glowMat = new THREE.MeshBasicMaterial({
         color: colorNum,
         transparent: true,
-        opacity: 0.2,
+        opacity: 0.28,
         wireframe: true
       });
       const glowMesh = new THREE.Mesh(glowGeo, glowMat);
       nodeGroup.add(glowMesh);
 
       const sprite = this.createTextSprite(skill.name, skill.color);
-      sprite.position.y = 0.42;
+      sprite.position.y = 0.46;
       nodeGroup.add(sprite);
 
       const phi = (index / total) * Math.PI * 2;
-      const tilt = ((index % 3) - 1) * 0.45;
+      const tilt = ((index % 3) - 1) * (isMobile ? 0.6 : 0.45);
+      const rad = baseRadius + (index % 2 === 0 ? 0.2 : -0.12);
 
       nodeGroup.position.set(
-        Math.cos(phi) * baseRadius,
-        Math.sin(phi * 2 + tilt) * 0.55,
-        Math.sin(phi) * baseRadius
+        Math.cos(phi) * rad,
+        Math.sin(phi * 2 + tilt) * 0.6,
+        Math.sin(phi) * rad
       );
 
       nodeGroup.userData = {
         baseAngle: phi,
-        speed: 0.45 + (index % 2) * 0.15,
-        radius: baseRadius + (index % 2) * 0.2,
+        speed: 0.38 + (index % 3) * 0.1,
+        radius: rad,
         tilt,
         mesh,
         glowMesh,
@@ -172,15 +176,21 @@ export class SkillsScene {
 
   createTextSprite(text, colorHex) {
     const canvas = document.createElement('canvas');
-    canvas.width = 256;
-    canvas.height = 70;
+    // High-DPI 2x Retina resolution texture (512x140)
+    canvas.width = 512;
+    canvas.height = 140;
     const ctx = canvas.getContext('2d');
 
-    ctx.fillStyle = 'rgba(11, 10, 13, 0.88)';
+    // Smooth crisp subpixel rendering
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
+    // Dark glass pill background with crisp neon border
+    ctx.fillStyle = 'rgba(7, 11, 24, 0.94)';
     ctx.strokeStyle = colorHex;
-    ctx.lineWidth = 3;
-    
-    const x = 10, y = 10, w = 236, h = 50, r = 25;
+    ctx.lineWidth = 5;
+
+    const x = 12, y = 12, w = 488, h = 116, r = 58;
     ctx.beginPath();
     ctx.moveTo(x + r, y);
     ctx.arcTo(x + w, y, x + w, y + h, r);
@@ -191,23 +201,30 @@ export class SkillsScene {
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 22px "Plus Jakarta Sans", system-ui, sans-serif';
+    // High resolution bold label
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = 'bold 38px "Plus Jakarta Sans", system-ui, -apple-system, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(text, 128, 35);
+    ctx.fillText(text, 256, y + h / 2 + 1);
 
     const texture = new THREE.CanvasTexture(canvas);
-    texture.minFilter = THREE.LinearFilter;
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.generateMipmaps = true;
+    texture.minFilter = THREE.LinearMipmapLinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.needsUpdate = true;
+
     const material = new THREE.SpriteMaterial({
       map: texture,
       transparent: true,
-      opacity: 0.95,
-      depthTest: false
+      opacity: 0.98,
+      depthTest: true,
+      depthWrite: false
     });
 
     const sprite = new THREE.Sprite(material);
-    sprite.scale.set(1.4, 0.4, 1);
+    sprite.scale.set(1.5, 0.41, 1);
     return sprite;
   }
 
@@ -294,10 +311,13 @@ export class SkillsScene {
     const parent = this.canvas.parentElement;
     if (!parent) return;
     const width = Math.min(parent.clientWidth || window.innerWidth, window.innerWidth);
-    const height = parent.clientHeight || 250;
+    const height = parent.clientHeight || 280;
+    const isMobile = window.innerWidth < 768;
     this.camera.aspect = width / height;
+    this.camera.position.z = isMobile ? 6.2 : 5.0;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height, false);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
   }
 
   highlightSkill(skillName) {
