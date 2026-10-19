@@ -329,13 +329,14 @@
 }
 
 /* --------------------------------------------------------------------------
-   ANIMATED FLOATING PREVIEW POPOVER CARD
+   ANIMATED FLOATING PREVIEW POPOVER CARD (Slow-Motion Creative Menu)
    -------------------------------------------------------------------------- */
 .project-popover-card {
   position: absolute;
-  bottom: calc(100% + 20px);
+  bottom: calc(100% + 18px);
   left: 50%;
-  transform: translate(-50%, 14px) scale(0.95);
+  transform: translate(-50%, 22px) scale(0.92) rotateX(-6deg);
+  transform-origin: bottom center;
   width: 360px;
   max-width: calc(100vw - 2rem);
   box-sizing: border-box;
@@ -345,11 +346,23 @@
   box-shadow: 0 28px 60px -10px rgba(15, 23, 42, 0.2), 0 0 28px rgba(14, 165, 233, 0.18);
   padding: 1rem;
   opacity: 0;
-  display: none;
+  visibility: hidden;
   pointer-events: none;
   z-index: 1000;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  filter: blur(6px);
+  transition: opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.48s,
+              filter 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+[data-theme="dark"] .project-popover-card {
+  background: rgba(19, 26, 51, 0.95);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.7), 0 0 35px rgba(14, 165, 233, 0.25);
 }
 
 /* Invisible Bridge so mouse can move safely from card to popover without flickering */
@@ -359,7 +372,7 @@
   top: 100%;
   left: 0;
   right: 0;
-  height: 26px;
+  height: 24px;
 }
 
 /* Pointer Arrow */
@@ -373,14 +386,23 @@
   background: var(--bg-surface);
   border-right: 1.5px solid rgba(14, 165, 233, 0.35);
   border-bottom: 1.5px solid rgba(14, 165, 233, 0.35);
+  transition: background 0.3s ease;
 }
 
+[data-theme="dark"] .popover-arrow {
+  background: rgba(19, 26, 51, 0.95);
+  border-right-color: rgba(56, 189, 248, 0.35);
+  border-bottom-color: rgba(56, 189, 248, 0.35);
+}
+
+/* Slow-Motion Reveal on Hover & Active Tap */
 .partner-item:hover .project-popover-card,
 .partner-item.is-active .project-popover-card {
-  display: block;
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
-  transform: translate(-50%, 0) scale(1);
+  transform: translate(-50%, 0) scale(1) rotateX(0deg);
+  filter: blur(0px);
 }
 
 @media (max-width: 768px) {
@@ -390,19 +412,22 @@
     top: 50%;
     left: 50% !important;
     right: auto !important;
-    transform: translate(-50%, -50%) scale(0.95) !important;
+    transform: translate(-50%, -45%) scale(0.92) !important;
     width: calc(100vw - 2rem) !important;
     max-width: 350px !important;
     max-height: 85vh;
     overflow-y: auto;
     z-index: 100005;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), 0 0 0 9999px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 9999px rgba(0, 0, 0, 0.6);
   }
 
   .partner-item:hover .project-popover-card,
   .partner-item.is-active .project-popover-card {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
     transform: translate(-50%, -50%) scale(1) !important;
+    filter: blur(0);
   }
 
   .popover-arrow,
@@ -418,13 +443,24 @@
   border-radius: 14px;
   overflow: hidden;
   background: #F1F5F9;
+  transform: translateY(14px) scale(0.96);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.45s ease;
+}
+
+.partner-item:hover .popover-thumb,
+.partner-item.is-active .popover-thumb {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  transition-delay: 0.05s;
 }
 
 .popover-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .partner-item:hover .popover-thumb img {
@@ -467,6 +503,17 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease;
+}
+
+.partner-item:hover .popover-meta,
+.partner-item.is-active .popover-meta {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.1s;
 }
 
 .popover-title {
@@ -493,6 +540,17 @@
   line-height: 1.45;
   color: var(--text-soft);
   margin: 0;
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease;
+}
+
+.partner-item:hover .popover-desc,
+.partner-item.is-active .popover-desc {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.16s;
 }
 
 .popover-highlights {
@@ -502,6 +560,17 @@
   font-size: 0.72rem;
   color: var(--text-muted);
   font-weight: 600;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease;
+}
+
+.partner-item:hover .popover-highlights,
+.partner-item.is-active .popover-highlights {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.22s;
 }
 
 .popover-highlights span {
@@ -512,6 +581,13 @@
   border: 1px solid rgba(14, 165, 233, 0.15);
   padding: 0.2rem 0.5rem;
   border-radius: 6px;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.popover-highlights span:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-cyan);
+  background: rgba(14, 165, 233, 0.15);
 }
 
 .popover-highlights span i {
@@ -524,6 +600,17 @@
   gap: 0.5rem;
   width: 100%;
   margin-top: 0.4rem;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease;
+}
+
+.partner-item:hover .popover-btn-group,
+.partner-item.is-active .popover-btn-group {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.28s;
 }
 
 .popover-visit-btn {
