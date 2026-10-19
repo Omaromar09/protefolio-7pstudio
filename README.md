@@ -22,7 +22,7 @@ A personal portfolio built with **Vite**, **Three.js**, **GSAP & ScrollTrigger**
   - **Ready-Made Designs**: Fast-delivery customizable concept platforms (Elmo7taref Restaurant, Kayan Luxury Fashion, El Veranda Workspace).
   - **Services**: 4 clear, honest offerings (Website from Scratch, Bug Fixing & Repairs, Site Customization & Edits, Animations & 3D Polish).
   - **Process**: Brief → Design → Build → Launch timeline.
-  - **Contact**: Direct WhatsApp (`01515047449`), phone, email (`om058166@gmail.com`), Instagram (`@7p__studio`), one-click copy buttons with toasts, and an interactive form with confetti celebration.
+  - **Contact**: Direct WhatsApp (`01515047449`), phone, Instagram (`@7p__studio`), one-click copy buttons with toasts, and an interactive form with confetti celebration.
 
 ## 🛠️ Tech Stack
 
