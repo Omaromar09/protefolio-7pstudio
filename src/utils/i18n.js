@@ -54,8 +54,8 @@ export const translations = {
     skillJs: 'جافاسكريبت (JavaScript)',
     skillHtml: 'HTML5',
     skillCss: 'CSS3 وتصميم متجاوب',
-    skillResp: 'شغال مظبوط على الموبايل',
-    skillAnim: 'أنيميشن وحركات GSAP',
+    skillResp: ' لغة البايثون(Python)',
+    skillAnim: 'ويبسايت مخصوص لمشروعك',
     skillBug: 'حل وتصليح المشاكل',
     skillCustom: 'تعديل وتخصيص المواقع',
 
