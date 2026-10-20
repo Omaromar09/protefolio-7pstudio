@@ -246,9 +246,27 @@
   position: relative;
 }
 
+.partners-section.has-active-modal,
+.partners-section:has(.partner-item.is-active) {
+  z-index: 999990 !important;
+}
+
 .partner-item {
   position: relative;
   perspective: 1000px;
+  z-index: 1;
+  transition: z-index 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .partner-item:hover,
+  .partner-item:focus-within {
+    z-index: 50;
+  }
+}
+
+.partner-item.is-active {
+  z-index: 999999 !important;
 }
 
 .partner-card {
@@ -395,8 +413,49 @@
   border-bottom-color: rgba(56, 189, 248, 0.35);
 }
 
-/* Slow-Motion Reveal on Hover & Active Tap */
-.partner-item:hover .project-popover-card,
+/* Close button inside popover thumbnail */
+.popover-close-btn {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  z-index: 30;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.popover-close-btn:hover,
+.popover-close-btn:active {
+  background: rgba(239, 68, 68, 0.95);
+  border-color: rgba(239, 68, 68, 1);
+  transform: scale(1.1);
+  color: #FFFFFF;
+}
+
+/* Reveal on Desktop Hover */
+@media (hover: hover) and (pointer: fine) {
+  .partner-item:hover .project-popover-card {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0) scale(1) rotateX(0deg);
+    filter: blur(0px);
+  }
+}
+
+/* Active Popover State (Desktop / Fallback) */
 .partner-item.is-active .project-popover-card {
   opacity: 1;
   visibility: visible;
@@ -405,34 +464,82 @@
   filter: blur(0px);
 }
 
+/* --------------------------------------------------------------------------
+   Mobile Modal Display: Fullscreen Backdrop + Centered Card + No Overlaps
+   -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  .project-popover-card {
-    position: fixed;
-    bottom: auto;
-    top: 50%;
-    left: 50% !important;
-    right: auto !important;
-    transform: translate(-50%, -45%) scale(0.92) !important;
-    width: calc(100vw - 2rem) !important;
-    max-width: 350px !important;
-    max-height: 85vh;
-    overflow-y: auto;
-    z-index: 100005;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 9999px rgba(0, 0, 0, 0.6);
+  .partner-item {
+    perspective: none !important;
   }
 
-  .partner-item:hover .project-popover-card,
-  .partner-item.is-active .project-popover-card {
-    opacity: 1;
-    visibility: visible;
+  .partner-item.is-active {
+    z-index: 999999 !important;
+  }
+
+  /* Fullscreen Backdrop behind active modal */
+  .partner-item.is-active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 15, 30, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999998;
     pointer-events: auto;
+    animation: fadeInModalBackdrop 0.25s ease forwards;
+  }
+
+  .project-popover-card {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    bottom: auto !important;
+    right: auto !important;
+    transform: translate(-50%, -46%) scale(0.95) !important;
+    width: calc(100vw - 2rem) !important;
+    max-width: 360px !important;
+    max-height: 86vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    z-index: 999999 !important;
+    border-radius: 20px !important;
+    padding: 1rem !important;
+    box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(56, 189, 248, 0.4) !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.28s !important;
+  }
+
+  .partner-item.is-active .project-popover-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
     transform: translate(-50%, -50%) scale(1) !important;
-    filter: blur(0);
+    filter: blur(0) !important;
   }
 
   .popover-arrow,
   .project-popover-card::after {
-    display: none;
+    display: none !important;
+  }
+}
+
+@keyframes fadeInModalBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-height: 700px) and (max-width: 768px) {
+  .popover-thumb {
+    height: 140px;
   }
 }
 
@@ -1524,6 +1631,18 @@
   background: rgba(236, 72, 153, 0.12);
   border-color: rgba(236, 72, 153, 0.3);
   color: #DB2777;
+}
+
+.contact-method-icon.tiktok {
+  background: rgba(255, 0, 80, 0.12);
+  border-color: rgba(255, 0, 80, 0.3);
+  color: #ff0050;
+}
+
+[data-theme="dark"] .contact-method-icon.tiktok {
+  background: rgba(255, 0, 80, 0.18);
+  border-color: rgba(255, 0, 80, 0.4);
+  color: #ff2d6c;
 }
 
 .contact-method-label {
