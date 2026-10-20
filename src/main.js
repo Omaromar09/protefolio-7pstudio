@@ -10,12 +10,16 @@ import { renderTestimonials } from './utils/testimonials.js';
 import { showToast } from './utils/toast.js';
 import { fireSuccessConfetti } from './utils/confetti.js';
 import { initAudio, toggleAudio, getAudioState } from './intro/soundSynth.js';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 import gsap from 'gsap';
 
 // ==========================================================================
 // 1. APPLICATION BOOTSTRAP
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Vercel Speed Insights
+  injectSpeedInsights();
+
   // Initialize Bilingual Language System (Arabic Default)
   initLanguage();
 
