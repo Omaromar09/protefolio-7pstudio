@@ -11,11 +11,15 @@ import { showToast } from './utils/toast.js';
 import { fireSuccessConfetti } from './utils/confetti.js';
 import { initAudio, toggleAudio, getAudioState } from './intro/soundSynth.js';
 import gsap from 'gsap';
+import { inject } from '@vercel/analytics';
 
 // ==========================================================================
 // 1. APPLICATION BOOTSTRAP
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Vercel Web Analytics
+  inject();
+
   // Initialize Bilingual Language System (Arabic Default)
   initLanguage();
 
