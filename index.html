@@ -128,9 +128,9 @@
     <header class="navbar-wrapper">
       <nav class="navbar">
         <div class="nav-brand-group">
-          <a href="#hero" class="nav-brand" aria-label="7P Studio">
-            <span class="brand-badge">7P</span>
-            <span class="brand-title" data-i18n="navBrand">STUDIO</span>
+          <a href="#hero" class="nav-brand" id="brand-logo-trigger" aria-label="7P Studio" title="7P Studio">
+            <img src="/logo-7p.png" alt="7P Studio Logo" class="brand-logo-img" />
+            <span class="brand-title" data-i18n="navBrand">7P STUDIO</span>
             <span class="nav-brand-dot"></span>
           </a>
           <div class="availability-pill" title="متاح لاستلام مواقع ومشاريع جديدة">
@@ -143,6 +143,7 @@
           <li><a href="#about" class="nav-link" data-i18n="navAbout">عني</a></li>
           <li><a href="#projects" class="nav-link" data-i18n="navWork">أعمالي</a></li>
           <li><a href="#services" class="nav-link" data-i18n="navServices">خدماتي</a></li>
+          <li><a href="#estimator" class="nav-link" data-i18n="navEstimator">احسب مشروعك</a></li>
           <li><a href="#process" class="nav-link" data-i18n="navProcess">طريقة الشغل</a></li>
           <li><a href="#contact" class="nav-link" data-i18n="navContact">تواصل معايا</a></li>
         </ul>
@@ -186,6 +187,7 @@
         <li><a href="#about" class="mobile-nav-link" data-i18n="navAbout">عني</a></li>
         <li><a href="#projects" class="mobile-nav-link" data-i18n="navWork">أعمالي</a></li>
         <li><a href="#services" class="mobile-nav-link" data-i18n="navServices">خدماتي</a></li>
+        <li><a href="#estimator" class="mobile-nav-link" data-i18n="navEstimator">احسب مشروعك</a></li>
         <li><a href="#process" class="mobile-nav-link" data-i18n="navProcess">طريقة الشغل</a></li>
         <li><a href="#contact" class="mobile-nav-link" data-i18n="navContact">تواصل معايا</a></li>
       </ul>
@@ -741,23 +743,187 @@
               </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <!-- Pricing Expectation Hint Card -->
-          <div class="pricing-hint-banner">
-            <div class="pricing-hint-content">
-              <div class="pricing-hint-tag">
-                <i class="fa-solid fa-tags"></i>
-                <span data-i18n="pricingHintTag">تكلفة تقديرية</span>
-              </div>
-              <h3 class="pricing-hint-title" data-i18n="pricingHintTitle">عايز تعرف متوسط التكلفة؟</h3>
-              <p class="pricing-hint-desc" data-i18n="pricingHintDesc">
-                صفحات الهبوط بتبدأ من <strong class="pricing-highlight" data-i18n="pricingLandingStart">[X]</strong>. المتاجر والمشاريع الأكبر بنحدد تكلفتها بدقة بعد ما نتكلم ونفهم تفاصيل طلبك.
-              </p>
+      <!-- 4.5 7P STUDIO PROJECT ARCHITECT & LIVE ESTIMATOR (دماغ عالية) -->
+      <section id="estimator" class="estimator-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <div class="badge-pill" style="margin-inline: auto;">
+              <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-magenta);"></i>
+              <span data-i18n="estimatorBadge">حاسبة وكوتيشن 7P الذكية</span>
             </div>
-            <a href="#contact" class="btn btn-primary pricing-hint-cta">
-              <span data-i18n="pricingHintCta">اطلب عرض سعر لمشروعك</span>
-              <i class="fa-solid fa-arrow-down-long" style="margin-inline-start: 6px;"></i>
-            </a>
+            <h2 class="section-title" data-i18n="estimatorTitle">
+              احسب تفاصيل مشروعك واستلم <span class="highlight">كوتيشن واتساب فوري</span>
+            </h2>
+            <p class="section-desc" data-i18n="estimatorDesc">
+              اختر نوع فكرتك والميزات اللي محتاجها، وشوف جدول التسليم والتقنيات المقترحة، وابدأ تواصل فوري بضغطة زر واحدة.
+            </p>
+          </div>
+
+          <div class="estimator-card-main">
+            <div class="estimator-grid">
+              <!-- Left Column: Interactive Steps -->
+              <div class="estimator-builder">
+                <!-- Step 1: Project Scope -->
+                <div class="estimator-step">
+                  <div class="estimator-step-header">
+                    <span class="estimator-step-num">1</span>
+                    <h3 class="estimator-step-title" data-i18n="estStep1Title">نوع المشروع الأساسي</h3>
+                    <span class="estimator-step-desc" data-i18n="estStep1Desc">اختر نوع واحد</span>
+                  </div>
+                  <div class="project-type-grid" id="project-type-container">
+                    <button type="button" class="type-btn is-active" data-type-id="landing" data-days="3-5" data-name-ar="صفحة هبوط تسويقية (Landing Page)" data-name-en="High-Converting Landing Page">
+                      <div class="type-btn-icon"><i class="fa-solid fa-rocket"></i></div>
+                      <span class="type-btn-name" data-i18n="estType1Name">صفحة هبوط تسويقية</span>
+                      <span class="type-btn-desc" data-i18n="estType1Desc">لإطلاق منتج أو خدمة سريعة وزيادة المبيعات</span>
+                      <span class="type-btn-check"><i class="fa-solid fa-check"></i></span>
+                    </button>
+                    <button type="button" class="type-btn" data-type-id="ecommerce" data-days="5-8" data-name-ar="متجر إلكتروني وسلة مبيعات" data-name-en="E-Commerce Store & Cart">
+                      <div class="type-btn-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                      <span class="type-btn-name" data-i18n="estType2Name">متجر وسلة مبيعات</span>
+                      <span class="type-btn-desc" data-i18n="estType2Desc">عرض منتجات وسلة شراء وفاتورة فورية</span>
+                      <span class="type-btn-check"><i class="fa-solid fa-check"></i></span>
+                    </button>
+                    <button type="button" class="type-btn" data-type-id="corporate" data-days="4-7" data-name-ar="موقع بيزنس وشركات" data-name-en="Corporate Business Website">
+                      <div class="type-btn-icon"><i class="fa-solid fa-briefcase"></i></div>
+                      <span class="type-btn-name" data-i18n="estType3Name">موقع بيزنس / شركة</span>
+                      <span class="type-btn-desc" data-i18n="estType3Desc">تعريف احترافي بالخدمات وبناء الثقة</span>
+                      <span class="type-btn-check"><i class="fa-solid fa-check"></i></span>
+                    </button>
+                    <button type="button" class="type-btn" data-type-id="menu" data-days="3-5" data-name-ar="منيو مطعم / كافيه ذكي" data-name-en="Smart QR Menu & Ordering">
+                      <div class="type-btn-icon"><i class="fa-solid fa-utensils"></i></div>
+                      <span class="type-btn-name" data-i18n="estType4Name">منيو مطعم / كافيه</span>
+                      <span class="type-btn-desc" data-i18n="estType4Desc">منيو QR سريع وسهل مع طلب مباشر واتساب</span>
+                      <span class="type-btn-check"><i class="fa-solid fa-check"></i></span>
+                    </button>
+                    <button type="button" class="type-btn" data-type-id="bugfix" data-days="1-3" data-name-ar="إصلاح عيوب وصيانة فورية" data-name-en="Bug Fixing & Speed Boost">
+                      <div class="type-btn-icon"><i class="fa-solid fa-bug-slash"></i></div>
+                      <span class="type-btn-name" data-i18n="estType5Name">إصلاح موقع حالي</span>
+                      <span class="type-btn-desc" data-i18n="estType5Desc">حل باجات، رفع سرعة، وضبط شكل الموبايل</span>
+                      <span class="type-btn-check"><i class="fa-solid fa-check"></i></span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Step 2: Power Features -->
+                <div class="estimator-step">
+                  <div class="estimator-step-header">
+                    <span class="estimator-step-num">2</span>
+                    <h3 class="estimator-step-title" data-i18n="estStep2Title">الميزات الإضافية المقترحة</h3>
+                    <span class="estimator-step-desc" data-i18n="estStep2Desc">حدد كل اللي يهمك</span>
+                  </div>
+                  <div class="features-checklist-grid" id="features-container">
+                    <div class="feature-toggle-card is-checked" data-feature-id="whatsapp" data-name-ar="ربط واتساب فوري" data-name-en="Instant WhatsApp Sync">
+                      <span class="feature-checkbox-icon"><i class="fa-solid fa-check"></i></span>
+                      <span class="feature-label-text" data-i18n="estFeat1">شات ومزامنة واتساب فورية</span>
+                    </div>
+                    <div class="feature-toggle-card is-checked" data-feature-id="responsive" data-name-ar="تجاوب موبايل 100%" data-name-en="100% Mobile Responsive">
+                      <span class="feature-checkbox-icon"><i class="fa-solid fa-check"></i></span>
+                      <span class="feature-label-text" data-i18n="estFeat2">تجاوب فائق الدقة على الموبايل</span>
+                    </div>
+                    <div class="feature-toggle-card is-checked" data-feature-id="speed" data-name-ar="سرعة خارقة 95+" data-name-en="Ultra Speed 95+ Score">
+                      <span class="feature-checkbox-icon"><i class="fa-solid fa-check"></i></span>
+                      <span class="feature-label-text" data-i18n="estFeat3">سرعة تحميل وأداء 95+ جوجل</span>
+                    </div>
+                    <div class="feature-toggle-card" data-feature-id="three3d" data-name-ar="لمسات 3D تفاعلية" data-name-en="3D WebGL Atmosphere">
+                      <span class="feature-checkbox-icon"><i class="fa-solid fa-check"></i></span>
+                      <span class="feature-label-text" data-i18n="estFeat4">تأثيرات ولمسات 3D سينمائية</span>
+                    </div>
+                    <div class="feature-toggle-card" data-feature-id="domain" data-name-ar="دومين واستضافة جاهزة" data-name-en="Domain & Cloud Setup">
+                      <span class="feature-checkbox-icon"><i class="fa-solid fa-check"></i></span>
+                      <span class="feature-label-text" data-i18n="estFeat5">حجز دومين واستضافة سحابية</span>
+                    </div>
+                    <div class="feature-toggle-card" data-feature-id="seo" data-name-ar="تهيئة محركات البحث SEO" data-name-en="SEO & OpenGraph">
+                      <span class="feature-checkbox-icon"><i class="fa-solid fa-check"></i></span>
+                      <span class="feature-label-text" data-i18n="estFeat6">تهيئة لمحركات البحث وتصدر جوجل</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 3: Turnaround Speed -->
+                <div class="estimator-step">
+                  <div class="estimator-step-header">
+                    <span class="estimator-step-num">3</span>
+                    <h3 class="estimator-step-title" data-i18n="estStep3Title">سرعة وميعاد التسليم</h3>
+                    <span class="estimator-step-desc" data-i18n="estStep3Desc">اختر الأولوية</span>
+                  </div>
+                  <div class="speed-toggle-row" id="speed-container">
+                    <button type="button" class="speed-btn is-active" data-speed="standard" data-days-label-ar="5 - 7 أيام عمل" data-days-label-en="5 - 7 Business Days">
+                      <div class="speed-btn-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                      <div class="speed-info">
+                        <span class="speed-title" data-i18n="estSpeedStdTitle">تنفيذ قياسي دقيق</span>
+                        <span class="speed-days" data-i18n="estSpeedStdDays">الميعاد الطبيعي بدون استعجال</span>
+                      </div>
+                    </button>
+                    <button type="button" class="speed-btn" data-speed="express" data-days-label-ar="48 - 72 ساعة فقط ⚡" data-days-label-en="48 - 72 Hours Rush ⚡">
+                      <div class="speed-btn-icon"><i class="fa-solid fa-bolt-lightning" style="color: var(--accent-magenta);"></i></div>
+                      <div class="speed-info">
+                        <span class="speed-title" data-i18n="estSpeedExpTitle">تنفيذ إكسبريس عاجل</span>
+                        <span class="speed-days" data-i18n="estSpeedExpDays">تسليم عاجل خلال 48-72 ساعة</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: HUD Console -->
+              <div class="estimator-hud">
+                <div class="estimator-hud-card">
+                  <div class="hud-topbar">
+                    <div class="hud-lights">
+                      <span class="hud-light magenta"></span>
+                      <span class="hud-light violet"></span>
+                      <span class="hud-light cyan"></span>
+                    </div>
+                    <span class="hud-system-title">7P STUDIO ENGINE</span>
+                    <span class="hud-quote-id" id="hud-quote-id">#7P-Q9384</span>
+                  </div>
+
+                  <div class="hud-metrics-list">
+                    <div class="hud-metric-row">
+                      <span class="hud-metric-label"><i class="fa-solid fa-layer-group"></i> <span data-i18n="hudLabelScope">نوع المشروع</span></span>
+                      <span class="hud-metric-val" id="hud-val-scope">صفحة هبوط تسويقية</span>
+                    </div>
+                    <div class="hud-metric-row">
+                      <span class="hud-metric-label"><i class="fa-solid fa-clock"></i> <span data-i18n="hudLabelDelivery">وقت التسليم المقدر</span></span>
+                      <span class="hud-metric-val highlight" id="hud-val-delivery">3 - 5 أيام عمل</span>
+                    </div>
+                    <div class="hud-metric-row" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+                      <span class="hud-metric-label"><i class="fa-solid fa-sliders"></i> <span data-i18n="hudLabelFeatures">الميزات المختارة</span></span>
+                      <div class="hud-tags-row" id="hud-tags-container">
+                        <span class="hud-tag">واتساب فوري</span>
+                        <span class="hud-tag">تجاوب موبايل</span>
+                        <span class="hud-tag">سرعة 95+</span>
+                      </div>
+                    </div>
+                    <div class="hud-metric-row">
+                      <span class="hud-metric-label"><i class="fa-solid fa-code"></i> <span data-i18n="hudLabelStack">حزمة الكود</span></span>
+                      <span class="hud-metric-val" style="font-family: var(--font-mono); font-size: 0.8rem; color: #38BDF8;">HTML5 / JS / Vite / ThreeJS</span>
+                    </div>
+                  </div>
+
+                  <div class="hud-guarantee">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span class="hud-guarantee-text" data-i18n="hudGuaranteeText">
+                      ضمان جودة 7P Studio: تسليم بدون باجات، كود نظيف وسريع، وتعديلات ومتابعة مستمرة بعد التسليم.
+                    </span>
+                  </div>
+
+                  <!-- WhatsApp Action Trigger -->
+                  <a href="#" id="hud-whatsapp-trigger" target="_blank" rel="noopener noreferrer" class="hud-cta-btn">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span data-i18n="hudCtaBtn">إرسال الكوتيشن وبدء التنفيذ</span>
+                  </a>
+
+                  <div class="hud-subhint">
+                    <i class="fa-solid fa-bolt" style="color: #00F0FF;"></i>
+                    <span data-i18n="hudSubhint">تجهيز فوري للرسالة والتواصل المباشر مع عمر</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

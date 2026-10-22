@@ -727,20 +727,20 @@
   gap: 0.5rem;
   flex: 1;
   padding: 0.65rem 1rem;
-  background: linear-gradient(135deg, #2563EB 0%, #0EA5E9 100%);
+  background: var(--grad-primary);
   color: #FFFFFF;
   border-radius: 10px;
   font-family: var(--font-heading);
   font-size: 0.86rem;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 14px rgba(224, 43, 251, 0.4);
   transition: all 0.25s ease;
 }
 
 .popover-visit-btn:hover {
-  background: linear-gradient(135deg, #1D4ED8 0%, #0284C7 100%);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.45);
+  background: linear-gradient(135deg, #F43F5E 0%, #E02BFB 50%, #00F0FF 100%);
+  box-shadow: 0 8px 22px rgba(224, 43, 251, 0.6), 0 0 16px rgba(0, 240, 255, 0.45);
   transform: translateY(-2px);
   color: #FFFFFF;
 }

@@ -54,7 +54,7 @@ function updateThemeIcons(theme) {
 }
 
 export function initTheme() {
-  const savedTheme = localStorage.getItem('omar_theme') || 'light';
+  const savedTheme = localStorage.getItem('omar_theme') || 'dark';
   setTheme(savedTheme, true);
 
   const desktopBtn = document.getElementById('theme-toggle');

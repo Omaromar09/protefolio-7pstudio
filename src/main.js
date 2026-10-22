@@ -10,6 +10,7 @@ import { renderTestimonials } from './utils/testimonials.js';
 import { showToast } from './utils/toast.js';
 import { fireSuccessConfetti } from './utils/confetti.js';
 import { initAudio, toggleAudio, getAudioState } from './intro/soundSynth.js';
+import { initProjectEstimator } from './motion/estimator.js';
 import gsap from 'gsap';
 
 // ==========================================================================
@@ -33,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Interactive Partner Project Popovers
   initProjectPopovers();
+
+  // Initialize 7P Studio Interactive Project Estimator & WhatsApp Quote Engine
+  initProjectEstimator();
 
   // Initialize Client Testimonials / Social Proof
   renderTestimonials(getLanguage());

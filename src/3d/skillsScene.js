@@ -57,11 +57,11 @@ export class SkillsScene {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
     this.scene.add(ambientLight);
 
-    this.light1 = new THREE.PointLight(0x2563EB, 5.5, 25);
+    this.light1 = new THREE.PointLight(0xE02BFB, 5.5, 25);
     this.light1.position.set(3, 2, 3);
     this.scene.add(this.light1);
 
-    this.light2 = new THREE.PointLight(0x0EA5E9, 5.0, 25);
+    this.light2 = new THREE.PointLight(0x00F0FF, 5.0, 25);
     this.light2.position.set(-3, -2, 2);
     this.scene.add(this.light2);
 
@@ -95,8 +95,8 @@ export class SkillsScene {
   createCore() {
     const coreGeo = new THREE.SphereGeometry(0.72, 16, 16);
     const coreMat = new THREE.MeshStandardMaterial({
-      color: 0x1E40AF,
-      emissive: 0x0EA5E9,
+      color: 0x7C3AED,
+      emissive: 0xE02BFB,
       emissiveIntensity: 0.65,
       roughness: 0.2,
       metalness: 0.85
@@ -106,7 +106,7 @@ export class SkillsScene {
 
     const wireGeo = new THREE.IcosahedronGeometry(0.92, 0);
     const wireMat = new THREE.MeshBasicMaterial({
-      color: 0x38BDF8,
+      color: 0x00F0FF,
       wireframe: true,
       transparent: true,
       opacity: 0.35

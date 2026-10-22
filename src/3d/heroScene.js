@@ -42,19 +42,19 @@ export class HeroScene {
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.25;
 
-    // Lighting setup
+    // Lighting setup - Infused with 7P Studio Logo Spectrum (Magenta, Cyan, Violet)
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
     this.scene.add(ambientLight);
 
-    this.lightBlue = new THREE.PointLight(0x2563EB, 6.0, 25);
+    this.lightBlue = new THREE.PointLight(0xE02BFB, 6.5, 25); // Neon Magenta Key Light
     this.lightBlue.position.set(4, 3, 3);
     this.scene.add(this.lightBlue);
 
-    this.lightCyan = new THREE.PointLight(0x0EA5E9, 5.5, 25);
+    this.lightCyan = new THREE.PointLight(0x00F0FF, 6.0, 25); // Cyber Cyan Fill Light
     this.lightCyan.position.set(-4, -2, 3);
     this.scene.add(this.lightCyan);
 
-    this.lightSky = new THREE.PointLight(0x38BDF8, 4.0, 20);
+    this.lightSky = new THREE.PointLight(0x7C3AED, 4.5, 20); // Royal Violet Rim Light
     this.lightSky.position.set(0, 4, -2);
     this.scene.add(this.lightSky);
 
@@ -84,54 +84,54 @@ export class HeroScene {
   createCenterpiece(isMobile) {
     this.group = new THREE.Group();
 
-    // 1. Core Complex Torus Knot (Vibrant Crystalline Royal Blue) - Optimized geometry
+    // 1. Core Complex Torus Knot (Vibrant Crystalline Violet & Magenta) - Matching 7P Logo
     const tubularSegments = isMobile ? 32 : 64;
     const radialSegments = isMobile ? 12 : 18;
     const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.38, tubularSegments, radialSegments, 2, 3);
     const knotMat = new THREE.MeshStandardMaterial({
-      color: 0x1E40AF,
-      emissive: 0x0284C7,
-      emissiveIntensity: 0.35,
+      color: 0x7C3AED, // Royal Violet
+      emissive: 0xE02BFB, // Neon Magenta
+      emissiveIntensity: 0.42,
       roughness: 0.15,
       metalness: 0.85
     });
     this.knot = new THREE.Mesh(knotGeo, knotMat);
     this.group.add(this.knot);
 
-    // 2. Translucent wireframe cage (Sky Blue / Labany accent)
+    // 2. Translucent wireframe cage (Electric Cyber Cyan)
     const wireGeo = new THREE.TorusKnotGeometry(1.24, 0.40, isMobile ? 20 : 36, 10, 2, 3);
     const wireMat = new THREE.MeshBasicMaterial({
-      color: 0x38BDF8,
+      color: 0x00F0FF, // Pure Neon Cyan
       wireframe: true,
       transparent: true,
-      opacity: 0.4
+      opacity: 0.45
     });
     this.wireKnot = new THREE.Mesh(wireGeo, wireMat);
     this.group.add(this.wireKnot);
 
-    // 3. Inner glowing gem (Electric Blue Core)
+    // 3. Inner glowing gem (Electric Magenta Core with Cyan Aura)
     const gemGeo = new THREE.OctahedronGeometry(0.68, 0);
     const gemMat = new THREE.MeshStandardMaterial({
-      color: 0x2563EB,
-      emissive: 0x0EA5E9,
-      emissiveIntensity: 0.75,
+      color: 0xE02BFB,
+      emissive: 0x00F0FF,
+      emissiveIntensity: 0.85,
       roughness: 0.2,
       metalness: 0.5
     });
     this.gem = new THREE.Mesh(gemGeo, gemMat);
     this.group.add(this.gem);
 
-    // 4. Astrolabe / Orbital Rings
+    // 4. Astrolabe / Orbital Rings in 7P Logo Colors
     this.rings = [];
     const ringRadii = [1.9, 2.25, 2.6];
-    const ringColors = [0x2563EB, 0x0EA5E9, 0x38BDF8];
+    const ringColors = [0xE02BFB, 0x7C3AED, 0x00F0FF];
 
     ringRadii.forEach((rad, idx) => {
       const ringGeo = new THREE.TorusGeometry(rad, 0.016, 8, isMobile ? 24 : 44);
       const ringMat = new THREE.MeshStandardMaterial({
         color: ringColors[idx],
         emissive: ringColors[idx],
-        emissiveIntensity: 0.6,
+        emissiveIntensity: 0.7,
         roughness: 0.2,
         metalness: 0.8
       });
@@ -151,13 +151,13 @@ export class HeroScene {
     this.orbiterMeshes = [];
 
     const geom = new THREE.DodecahedronGeometry(0.14);
-    const colors = [0x2563EB, 0x0EA5E9, 0x38BDF8, 0x0284C7];
+    const colors = [0xE02BFB, 0x7C3AED, 0x00F0FF, 0x0EA5E9];
 
     for (let i = 0; i < orbiterCount; i++) {
       const mat = new THREE.MeshStandardMaterial({
         color: colors[i],
         emissive: colors[i],
-        emissiveIntensity: 0.6,
+        emissiveIntensity: 0.7,
         roughness: 0.2,
         metalness: 0.8
       });
@@ -180,9 +180,9 @@ export class HeroScene {
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
 
-    const c1 = new THREE.Color(0x38BDF8);
-    const c2 = new THREE.Color(0x0EA5E9);
-    const c3 = new THREE.Color(0x2563EB);
+    const c1 = new THREE.Color(0xE02BFB);
+    const c2 = new THREE.Color(0x7C3AED);
+    const c3 = new THREE.Color(0x00F0FF);
 
     for (let i = 0; i < count; i++) {
       const radius = 1.8 + Math.random() * 2.2;
