@@ -1,0 +1,306 @@
+/* ==========================================================================
+   OMAR YAHIA — HERO SECTION & INTERACTIVE 3D PHOTO WHEEL
+   ========================================================================== */
+
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-block: clamp(6rem, 12vh, 8rem) clamp(3rem, 6vh, 4rem);
+  z-index: 5;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  width: 100%;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  will-change: clip-path, transform;
+}
+
+html[dir="rtl"] .hero-content {
+  align-items: flex-start;
+}
+
+.hero-reveal-mask {
+  clip-path: inset(0 0 0% 0);
+  transition: none;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-card);
+}
+
+.hero-label-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-orange);
+  border-radius: 50%;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.hero-subline {
+  font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--radius-pill);
+  transition: all 0.25s var(--ease-smooth);
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  touch-action: manipulation;
+  min-height: 48px;
+}
+
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-surface);
+  box-shadow: 0 10px 24px -4px rgba(20, 17, 15, 0.18);
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-orange);
+  color: #FFFFFF;
+  box-shadow: 0 12px 28px -4px rgba(232, 85, 43, 0.32);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+  box-shadow: var(--shadow-pill);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.hero-centerpiece {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  perspective: 1200px;
+}
+
+.hero-wheel-wrapper {
+  position: relative;
+  width: clamp(280px, 28vw, 380px);
+  aspect-ratio: 3 / 4;
+}
+
+.hero-3d-card-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: var(--radius-card);
+  border: 3px solid var(--accent-orange);
+  background-color: var(--bg-surface);
+  box-shadow: var(--shadow-wheel);
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero-3d-card-container:active {
+  cursor: grabbing;
+}
+
+#hero-3d-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+}
+
+.hero-card-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  border-radius: calc(var(--radius-card) - 3px);
+  will-change: transform, filter;
+}
+
+.hero-check-badge {
+  position: absolute;
+  top: 18px;
+  inset-inline-end: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--accent-orange);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(232, 85, 43, 0.45);
+  z-index: 10;
+  pointer-events: none;
+  transform: scale(1);
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.hero-check-badge svg {
+  width: 19px;
+  height: 19px;
+  stroke: #FFFFFF;
+  stroke-width: 2.8;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-wheel-controls {
+  position: absolute;
+  bottom: -22px;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--bg-surface);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-pill);
+  border: 1px solid var(--border-card);
+  z-index: 20;
+}
+
+html[dir="rtl"] .hero-wheel-controls {
+  transform: translateX(50%);
+}
+
+.wheel-counter {
+  font-family: var(--font-en);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  padding-inline: 0.5rem;
+  user-select: none;
+}
+
+.wheel-nav-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.wheel-nav-btn:hover {
+  background-color: var(--accent-orange);
+  color: #FFFFFF;
+  border-color: var(--accent-orange);
+  transform: scale(1.08);
+}
+
+.wheel-nav-btn:active {
+  transform: scale(0.95);
+}
+
+.wheel-nav-btn svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  fill: none;
+}
+
+@media (max-width: 900px) {
+  .hero-section {
+    padding-block: 5.5rem 3rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  html[dir="rtl"] .hero-content {
+    align-items: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-wheel-wrapper {
+    width: clamp(240px, 75vw, 320px);
+  }
+}
