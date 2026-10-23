@@ -1,9 +1,11 @@
 import * as THREE from 'three';
 
 /**
- * Interactive 3D Centerpiece for Hero Section
- * Midnight Navy Crystalline Artifact with Orange (#EF4C24), Teal (#2DD4BF), and Amber accents
- * Fully optimized with reduced geometry for mobile devices
+ * ==========================================================================
+ * 7P STUDIO — LUXURY INTERACTIVE 3D CENTERPIECE (HERO SECTION)
+ * Crystalline Iridescent Quantum Prism & Gyroscope
+ * Adapts dynamically between Dark Mode (Obsidian Crystal) & Light Mode (Diamond Glass)
+ * ==========================================================================
  */
 export class HeroScene {
   constructor(canvasElement) {
@@ -17,20 +19,22 @@ export class HeroScene {
     this.rotationVelocity = { x: 0, y: 0 };
     this.isVisible = true;
 
+    this.currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+
     this.init();
   }
 
   init() {
     const rect = this.canvas.parentElement.getBoundingClientRect();
     const width = Math.min(rect.width || window.innerWidth, window.innerWidth);
-    const height = rect.height || 380;
+    const height = rect.height || 420;
     const isMobile = window.innerWidth < 768;
 
-    // Camera
-    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    this.camera.position.z = isMobile ? 6.8 : 6.0;
+    // Camera with cinematic field of view
+    this.camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+    this.camera.position.z = isMobile ? 6.5 : 5.8;
 
-    // Renderer (Ultra HD Retina DPR with full Anti-Aliasing)
+    // High precision WebGL Renderer
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       antialias: true,
@@ -40,37 +44,23 @@ export class HeroScene {
     this.renderer.setSize(width, height, false);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.25;
+    this.renderer.toneMappingExposure = 1.35;
 
-    // Lighting setup - Infused with 7P Studio Logo Spectrum (Magenta, Cyan, Violet)
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-    this.scene.add(ambientLight);
+    // Dynamic Multi-Point Cinematic Lighting
+    this.setupLighting();
 
-    this.lightBlue = new THREE.PointLight(0xE02BFB, 6.5, 25); // Neon Magenta Key Light
-    this.lightBlue.position.set(4, 3, 3);
-    this.scene.add(this.lightBlue);
+    // 3D Objects Setup
+    this.createSculpture(isMobile);
+    this.createGyroRings(isMobile);
+    this.createStardustNebula(isMobile);
 
-    this.lightCyan = new THREE.PointLight(0x00F0FF, 6.0, 25); // Cyber Cyan Fill Light
-    this.lightCyan.position.set(-4, -2, 3);
-    this.scene.add(this.lightCyan);
-
-    this.lightSky = new THREE.PointLight(0x7C3AED, 4.5, 20); // Royal Violet Rim Light
-    this.lightSky.position.set(0, 4, -2);
-    this.scene.add(this.lightSky);
-
-    this.lightWhite = new THREE.PointLight(0xFFFFFF, 3.5, 20);
-    this.lightWhite.position.set(0, -4, 2);
-    this.scene.add(this.lightWhite);
-
-    // Objects
-    this.createCenterpiece(isMobile);
-    this.createOrbiters(isMobile);
-    this.createParticleCloud(isMobile);
+    // Apply initial theme colors
+    this.applyThemeStyles(this.currentTheme);
 
     // Event listeners
     this.bindEvents();
 
-    // Intersection observer for performance
+    // Intersection observer for zero CPU/GPU overhead when offscreen
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         this.isVisible = entry.isIntersecting;
@@ -81,111 +71,144 @@ export class HeroScene {
     this.animate();
   }
 
-  createCenterpiece(isMobile) {
+  setupLighting() {
+    // Soft ambient illumination
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
+    this.scene.add(this.ambientLight);
+
+    // Key Light (Electric Neon Magenta)
+    this.keyLight = new THREE.PointLight(0xE02BFB, 5.0, 30);
+    this.keyLight.position.set(4, 3, 3);
+    this.scene.add(this.keyLight);
+
+    // Fill Light (Radiant Cyber Cyan)
+    this.fillLight = new THREE.PointLight(0x00F0FF, 4.5, 30);
+    this.fillLight.position.set(-4, -2, 3);
+    this.scene.add(this.fillLight);
+
+    // Rim Light (Cosmic Royal Violet)
+    this.rimLight = new THREE.PointLight(0x7C3AED, 4.0, 25);
+    this.rimLight.position.set(0, 4, -3);
+    this.scene.add(this.rimLight);
+
+    // Bottom Specular Accent Light
+    this.accentLight = new THREE.PointLight(0xFFFFFF, 2.5, 20);
+    this.accentLight.position.set(0, -4, 2);
+    this.scene.add(this.accentLight);
+  }
+
+  createSculpture(isMobile) {
     this.group = new THREE.Group();
 
-    // 1. Core Complex Torus Knot (Vibrant Crystalline Violet & Magenta) - Matching 7P Logo
-    const tubularSegments = isMobile ? 32 : 64;
-    const radialSegments = isMobile ? 12 : 18;
-    const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.38, tubularSegments, radialSegments, 2, 3);
-    const knotMat = new THREE.MeshStandardMaterial({
-      color: 0x7C3AED, // Royal Violet
-      emissive: 0xE02BFB, // Neon Magenta
-      emissiveIntensity: 0.42,
-      roughness: 0.15,
-      metalness: 0.85
+    // 1. Primary Outer Element: Smooth Fluid Infinity Torus Knot (Silky smooth, NO wireframe)
+    const tubularSegments = isMobile ? 80 : 140;
+    const radialSegments = isMobile ? 22 : 32;
+    const knotGeo = new THREE.TorusKnotGeometry(1.15, 0.30, tubularSegments, radialSegments, 2, 3);
+
+    // Luxury Optical Material with Refraction, Clearcoat & Iridescence
+    this.knotMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0x1A142E,
+      emissive: 0x2A1248,
+      emissiveIntensity: 0.28,
+      roughness: 0.08,
+      metalness: 0.22,
+      transmission: 0.62,
+      thickness: 1.4,
+      ior: 1.6,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.06,
+      iridescence: 0.88,
+      iridescenceIOR: 1.55,
+      transparent: true,
+      opacity: 0.95
     });
-    this.knot = new THREE.Mesh(knotGeo, knotMat);
+
+    this.knot = new THREE.Mesh(knotGeo, this.knotMaterial);
     this.group.add(this.knot);
 
-    // 2. Translucent wireframe cage (Electric Cyber Cyan)
-    const wireGeo = new THREE.TorusKnotGeometry(1.24, 0.40, isMobile ? 20 : 36, 10, 2, 3);
-    const wireMat = new THREE.MeshBasicMaterial({
-      color: 0x00F0FF, // Pure Neon Cyan
-      wireframe: true,
-      transparent: true,
-      opacity: 0.45
-    });
-    this.wireKnot = new THREE.Mesh(wireGeo, wireMat);
-    this.group.add(this.wireKnot);
-
-    // 3. Inner glowing gem (Electric Magenta Core with Cyan Aura)
-    const gemGeo = new THREE.OctahedronGeometry(0.68, 0);
-    const gemMat = new THREE.MeshStandardMaterial({
-      color: 0xE02BFB,
+    // 2. Inner Floating Core: Faceted Brilliant-Cut Diamond Gem
+    const gemGeo = new THREE.OctahedronGeometry(0.72, 0);
+    this.gemMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0x070B1E,
       emissive: 0x00F0FF,
-      emissiveIntensity: 0.85,
-      roughness: 0.2,
-      metalness: 0.5
+      emissiveIntensity: 0.65,
+      roughness: 0.05,
+      metalness: 0.85,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.04,
+      flatShading: true
     });
-    this.gem = new THREE.Mesh(gemGeo, gemMat);
+
+    this.gem = new THREE.Mesh(gemGeo, this.gemMaterial);
     this.group.add(this.gem);
 
-    // 4. Astrolabe / Orbital Rings in 7P Logo Colors
-    this.rings = [];
-    const ringRadii = [1.9, 2.25, 2.6];
-    const ringColors = [0xE02BFB, 0x7C3AED, 0x00F0FF];
+    // 3. Floating Micro-Gem Orbiters
+    this.orbiters = new THREE.Group();
+    const orbiterCount = isMobile ? 3 : 5;
+    this.orbiterMeshes = [];
+    const orbiterGeo = new THREE.OctahedronGeometry(0.09, 0);
 
-    ringRadii.forEach((rad, idx) => {
-      const ringGeo = new THREE.TorusGeometry(rad, 0.016, 8, isMobile ? 24 : 44);
-      const ringMat = new THREE.MeshStandardMaterial({
-        color: ringColors[idx],
-        emissive: ringColors[idx],
-        emissiveIntensity: 0.7,
-        roughness: 0.2,
-        metalness: 0.8
+    const orbiterColors = [0xE02BFB, 0x00F0FF, 0x7C3AED, 0x38BDF8, 0xF472B6];
+
+    for (let i = 0; i < orbiterCount; i++) {
+      const orbiterMat = new THREE.MeshPhysicalMaterial({
+        color: orbiterColors[i % orbiterColors.length],
+        emissive: orbiterColors[i % orbiterColors.length],
+        emissiveIntensity: 0.8,
+        roughness: 0.1,
+        metalness: 0.9,
+        flatShading: true
       });
-      const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-      ringMesh.rotation.x = (Math.PI / 4) * (idx + 1);
-      ringMesh.rotation.y = (Math.PI / 6) * (idx + 1);
-      this.group.add(ringMesh);
-      this.rings.push(ringMesh);
-    });
+      const mesh = new THREE.Mesh(orbiterGeo, orbiterMat);
+      const angle = (i / orbiterCount) * Math.PI * 2;
+      const dist = 2.0 + (i % 2) * 0.35;
+      mesh.position.set(Math.cos(angle) * dist, Math.sin(angle * 2) * 0.4, Math.sin(angle) * dist);
+      mesh.userData = { angle, dist, speed: 0.6 + i * 0.18 };
+      this.orbiters.add(mesh);
+      this.orbiterMeshes.push(mesh);
+    }
+    this.group.add(this.orbiters);
 
     this.scene.add(this.group);
   }
 
-  createOrbiters(isMobile) {
-    this.orbiters = new THREE.Group();
-    const orbiterCount = isMobile ? 2 : 4;
-    this.orbiterMeshes = [];
+  createGyroRings(isMobile) {
+    this.rings = [];
+    const ringRadii = [1.95, 2.35];
 
-    const geom = new THREE.DodecahedronGeometry(0.14);
-    const colors = [0xE02BFB, 0x7C3AED, 0x00F0FF, 0x0EA5E9];
-
-    for (let i = 0; i < orbiterCount; i++) {
-      const mat = new THREE.MeshStandardMaterial({
-        color: colors[i],
-        emissive: colors[i],
-        emissiveIntensity: 0.7,
-        roughness: 0.2,
-        metalness: 0.8
+    ringRadii.forEach((rad, idx) => {
+      // Ultra-thin, razor-sharp precision ring
+      const ringGeo = new THREE.TorusGeometry(rad, 0.007, 12, isMobile ? 48 : 80);
+      const ringMat = new THREE.MeshStandardMaterial({
+        color: idx === 0 ? 0xE02BFB : 0x00F0FF,
+        emissive: idx === 0 ? 0xE02BFB : 0x00F0FF,
+        emissiveIntensity: 0.55,
+        roughness: 0.15,
+        metalness: 0.92,
+        transparent: true,
+        opacity: 0.75
       });
-      const mesh = new THREE.Mesh(geom, mat);
-      const angle = (i / orbiterCount) * Math.PI * 2;
-      const dist = 2.4 + (i % 2) * 0.4;
-      mesh.position.set(Math.cos(angle) * dist, (Math.sin(angle) * dist) * 0.4, Math.sin(angle) * dist);
-      mesh.userData = { angle, dist, speed: 0.5 + (i * 0.15) };
-
-      this.orbiters.add(mesh);
-      this.orbiterMeshes.push(mesh);
-    }
-
-    this.group.add(this.orbiters);
+      const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+      ringMesh.rotation.x = Math.PI / 3 * (idx + 1);
+      ringMesh.rotation.y = Math.PI / 4 * (idx + 1);
+      this.group.add(ringMesh);
+      this.rings.push(ringMesh);
+    });
   }
 
-  createParticleCloud(isMobile) {
-    const count = isMobile ? 20 : 45;
+  createStardustNebula(isMobile) {
+    const count = isMobile ? 35 : 75;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
 
-    const c1 = new THREE.Color(0xE02BFB);
-    const c2 = new THREE.Color(0x7C3AED);
-    const c3 = new THREE.Color(0x00F0FF);
+    const cMagenta = new THREE.Color(0xE02BFB);
+    const cViolet = new THREE.Color(0x7C3AED);
+    const cCyan = new THREE.Color(0x00F0FF);
+    const cWhite = new THREE.Color(0xFFFFFF);
 
     for (let i = 0; i < count; i++) {
-      const radius = 1.8 + Math.random() * 2.2;
+      const radius = 1.7 + Math.random() * 2.3;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(Math.random() * 2 - 1);
 
@@ -193,7 +216,8 @@ export class HeroScene {
       positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
       positions[i * 3 + 2] = radius * Math.cos(phi);
 
-      const chosenColor = Math.random() > 0.6 ? c1 : (Math.random() > 0.3 ? c2 : c3);
+      const rnd = Math.random();
+      const chosenColor = rnd > 0.7 ? cMagenta : (rnd > 0.4 ? cCyan : (rnd > 0.2 ? cViolet : cWhite));
       colors[i * 3] = chosenColor.r;
       colors[i * 3 + 1] = chosenColor.g;
       colors[i * 3 + 2] = chosenColor.b;
@@ -203,15 +227,87 @@ export class HeroScene {
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const material = new THREE.PointsMaterial({
-      size: isMobile ? 0.05 : 0.07,
+      size: isMobile ? 0.045 : 0.065,
       vertexColors: true,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.85,
       blending: THREE.AdditiveBlending
     });
 
     this.particles = new THREE.Points(geometry, material);
     this.scene.add(this.particles);
+  }
+
+  applyThemeStyles(theme) {
+    this.currentTheme = theme;
+    const isDark = theme === 'dark';
+
+    if (isDark) {
+      // Dark Mode: Rich Cosmic Obsidian Chrome with Vibrant Neon Iridescence
+      if (this.knotMaterial) {
+        this.knotMaterial.color.setHex(0x24143D);
+        this.knotMaterial.emissive.setHex(0x4C1D95);
+        this.knotMaterial.emissiveIntensity = 0.24;
+        this.knotMaterial.roughness = 0.10;
+        this.knotMaterial.metalness = 0.42;
+        this.knotMaterial.transmission = 0.40;
+        this.knotMaterial.clearcoat = 1.0;
+        this.knotMaterial.clearcoatRoughness = 0.04;
+        this.knotMaterial.iridescence = 0.95;
+        this.knotMaterial.iridescenceIOR = 1.65;
+        this.knotMaterial.opacity = 0.96;
+      }
+      if (this.gemMaterial) {
+        this.gemMaterial.color.setHex(0x0F172A);
+        this.gemMaterial.emissive.setHex(0x00F0FF);
+        this.gemMaterial.emissiveIntensity = 0.75;
+        this.gemMaterial.metalness = 0.85;
+      }
+      if (this.ambientLight) this.ambientLight.intensity = 1.4;
+      if (this.keyLight) {
+        this.keyLight.color.setHex(0xE02BFB);
+        this.keyLight.intensity = 6.2;
+      }
+      if (this.fillLight) {
+        this.fillLight.color.setHex(0x00F0FF);
+        this.fillLight.intensity = 5.5;
+      }
+      if (this.rimLight) {
+        this.rimLight.color.setHex(0x8B5CF6);
+        this.rimLight.intensity = 4.8;
+      }
+    } else {
+      // Light Mode: Pure Optical Prismatic Diamond Glass (Clean, Prestigious, Bright)
+      if (this.knotMaterial) {
+        this.knotMaterial.color.setHex(0xFFFFFF);
+        this.knotMaterial.emissive.setHex(0x7C3AED);
+        this.knotMaterial.emissiveIntensity = 0.12;
+        this.knotMaterial.roughness = 0.05;
+        this.knotMaterial.metalness = 0.08;
+        this.knotMaterial.transmission = 0.84;
+        this.knotMaterial.iridescence = 0.65;
+        this.knotMaterial.opacity = 0.98;
+      }
+      if (this.gemMaterial) {
+        this.gemMaterial.color.setHex(0xEDE9FE);
+        this.gemMaterial.emissive.setHex(0x6366F1);
+        this.gemMaterial.emissiveIntensity = 0.45;
+        this.gemMaterial.metalness = 0.35;
+      }
+      if (this.ambientLight) this.ambientLight.intensity = 2.0;
+      if (this.keyLight) {
+        this.keyLight.color.setHex(0x7C3AED);
+        this.keyLight.intensity = 3.6;
+      }
+      if (this.fillLight) {
+        this.fillLight.color.setHex(0x0EA5E9);
+        this.fillLight.intensity = 3.2;
+      }
+      if (this.rimLight) {
+        this.rimLight.color.setHex(0xE02BFB);
+        this.rimLight.intensity = 2.5;
+      }
+    }
   }
 
   bindEvents() {
@@ -220,7 +316,7 @@ export class HeroScene {
       this.mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
     });
 
-    // Touch and drag support for the 3D canvas
+    // Touch and drag support for the 3D canvas with spring physics
     const onPointerDown = (e) => {
       this.isDragging = true;
       this.previousMousePosition = {
@@ -237,8 +333,8 @@ export class HeroScene {
       const deltaX = clientX - this.previousMousePosition.x;
       const deltaY = clientY - this.previousMousePosition.y;
 
-      this.rotationVelocity.y += deltaX * 0.005;
-      this.rotationVelocity.x += deltaY * 0.005;
+      this.rotationVelocity.y += deltaX * 0.004;
+      this.rotationVelocity.x += deltaY * 0.004;
 
       this.previousMousePosition = { x: clientX, y: clientY };
     };
@@ -255,6 +351,13 @@ export class HeroScene {
     window.addEventListener('touchmove', onPointerMove, { passive: true });
     window.addEventListener('touchend', onPointerUp);
 
+    // Dynamic Theme Listener
+    window.addEventListener('themechange', (e) => {
+      if (e.detail && e.detail.theme) {
+        this.applyThemeStyles(e.detail.theme);
+      }
+    });
+
     window.addEventListener('resize', () => this.onResize());
   }
 
@@ -266,7 +369,7 @@ export class HeroScene {
     if (!this.canvas.parentElement) return;
     const rect = this.canvas.parentElement.getBoundingClientRect();
     const width = Math.min(rect.width || window.innerWidth, window.innerWidth);
-    const height = rect.height || 380;
+    const height = rect.height || 420;
 
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
@@ -282,8 +385,9 @@ export class HeroScene {
     const delta = this.clock.getDelta();
     const time = this.clock.getElapsedTime();
 
-    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.06;
-    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.06;
+    // Smooth inertia interpolation
+    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
+    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
 
     this.rotationVelocity.x *= 0.94;
     this.rotationVelocity.y *= 0.94;
@@ -291,46 +395,52 @@ export class HeroScene {
     this.group.rotation.x += this.rotationVelocity.x;
     this.group.rotation.y += this.rotationVelocity.y;
 
-    const scrollSpin = this.scrollProgress * 2.5;
-    this.knot.rotation.y = time * 0.35 + scrollSpin + this.mouse.x * 0.4;
-    this.knot.rotation.x = time * 0.2 + this.mouse.y * 0.4;
+    // Elegant continuous rotations
+    const scrollSpin = this.scrollProgress * 2.2;
+    this.knot.rotation.y = time * 0.28 + scrollSpin + this.mouse.x * 0.35;
+    this.knot.rotation.x = time * 0.16 + this.mouse.y * 0.35;
 
-    this.wireKnot.rotation.y = this.knot.rotation.y;
-    this.wireKnot.rotation.x = this.knot.rotation.x;
+    // Inner Gem counter-rotation with gentle pulse
+    this.gem.rotation.y = -time * 0.55;
+    this.gem.rotation.z = time * 0.35;
+    const pulse = 1 + Math.sin(time * 2.5) * 0.04;
+    this.gem.scale.set(pulse, pulse, pulse);
 
-    this.gem.rotation.y = -time * 0.8;
-    this.gem.rotation.z = time * 0.5;
-
+    // Gyroscope rings rotation
     this.rings.forEach((ring, idx) => {
-      ring.rotation.z += (0.2 + idx * 0.15) * delta;
-      ring.rotation.y += (0.15 - idx * 0.1) * delta;
+      ring.rotation.z += (0.16 + idx * 0.12) * delta;
+      ring.rotation.y += (0.12 - idx * 0.08) * delta;
     });
 
+    // Orbiting micro-gems
     this.orbiterMeshes.forEach((mesh) => {
       mesh.userData.angle += mesh.userData.speed * delta;
       const angle = mesh.userData.angle;
       const dist = mesh.userData.dist;
       mesh.position.x = Math.cos(angle) * dist;
       mesh.position.z = Math.sin(angle) * dist;
-      mesh.position.y = Math.sin(angle * 2 + time) * 0.45;
-      mesh.rotation.x += 1.5 * delta;
-      mesh.rotation.y += 1.5 * delta;
+      mesh.position.y = Math.sin(angle * 2 + time * 1.5) * 0.35;
+      mesh.rotation.x += 1.8 * delta;
+      mesh.rotation.y += 1.8 * delta;
     });
 
+    // Stardust subtle celestial drift
     if (this.particles) {
-      this.particles.rotation.y = time * 0.08;
-      this.particles.rotation.x = Math.sin(time * 0.05) * 0.1;
+      this.particles.rotation.y = time * 0.05;
+      this.particles.rotation.x = Math.sin(time * 0.04) * 0.08;
     }
 
-    this.group.position.y = Math.sin(time * 1.5) * 0.12;
+    // Natural breathing levitation
+    this.group.position.y = Math.sin(time * 1.6) * 0.10;
 
-    if (this.lightBlue) {
-      this.lightBlue.position.x = Math.sin(time * 0.9) * 4;
-      this.lightBlue.position.y = Math.cos(time * 0.7) * 3;
+    // Dynamic orbital lights movement for rich specular highlights
+    if (this.keyLight) {
+      this.keyLight.position.x = Math.sin(time * 0.8) * 4.2;
+      this.keyLight.position.y = Math.cos(time * 0.6) * 3.2;
     }
-    if (this.lightCyan) {
-      this.lightCyan.position.x = -Math.sin(time * 0.8) * 4;
-      this.lightCyan.position.z = Math.cos(time * 0.8) * 4;
+    if (this.fillLight) {
+      this.fillLight.position.x = -Math.sin(time * 0.7) * 4.2;
+      this.fillLight.position.z = Math.cos(time * 0.7) * 4.2;
     }
 
     this.renderer.render(this.scene, this.camera);

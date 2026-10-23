@@ -25,6 +25,9 @@ export function setTheme(theme, silent = false) {
 
   updateThemeIcons(theme);
 
+  // Dispatch themechange event for 3D scenes & canvas
+  window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+
   if (!silent) {
     const isAr = getLanguage() === 'ar';
     const message = theme === 'dark' 
