@@ -2,9 +2,9 @@ import * as THREE from 'three';
 
 /**
  * ==========================================================================
- * 7P STUDIO — LUXURY INTERACTIVE 3D CENTERPIECE (HERO SECTION)
- * Crystalline Iridescent Quantum Prism & Gyroscope
- * Adapts dynamically between Dark Mode (Obsidian Crystal) & Light Mode (Diamond Glass)
+ * 7P STUDIO — LUXURY LIQUID CHROME & PRISMATIC CRYSTAL (HERO 3D)
+ * Dynamic, fluid, high-end metallic iridescent centerpiece
+ * Radiant & gorgeous in both Dark Mode (Cosmic Neon Chrome) & Light Mode (Platinum Crystal)
  * ==========================================================================
  */
 export class HeroScene {
@@ -30,11 +30,11 @@ export class HeroScene {
     const height = rect.height || 420;
     const isMobile = window.innerWidth < 768;
 
-    // Camera with cinematic field of view
-    this.camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
-    this.camera.position.z = isMobile ? 6.5 : 5.8;
+    // Cinematic perspective camera
+    this.camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+    this.camera.position.z = isMobile ? 6.2 : 5.4;
 
-    // High precision WebGL Renderer
+    // WebGL Renderer with High-DPI and ACES Filmic Tone Mapping
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       antialias: true,
@@ -44,9 +44,9 @@ export class HeroScene {
     this.renderer.setSize(width, height, false);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.35;
+    this.renderer.toneMappingExposure = 1.2;
 
-    // Dynamic Multi-Point Cinematic Lighting
+    // Rich 4-Point Studio Lighting
     this.setupLighting();
 
     // 3D Objects Setup
@@ -54,13 +54,13 @@ export class HeroScene {
     this.createGyroRings(isMobile);
     this.createStardustNebula(isMobile);
 
-    // Apply initial theme colors
-    this.applyThemeStyles(this.currentTheme);
+    // Apply colors for initial theme
+    this.applyTheme(this.currentTheme);
 
-    // Event listeners
+    // Bind event handlers
     this.bindEvents();
 
-    // Intersection observer for zero CPU/GPU overhead when offscreen
+    // Intersection observer
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         this.isVisible = entry.isIntersecting;
@@ -72,98 +72,86 @@ export class HeroScene {
   }
 
   setupLighting() {
-    // Soft ambient illumination
+    // 1. Balanced Ambient Base
     this.ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
     this.scene.add(this.ambientLight);
 
-    // Key Light (Electric Neon Magenta)
-    this.keyLight = new THREE.PointLight(0xE02BFB, 5.0, 30);
-    this.keyLight.position.set(4, 3, 3);
-    this.scene.add(this.keyLight);
+    // 2. Main Key Directional Light (Electric Magenta)
+    this.dirLight1 = new THREE.DirectionalLight(0xE02BFB, 3.8);
+    this.dirLight1.position.set(5, 4, 4);
+    this.scene.add(this.dirLight1);
 
-    // Fill Light (Radiant Cyber Cyan)
-    this.fillLight = new THREE.PointLight(0x00F0FF, 4.5, 30);
-    this.fillLight.position.set(-4, -2, 3);
-    this.scene.add(this.fillLight);
+    // 3. Secondary Fill Directional Light (Cyber Cyan)
+    this.dirLight2 = new THREE.DirectionalLight(0x00F0FF, 3.2);
+    this.dirLight2.position.set(-5, -3, 4);
+    this.scene.add(this.dirLight2);
 
-    // Rim Light (Cosmic Royal Violet)
-    this.rimLight = new THREE.PointLight(0x7C3AED, 4.0, 25);
-    this.rimLight.position.set(0, 4, -3);
-    this.scene.add(this.rimLight);
+    // 4. Back Rim Directional Light (Royal Cosmic Violet)
+    this.dirLight3 = new THREE.DirectionalLight(0x7C3AED, 3.5);
+    this.dirLight3.position.set(0, 5, -4);
+    this.scene.add(this.dirLight3);
 
-    // Bottom Specular Accent Light
-    this.accentLight = new THREE.PointLight(0xFFFFFF, 2.5, 20);
-    this.accentLight.position.set(0, -4, 2);
-    this.scene.add(this.accentLight);
+    // 5. Dynamic Orbiting Specular Point Light (Creates shimmering glints on curves)
+    this.specularLight = new THREE.PointLight(0xFFFFFF, 4.0, 20);
+    this.specularLight.position.set(0, 0, 4);
+    this.scene.add(this.specularLight);
   }
 
   createSculpture(isMobile) {
     this.group = new THREE.Group();
 
-    // 1. Primary Outer Element: Smooth Fluid Infinity Torus Knot (Silky smooth, NO wireframe)
-    const tubularSegments = isMobile ? 80 : 140;
-    const radialSegments = isMobile ? 22 : 32;
-    const knotGeo = new THREE.TorusKnotGeometry(1.15, 0.30, tubularSegments, radialSegments, 2, 3);
+    // 1. Primary Hero: Ultra-Smooth Liquid Chrome Möbius Knot (NO WIREFRAME CAGE)
+    const tubularSegments = isMobile ? 96 : 160;
+    const radialSegments = isMobile ? 24 : 36;
+    const knotGeo = new THREE.TorusKnotGeometry(1.15, 0.32, tubularSegments, radialSegments, 2, 3);
 
-    // Luxury Optical Material with Refraction, Clearcoat & Iridescence
-    this.knotMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0x1A142E,
-      emissive: 0x2A1248,
-      emissiveIntensity: 0.28,
-      roughness: 0.08,
-      metalness: 0.22,
-      transmission: 0.62,
-      thickness: 1.4,
-      ior: 1.6,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.06,
-      iridescence: 0.88,
-      iridescenceIOR: 1.55,
-      transparent: true,
-      opacity: 0.95
+    // High-End Liquid Metallic Material with deep reflections
+    this.sculptureMat = new THREE.MeshStandardMaterial({
+      color: 0x4C1D95, // Rich royal violet
+      emissive: 0x2E1065,
+      emissiveIntensity: 0.25,
+      roughness: 0.12,
+      metalness: 0.88
     });
 
-    this.knot = new THREE.Mesh(knotGeo, this.knotMaterial);
-    this.group.add(this.knot);
+    this.sculpture = new THREE.Mesh(knotGeo, this.sculptureMat);
+    this.group.add(this.sculpture);
 
-    // 2. Inner Floating Core: Faceted Brilliant-Cut Diamond Gem
-    const gemGeo = new THREE.OctahedronGeometry(0.72, 0);
-    this.gemMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0x070B1E,
+    // 2. Inner Floating Core: Luminous Faceted Diamond Octahedron
+    const coreGeo = new THREE.OctahedronGeometry(0.65, 0);
+    this.coreMat = new THREE.MeshStandardMaterial({
+      color: 0x00F0FF,
       emissive: 0x00F0FF,
-      emissiveIntensity: 0.65,
-      roughness: 0.05,
+      emissiveIntensity: 0.75,
+      roughness: 0.15,
       metalness: 0.85,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.04,
       flatShading: true
     });
 
-    this.gem = new THREE.Mesh(gemGeo, this.gemMaterial);
-    this.group.add(this.gem);
+    this.core = new THREE.Mesh(coreGeo, this.coreMat);
+    this.group.add(this.core);
 
-    // 3. Floating Micro-Gem Orbiters
+    // 3. Floating Orbiting Micro-Diamonds
     this.orbiters = new THREE.Group();
     const orbiterCount = isMobile ? 3 : 5;
     this.orbiterMeshes = [];
-    const orbiterGeo = new THREE.OctahedronGeometry(0.09, 0);
-
-    const orbiterColors = [0xE02BFB, 0x00F0FF, 0x7C3AED, 0x38BDF8, 0xF472B6];
+    const orbGeo = new THREE.OctahedronGeometry(0.11, 0);
+    const orbColors = [0xE02BFB, 0x00F0FF, 0x7C3AED, 0x38BDF8, 0xF472B6];
 
     for (let i = 0; i < orbiterCount; i++) {
-      const orbiterMat = new THREE.MeshPhysicalMaterial({
-        color: orbiterColors[i % orbiterColors.length],
-        emissive: orbiterColors[i % orbiterColors.length],
-        emissiveIntensity: 0.8,
+      const orbMat = new THREE.MeshStandardMaterial({
+        color: orbColors[i % orbColors.length],
+        emissive: orbColors[i % orbColors.length],
+        emissiveIntensity: 0.75,
         roughness: 0.1,
         metalness: 0.9,
         flatShading: true
       });
-      const mesh = new THREE.Mesh(orbiterGeo, orbiterMat);
+      const mesh = new THREE.Mesh(orbGeo, orbMat);
       const angle = (i / orbiterCount) * Math.PI * 2;
-      const dist = 2.0 + (i % 2) * 0.35;
+      const dist = 2.15 + (i % 2) * 0.3;
       mesh.position.set(Math.cos(angle) * dist, Math.sin(angle * 2) * 0.4, Math.sin(angle) * dist);
-      mesh.userData = { angle, dist, speed: 0.6 + i * 0.18 };
+      mesh.userData = { angle, dist, speed: 0.6 + i * 0.15 };
       this.orbiters.add(mesh);
       this.orbiterMeshes.push(mesh);
     }
@@ -177,20 +165,20 @@ export class HeroScene {
     const ringRadii = [1.95, 2.35];
 
     ringRadii.forEach((rad, idx) => {
-      // Ultra-thin, razor-sharp precision ring
-      const ringGeo = new THREE.TorusGeometry(rad, 0.007, 12, isMobile ? 48 : 80);
+      // Razor-thin, glowing precision halo ring
+      const ringGeo = new THREE.TorusGeometry(rad, 0.007, 12, isMobile ? 48 : 84);
       const ringMat = new THREE.MeshStandardMaterial({
         color: idx === 0 ? 0xE02BFB : 0x00F0FF,
         emissive: idx === 0 ? 0xE02BFB : 0x00F0FF,
-        emissiveIntensity: 0.55,
+        emissiveIntensity: 0.6,
         roughness: 0.15,
-        metalness: 0.92,
+        metalness: 0.95,
         transparent: true,
-        opacity: 0.75
+        opacity: 0.8
       });
       const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-      ringMesh.rotation.x = Math.PI / 3 * (idx + 1);
-      ringMesh.rotation.y = Math.PI / 4 * (idx + 1);
+      ringMesh.rotation.x = (Math.PI / 3) * (idx + 1);
+      ringMesh.rotation.y = (Math.PI / 4) * (idx + 1);
       this.group.add(ringMesh);
       this.rings.push(ringMesh);
     });
@@ -238,74 +226,71 @@ export class HeroScene {
     this.scene.add(this.particles);
   }
 
-  applyThemeStyles(theme) {
+  applyTheme(theme) {
     this.currentTheme = theme;
     const isDark = theme === 'dark';
 
     if (isDark) {
-      // Dark Mode: Rich Cosmic Obsidian Chrome with Vibrant Neon Iridescence
-      if (this.knotMaterial) {
-        this.knotMaterial.color.setHex(0x24143D);
-        this.knotMaterial.emissive.setHex(0x4C1D95);
-        this.knotMaterial.emissiveIntensity = 0.24;
-        this.knotMaterial.roughness = 0.10;
-        this.knotMaterial.metalness = 0.42;
-        this.knotMaterial.transmission = 0.40;
-        this.knotMaterial.clearcoat = 1.0;
-        this.knotMaterial.clearcoatRoughness = 0.04;
-        this.knotMaterial.iridescence = 0.95;
-        this.knotMaterial.iridescenceIOR = 1.65;
-        this.knotMaterial.opacity = 0.96;
+      // DARK MODE: Deep Cosmic Chrome with vibrant Violet/Magenta sheen & Cyan reflections
+      if (this.sculptureMat) {
+        this.sculptureMat.color.setHex(0x581C87); // Deep royal violet
+        this.sculptureMat.emissive.setHex(0x3B0764);
+        this.sculptureMat.emissiveIntensity = 0.28;
+        this.sculptureMat.roughness = 0.12;
+        this.sculptureMat.metalness = 0.88;
       }
-      if (this.gemMaterial) {
-        this.gemMaterial.color.setHex(0x0F172A);
-        this.gemMaterial.emissive.setHex(0x00F0FF);
-        this.gemMaterial.emissiveIntensity = 0.75;
-        this.gemMaterial.metalness = 0.85;
+      if (this.coreMat) {
+        this.coreMat.color.setHex(0x00F0FF);
+        this.coreMat.emissive.setHex(0x00F0FF);
+        this.coreMat.emissiveIntensity = 0.85;
       }
-      if (this.ambientLight) this.ambientLight.intensity = 1.4;
-      if (this.keyLight) {
-        this.keyLight.color.setHex(0xE02BFB);
-        this.keyLight.intensity = 6.2;
+      if (this.ambientLight) this.ambientLight.intensity = 1.3;
+      if (this.dirLight1) {
+        this.dirLight1.color.setHex(0xE02BFB);
+        this.dirLight1.intensity = 4.2;
       }
-      if (this.fillLight) {
-        this.fillLight.color.setHex(0x00F0FF);
-        this.fillLight.intensity = 5.5;
+      if (this.dirLight2) {
+        this.dirLight2.color.setHex(0x00F0FF);
+        this.dirLight2.intensity = 3.6;
       }
-      if (this.rimLight) {
-        this.rimLight.color.setHex(0x8B5CF6);
-        this.rimLight.intensity = 4.8;
+      if (this.dirLight3) {
+        this.dirLight3.color.setHex(0x7C3AED);
+        this.dirLight3.intensity = 3.8;
+      }
+      if (this.specularLight) {
+        this.specularLight.color.setHex(0xFFFFFF);
+        this.specularLight.intensity = 4.0;
       }
     } else {
-      // Light Mode: Pure Optical Prismatic Diamond Glass (Clean, Prestigious, Bright)
-      if (this.knotMaterial) {
-        this.knotMaterial.color.setHex(0xFFFFFF);
-        this.knotMaterial.emissive.setHex(0x7C3AED);
-        this.knotMaterial.emissiveIntensity = 0.12;
-        this.knotMaterial.roughness = 0.05;
-        this.knotMaterial.metalness = 0.08;
-        this.knotMaterial.transmission = 0.84;
-        this.knotMaterial.iridescence = 0.65;
-        this.knotMaterial.opacity = 0.98;
+      // LIGHT MODE: Crisp Platinum & Rose Gold Chrome (Luminous, Prestigious, Bright)
+      if (this.sculptureMat) {
+        this.sculptureMat.color.setHex(0xE0E7FF); // Bright platinum silver-violet
+        this.sculptureMat.emissive.setHex(0x6366F1);
+        this.sculptureMat.emissiveIntensity = 0.18;
+        this.sculptureMat.roughness = 0.15;
+        this.sculptureMat.metalness = 0.82;
       }
-      if (this.gemMaterial) {
-        this.gemMaterial.color.setHex(0xEDE9FE);
-        this.gemMaterial.emissive.setHex(0x6366F1);
-        this.gemMaterial.emissiveIntensity = 0.45;
-        this.gemMaterial.metalness = 0.35;
+      if (this.coreMat) {
+        this.coreMat.color.setHex(0x7C3AED);
+        this.coreMat.emissive.setHex(0x7C3AED);
+        this.coreMat.emissiveIntensity = 0.70;
       }
       if (this.ambientLight) this.ambientLight.intensity = 2.0;
-      if (this.keyLight) {
-        this.keyLight.color.setHex(0x7C3AED);
-        this.keyLight.intensity = 3.6;
+      if (this.dirLight1) {
+        this.dirLight1.color.setHex(0x7C3AED);
+        this.dirLight1.intensity = 3.5;
       }
-      if (this.fillLight) {
-        this.fillLight.color.setHex(0x0EA5E9);
-        this.fillLight.intensity = 3.2;
+      if (this.dirLight2) {
+        this.dirLight2.color.setHex(0x0EA5E9);
+        this.dirLight2.intensity = 3.0;
       }
-      if (this.rimLight) {
-        this.rimLight.color.setHex(0xE02BFB);
-        this.rimLight.intensity = 2.5;
+      if (this.dirLight3) {
+        this.dirLight3.color.setHex(0xE02BFB);
+        this.dirLight3.intensity = 2.6;
+      }
+      if (this.specularLight) {
+        this.specularLight.color.setHex(0xFFFFFF);
+        this.specularLight.intensity = 5.0;
       }
     }
   }
@@ -316,7 +301,7 @@ export class HeroScene {
       this.mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
     });
 
-    // Touch and drag support for the 3D canvas with spring physics
+    // Touch and drag support with smooth inertia
     const onPointerDown = (e) => {
       this.isDragging = true;
       this.previousMousePosition = {
@@ -354,7 +339,7 @@ export class HeroScene {
     // Dynamic Theme Listener
     window.addEventListener('themechange', (e) => {
       if (e.detail && e.detail.theme) {
-        this.applyThemeStyles(e.detail.theme);
+        this.applyTheme(e.detail.theme);
       }
     });
 
@@ -385,7 +370,7 @@ export class HeroScene {
     const delta = this.clock.getDelta();
     const time = this.clock.getElapsedTime();
 
-    // Smooth inertia interpolation
+    // Mouse follow with spring damping
     this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
     this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
 
@@ -395,16 +380,16 @@ export class HeroScene {
     this.group.rotation.x += this.rotationVelocity.x;
     this.group.rotation.y += this.rotationVelocity.y;
 
-    // Elegant continuous rotations
+    // Smooth continuous liquid rotation
     const scrollSpin = this.scrollProgress * 2.2;
-    this.knot.rotation.y = time * 0.28 + scrollSpin + this.mouse.x * 0.35;
-    this.knot.rotation.x = time * 0.16 + this.mouse.y * 0.35;
+    this.sculpture.rotation.y = time * 0.28 + scrollSpin + this.mouse.x * 0.35;
+    this.sculpture.rotation.x = time * 0.16 + this.mouse.y * 0.35;
 
-    // Inner Gem counter-rotation with gentle pulse
-    this.gem.rotation.y = -time * 0.55;
-    this.gem.rotation.z = time * 0.35;
-    const pulse = 1 + Math.sin(time * 2.5) * 0.04;
-    this.gem.scale.set(pulse, pulse, pulse);
+    // Counter-rotating Inner Core with subtle pulse
+    this.core.rotation.y = -time * 0.55;
+    this.core.rotation.z = time * 0.35;
+    const pulse = 1 + Math.sin(time * 2.4) * 0.04;
+    this.core.scale.set(pulse, pulse, pulse);
 
     // Gyroscope rings rotation
     this.rings.forEach((ring, idx) => {
@@ -412,7 +397,7 @@ export class HeroScene {
       ring.rotation.y += (0.12 - idx * 0.08) * delta;
     });
 
-    // Orbiting micro-gems
+    // Orbiting micro-diamonds
     this.orbiterMeshes.forEach((mesh) => {
       mesh.userData.angle += mesh.userData.speed * delta;
       const angle = mesh.userData.angle;
@@ -424,23 +409,20 @@ export class HeroScene {
       mesh.rotation.y += 1.8 * delta;
     });
 
-    // Stardust subtle celestial drift
+    // Stardust subtle nebula drift
     if (this.particles) {
       this.particles.rotation.y = time * 0.05;
       this.particles.rotation.x = Math.sin(time * 0.04) * 0.08;
     }
 
-    // Natural breathing levitation
-    this.group.position.y = Math.sin(time * 1.6) * 0.10;
+    // Natural breathing float
+    this.group.position.y = Math.sin(time * 1.5) * 0.10;
 
-    // Dynamic orbital lights movement for rich specular highlights
-    if (this.keyLight) {
-      this.keyLight.position.x = Math.sin(time * 0.8) * 4.2;
-      this.keyLight.position.y = Math.cos(time * 0.6) * 3.2;
-    }
-    if (this.fillLight) {
-      this.fillLight.position.x = -Math.sin(time * 0.7) * 4.2;
-      this.fillLight.position.z = Math.cos(time * 0.7) * 4.2;
+    // Orbital specular light movement around the knot for gleaming liquid highlights
+    if (this.specularLight) {
+      this.specularLight.position.x = Math.sin(time * 1.2) * 3.5;
+      this.specularLight.position.y = Math.cos(time * 0.9) * 3.0;
+      this.specularLight.position.z = 3.5 + Math.sin(time * 0.5) * 1.0;
     }
 
     this.renderer.render(this.scene, this.camera);
