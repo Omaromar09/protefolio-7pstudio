@@ -1,7 +1,7 @@
 /**
  * ==========================================================================
  * BILINGUAL i18n SYSTEM — ARABIC (DEFAULT) & ENGLISH
- * 7P Studio (Omar) — High Performance, Clean Web Development
+ * 7P Studio (Eng: Omar / Mostafa) — High Performance, Clean Web Development
  * ==========================================================================
  */
 
@@ -22,8 +22,8 @@ export const PRICING_CONFIG = {
 export const translations = {
   ar: {
     // Page Meta
-    pageTitle: '7P STUDIO — عمر | مواقع عصرية وتفاعلية وسريعة',
-    pageMetaDesc: '7P STUDIO / عمر - مطور ويب يبني مواقع نظيفة، عصرية، تفاعلية ويحل مشاكل المواقع بسرعة. تصميم وتطوير مواقع، أبعاد ثلاثية 3D، وحل فوري للمشاكل.',
+    pageTitle: '7P STUDIO — م. عمر & م. مصطفى جاد | مواقع عصرية وتفاعلية وسريعة',
+    pageMetaDesc: '7P STUDIO / م. عمر & م. مصطفى جاد - مهندسو ومطورو ويب نبني مواقع نظيفة، عصرية، تفاعلية وسريعة ونحل مشاكل المواقع. تصميم وتطوير مواقع، أبعاد ثلاثية 3D، ودعم فني متكامل.',
 
     // Intro Stage
     soundOn: 'تشغيل الصوت',
@@ -33,16 +33,16 @@ export const translations = {
     // Navigation & Header
     navBrand: 'STUDIO',
     navHome: 'الرئيسية',
-    navAbout: 'عني',
-    navWork: 'أعمالي',
-    navServices: 'خدماتي',
+    navAbout: 'عنّا',
+    navWork: 'أعمالنا',
+    navServices: 'خدماتنا',
     navEstimator: 'احسب مشروعك',
-    navProcess: 'طريقة الشغل',
-    navContact: 'تواصل معايا',
-    navCta: 'تكلم معايا',
-    mobileCta: 'ابدأ موقعك دلوقتي',
-    availableBadge: 'متاح لمشاريع',
-    waTooltipTitle: 'متاح للشات دلوقتي',
+    navProcess: 'طريقة شغلنا',
+    navContact: 'تواصل معانا',
+    navCta: 'تكلم معانا',
+    mobileCta: 'ابدأ موقعك معانا',
+    availableBadge: 'متاحين لمشاريع',
+    waTooltipTitle: 'متاحين للشات دلوقتي',
     waTooltipSub: 'كلمنا واتساب مباشر',
     copyLinkSuccess: 'تم نسخ رابط المشروع بنجاح!',
 
@@ -50,17 +50,17 @@ export const translations = {
     heroBadge1: '⚡ جاهز لنقل بيزنسك للرقمية أسرع وبدون صداع',
     heroBadge2: 'ويبسايت على كيفك وحركات 3D خفيفة',
     heroTitle: 'ويبسايت على كيفك، <span class="highlight">شكله رايق،</span> وسريع.',
-    heroSubtitle: 'أهلاً، أنا <strong>عمر</strong>. بعمل مواقع لعملاء وبيزنس، بحل أي باجات أو مشاكل في مواقع موجودة، وبظبط الموقع على طلبك بالظبط ومن غير تعقيد.',
-    heroCtaWork: 'شوف شغلي',
-    heroCtaContact: 'ابدأ مشروعك معايا 🚀',
+    heroSubtitle: 'أهلاً بيك! إحنا <strong>بشمهندس عمر</strong> و<strong>بشمهندس مصطفى جاد</strong> (7P Studio). بنبني مواقع عصرية للبيزنس والشركات، بنحل أي مشاكل تقنية أو باجات، وبنظبط موقعك بأعلى كفاءة وبدون صداع.',
+    heroCtaWork: 'شوف شغلنا',
+    heroCtaContact: 'ابدأ مشروعك معانا 🚀',
     heroStat1: 'تسليم سريع وفي الميعاد بالظبط',
     heroStat2: 'مضبوط 100% على الموبايل والكمبيوتر',
     heroStat3: 'دعم فني وتعديلات بعد التسليم',
     hero3dHint: 'حرك الماوس لتلف المجسم 3D',
 
     // Partners & Projects Showcase
-    partnersBadge: 'أعمال ومشاريع',
-    partnersTitle: 'شغلي <span class="highlight">ومشاريع نفذتها</span>',
+    partnersBadge: 'أعمالنا ومشاريعنا',
+    partnersTitle: 'أعمالنا <span class="highlight">ومشاريع نفذناها</span>',
     partnersSubtitle: 'دوس على أي موقع عشان تفتحه، أو وقّف الماوس عليه عشان تشوف تفاصيله',
     badgeClientWork: 'مشروع اتسلم لعميل',
     badgeReadyDesign: 'شغال وجاهز يتعدل ليك',
@@ -102,24 +102,24 @@ export const translations = {
     testimonialsDesc: 'تجارب حقيقية لعملاء اشتغلنا سوا وطلعنا بمواقع لايف ناجحة:',
 
     // About Section
-    aboutBadge: 'مين عمر',
-    aboutTitle: 'من غير لف ودوران.. موقعك معمول على كيفك وبدون صداع.',
-    aboutDesc: 'هدفي إن الموقع يكون شكله حلو، سريع على الموبايل والكمبيوتر، ومريح للعميل اللي بيفتحه.',
-    aboutP1: 'أنا عمر، بعمل مواقع من الصفر أو بعدل على موقعك القديم، وبصلح أي حاجة بايظة فيه عشان يرجع يشتغل تمام.',
-    aboutP2: 'لو عندك فكرة موقع جديدة، أو عندك موقع حالي وفيه باجات أو شكله مش مظبوط على الموبايل وعايز تظبطه، أو محتاج تضيف صفحات وميزات زيادة — بعملهولك خطوة بخطوة وبطريقة تناسبك.',
+    aboutBadge: 'مين عمر ومصطفى',
+    aboutTitle: 'من غير لف ودوران.. موقعك معمول على كيفك مع بشمهندس عمر وبشمهندس جاد.',
+    aboutDesc: 'هدفنا إن موقعك يكون شكله رايق، سريع جداً على الموبايل والكمبيوتر، ومريح للعميل اللي بيفتحه.',
+    aboutP1: 'إحنا عمر ومصطفى جاد، شركاء ومطورو ويب في 7P Studio. بنبني مواقع من الصفر أو بنعدل على موقعك القديم، وبنصلح أي مشكلة برمجية عشان يرجع يشتغل تمام بأعلى أداء.',
+    aboutP2: 'لو عندك فكرة موقع جديدة، أو عندك موقع حالي وفيه باجات ومحتاج صيانة، تسريع، أو إضافة ميزات وصفحات إضافية — بنعملهولك خطوة بخطوة وبتنسيق كامل يناسب بيزنسك.',
 
     // About Pillars
     pillar1Title: 'سريع وخفيف في التصفح',
     pillar1Desc: 'الموقع بيفتح في ثواني وخفيف في التصفح على أي موبايل ومفيهوش تقل.',
     pillar2Title: 'تصليح الباجات والمشاكل',
-    pillar2Desc: 'بلاقي سبب المشكلة في الكود أو التصميم وبحلها علطول بدل ما تضيع وقت.',
+    pillar2Desc: 'بنلاقي سبب المشكلة في الكود أو التصميم وبنحلها علطول بدل ما تضيع وقت.',
     pillar3Title: 'لمسات 3D وحركات خفيفة',
     pillar3Desc: 'حركات ناعمة ومجسم 3D Three.js يدي موقعك شكل مميز وعصري.',
     pillar4Title: 'تعديل وتفصيل على طلبك',
-    pillar4Desc: 'بظبط الألوان والتصميم والأقسام على حسب طلبك ونوع شغلك.',
+    pillar4Desc: 'بنظبط الألوان والتصميم والأقسام على حسب طلبك ونوع شغلك.',
 
     // Skills Matrix (Strictly Web Development)
-    skillsTitle: 'تقنيات وأدوات بشتغل بيها',
+    skillsTitle: 'تقنيات وأدوات بنشتغل بيها',
     skillJs: 'جافاسكريبت (JavaScript)',
     skillHtml: 'HTML5 القياسي',
     skillCss: 'CSS3 وتصميم متجاوب',
@@ -130,13 +130,13 @@ export const translations = {
     skillCustom: 'تعديل وتخصيص المواقع',
 
     // Services Section
-    servicesBadge: 'خدماتي',
-    servicesTitle: 'إيه اللي أقدر أساعدك فيه؟',
+    servicesBadge: 'خدماتنا',
+    servicesTitle: 'إيه اللي نقدر نساعدك فيه؟',
     servicesDesc: 'شغل واضح ومحدد حسب اللي محتاجه بيزنسك بالظبط:',
     s1Title: 'تطوير موقع كامل (Landing Page / E-commerce)',
     s1Desc: 'من الفكرة والتصميم لحد كود شغال وسريع، متوافق مع الموبايل ومربوط بسلة شراء ودومين واستضافة جاهزة.',
     s2Title: 'حل الباجات والصيانة السريعة',
-    s2Desc: 'لو موقعك فيه مشكلة، بطيء، أزرار مش شغالة، أو شكله متلخبط على التليفون، بصلحهولك فوري وبدون صداع.',
+    s2Desc: 'لو موقعك فيه مشكلة، بطيء، أزرار مش شغالة، أو شكله متلخبط على التليفون، بنصلحهولك فوري وبدون صداع.',
     s3Title: 'تعديل وتطوير الـ UI/UX',
     s3Desc: 'تظبيط وتحديث شكل موقعك الحالي وتحويله لتصميم عصري جذاب يريح الزبون ويزود ثقته في بيزنسك.',
     s4Title: 'ربط واتساب وميزات تفاعلية ذكية',
@@ -185,29 +185,29 @@ export const translations = {
     hudLabelStack: 'حزمة الكود',
     hudGuaranteeText: 'ضمان جودة 7P Studio: تسليم بدون باجات، كود نظيف وسريع، وتعديلات ومتابعة مستمرة بعد التسليم.',
     hudCtaBtn: 'إرسال الكوتيشن وبدء التنفيذ',
-    hudSubhint: 'تجهيز فوري للرسالة والتواصل المباشر مع عمر',
+    hudSubhint: 'تجهيز فوري للرسالة والتواصل المباشر مع عمر ومصطفى',
 
     // Process Section
-    processBadge: 'طريقة الشغل',
-    processTitle: 'بشتغل إزاي؟',
+    processBadge: 'طريقة شغلنا',
+    processTitle: 'بنشتغل إزاي؟',
     processDesc: 'أربع خطوات بسيطة بدون تضييع وقت:',
     pr1Step: 'الخطوة 01',
     pr1Title: 'نتفق على المطلوب',
-    pr1Desc: 'بنتكلم شات أو مكالمة سريعة، بعرف منك محتاج إيه بالظبط وبنحدد الوقت والتكلفة.',
+    pr1Desc: 'بنتكلم شات أو مكالمة سريعة، بنعرف منك محتاج إيه بالظبط وبنحدد الوقت والتكلفة.',
     pr2Step: 'الخطوة 02',
     pr2Title: 'الشكل والتوزيع',
     pr2Desc: 'بنستقر على التصميم والألوان وتقسيمة الصفحات المناسبة لفكرتك.',
     pr3Step: 'الخطوة 03',
     pr3Title: 'الكود والتنفيذ',
-    pr3Desc: 'ببني الموقع وبضيف الحركات، وبجرب كل حاجة عشان تتأكد إنها شغالة 100% على أي شاشة.',
+    pr3Desc: 'بنبني الموقع وبنضيف الحركات، وبنجرب كل حاجة عشان تتأكد إنها شغالة 100% على أي شاشة.',
     pr4Step: 'الخطوة 04',
     pr4Title: 'التسليم والمراجعة',
     pr4Desc: 'بنرفع الموقع لايف، بنجرب كل زرار وكل رابط، وبتستلم موقعك جاهز وشغال تمام.',
 
     // Contact Section
-    contactBadge: 'تواصل معايا',
+    contactBadge: 'تواصل معانا',
     contactTitle: 'عندك فكرة مشروع وعايز تحولها لويبسايت جامد؟',
-    contactDesc: 'كلمني فوراً وخلينا نبدأ — شات واتساب فوري وسريع، أو سيب بياناتك في الفورم وهرد عليك علطول.',
+    contactDesc: 'كلمنا فوراً وخلينا نبدأ — شات واتساب فوري وسريع، أو سيب بياناتك في الفورم وهنرد عليك علطول.',
     waFastBadge: 'أسرع طريقة للتواصل',
     waDirectBtn: 'شات مباشر على واتساب 🚀',
     waDirectSub: 'رد فوري لمناقشة فكرتك والبدء علطول',
@@ -242,14 +242,14 @@ export const translations = {
     privacyModalCloseBtn: 'فهمت، إغلاق',
 
     // Footer
-    footerCopy: '© 2026 7P Studio (عمر) — جميع الحقوق محفوظة. مواقع عصرية معمولة على كيفك.',
+    footerCopy: '© 2026 7P Studio (Eng: Omar / Mostafa) — جميع الحقوق محفوظة. مواقع عصرية معمولة على كيفك.',
     backToTopBtn: 'للأعلى'
   },
 
   en: {
     // Page Meta
-    pageTitle: '7P STUDIO — Omar | Modern Interactive Web Development',
-    pageMetaDesc: '7P STUDIO / Omar - Modern, interactive web developer creating fast, high-converting websites and fixing bugs on existing sites.',
+    pageTitle: '7P STUDIO — Eng. Omar & Eng. Mostafa Gad | Modern Interactive Web Development',
+    pageMetaDesc: '7P STUDIO / Eng. Omar & Eng. Mostafa Gad - Modern, interactive web development partners creating fast, high-converting websites and fixing technical bugs.',
 
     // Intro Stage
     soundOn: 'Sound On',
@@ -259,14 +259,14 @@ export const translations = {
     // Navigation & Header
     navBrand: 'STUDIO',
     navHome: 'Home',
-    navAbout: 'About',
-    navWork: 'Work',
-    navServices: 'Services',
+    navAbout: 'About Us',
+    navWork: 'Our Work',
+    navServices: 'Our Services',
     navEstimator: 'Estimator',
-    navProcess: 'How I Work',
-    navContact: 'Contact',
-    navCta: "Let's Talk",
-    mobileCta: 'Start Your Project',
+    navProcess: 'How We Work',
+    navContact: 'Contact Us',
+    navCta: 'Talk With Us',
+    mobileCta: 'Start Your Project With Us',
     availableBadge: 'Available for work',
     waTooltipTitle: 'Available to chat',
     waTooltipSub: 'Direct WhatsApp chat',
@@ -276,17 +276,17 @@ export const translations = {
     heroBadge1: '⚡ Ready to take your business digital faster & headache-free',
     heroBadge2: 'Websites made your way & smooth 3D motion',
     heroTitle: 'Websites made your way, <span class="highlight">looking sharp,</span> and lightning fast.',
-    heroSubtitle: "Hey, I'm <strong>Omar</strong>. I build websites for clients, fix annoying bugs on existing sites, and tweak layouts to fit exactly what you need.",
-    heroCtaWork: 'Check My Work',
-    heroCtaContact: 'Start Your Project 🚀',
+    heroSubtitle: "Hey there! We are <strong>Eng. Omar</strong> and <strong>Eng. Mostafa Gad</strong> (7P Studio). We craft high-performance websites for clients and businesses, resolve complex bugs, and engineer your digital presence headache-free.",
+    heroCtaWork: 'See Our Work',
+    heroCtaContact: 'Start Your Project With Us 🚀',
     heroStat1: 'Fast on-time delivery guaranteed',
     heroStat2: '100% responsive on mobile & desktop',
     heroStat3: 'Post-delivery support & tweaks',
     hero3dHint: 'Drag or hover to rotate 3D',
 
     // Partners & Projects Showcase
-    partnersBadge: 'Selected Projects',
-    partnersTitle: 'Work & <span class="highlight">Projects I Built</span>',
+    partnersBadge: 'Our Work & Projects',
+    partnersTitle: 'Our Work & <span class="highlight">Featured Projects</span>',
     partnersSubtitle: 'Click any site to visit it live, or hover to preview project details',
     badgeClientWork: 'Delivered Client Project',
     badgeReadyDesign: 'Ready to Customize',
@@ -328,24 +328,24 @@ export const translations = {
     testimonialsDesc: 'Real experiences from clients we teamed up with to launch live, successful websites:',
 
     // About Section
-    aboutBadge: 'About Me',
-    aboutTitle: 'No fluff, no headache. Built exactly how you want.',
-    aboutDesc: 'My goal is to give you a site that looks clean, runs fast on phones and laptops, and feels great to use.',
-    aboutP1: "I'm Omar. I build websites from scratch, tweak existing sites, and fix broken stuff so your site runs smooth.",
-    aboutP2: "Whether you're starting from scratch, have an existing site with annoying bugs or broken mobile styling, or need to add new pages and features — I get it done smoothly without hassle.",
+    aboutBadge: 'About Us (Omar & Mostafa)',
+    aboutTitle: 'No fluff, no headache. Engineered your way with Eng. Omar & Eng. Mostafa Gad.',
+    aboutDesc: 'Our goal is to build sites that look stunning, run lightning fast on mobile and desktop, and feel effortless to use.',
+    aboutP1: "We are Omar and Mostafa Gad, web development partners at 7P Studio. We build websites from scratch, revamp existing platforms, and resolve technical bugs so your digital presence runs at peak performance.",
+    aboutP2: "Whether you have a new project idea, an existing site requiring optimization or bug fixing, or want to expand with new pages and custom integrations — we engineer it step by step to fit your business perfectly.",
 
     // About Pillars
     pillar1Title: 'Fast & Lightweight',
     pillar1Desc: 'Loads in seconds, browses smoothly on any phone, and keeps things lightweight.',
     pillar2Title: 'Fast Bug Fixing',
-    pillar2Desc: 'I track down the root cause in code or CSS and fix it without delay.',
+    pillar2Desc: 'We track down the root cause in code or CSS and fix it without delay.',
     pillar3Title: 'Smooth Motion & 3D',
     pillar3Desc: 'Subtle animations and 3D touches to make your site stand out.',
     pillar4Title: 'Full Customization',
     pillar4Desc: 'Tuning colors, layout, and sections to match exactly what you want.',
 
     // Skills Matrix (Strictly Web Development)
-    skillsTitle: 'Tools & Technologies',
+    skillsTitle: 'Technologies & Tools We Use',
     skillJs: 'JavaScript (ES6+)',
     skillHtml: 'Semantic HTML5',
     skillCss: 'CSS3 & Responsive Layouts',
@@ -356,13 +356,13 @@ export const translations = {
     skillCustom: 'Custom Site Tweaks',
 
     // Services Section
-    servicesBadge: 'Services',
-    servicesTitle: 'How I Can Help You',
+    servicesBadge: 'Our Services',
+    servicesTitle: 'How We Can Help You',
     servicesDesc: 'Clear, straightforward work tailored to what you actually need:',
     s1Title: 'Full Website & E-commerce Development',
     s1Desc: 'From idea to delivery: complete, fast, mobile-first websites with custom domain, hosting, and order carts.',
     s2Title: 'Instant Bug Fixing & Maintenance',
-    s2Desc: 'Got broken buttons, slow load times, or layout glitches on mobile? I troubleshoot and fix them immediately.',
+    s2Desc: 'Got broken buttons, slow load times, or layout glitches on mobile? We troubleshoot and fix them immediately.',
     s3Title: 'UI/UX Redesign & Modernization',
     s3Desc: 'Revamp your existing website with a fresh, modern aesthetic, sharper colors, and better user experience.',
     s4Title: 'WhatsApp Integration & Smart Features',
@@ -411,10 +411,10 @@ export const translations = {
     hudLabelStack: 'Tech Stack',
     hudGuaranteeText: '7P Studio Quality Pledge: Zero-bug delivery, ultra-clean code, and continuous post-launch support.',
     hudCtaBtn: 'Launch Quote on WhatsApp',
-    hudSubhint: 'Instant message generation & direct chat with Omar',
+    hudSubhint: 'Instant message generation & direct chat with Omar & Mostafa',
 
     // Process Section
-    processBadge: 'How It Works',
+    processBadge: 'How We Work',
     processTitle: 'How We Work Together',
     processDesc: 'Four straightforward steps without wasted time:',
     pr1Step: 'STEP 01',
@@ -425,15 +425,15 @@ export const translations = {
     pr2Desc: 'We settle on the colors, layout, and sections that fit your idea.',
     pr3Step: 'STEP 03',
     pr3Title: 'Coding & Building',
-    pr3Desc: 'I build the site, add motion, and test everything thoroughly so it works 100% on any screen.',
+    pr3Desc: 'We build the site, add smooth motion, and test everything thoroughly so it works 100% on any screen.',
     pr4Step: 'STEP 04',
     pr4Title: 'Review & Delivery',
     pr4Desc: 'We launch live, verify every button and link, and hand over your ready-to-use site.',
 
     // Contact Section
-    contactBadge: 'Get in Touch',
+    contactBadge: 'Contact Us',
     contactTitle: 'Got a project idea and want a standout website?',
-    contactDesc: 'Reach out right now and let’s get started — direct WhatsApp chat, or drop a message below.',
+    contactDesc: 'Reach out right now and let’s get started — direct WhatsApp chat, or drop a message below and we will get back to you immediately.',
     waFastBadge: 'Fastest way to talk',
     waDirectBtn: 'Chat Directly on WhatsApp 🚀',
     waDirectSub: 'Instant response to discuss your project',
@@ -468,7 +468,7 @@ export const translations = {
     privacyModalCloseBtn: 'Got it, Close',
 
     // Footer
-    footerCopy: '© 2026 7P Studio (Omar). All rights reserved. Websites crafted your way.',
+    footerCopy: '© 2026 7P Studio (Eng: Omar / Mostafa). All rights reserved. Websites crafted your way.',
     backToTopBtn: 'Back to Top'
   }
 };

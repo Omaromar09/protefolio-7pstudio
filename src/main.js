@@ -449,8 +449,8 @@ function setupInteractiveControls() {
       fireSuccessConfetti();
 
       const whatsappText = lang === 'ar'
-        ? `👋 أهلاً يا عمر، أنا *${name}*\n\n📱 وسيلة التواصل: ${contact}\n🎯 محتاج: *${service}*\n\n📝 تفاصيل مشروعي:\n${message}\n\n---\n🌐 مرسلة من موقع 7P Studio (7pstudio.tech)`
-        : `👋 Hi Omar, I am *${name}*\n\n📱 Contact: ${contact}\n🎯 Requested: *${service}*\n\n📝 Project details:\n${message}\n\n---\n🌐 Sent from 7P Studio (7pstudio.tech)`;
+        ? `👋 أهلاً يا بشمهندس عمر ويا بشمهندس مصطفى، أنا *${name}*\n\n📱 وسيلة التواصل: ${contact}\n🎯 محتاج: *${service}*\n\n📝 تفاصيل مشروعي:\n${message}\n\n---\n🌐 مرسلة من موقع 7P Studio (7pstudio.tech)`
+        : `👋 Hi Eng. Omar & Eng. Mostafa, I am *${name}*\n\n📱 Contact: ${contact}\n🎯 Requested: *${service}*\n\n📝 Project details:\n${message}\n\n---\n🌐 Sent from 7P Studio (7pstudio.tech)`;
 
       const encodedMsg = encodeURIComponent(whatsappText);
       const whatsappUrl = `https://wa.me/201515047449?text=${encodedMsg}`;

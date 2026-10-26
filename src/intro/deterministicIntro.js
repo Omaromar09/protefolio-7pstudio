@@ -160,17 +160,17 @@ export class DeterministicIntro {
       const slamProgress = Math.min(floodElapsed / 0.26, 1);
       const slamEase = 1 - Math.pow(1 - slamProgress, 3);
       const headlineX = -300 + slamEase * 440; // settles at 140
-      const headlineText = 'OMAR';
+      const headlineText = 'ENG. OMAR & ENG. MOSTAFA';
 
-      ctx.font = '900 195px "Plus Jakarta Sans", system-ui, sans-serif';
+      ctx.font = '900 96px "Plus Jakarta Sans", system-ui, sans-serif';
       ctx.fillStyle = '#0F172A';
-      ctx.letterSpacing = '-0.04em';
+      ctx.letterSpacing = '-0.03em';
 
       // Horizontal blur sub-frames only during rapid sliding
       if (slamProgress < 0.65) {
         ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-        ctx.fillText(headlineText, headlineX - 35, 620);
-        ctx.fillText(headlineText, headlineX - 18, 620);
+        ctx.fillText(headlineText, headlineX - 25, 620);
+        ctx.fillText(headlineText, headlineX - 12, 620);
       }
 
       ctx.fillStyle = '#0F172A';
@@ -180,7 +180,7 @@ export class DeterministicIntro {
       const lineProgress = Math.min(floodElapsed / 0.3, 1);
       const lineEase = 1 - Math.pow(1 - lineProgress, 3);
       ctx.fillStyle = '#0F172A';
-      ctx.fillRect(140, 650, lineEase * 420, 4);
+      ctx.fillRect(140, 650, lineEase * 1250, 4);
 
       ctx.restore(); // restores virtual stage
       ctx.restore(); // restores DPR scale
@@ -229,22 +229,28 @@ export class DeterministicIntro {
       }
 
       ctx.save();
-      ctx.translate(960, 510);
+      ctx.translate(960, 500);
       ctx.scale(titleScale, titleScale * titleScaleY);
 
-      ctx.font = '900 148px "Plus Jakarta Sans", system-ui, sans-serif';
+      ctx.font = '900 82px "Plus Jakarta Sans", system-ui, sans-serif';
       ctx.fillStyle = `rgba(15, 23, 42, ${titleOpacity})`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.letterSpacing = '-0.03em';
-      ctx.fillText('OMAR', 0, 0);
+      ctx.letterSpacing = '-0.02em';
+      ctx.fillText('ENG. OMAR & ENG. MOSTAFA', 0, -10);
 
-      // Label "01 / 02" under title
+      // Subtitle "PARTNERS — 7P STUDIO"
       if (titleScaleY > 0.2) {
+        ctx.font = '700 22px "Space Mono", monospace';
+        ctx.fillStyle = `rgba(14, 165, 233, ${titleOpacity * 0.9})`;
+        ctx.letterSpacing = '0.18em';
+        ctx.fillText('PARTNERS — 7P STUDIO', 0, 50);
+
+        // Label "01 / 02" under title
         ctx.font = '700 12px "Space Mono", monospace';
         ctx.fillStyle = `rgba(14, 165, 233, ${titleOpacity * 0.85})`;
         ctx.letterSpacing = '0.12em';
-        ctx.fillText('01 / 02', 0, 85);
+        ctx.fillText('01 / 02', 0, 95);
       }
 
       ctx.restore();
@@ -720,10 +726,10 @@ export class DeterministicIntro {
     ctx.font = '700 11px "Space Mono", monospace';
     ctx.letterSpacing = '0.08em';
 
-    // Top-Left: "OMAR   PORTFOLIO 2026"
+    // Top-Left: "ENG. OMAR & ENG. MOSTAFA   PORTFOLIO 2026"
     ctx.fillStyle = `rgba(15, 23, 42, ${alpha * 0.85})`;
     ctx.textAlign = 'left';
-    ctx.fillText('OMAR   PORTFOLIO 2026', pad + 15, pad + 18);
+    ctx.fillText('ENG. OMAR & ENG. MOSTAFA   PORTFOLIO 2026', pad + 15, pad + 18);
 
     // Top-Right: "128 BPM   60 FPS   1920x1080"
     ctx.fillStyle = `rgba(14, 165, 233, ${alpha * 0.75})`;

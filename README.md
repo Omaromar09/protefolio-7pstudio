@@ -1,4 +1,4 @@
-# Omar — Creative Web Developer Portfolio
+# 7P Studio — Eng. Omar & Eng. Mostafa Gad | Web Development Portfolio
 
 A personal portfolio built with **Vite**, **Three.js**, **GSAP & ScrollTrigger**, and **Lenis** smooth scrolling.
 
