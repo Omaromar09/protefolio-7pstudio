@@ -64,6 +64,7 @@ export const translations = {
     partnersSubtitle: 'دوس على أي موقع عشان تفتحه، أو وقّف الماوس عليه عشان تشوف تفاصيله',
     badgeClientWork: 'مشروع اتسلم لعميل',
     badgeReadyDesign: 'شغال وجاهز يتعدل ليك',
+    badgeDemoDesign: 'نموذج تجريبي جاهز',
     visitLiveBtn: 'افتح الموقع لايف',
 
     p1Title: 'متجر آية للاكسسوارات (Aya Accessories)',
@@ -95,6 +96,12 @@ export const translations = {
     p5Tag1: 'محاسبة بالساعة',
     p5Tag2: 'تفاصيل الغرف',
     p5Tag3: 'تسليم سريع',
+
+    p6Title: 'متجر رَوْنَـق للعطور الفاخرة (Rawnaq 3D)',
+    p6Short: 'متجر وتجربة تفاعلية لبراند عطور فاخرة، فيه زجاجة عطر 3D تفاعلية مع إمكانية التدوير ورشّة عطر، وسلة شراء وطلب مباشر عبر واتساب.',
+    p6Tag1: 'زجاجة عطر 3D تفاعلية',
+    p6Tag2: 'سلة طلب واتساب',
+    p6Tag3: 'ضمان وشحن فاخر',
 
     // Testimonials / Social Proof (Placeholder/Configured)
     testimonialsBadge: 'آراء العملاء',
@@ -290,6 +297,7 @@ export const translations = {
     partnersSubtitle: 'Click any site to visit it live, or hover to preview project details',
     badgeClientWork: 'Delivered Client Project',
     badgeReadyDesign: 'Ready to Customize',
+    badgeDemoDesign: 'Interactive Demo Concept',
     visitLiveBtn: 'Open Live Site',
 
     p1Title: 'Aya Accessories (Handmade Boutique)',
@@ -321,6 +329,12 @@ export const translations = {
     p5Tag1: 'Hourly Rates',
     p5Tag2: 'Room Amenities',
     p5Tag3: 'Fast Delivery',
+
+    p6Title: 'Rawnaq Luxury Perfumes (3D Experience)',
+    p6Short: 'Interactive luxury perfume storefront featuring an interactive 3D bottle with drag rotation, spray animation, and direct WhatsApp checkout.',
+    p6Tag1: 'Interactive 3D Bottle',
+    p6Tag2: 'WhatsApp Cart',
+    p6Tag3: 'Demo / Ready Concept',
 
     // Testimonials / Social Proof
     testimonialsBadge: 'What Clients Say',
