@@ -1,53 +1,64 @@
 /* ==========================================================================
    7P STUDIO — COMPLETE DESIGN SYSTEM & TOKEN ARCHITECTURE
    Brand: Neon Bolt in Violet (#8B3DFF), Magenta (#FF3DF0), and Cyan (#2EE6FF)
-   Deep Cosmic Backdrops: #07060C and #070A14
+   Dark Theme (Default): Deep Obsidian (#07060C and #070A14)
+   Light Theme: Crisp Pearl Luxury (#FAF9FE and #FFFFFF)
    Typography: Alexandria (Display), IBM Plex Sans Arabic (Body),
                Unbounded (Numerals/Badges), JetBrains Mono (Tech Tags)
    ========================================================================== */
 
 @import './fonts.css';
 
-:root {
+:root,
+[data-theme="dark"] {
   /* ------------------------------------------------------------------------
-     1. SURFACES & SYSTEM BACKGROUNDS (Near-black luxury studio aesthetic)
+     1. SURFACES & SYSTEM BACKGROUNDS (Dark Obsidian Luxury Mode)
      ------------------------------------------------------------------------ */
-  --bg-primary: #07060C;            /* Obsidian canvas */
-  --bg-secondary: #0A0914;          /* Secondary background layer */
-  --bg-surface: #100E1E;            /* Elevated panel surface */
-  --bg-surface-elevated: #16132A;   /* Higher elevation surface */
-  --bg-card: rgba(16, 14, 30, 0.72);/* Bento card translucent fill */
-  --bg-card-hover: rgba(22, 19, 42, 0.88);
+  --bg-primary: #07060C;
+  --bg-secondary: #0A0914;
+  --bg-surface: #100E1E;
+  --bg-surface-elevated: #16132A;
+  --bg-card: rgba(16, 14, 30, 0.76);
+  --bg-card-hover: rgba(22, 19, 42, 0.92);
   --bg-glass: rgba(16, 14, 30, 0.82);
-  --bg-glass-strong: rgba(10, 9, 20, 0.94);
+  --bg-glass-strong: rgba(10, 9, 20, 0.95);
   --bg-glass-pill: rgba(255, 255, 255, 0.05);
 
-  /* Legacy aliases for backward compatibility */
+  /* Legacy aliases */
   --bg-dark: var(--bg-primary);
   --bg-navy: var(--bg-secondary);
 
+  /* Text Tones (Crisp White & Clear Slate) */
+  --text-main: #FFFFFF;
+  --text-sub: #E2E8F0;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+  --text-hud: rgba(255, 255, 255, 0.92);
+
+  /* Borders & Shadows */
+  --border-subtle: rgba(139, 61, 255, 0.18);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --shadow-card: 0 16px 36px -10px rgba(0, 0, 0, 0.65), 0 0 20px rgba(139, 61, 255, 0.08);
+  --shadow-elevated: 0 24px 48px -12px rgba(0, 0, 0, 0.75), 0 0 30px rgba(255, 61, 240, 0.12);
+
   /* ------------------------------------------------------------------------
-     2. 7P SIGNATURE COLOR PALETTE (Precision tuned, rich, un-muddy)
+     2. 7P SIGNATURE COLOR PALETTE (Precision tuned)
      ------------------------------------------------------------------------ */
-  /* Violet (Cosmic Base) */
   --accent-violet: #8B3DFF;
   --accent-violet-light: #A86BFF;
   --accent-violet-deep: #6D25D9;
   --accent-violet-glow: rgba(139, 61, 255, 0.32);
 
-  /* Magenta (Electric Energy) */
   --accent-magenta: #FF3DF0;
   --accent-magenta-light: #FF70F4;
   --accent-magenta-deep: #D916C8;
   --accent-magenta-glow: rgba(255, 61, 240, 0.32);
 
-  /* Cyan (Cyber Clarity) */
   --accent-cyan: #2EE6FF;
   --accent-cyan-light: #6AEFFF;
   --accent-cyan-bright: #00D5F0;
   --accent-cyan-glow: rgba(46, 230, 255, 0.32);
 
-  /* Supporting Functional Accents */
   --accent-amber: #FFB800;
   --accent-amber-light: #FFCA40;
   --accent-emerald: #10B981;
@@ -64,67 +75,20 @@
   --accent-teal: var(--accent-cyan);
   --accent-gold: var(--accent-amber);
 
-  /* ------------------------------------------------------------------------
-     3. 7P SIGNATURE GRADIENTS & RADIALS
-     ------------------------------------------------------------------------ */
+  /* Gradients */
   --grad-bolt: linear-gradient(135deg, #8B3DFF 0%, #FF3DF0 50%, #2EE6FF 100%);
   --grad-primary: linear-gradient(135deg, #8B3DFF 0%, #FF3DF0 100%);
   --grad-cyan: linear-gradient(135deg, #8B3DFF 0%, #2EE6FF 100%);
   --grad-magenta: linear-gradient(135deg, #FF3DF0 0%, #8B3DFF 100%);
-  --grad-card-border: linear-gradient(135deg, rgba(139, 61, 255, 0.3) 0%, rgba(255, 61, 240, 0.2) 50%, rgba(46, 230, 255, 0.3) 100%);
-  --grad-subtle-glow: radial-gradient(circle, rgba(139, 61, 255, 0.12) 0%, transparent 70%);
 
-  /* ------------------------------------------------------------------------
-     4. TYPOGRAPHY SCALE & SELF-HOSTED FAMILIES
-     ------------------------------------------------------------------------ */
+  /* Typography */
   --font-display: 'Alexandria', system-ui, -apple-system, sans-serif;
   --font-body: 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
   --font-numeral: 'Unbounded', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-
-  /* Heading & body overrides for seamless i18n */
   --font-heading: var(--font-display);
-  --font-display-en: 'Alexandria', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-body-en: 'IBM Plex Sans Arabic', system-ui, sans-serif;
 
-  /* Type Scale */
-  --text-hero: clamp(2.4rem, 5.5vw, 4.4rem);
-  --text-h1: clamp(2rem, 4vw, 3.2rem);
-  --text-h2: clamp(1.65rem, 3vw, 2.4rem);
-  --text-h3: clamp(1.25rem, 2vw, 1.6rem);
-  --text-body: 1rem;
-  --text-sm: 0.875rem;
-  --text-xs: 0.75rem;
-
-  /* ------------------------------------------------------------------------
-     5. TEXT TONES (High-contrast, crisp readable levels)
-     ------------------------------------------------------------------------ */
-  --text-main: #FFFFFF;             /* Pure white headers & primary copy */
-  --text-sub: #E2E8F0;              /* Soft high-contrast body */
-  --text-muted: #94A3B8;            /* Secondary information */
-  --text-dim: #64748B;              /* Technical subtext & borders */
-  --text-hud: rgba(255, 255, 255, 0.92);
-
-  /* ------------------------------------------------------------------------
-     6. BORDERS & GLASS DETAIL
-     ------------------------------------------------------------------------ */
-  --border-subtle: rgba(139, 61, 255, 0.16);
-  --border-glass: rgba(255, 255, 255, 0.08);
-  --border-glow: #8B3DFF;
-  --border-active: #FF3DF0;
-
-  /* ------------------------------------------------------------------------
-     7. SHADOWS & CONTROLLED GLOW (No heavy glow soup!)
-     ------------------------------------------------------------------------ */
-  --shadow-card: 0 16px 36px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 61, 255, 0.08);
-  --shadow-elevated: 0 24px 48px -12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 61, 240, 0.1);
-  --glow-subtle-violet: 0 0 20px rgba(139, 61, 255, 0.25);
-  --glow-subtle-magenta: 0 0 20px rgba(255, 61, 240, 0.25);
-  --glow-subtle-cyan: 0 0 20px rgba(46, 230, 255, 0.25);
-
-  /* ------------------------------------------------------------------------
-     8. BENTO & BRAND CLIP-PATHS (Chamfered bolt-notched geometry)
-     ------------------------------------------------------------------------ */
+  /* Chamfer Clip Paths */
   --clip-chamfer: polygon(
     0 0,
     calc(100% - 16px) 0,
@@ -142,22 +106,7 @@
     0 calc(100% - 10px)
   );
 
-  /* ------------------------------------------------------------------------
-     9. SECTION DOMINANT THEMES
-     ------------------------------------------------------------------------ */
-  --theme-hero-accent: var(--accent-violet);
-  --theme-projects-accent: var(--accent-magenta);
-  --theme-comparison-accent: var(--accent-cyan);
-  --theme-diagnosis-accent: var(--accent-violet);
-  --theme-estimator-accent: var(--accent-violet);
-  --theme-services-accent: var(--accent-cyan);
-  --theme-trust-accent: var(--accent-emerald);
-  --theme-process-accent: var(--accent-cyan);
-  --theme-contact-accent: var(--accent-magenta);
-
-  /* ------------------------------------------------------------------------
-     10. SPACING & LAYOUT METRICS
-     ------------------------------------------------------------------------ */
+  /* Spacing */
   --container-max: 1240px;
   --header-height: 80px;
   --radius-sm: 8px;
@@ -172,6 +121,37 @@
   --transition-fast: 0.2s var(--ease-out-expo);
   --transition-normal: 0.35s var(--ease-out-expo);
   --transition-smooth: 0.6s var(--ease-out-expo);
+}
+
+/* ==========================================================================
+   LIGHT LUXURY THEME (CRISP PEARL CANVAS & OBSIDIAN SLATE TYPE)
+   ========================================================================== */
+[data-theme="light"] {
+  --bg-primary: #FAF9FE;
+  --bg-secondary: #F3F0FF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #F8F5FF;
+  --bg-card: rgba(255, 255, 255, 0.94);
+  --bg-card-hover: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.92);
+  --bg-glass-strong: rgba(255, 255, 255, 0.98);
+  --bg-glass-pill: rgba(139, 61, 255, 0.06);
+
+  --bg-dark: var(--bg-primary);
+  --bg-navy: var(--bg-secondary);
+
+  /* High Contrast Deep Obsidian Slate */
+  --text-main: #0B0E24;
+  --text-sub: #2E335B;
+  --text-muted: #4B5282;
+  --text-dim: #6B729E;
+  --text-hud: rgba(11, 14, 36, 0.92);
+
+  /* Borders & Shadows */
+  --border-subtle: rgba(124, 58, 237, 0.16);
+  --border-glass: rgba(124, 58, 237, 0.12);
+  --shadow-card: 0 12px 32px -8px rgba(124, 58, 237, 0.12), 0 4px 12px -2px rgba(11, 14, 36, 0.04);
+  --shadow-elevated: 0 20px 45px -10px rgba(124, 58, 237, 0.18), 0 6px 16px -3px rgba(11, 14, 36, 0.06);
 }
 
 /* English LTR font family consistency */

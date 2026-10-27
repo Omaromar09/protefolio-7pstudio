@@ -1,37 +1,14 @@
 /**
  * ==========================================================================
  * 7P STUDIO — INTERACTIVE PROJECT ESTIMATOR & LIVE WHATSAPP QUOTE ENGINE
- * Step-by-step polished configurator, animated totals, price ranges [EDIT]
+ * Step-by-step configurator focusing on scope, features, and turnaround.
+ * NO FIXED OR RANGED PRICES SHOWN (client discusses pricing directly on WhatsApp).
  * ==========================================================================
  */
 
 import { getLanguage } from '../utils/i18n.js';
 import { fireSuccessConfetti } from '../utils/confetti.js';
 import { showToast } from '../utils/toast.js';
-
-// Configurable price ranges for project scopes marked [EDIT]
-export const PRICING_CONFIG = {
-  landing: {
-    rangeAr: '[EDIT: 3,500 - 6,000 ج.م]',
-    rangeEn: '[EDIT: 3,500 - 6,000 EGP]'
-  },
-  ecommerce: {
-    rangeAr: '[EDIT: 6,000 - 12,000 ج.م]',
-    rangeEn: '[EDIT: 6,000 - 12,000 EGP]'
-  },
-  corporate: {
-    rangeAr: '[EDIT: 5,000 - 9,500 ج.م]',
-    rangeEn: '[EDIT: 5,000 - 9,500 EGP]'
-  },
-  menu: {
-    rangeAr: '[EDIT: 3,000 - 5,500 ج.م]',
-    rangeEn: '[EDIT: 3,000 - 5,500 EGP]'
-  },
-  bugfix: {
-    rangeAr: '[EDIT: 1,500 - 3,500 ج.م]',
-    rangeEn: '[EDIT: 1,500 - 3,500 EGP]'
-  }
-};
 
 export function initProjectEstimator() {
   const typeContainer = document.getElementById('project-type-container');
@@ -42,7 +19,6 @@ export function initProjectEstimator() {
   const quoteIdEl = document.getElementById('hud-quote-id');
   const valScopeEl = document.getElementById('hud-val-scope');
   const valDeliveryEl = document.getElementById('hud-val-delivery');
-  const valPriceEl = document.getElementById('hud-val-price');
   const tagsContainer = document.getElementById('hud-tags-container');
   const estProgressBar = document.getElementById('estimator-progress-fill');
 
@@ -86,12 +62,7 @@ export function initProjectEstimator() {
 
     if (valDeliveryEl) valDeliveryEl.textContent = deliveryText;
 
-    // 3. Price Range [EDIT: editable placeholder]
-    const priceConfig = PRICING_CONFIG[activeTypeId] || PRICING_CONFIG.landing;
-    const priceRangeText = isAr ? priceConfig.rangeAr : priceConfig.rangeEn;
-    if (valPriceEl) valPriceEl.textContent = priceRangeText;
-
-    // 4. Update Progress Bar
+    // 3. Update Progress Bar
     if (estProgressBar) {
       let progress = 33;
       if (activeFeatures.length > 0) progress += 33;
@@ -99,7 +70,7 @@ export function initProjectEstimator() {
       estProgressBar.style.width = `${progress}%`;
     }
 
-    // 5. Features Tags in HUD
+    // 4. Features Tags in HUD
     if (tagsContainer) {
       tagsContainer.innerHTML = '';
       const checkedCards = featuresContainer.querySelectorAll('.feature-toggle-card.is-checked');
@@ -119,7 +90,7 @@ export function initProjectEstimator() {
       }
     }
 
-    // 6. Build Encoded WhatsApp Link
+    // 5. Build Encoded WhatsApp Link (No prices included)
     const checkedFeatureNames = [];
     featuresContainer.querySelectorAll('.feature-toggle-card.is-checked').forEach(card => {
       checkedFeatureNames.push(isAr ? card.getAttribute('data-name-ar') : card.getAttribute('data-name-en'));
@@ -132,38 +103,36 @@ export function initProjectEstimator() {
 
     let waMessage = '';
     if (isAr) {
-      waMessage = `أهلاً يا عمر ويا مصطفى (7P Studio)! قمت بحساب مواصفات مشروعي على موقعكم وعايز أبدأ التنفيذ:
-📌 كود الكوتيشن: ${quoteId}
+      waMessage = `أهلاً يا عمر ويا مصطفى (7P Studio)! قمت بتحديد مواصفات مشروعي على موقعكم وعايز أعرف التكلفة ونبدأ:
+📌 كود الطلب: ${quoteId}
 🚀 نوع المشروع: ${typeName}
-💰 التكلفة التقديرية: ${priceRangeText}
 ✨ الميزات المطلوبة: ${featuresListStr}
 ⏱️ ميعاد التسليم المفضل: ${deliveryText} (${speedStr})
 🛠️ حزمة التقنيات المقترحة: HTML5 / JavaScript / Three.js 3D
 
-ممكن نتفق على التفاصيل ونبدأ؟`;
+ممكن نتفق على التكلفة والتفاصيل ونبدأ؟`;
     } else {
-      waMessage = `Hello Omar & Mostafa (7P Studio)! I configured my project on your website and would like to get started:
+      waMessage = `Hello Omar & Mostafa (7P Studio)! I configured my project specifications on your website and would like to get a quote and start:
 📌 Quote ID: ${quoteId}
 🚀 Project Scope: ${typeName}
-💰 Estimated Range: ${priceRangeText}
 ✨ Selected Features: ${featuresListStr}
 ⏱️ Preferred Turnaround: ${deliveryText} (${speedStr})
 🛠️ Tech Stack: HTML5 / JavaScript / Three.js 3D
 
-Can we discuss details and kick off?`;
+Can we discuss pricing and kickoff details?`;
     }
 
     whatsappTrigger.href = `https://wa.me/201515047449?text=${encodeURIComponent(waMessage)}`;
 
-    // 7. Save Quote / Copy Trigger
+    // 6. Save Quote / Copy Trigger
     if (saveQuoteTrigger) {
       saveQuoteTrigger.onclick = async (e) => {
         e.preventDefault();
         try {
           await navigator.clipboard.writeText(waMessage);
-          showToast(isAr ? 'تم نسخ تفاصيل الكوتيشن بنجاح! جاهز للمشاركة 📋' : 'Quote copied to clipboard successfully! 📋', 'success');
+          showToast(isAr ? 'تم نسخ مواصفات المشروع بنجاح! جاهز للمشاركة 📋' : 'Project specs copied to clipboard! 📋', 'success');
         } catch (err) {
-          showToast(isAr ? 'تم حفظ الكوتيشن' : 'Quote saved', 'success');
+          showToast(isAr ? 'تم نسخ المواصفات' : 'Specs copied', 'success');
         }
       };
     }
@@ -209,7 +178,7 @@ Can we discuss details and kick off?`;
   whatsappTrigger.addEventListener('click', () => {
     fireSuccessConfetti(0.5, 0.6);
     const isAr = getLanguage() === 'ar';
-    showToast(isAr ? 'تم تجهيز كوتيشن مشروعك وتوجيهك لواتساب 🚀' : 'Project quote prepared! Redirecting to WhatsApp 🚀', 'success');
+    showToast(isAr ? 'تم تجهيز مواصفات مشروعك وتوجيهك لواتساب 🚀' : 'Project specifications prepared! Redirecting to WhatsApp 🚀', 'success');
   });
 
   // Initial HUD calculation

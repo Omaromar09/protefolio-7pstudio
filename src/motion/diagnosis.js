@@ -1,70 +1,149 @@
 // ==========================================================================
 // 7P STUDIO — QUICK DIAGNOSIS TOOL ("شخّص موقعك في دقيقة")
-// 5-Question Lead Generation Quiz with Dynamic Recommendation & WhatsApp URL
+// Dynamic Branching Quiz Engine: Questions adapt based on client's exact answer
 // ==========================================================================
 
 import { getLanguage } from '../utils/i18n.js';
 import { fireSuccessConfetti } from '../utils/confetti.js';
 
-const QUIZ_QUESTIONS = [
+// Question 1: Root Question
+const ROOT_QUESTION = {
+  id: 'site_status',
+  title: {
+    ar: '1. وضع موقعك أو فكرتك حالياً إيه؟',
+    en: '1. What is the current status of your website or idea?'
+  },
+  options: [
+    {
+      id: 'no_site',
+      branch: 'new',
+      label: {
+        ar: 'معنديش موقع خالص، وعايز أبدأ موقع جديد من الصفر 🚀',
+        en: 'I don’t have a website, I want to build one from scratch 🚀'
+      }
+    },
+    {
+      id: 'outdated_site',
+      branch: 'existing',
+      label: {
+        ar: 'عندي موقع بس قديم وشكله مش بيجيب عملاء ومحتاج تجديد شامل 📉',
+        en: 'I have an outdated website that doesn’t convert visitors 📉'
+      }
+    },
+    {
+      id: 'buggy_site',
+      branch: 'existing',
+      label: {
+        ar: 'عندي موقع بس بطيء وفيه مشاكل وباجات ومحتاج صيانة سريعة ⚠️',
+        en: 'I have a website but it has bugs, errors, and slow speed ⚠️'
+      }
+    }
+  ]
+};
+
+// Branch A: Client has NO website yet (Building from scratch)
+const BRANCH_NEW_QUESTIONS = [
   {
-    id: 'current_site',
+    id: 'business_type',
     title: {
-      ar: '1. هل عندك موقع حالياً لبيزنسك أو فكرتك؟',
-      en: '1. Do you currently have a website for your business?'
+      ar: '2. إيه نوع نشاطك أو مجالك؟',
+      en: '2. What is your business type or industry?'
     },
     options: [
-      { id: 'none', label: { ar: 'معنديش خالص، وعايز أبدأ موقع جديد من الصفر 🚀', en: 'No, I want to build a brand new site from scratch 🚀' }, score: 'new' },
-      { id: 'old', label: { ar: 'عندي موقع بس قديم وشكله مش بيجيب عملاء 📉', en: 'Yes, but it is outdated and does not convert 📉' }, score: 'revamp' },
-      { id: 'buggy', label: { ar: 'عندي موقع بس بطيء وفيه مشاكل وباجات ⚠️', en: 'Yes, but it has bugs and slow performance ⚠️' }, score: 'fix' }
+      { id: 'store', label: { ar: 'متجر لبيع منتجات فيزيكال (أزياء، إكسسوارات، عطور...) 🛍️', en: 'E-commerce store (apparel, accessories, perfumes...) 🛍️' } },
+      { id: 'food', label: { ar: 'مطعم، كافيه، أو حلواني ومحتاج منيو وطلبات 🍔', en: 'Restaurant, cafe, or pastry with smart menu 🍔' } },
+      { id: 'corporate', label: { ar: 'شركة، خدمات، مكتب استشارات، أو براند شخصي 🏢', en: 'Corporate services, consulting, or personal brand 🏢' } },
+      { id: 'hub', label: { ar: 'مساحة عمل، عيادة، أو نظام حجز مواعيد وغرف 📅', en: 'Coworking space, clinic, or booking system 📅' } }
     ]
   },
   {
-    id: 'mobile_friendly',
+    id: 'key_feature',
     title: {
-      ar: '2. لما بتفتح الموقع من الموبايل، التجربة عاملة إزاي؟',
-      en: '2. How does the site look and feel on mobile?'
+      ar: '3. إيه أهم ميزة محتاجها في موقعك الجديد؟',
+      en: '3. What is the most critical feature you need?'
     },
     options: [
-      { id: 'broken', label: { ar: 'الكلام متلخبط وأزرار مش شغالة ومش متجاوب 📱❌', en: 'Broken layout, misaligned buttons, not responsive 📱❌' }, score: 'fix' },
-      { id: 'average', label: { ar: 'شغال بالعافية بس مش مريح ولا سلس 😐', en: 'Barely works, clunky and uncomfortable 😐' }, score: 'revamp' },
-      { id: 'new_needed', label: { ar: 'معنديش لسه وعايز أهم حاجة يكون صاروخ على الموبايل ⚡', en: 'Not built yet; I need a mobile-first speed rocket ⚡' }, score: 'new' }
+      { id: 'cart_wa', label: { ar: 'سلة مشتريات وطلب أوردر مباشر على الواتساب 🛒', en: 'Instant cart with direct WhatsApp ordering 🛒' } },
+      { id: 'landing_leads', label: { ar: 'صفحة هبوط تسويقية سريعة تشرح خدماتي وتجيب عملاء 🎯', en: 'High-converting landing page explaining services 🎯' }, },
+      { id: 'motion_3d', label: { ar: 'لمسات 3D تفاعلية ومظهر عصري يبهر الزائر ✨', en: 'Interactive 3D touches and modern sleek UI ✨' } },
+      { id: 'speed_mobile', label: { ar: 'سرعة خارقة وتجاوب 100% على كل شاشات الموبايل ⚡', en: 'Ultra-fast speed and 100% mobile perfection ⚡' } }
     ]
   },
   {
-    id: 'speed',
+    id: 'assets_readiness',
     title: {
-      ar: '3. سرعة التحميل وتصفح الصفحات:',
-      en: '3. Page load speed and loading times:'
+      ar: '4. هل جاهز باللوجو والصور والمحتوى؟',
+      en: '4. Do you have your logo, photos, and copy ready?'
     },
     options: [
-      { id: 'very_slow', label: { ar: 'بطيء جداً والزبون بيمشي قبل ما يشوف المنتجات ⏳', en: 'Very slow, clients bounce before seeing anything ⏳' }, score: 'fix' },
-      { id: 'acceptable', label: { ar: 'متوسط بس الصور تقيلة والأنيميشن بيقطّع 🐌', en: 'Moderate, but images are heavy and stuttering 🐌' }, score: 'revamp' },
-      { id: 'rocket', label: { ar: 'عايز موقع بأعلى كفاءة يفتح في ثانية واحدة ⚡', en: 'I want an ultra-optimized site loading under 1.5s ⚡' }, score: 'new' }
+      { id: 'ready', label: { ar: 'معايا كل حاجة وجاهز نبدأ التنفيذ فوراً ✅', en: 'Everything is ready, let’s kick off immediately ✅' } },
+      { id: 'partial', label: { ar: 'معايا صور وفكرة، ومحتاج مساعدتكم في ترتيب المحتوى 📝', en: 'I have raw photos and ideas, need help organizing 📝' } },
+      { id: 'need_all', label: { ar: 'محتاج استوديو 7P يجهّز معايا كل التفاصيل من الصفر 🎨', en: 'Need 7P Studio to assist from concept to execution 🎨' } }
     ]
   },
   {
-    id: 'goal',
+    id: 'launch_timeline',
     title: {
-      ar: '4. هدفك الأساسي من الموقع إيه؟',
-      en: '4. What is your primary objective?'
+      ar: '5. حابب الموقع يكون شغال لايف إمتى؟',
+      en: '5. When do you need the website live?'
     },
     options: [
-      { id: 'ecommerce', label: { ar: 'متجر وسلة طلبات مباشرة على الواتساب 🛒', en: 'E-commerce store with direct WhatsApp checkout 🛒' }, score: 'store' },
-      { id: 'lead_gen', label: { ar: 'صفحة هبوط تسويقية لزيادة العملاء والطلبات 🎯', en: 'High-converting landing page for lead generation 🎯' }, score: 'landing' },
-      { id: 'corporate', label: { ar: 'موقع بيزنس / منيو / مساحة عمل وحجوزات 🏢', en: 'Corporate presence, QR menu, or booking hub 🏢' }, score: 'corporate' }
+      { id: 'urgent', label: { ar: 'في أقرب وقت ممكن (تسليم عاجل ومستعجل) ⚡', en: 'As soon as possible (urgent rush delivery) ⚡' } },
+      { id: 'standard', label: { ar: 'خلال أسبوع إلى أسبوعين (الوقت القياسي) 🗓️', en: 'Within 1 to 2 weeks (standard turnaround) 🗓️' } },
+      { id: 'exploring', label: { ar: 'لسه بظبط بيزنسي وبستفسر عشان أجهز نفسي 💬', en: 'Currently planning, preparing ahead of time 💬' } }
+    ]
+  }
+];
+
+// Branch B: Client ALREADY HAS an existing website (Needs fixes, speed boost, or redesign)
+const BRANCH_EXISTING_QUESTIONS = [
+  {
+    id: 'pain_point',
+    title: {
+      ar: '2. إيه أكبر مشكلة بتواجهك في موقعك الحالي؟',
+      en: '2. What is the biggest issue with your current site?'
+    },
+    options: [
+      { id: 'slow_load', label: { ar: 'بطيء جداً في التحميل والزبون بيزهق ويمشي قبل ما يفتح ⏳', en: 'Very slow loading, clients leave before seeing items ⏳' } },
+      { id: 'broken_mobile', label: { ar: 'شكله متبهدل ومش مظبوط لما بيتفتح من الموبايل 📱❌', en: 'Broken layout and unclickable buttons on mobile 📱❌' } },
+      { id: 'bugs_errors', label: { ar: 'فيه أزرار وسلة مش شغالة أو أخطاء برمجية معقدة ⚠️', en: 'Broken buttons, checkout errors, or code bugs ⚠️' } },
+      { id: 'low_conversion', label: { ar: 'تصميمه قديم ومش بيدي ثقة للعميل إنه يشتري 📉', en: 'Outdated look, fails to build trust or sales 📉' } }
     ]
   },
   {
-    id: 'assets',
+    id: 'current_tech',
     title: {
-      ar: '5. هل جاهز باللوجو والصور والمحتوى؟',
-      en: '5. Do you have your logo, photos, and copy ready?'
+      ar: '3. موقعك الحالي معمول بإيه لو تعرف؟',
+      en: '3. What technology or platform is your site built on?'
     },
     options: [
-      { id: 'ready', label: { ar: 'جاهز تماماً باللوجو والتفاصيل ونقدر نبدأ فوراً ✅', en: 'Ready with logo and photos, let\'s launch immediately ✅' }, score: 'ready' },
-      { id: 'partial', label: { ar: 'معايا فكرة وصور ومحتاج مساعدة في ترتيب المحتوى 📝', en: 'I have raw ideas, need guidance structuring copy 📝' }, score: 'assist' },
-      { id: 'need_all', label: { ar: 'محتاج استوديو 7P يجهّز معايا كل التفاصيل من الألف للياء 🎨', en: 'Need 7P Studio to assist from concept to execution 🎨' }, score: 'full' }
+      { id: 'wordpress', label: { ar: 'ووردبريس (WordPress) أو شوبيفاي / زد / سلة 🌐', en: 'WordPress, Shopify, Salla, or similar platform 🌐' } },
+      { id: 'custom_code', label: { ar: 'مبرمج كود خاص (HTML / React / PHP / Node) 💻', en: 'Custom code (HTML, React, PHP, Node) 💻' } },
+      { id: 'not_sure', label: { ar: 'مش متأكد من التقنية اللي اتعمل بيها ❓', en: 'Not sure what technology was used ❓' } }
+    ]
+  },
+  {
+    id: 'target_goal',
+    title: {
+      ar: '4. هدفك الأساسي من التعديل إيه؟',
+      en: '4. What is your primary objective from revamping?'
+    },
+    options: [
+      { id: 'fix_speed', label: { ar: 'صيانة فورية وتصليح الباجات ورفع السرعة لأعلى أداء ⚡', en: 'Fix bugs and optimize speed to top performance ⚡' } },
+      { id: 'redesign_ui', label: { ar: 'إعادة تصميم كاملة (Redesign) لمظهر عصري وفخم 🎨', en: 'Full UI/UX redesign for a modern luxury look 🎨' } },
+      { id: 'add_whatsapp_cart', label: { ar: 'إضافة سلة طلبات وفاتورة سريعة على الواتساب 🛒', en: 'Add automated WhatsApp cart & quick checkout 🛒' } }
+    ]
+  },
+  {
+    id: 'preferred_approach',
+    title: {
+      ar: '5. تفضيلك في طريقة التنفيذ:',
+      en: '5. Your preferred approach:'
+    },
+    options: [
+      { id: 'patch_existing', label: { ar: 'صيانة وتعديل على موقعي الحالي لو ينفع 🔧', en: 'Patch and optimize my existing site if possible 🔧' } },
+      { id: 'fresh_rebuild', label: { ar: 'بناء موقع جديد نظيف وسريع يريحني من صداع المشاكل القديمة 🚀', en: 'Build a fresh, clean site to eliminate legacy headaches 🚀' } },
+      { id: 'consult_first', label: { ar: 'عايز نصيحتكم الأفضل بعد ما تفحصوا كود الموقع 💡', en: 'I want your recommendation after you audit the site 💡' } }
     ]
   }
 ];
@@ -73,26 +152,36 @@ export function initQuickDiagnosis() {
   const mount = document.getElementById('diagnosis-mount');
   if (!mount) return;
 
-  let currentStep = 0;
+  let currentStepIndex = 0; // 0 is Root, 1..4 are Branch questions
+  let chosenBranch = null; // 'new' or 'existing'
   const userAnswers = {};
+
+  function getCurrentQuestion() {
+    if (currentStepIndex === 0) {
+      return ROOT_QUESTION;
+    }
+    const questionsList = chosenBranch === 'new' ? BRANCH_NEW_QUESTIONS : BRANCH_EXISTING_QUESTIONS;
+    return questionsList[currentStepIndex - 1];
+  }
 
   function renderQuizStep() {
     const lang = getLanguage();
-    const q = QUIZ_QUESTIONS[currentStep];
-    const isLast = currentStep === QUIZ_QUESTIONS.length - 1;
+    const q = getCurrentQuestion();
+    const totalSteps = 5;
+    const isLast = currentStepIndex === totalSteps - 1;
 
     mount.innerHTML = `
       <div class="diagnosis-card chamfer-card">
         <div class="diagnosis-progress-bar">
-          <div class="diagnosis-progress-fill" style="width: ${((currentStep + 1) / QUIZ_QUESTIONS.length) * 100}%"></div>
+          <div class="diagnosis-progress-fill" style="width: ${((currentStepIndex + 1) / totalSteps) * 100}%"></div>
         </div>
 
         <div class="diagnosis-header">
           <div class="diagnosis-step-pill">
-            <span class="step-num numeral">${currentStep + 1}</span> / ${QUIZ_QUESTIONS.length}
+            <span class="step-num numeral">${currentStepIndex + 1}</span> / ${totalSteps}
           </div>
           <h3 class="diagnosis-question-title">${q.title[lang] || q.title.ar}</h3>
-          <p class="diagnosis-question-sub">${lang === 'ar' ? 'اختر الإجابة الأقرب لوضعك الحالي:' : 'Select the option closest to your situation:'}</p>
+          <p class="diagnosis-question-sub">${lang === 'ar' ? 'اختر الإجابة الأنسب لوضعك الحالي:' : 'Select the option closest to your situation:'}</p>
         </div>
 
         <div class="diagnosis-options-grid">
@@ -100,7 +189,8 @@ export function initQuickDiagnosis() {
             <button type="button" 
                     class="diagnosis-opt-btn ${userAnswers[q.id]?.id === opt.id ? 'is-selected' : ''}" 
                     data-opt-id="${opt.id}" 
-                    data-opt-text="${opt.label[lang] || opt.label.ar}">
+                    data-opt-text="${opt.label[lang] || opt.label.ar}"
+                    ${opt.branch ? `data-branch="${opt.branch}"` : ''}>
               <span class="opt-indicator"></span>
               <span class="opt-label">${opt.label[lang] || opt.label.ar}</span>
             </button>
@@ -108,7 +198,7 @@ export function initQuickDiagnosis() {
         </div>
 
         <div class="diagnosis-footer">
-          ${currentStep > 0 ? `
+          ${currentStepIndex > 0 ? `
             <button type="button" class="btn btn-secondary diagnosis-back-btn" id="quiz-back-btn">
               <i class="fa-solid fa-arrow-right"></i>
               <span>${lang === 'ar' ? 'السابق' : 'Back'}</span>
@@ -123,7 +213,7 @@ export function initQuickDiagnosis() {
       </div>
     `;
 
-    // Bind option selection
+    // Bind option click
     mount.querySelectorAll('.diagnosis-opt-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         mount.querySelectorAll('.diagnosis-opt-btn').forEach(b => b.classList.remove('is-selected'));
@@ -131,6 +221,12 @@ export function initQuickDiagnosis() {
 
         const optId = btn.getAttribute('data-opt-id');
         const optText = btn.getAttribute('data-opt-text');
+        const branchAttr = btn.getAttribute('data-branch');
+
+        if (branchAttr) {
+          chosenBranch = branchAttr;
+        }
+
         userAnswers[q.id] = { id: optId, text: optText };
 
         const nextBtn = document.getElementById('quiz-next-btn');
@@ -138,26 +234,26 @@ export function initQuickDiagnosis() {
       });
     });
 
-    // Next / Finish
+    // Next button
     const nextBtn = document.getElementById('quiz-next-btn');
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
         if (!userAnswers[q.id]) return;
         if (isLast) {
-          showDiagnosisResult(mount, userAnswers);
+          showDiagnosisResult(mount, userAnswers, chosenBranch);
         } else {
-          currentStep++;
+          currentStepIndex++;
           renderQuizStep();
         }
       });
     }
 
-    // Back
+    // Back button
     const backBtn = document.getElementById('quiz-back-btn');
     if (backBtn) {
       backBtn.addEventListener('click', () => {
-        if (currentStep > 0) {
-          currentStep--;
+        if (currentStepIndex > 0) {
+          currentStepIndex--;
           renderQuizStep();
         }
       });
@@ -171,43 +267,49 @@ export function initQuickDiagnosis() {
   });
 }
 
-function showDiagnosisResult(mount, answers) {
+function showDiagnosisResult(mount, answers, branch) {
   const lang = getLanguage();
   fireSuccessConfetti();
 
-  // Determine diagnosis recommendation
-  let titleAr = 'تحتاج موقع جديد فائق السرعة متوافق مع الموبايل 🚀';
-  let titleEn = 'You need a fresh, high-speed mobile-first website 🚀';
-  let descAr = 'بناءً على إجاباتك، أفضل خيار لبيزنسك هو بناء موقع عصري مربوط بواتساب وسريع التصفح لتفادي خسارة الزبائن وزيادة المبيعات.';
-  let descEn = 'Based on your answers, building a modern, high-converting website synced with WhatsApp will maximize your sales and prevent client drops.';
+  let titleAr = '';
+  let titleEn = '';
+  let descAr = '';
+  let descEn = '';
 
-  if (answers.current_site?.id === 'buggy' || answers.mobile_friendly?.id === 'broken') {
-    titleAr = 'تحتاج صيانة فورية، تسريع أداء، وتعديل متجاوب للموبايل ⚡';
-    titleEn = 'You need instant bug fixing, speed boosting, and mobile optimization ⚡';
-    descAr = 'موقعك الحالي بيخسر زوار بسبب البطء أو عيوب الموبايل. نقدر نصلح الكود ونرفع سرعته ونظبط شكله بالكامل بدون الحاجة لإعادة بنائه من الصفر.';
-    descEn = 'Your current site is leaking visitors due to bugs or slow load. We can repair and accelerate it without starting completely from scratch.';
-  } else if (answers.goal?.id === 'ecommerce') {
-    titleAr = 'تحتاج متجر إلكتروني خفيف بسلة طلبات وفاتورة واتساب 🛒';
-    titleEn = 'You need an e-commerce catalog with instant WhatsApp orders 🛒';
-    descAr = 'عرض المنتجات بطريقة شيك وسلسة مع إمكانية إرسال الأوردر والفاتورة مباشرة إلى واتساب متجرك هي أفضل وأسرع طريقة لتحقيق مبيعات حقيقية.';
-    descEn = 'A lightweight catalog where customers place direct WhatsApp orders will dramatically improve checkout conversion.';
+  if (branch === 'new') {
+    titleAr = 'تحتاج موقع جديد فائق السرعة متوافق مع الموبايل ومربوط بواتساب 🚀';
+    titleEn = 'You need a fresh, high-speed mobile-first website synced with WhatsApp 🚀';
+    descAr = 'بناءً على تفاصيل بيزنسك، أفضل استراتيجية هي بناء موقع نظيف وخفيف من الصفر يركز على سهولة الطلب والتصفح المريح، بدون تعقيدات منصات بطيئة وبأعلى كفاءة.';
+    descEn = 'Based on your niche, building a sleek, lightweight website from scratch focused on seamless conversion is the best path to maximize sales without slow template bloat.';
+  } else {
+    // Existing site branch
+    if (answers.pain_point?.id === 'slow_load' || answers.target_goal?.id === 'fix_speed') {
+      titleAr = 'تحتاج صيانة فورية، تسريع أكواد وصور، وضبط تجاوب الموبايل ⚡';
+      titleEn = 'You need instant bug fixing, speed optimization, and mobile tuning ⚡';
+      descAr = 'موقعك الحالي بيخسر زبائن بسبب بطء التحميل أو عيوب الموبايل. نقدر نعمل فحص شامل ونصلح الأكواد ونرفع السرعة لـ 95+ بدون الحاجة لإعادة بنائه من الصفر.';
+      descEn = 'Your current site is losing visitors due to loading delays or mobile bugs. We can audit, repair, and optimize speed without starting over from scratch.';
+    } else {
+      titleAr = 'تحتاج تجديد شامل للواجهة (Redesign) مع سلة واتساب ومظهر عصري 🎨';
+      titleEn = 'You need a modern UI/UX redesign with direct WhatsApp orders 🎨';
+      descAr = 'تحويل موقعك القديم لواجهة فخمة وعصرية تناسب معايير 2026 مع سلة طلبات وفاتورة واتساب فورية لرفع ثقة العميل وتحويل الزيارات لمبيعات حقيقية.';
+      descEn = 'Upgrading your existing site into a contemporary, trust-building storefront with automated WhatsApp ordering will dramatically increase conversion.';
+    }
   }
 
-  // Construct WhatsApp prefilled message
-  const summaryLines = [
-    lang === 'ar' ? `📋 *نتيجة تشخيص موقعي من 7P Studio:*` : `📋 *7P Studio Website Diagnosis Result:*`,
+  // Format prefilled WhatsApp message
+  const lines = [
+    lang === 'ar' ? `📋 *نتيجة تشخيص موقعي مع 7P Studio:*` : `📋 *7P Studio Website Diagnosis Result:*`,
     `🎯 ${lang === 'ar' ? titleAr : titleEn}`,
-    `\n📝 *إجابات التشخيص:*`,
-    `1. حالة الموقع: ${answers.current_site?.text || ''}`,
-    `2. تجربة الموبايل: ${answers.mobile_friendly?.text || ''}`,
-    `3. السرعة: ${answers.speed?.text || ''}`,
-    `4. الهدف: ${answers.goal?.text || ''}`,
-    `5. الجاهزية: ${answers.assets?.text || ''}`,
-    `\n---\nمساء الخير يا عمر ويا مصطفى، عملت اختبار التشخيص وحابب نتناقش في التنفيذ.`
+    `\n📝 *إجابات التشخيص:*`
   ];
 
-  const waMsg = encodeURIComponent(summaryLines.join('\n'));
-  const waUrl = `https://wa.me/201515047449?text=${waMsg}`;
+  Object.values(answers).forEach((ans, i) => {
+    lines.push(`${i + 1}. ${ans.text}`);
+  });
+
+  lines.push(`\n---\nمساء الخير يا عمر ويا مصطفى، عملت اختبار التشخيص وحابب نتناقش في التفاصيل ونبدأ.`);
+
+  const waUrl = `https://wa.me/201515047449?text=${encodeURIComponent(lines.join('\n'))}`;
 
   mount.innerHTML = `
     <div class="diagnosis-result-card chamfer-card">
@@ -220,8 +322,8 @@ function showDiagnosisResult(mount, answers) {
       <p class="result-desc">${lang === 'ar' ? descAr : descEn}</p>
 
       <div class="result-checklist">
-        <div class="check-item"><i class="fa-solid fa-bolt" style="color: var(--accent-cyan)"></i> <span>${lang === 'ar' ? 'فحص كامل للأداء والسرعة' : 'Complete performance & speed audit'}</span></div>
-        <div class="check-item"><i class="fa-solid fa-mobile-screen" style="color: var(--accent-magenta)"></i> <span>${lang === 'ar' ? 'تجاوب بنسبة 100% على كافة الشاشات' : '100% responsive viewport guarantee'}</span></div>
+        <div class="check-item"><i class="fa-solid fa-bolt" style="color: var(--accent-cyan)"></i> <span>${lang === 'ar' ? 'فحص كامل للأداء والسرعة وتجاوب الشاشات' : 'Complete performance & mobile audit'}</span></div>
+        <div class="check-item"><i class="fa-solid fa-mobile-screen" style="color: var(--accent-magenta)"></i> <span>${lang === 'ar' ? 'تنفيذ دقيق متوافق مع الموبايل 100%' : '100% responsive viewport guarantee'}</span></div>
         <div class="check-item"><i class="fa-brands fa-whatsapp" style="color: #25D366"></i> <span>${lang === 'ar' ? 'ربط مباشر لطلبات العملاء على الواتساب' : 'Direct WhatsApp customer conversion'}</span></div>
       </div>
 

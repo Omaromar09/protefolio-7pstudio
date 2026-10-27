@@ -3,8 +3,6 @@
 // Draggable visual comparison with touch and mouse support
 // ==========================================================================
 
-import { getLanguage } from '../utils/i18n.js';
-
 export function initBeforeAfterSlider() {
   const container = document.getElementById('before-after-slider');
   if (!container) return;
@@ -21,8 +19,8 @@ export function initBeforeAfterSlider() {
     let offsetX = clientX - rect.left;
     let percentage = (offsetX / rect.width) * 100;
 
-    // Constrain percentage between 5% and 95%
-    percentage = Math.max(5, Math.min(95, percentage));
+    // Constrain percentage between 8% and 92%
+    percentage = Math.max(8, Math.min(92, percentage));
 
     handle.style.left = `${percentage}%`;
     beforePanel.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;

@@ -3,10 +3,10 @@ import { getLanguage } from './i18n.js';
 
 /**
  * Theme Switcher Module (Light / Dark Mode)
- * Persists user preference in localStorage
+ * Persists user preference in localStorage and toggles data-theme attribute
  */
 
-let currentTheme = 'light';
+let currentTheme = 'dark';
 
 export function getTheme() {
   return currentTheme;
@@ -15,13 +15,11 @@ export function getTheme() {
 export function setTheme(theme, silent = false) {
   if (theme !== 'light' && theme !== 'dark') return;
   currentTheme = theme;
-  localStorage.setItem('omar_theme', theme);
+  try {
+    localStorage.setItem('omar_theme', theme);
+  } catch (e) {}
 
-  if (theme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-  }
+  document.documentElement.setAttribute('data-theme', theme);
 
   updateThemeIcons(theme);
 
@@ -51,13 +49,19 @@ function updateThemeIcons(theme) {
       icon.style.color = '#FBBF24'; // Warm amber sun
     } else {
       icon.className = 'fa-solid fa-moon';
-      icon.style.color = '';
+      icon.style.color = '#7C3AED'; // Violet moon
     }
   });
 }
 
 export function initTheme() {
-  const savedTheme = localStorage.getItem('omar_theme') || 'dark';
+  let savedTheme = 'dark';
+  try {
+    savedTheme = localStorage.getItem('omar_theme') || 'dark';
+  } catch (e) {
+    savedTheme = 'dark';
+  }
+
   setTheme(savedTheme, true);
 
   const desktopBtn = document.getElementById('theme-toggle');

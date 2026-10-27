@@ -1,6 +1,7 @@
 // ==========================================================================
 // 7P STUDIO — CENTRALIZED PROJECT DATA (SINGLE SOURCE OF TRUTH)
-// Add or edit projects here; showcase, stats, and trust modules update automatically.
+// Aya, Festival, El Veranda (Live Client Work)
+// Elmo7taref, Kayan, Rawnaq (Interactive Demos ready for customization)
 // ==========================================================================
 
 export const PROJECTS_DATA = [
@@ -65,60 +66,60 @@ export const PROJECTS_DATA = [
   {
     id: 'elmo7taref',
     title: {
-      ar: 'مطعم المحترف',
-      en: 'Elmo7taref Restaurant'
+      ar: 'مطعم المحترف (تجريبي)',
+      en: 'Elmo7taref Restaurant (Demo)'
     },
-    client: 'Elmo7taref Grill',
+    client: 'Elmo7taref Grill (تجريبي)',
     category: {
-      ar: 'مطاعم ومشويات',
-      en: 'Grill & Burger Ordering'
+      ar: 'مطاعم ومشويات · تجريبي',
+      en: 'Grill & Burger Ordering · Demo'
     },
     short: {
-      ar: 'موقع لمطعم وجبات ومشويات، فيه فلاتر سريعة للأكل ومعاينة للساندوتشات وحساب فاتورة وطلب واتساب.',
-      en: 'Burger and grill restaurant ordering hub with quick food filters, item previews, and instant cart calculation.'
+      ar: 'نموذج تجريبي جاهز لمطعم وجبات ومشويات، فيه فلاتر سريعة للأكل ومعاينة للساندوتشات وحساب فاتورة وطلب واتساب.',
+      en: 'Interactive demo for burger & grill ordering with quick filters, item modal previews, and cart calculation.'
     },
     tags: {
-      ar: ['أصناف ومعاينة ساندوتشات', 'حساب فاتورة تلقائي', 'طلب مباشر واتساب', 'سريع جداً'],
-      en: ['Item Previews', 'Cart Calculator', 'WhatsApp Direct', 'High Performance']
+      ar: ['نموذج تجريبي جاهز', 'أصناف ومعاينة ساندوتشات', 'حساب فاتورة تلقائي', 'طلب مباشر واتساب'],
+      en: ['Interactive Demo', 'Item Previews', 'Cart Calculator', 'WhatsApp Direct']
     },
     url: 'https://elmo7taref.vercel.app/',
     previewImg: '/projects/elmo7taref-preview.jpg',
     accentColor: '#EF4444',
     status: {
-      ar: 'مشروع حقيقي شغال لايف',
-      en: 'Live Client Project'
+      ar: 'نموذج تجريبي جاهز للعرض والتعديل',
+      en: 'Interactive Demo Showcase'
     },
     isLive: true,
-    isDemo: false
+    isDemo: true
   },
   {
     id: 'kayan',
     title: {
-      ar: 'كيان للأزياء الفاخرة',
-      en: 'Kayan Luxury Fashion'
+      ar: 'كيان للأزياء الفاخرة (تجريبي)',
+      en: 'Kayan Luxury Fashion (Demo)'
     },
-    client: 'Kayan Clothes',
+    client: 'Kayan Clothes (تجريبي)',
     category: {
-      ar: 'براند أزياء',
-      en: 'Fashion & Apparel'
+      ar: 'براند أزياء · تجريبي',
+      en: 'Fashion & Apparel · Demo'
     },
     short: {
-      ar: 'موقع لبراند ملابس عصري، بيعرض الكولكشن بشكل شيك وسلس مع سلايدر تفاعلي وسلة مشتريات.',
-      en: 'Contemporary apparel showcase featuring editorial lookbooks, fluid transitions, and seamless cart.'
+      ar: 'نموذج تجريبي لبراند ملابس عصري، بيعرض الكولكشن بشكل شيك وسلس مع سلايدر تفاعلي وسلة مشتريات.',
+      en: 'Contemporary apparel demo showcase featuring editorial lookbooks, fluid transitions, and seamless cart.'
     },
     tags: {
-      ar: ['سلايدر كولكشن أنيق', 'سلة مشتريات', 'تصميم مودرن راقي', 'شحن لجميع المحافظات'],
-      en: ['Lookbook Slider', 'Shopping Cart', 'Luxury Editorial', 'Nationwide Delivery']
+      ar: ['نموذج تجريبي جاهز', 'سلايدر كولكشن أنيق', 'سلة مشتريات', 'تصميم مودرن راقي'],
+      en: ['Interactive Demo', 'Lookbook Slider', 'Shopping Cart', 'Luxury Editorial']
     },
     url: 'https://kayan-clothes.vercel.app/',
     previewImg: '/projects/kayan-preview.jpg',
     accentColor: '#8B3DFF',
     status: {
-      ar: 'مشروع حقيقي شغال لايف',
-      en: 'Live Client Project'
+      ar: 'نموذج تجريبي جاهز للعرض والتعديل',
+      en: 'Interactive Demo Showcase'
     },
     isLive: true,
-    isDemo: false
+    isDemo: true
   },
   {
     id: 'elveranda',
@@ -152,21 +153,21 @@ export const PROJECTS_DATA = [
   {
     id: 'rawnaq',
     title: {
-      ar: 'متجر رَوْنَـق للعطور الفاخرة 3D',
-      en: 'Rawnaq 3D Luxury Perfumes'
+      ar: 'متجر رَوْنَـق للعطور الفاخرة 3D (تجريبي)',
+      en: 'Rawnaq 3D Luxury Perfumes (Demo)'
     },
     client: 'Rawnaq 3D (تجريبي)',
     category: {
-      ar: 'تجربة 3D تفاعلية',
-      en: '3D WebGL Storefront'
+      ar: 'تجربة 3D تفاعلية · تجريبي',
+      en: '3D WebGL Storefront · Demo'
     },
     short: {
       ar: 'متجر وتجربة تفاعلية لبراند عطور فاخرة، فيه زجاجة عطر 3D تفاعلية مع إمكانية التدوير ورشّة عطر، وسلة شراء وطلب مباشر عبر واتساب.',
       en: 'Interactive 3D fragrance boutique with a rotatable WebGL bottle, mist animation, and seamless WhatsApp orders.'
     },
     tags: {
-      ar: ['زجاجة عطر 3D تفاعلية', 'سلة طلب واتساب', 'تأثيرات رش سينمائية', 'تصميم تجريبي متقدم'],
-      en: ['Interactive 3D Bottle', 'WhatsApp Checkout', 'Cinematic Spray VFX', 'Advanced Demo']
+      ar: ['نموذج تجريبي جاهز', 'زجاجة عطر 3D تفاعلية', 'سلة طلب واتساب', 'تأثيرات رش سينمائية'],
+      en: ['Interactive Demo', 'Interactive 3D Bottle', 'WhatsApp Checkout', 'Cinematic Spray VFX']
     },
     url: 'https://demo-perfume-sigma.vercel.app/',
     previewImg: '/projects/rawnaq-preview.jpg',
@@ -180,17 +181,17 @@ export const PROJECTS_DATA = [
   }
 ];
 
-// Computed stats from real project data (No invented numbers!)
 export const REAL_STATS = {
   totalProjects: PROJECTS_DATA.length, // 6
-  liveProjectsCount: PROJECTS_DATA.filter(p => p.isLive).length, // 6
+  liveClientProjects: PROJECTS_DATA.filter(p => !p.isDemo).length, // 3
+  demoProjects: PROJECTS_DATA.filter(p => p.isDemo).length, // 3
   industriesCovered: {
     ar: 'متاجر، مطاعم، مساحات، أزياء، وتجارب 3D',
     en: 'E-commerce, Food, Hubs, Fashion & 3D'
   },
   deliveryWindow: {
-    ar: '[EDIT: 7 - 14 يوم عمل]',
-    en: '[EDIT: 7 - 14 Business Days]'
+    ar: '7 - 14 يوم عمل',
+    en: '7 - 14 Business Days'
   },
   whatsappResponse: {
     ar: 'متاح للرد طوال الأسبوع',
