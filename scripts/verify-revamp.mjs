@@ -45,13 +45,16 @@ async function runAudit() {
 
   // Test Project Showcase switching
   const tabs = await page.$$('.showcase-tab-btn');
-  console.log(`Verified showcase tabs count: ${tabs.length} (expected 6)`);
-  if (tabs.length >= 6) {
-    // Switch to Rawnaq 3D demo tab (idx 5)
-    await tabs[5].click();
+  console.log(`Verified showcase tabs count: ${tabs.length} (expected 7)`);
+  if (tabs.length >= 7) {
+    // Switch to XO PS Lounge demo tab (idx 6)
+    await tabs[6].click();
     await new Promise(r => setTimeout(r, 600));
     const titleText = await page.$eval('#project-hero-title', el => el.textContent);
     console.log(`Showcase switched to: "${titleText.trim()}"`);
+
+    const partnershipText = await page.$eval('#project-partnership-text', el => el.textContent).catch(() => '');
+    console.log(`Partnership badge: "${partnershipText.trim()}"`);
 
     const waSimilarHref = await page.$eval('#showcase-similar-btn', el => el.href);
     console.log(`WhatsApp 'اطلب زيه' URL: ${decodeURIComponent(waSimilarHref)}`);

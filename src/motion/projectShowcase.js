@@ -85,12 +85,18 @@ function renderShowcaseStructure(container) {
         <!-- Right / End: Project Info & Features Panel -->
         <div class="showcase-info-panel chamfer-card" id="showcase-info-panel">
           <div class="panel-header">
-            <div class="project-category-pill" id="project-category-pill" style="color: ${currentProject.accentColor}; border-color: ${currentProject.accentColor}33; background: ${currentProject.accentColor}12;">
-              <span class="category-icon"><i class="fa-solid fa-bolt"></i></span>
-              <span id="project-category-text">${currentProject.category[lang] || currentProject.category.ar}</span>
+            <div class="panel-header-tags" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <div class="project-category-pill" id="project-category-pill" style="color: ${currentProject.accentColor}; border-color: ${currentProject.accentColor}33; background: ${currentProject.accentColor}12;">
+                <span class="category-icon"><i class="fa-solid fa-bolt"></i></span>
+                <span id="project-category-text">${currentProject.category[lang] || currentProject.category.ar}</span>
+              </div>
+              <div class="project-partnership-pill" id="project-partnership-pill" style="${currentProject.partnership ? 'display: inline-flex;' : 'display: none;'} align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; color: #E0A96D; background: rgba(198, 146, 85, 0.15); border: 1px solid rgba(198, 146, 85, 0.35);">
+                <i class="fa-solid fa-handshake"></i>
+                <span id="project-partnership-text">${currentProject.partnership ? (currentProject.partnership[lang] || currentProject.partnership.ar) : ''}</span>
+              </div>
             </div>
             <span class="project-count-badge numeral">
-              <span id="project-curr-num">01</span> / 06
+              <span id="project-curr-num">${(activeIndex + 1).toString().padStart(2, '0')}</span> / ${(PROJECTS_DATA.length).toString().padStart(2, '0')}
             </span>
           </div>
 
@@ -285,8 +291,19 @@ function updateProjectUI(project, lang) {
   const liveBtn = document.getElementById('showcase-live-btn');
 
   if (urlText) urlText.textContent = project.url.replace('https://', '');
-  if (currNum) currNum.textContent = `0${activeIndex + 1}`;
+  if (currNum) currNum.textContent = (activeIndex + 1).toString().padStart(2, '0');
   if (catText) catText.textContent = project.category[lang] || project.category.ar;
+
+  const partPill = document.getElementById('project-partnership-pill');
+  const partText = document.getElementById('project-partnership-text');
+  if (partPill && partText) {
+    if (project.partnership) {
+      partPill.style.display = 'inline-flex';
+      partText.textContent = project.partnership[lang] || project.partnership.ar;
+    } else {
+      partPill.style.display = 'none';
+    }
+  }
   if (catPill) {
     catPill.style.color = project.accentColor;
     catPill.style.borderColor = `${project.accentColor}33`;

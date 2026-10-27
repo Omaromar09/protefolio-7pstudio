@@ -178,16 +178,49 @@ export const PROJECTS_DATA = [
     },
     isLive: true,
     isDemo: true
+  },
+  {
+    id: 'xops',
+    title: {
+      ar: 'لاونج إكس أو بلايستيشن (تجريبي)',
+      en: 'XO PS Gaming Lounge (Demo)'
+    },
+    client: 'XO PS Lounge (تجريبي)',
+    partnership: {
+      ar: 'بالشراكة مع بشمهندس ياسين',
+      en: 'In partnership with Eng. Yassin'
+    },
+    category: {
+      ar: 'لاونج بلايستيشن وحجوزات · تجريبي',
+      en: 'Gaming Lounge & Booking · Demo'
+    },
+    short: {
+      ar: 'نموذج تجريبي متكامل للاونج ألعاب وبلايستيشن (بالشراكة مع بشمهندس ياسين)، بيشمل حجز فوري لـ 15 غرفة معزولة، استعراض أجهزة PS5 ومكتبة الألعاب، وقسم ريست متكامل للمشروبات والسناكس.',
+      en: 'Interactive demo for a gaming lounge (in partnership with Eng. Yassin), featuring online booking for 15 soundproof rooms, PS5 specs, games library, and cafe menu.'
+    },
+    tags: {
+      ar: ['نموذج تجريبي جاهز', 'بالشراكة مع بشمهندس ياسين', 'حجز 15 غرفة أونلاين', 'أجهزة PS5 ومكتبة ألعاب'],
+      en: ['Interactive Demo', 'In partnership with Eng. Yassin', '15 Rooms Booking', 'PS5 & Games Library']
+    },
+    url: 'https://demoplaystaion-plum.vercel.app/',
+    previewImg: '/projects/xops-preview.jpg',
+    accentColor: '#C69255',
+    status: {
+      ar: 'نموذج تجريبي جاهز للعرض (بالشراكة مع بشمهندس ياسين)',
+      en: 'Interactive Demo (In partnership with Eng. Yassin)'
+    },
+    isLive: true,
+    isDemo: true
   }
 ];
 
 export const REAL_STATS = {
-  totalProjects: PROJECTS_DATA.length, // 6
+  totalProjects: PROJECTS_DATA.length, // 7
   liveClientProjects: PROJECTS_DATA.filter(p => !p.isDemo).length, // 3
-  demoProjects: PROJECTS_DATA.filter(p => p.isDemo).length, // 3
+  demoProjects: PROJECTS_DATA.filter(p => p.isDemo).length, // 4
   industriesCovered: {
-    ar: 'متاجر، مطاعم، مساحات، أزياء، وتجارب 3D',
-    en: 'E-commerce, Food, Hubs, Fashion & 3D'
+    ar: 'متاجر، مطاعم، مساحات، جيمينج، أزياء، و3D',
+    en: 'E-commerce, Food, Hubs, Gaming, Fashion & 3D'
   },
   deliveryWindow: {
     ar: '7 - 14 يوم عمل',
