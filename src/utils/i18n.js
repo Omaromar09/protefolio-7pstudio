@@ -80,6 +80,7 @@ export const translations = {
     comparisonSubtitle: 'اسحب الخط الفاصل وشوف الفرق بين موقع بطيء بيضيع زباين، وموقع من 7P فائق السرعة وجذاب',
     compBeforeBadge: 'موقع عادي تقليدي',
     compBeforeTitle: 'بطيء، تصميمه قديم، وبيخسر عملاء',
+    compBeforeDesc: 'قوالب جاهزة مكررة بتزهق الزبون من بطء التحميل وتضيّع أكتر من 60% من المبيعات قبل ما يتواصل معاك.',
     compBeforeSpeed: 'نتيجة سرعة ضعيفة 34/100',
     compBeforeLoad: 'تحميل 4.8 ثانية (الزبون بيمشي)',
     compBeforeMobile: 'مش متجاوب والخطوط متداخلة',
@@ -87,6 +88,7 @@ export const translations = {
 
     compAfterBadge: 'موقع من 7P Studio',
     compAfterTitle: 'سريع، تفاعلي 3D، ومربوط بسلة واتساب',
+    compAfterDesc: 'كود مخصص وخفيف بأحدث المعايير، بيفتح في لمح البصر مع سلة واتساب مباشرة بتضاعف طلباتك.',
     compAfterSpeed: 'نتيجة سرعة قياسية 98/100',
     compAfterLoad: 'تحميل فوري تحت 1.2 ثانية',
     compAfterMobile: 'متجاوب 100% ومصمم للموبايل أولاً',
@@ -330,6 +332,7 @@ export const translations = {
     comparisonSubtitle: 'Drag the split handle to compare a slow, customer-leaking template against a fast, conversion-focused build',
     compBeforeBadge: 'Generic Slow Template',
     compBeforeTitle: 'Clunky, outdated design, losing customers',
+    compBeforeDesc: 'Bloated, generic templates drive visitors away with slow load times, losing over 60% of potential leads.',
     compBeforeSpeed: 'Poor PageSpeed score 34/100',
     compBeforeLoad: '4.8s loading time (clients bounce)',
     compBeforeMobile: 'Broken layout on mobile viewports',
@@ -337,6 +340,7 @@ export const translations = {
 
     compAfterBadge: 'Crafted by 7P Studio',
     compAfterTitle: 'Ultra-fast, interactive 3D, instant WhatsApp cart',
+    compAfterDesc: 'Custom-coded high-performance architecture that loads instantly with seamless WhatsApp checkout.',
     compAfterSpeed: 'Flawless 98/100 PageSpeed score',
     compAfterLoad: 'Sub-1.2s instant page load',
     compAfterMobile: '100% mobile-first precision responsiveness',

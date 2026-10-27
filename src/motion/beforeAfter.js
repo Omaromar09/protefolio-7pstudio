@@ -19,8 +19,8 @@ export function initBeforeAfterSlider() {
     let offsetX = clientX - rect.left;
     let percentage = (offsetX / rect.width) * 100;
 
-    // Constrain percentage between 8% and 92%
-    percentage = Math.max(8, Math.min(92, percentage));
+    // Full range 0% to 100% so user can slide all the way to both edges smoothly
+    percentage = Math.max(0, Math.min(100, percentage));
 
     handle.style.left = `${percentage}%`;
     beforePanel.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
