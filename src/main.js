@@ -5,12 +5,14 @@ import { initTheme } from './utils/theme.js';
 import { initSmoothScroll } from './motion/scroll.js';
 import { initCustomCursor } from './motion/cursor.js';
 import { initScrollAnimations } from './motion/animations.js';
-import { initProjectPopovers } from './motion/popovers.js';
+import { initProjectShowcase } from './motion/projectShowcase.js';
+import { initBeforeAfterSlider } from './motion/beforeAfter.js';
+import { initQuickDiagnosis } from './motion/diagnosis.js';
+import { initProjectEstimator } from './motion/estimator.js';
 import { renderTestimonials } from './utils/testimonials.js';
 import { showToast } from './utils/toast.js';
 import { fireSuccessConfetti } from './utils/confetti.js';
 import { initAudio, toggleAudio, getAudioState } from './intro/soundSynth.js';
-import { initProjectEstimator } from './motion/estimator.js';
 import gsap from 'gsap';
 
 // ==========================================================================
@@ -26,22 +28,34 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Smooth Scrolling & Lenis
   initSmoothScroll();
 
-  // Initialize Custom Cursor & Magnetic Elements
+  // Initialize Custom Cursor & Magnetic Elements (Desktop Only)
   initCustomCursor();
 
-  // Initialize Scroll-Triggered Animations & 3D Tilt
+  // Initialize Scroll-Triggered Animations
   initScrollAnimations();
 
-  // Initialize Interactive Partner Project Popovers
-  initProjectPopovers();
+  // Initialize Pinned Projects Showcase
+  initProjectShowcase();
+
+  // Initialize Before / After Comparison Slider
+  initBeforeAfterSlider();
+
+  // Initialize Quick Diagnosis Lead-Gen Quiz
+  initQuickDiagnosis();
 
   // Initialize 7P Studio Interactive Project Estimator & WhatsApp Quote Engine
   initProjectEstimator();
 
-  // Initialize Client Testimonials / Social Proof
+  // Initialize Expandable Services Bento Tiles
+  setupExpandableServices();
+
+  // Initialize Spotlight Cards Cursor Effect
+  setupSpotlightCards();
+
+  // Initialize Client Testimonials / Social Proof (Strictly rendered only if real reviews exist)
   renderTestimonials(getLanguage());
 
-  // Setup Sound Controls & Synthesizer (Default Muted / No Autoplay)
+  // Setup Sound Controls & Synthesizer (Default Muted / Strictly Opt-in)
   setupSoundControls();
 
   // Setup 3D Scenes (Hero Centerpiece + Skills Constellation)
@@ -50,11 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Setup Deterministic 3-Second Welcome Intro
   setupIntroFlow();
 
-  // Setup Project Filtering
-  setupProjectFilters();
-
   // Setup Interactive Controls & Contact Form
   setupInteractiveControls();
+
+  // Setup Mobile Sticky Mini CTA Bar
+  setupMobileStickyCta();
 
   // Setup Mobile Navigation Drawer
   setupMobileNav();
@@ -92,7 +106,7 @@ export async function ensureHeroSceneLoaded() {
 function setup3DScenes() {
   const heroCanvas = document.getElementById('hero-3d-canvas');
   if (heroCanvas) {
-    // 1. Initialize immediately upon first user interaction (scroll, touch, move, click)
+    // 1. Initialize immediately upon first user interaction
     const onUserInteraction = () => {
       ensureHeroSceneLoaded();
       ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'].forEach(evt => {
@@ -103,7 +117,7 @@ function setup3DScenes() {
       window.addEventListener(evt, onUserInteraction, { once: true, passive: true });
     });
 
-    // 2. Idle fallback: load only after the main thread is completely idle (prevents TBT blocking)
+    // 2. Idle fallback
     if ('requestIdleCallback' in window) {
       window.requestIdleCallback(() => {
         setTimeout(ensureHeroSceneLoaded, 1800);
@@ -113,7 +127,7 @@ function setup3DScenes() {
     }
   }
 
-  // About Skills 3D Constellation - Lazy load via IntersectionObserver when scrolled near
+  // Skills 3D Constellation
   const skillsCanvas = document.getElementById('skills-canvas');
   if (skillsCanvas) {
     const skillsObserver = new IntersectionObserver(async (entries) => {
@@ -194,12 +208,10 @@ function setupSoundControls() {
   if (introSoundToggle) introSoundToggle.addEventListener('click', handleToggle);
   if (navSoundToggle) navSoundToggle.addEventListener('click', handleToggle);
 
-  // Sync sound labels on language change
   window.addEventListener('languagechange', () => {
     updateSoundUI(getAudioState());
   });
 
-  // Initial UI state (strictly default OFF)
   updateSoundUI(false);
 }
 
@@ -217,7 +229,6 @@ function setupIntroFlow() {
 
   if (!introScreen || !introCanvas) return;
 
-  // Initialize Deterministic Intro instance unconditionally so replay always works
   introInstance = new DeterministicIntro(introCanvas, {
     getLang: () => getLanguage(),
     onComplete: () => {
@@ -225,7 +236,6 @@ function setupIntroFlow() {
     }
   });
 
-  // Skip works instantly from frame 0
   if (skipBtn) {
     skipBtn.addEventListener('click', () => {
       if (introInstance) {
@@ -234,7 +244,6 @@ function setupIntroFlow() {
     });
   }
 
-  // Replay from contact section
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'instant' });
@@ -256,7 +265,6 @@ function setupIntroFlow() {
     });
   }
 
-  // Safe sessionStorage check with try/catch
   let hasSeenIntro = false;
   try {
     hasSeenIntro = sessionStorage.getItem('omar_intro_seen') === 'true';
@@ -265,7 +273,6 @@ function setupIntroFlow() {
   }
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Respect prefers-reduced-motion & single-play per session
   if (hasSeenIntro || prefersReducedMotion) {
     introScreen.classList.add('is-hidden');
     triggerHeroReveal();
@@ -280,15 +287,12 @@ function executeOrangeHandoff(introScreen, orangeHandoff) {
   } catch (e) {}
 
   if (orangeHandoff) {
-    // 1. Activate flat overlay
     orangeHandoff.classList.add('active');
     orangeHandoff.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
     orangeHandoff.style.transform = 'translateY(0%)';
 
-    // 2. Hide intro canvas screen
     introScreen.classList.add('is-hidden');
 
-    // 3. Trigger shape wipe: panel sweeps up / contracts vertically
     gsap.to(orangeHandoff, {
       clipPath: 'polygon(0 0, 100% 0, 100% 0%, 0 0%)',
       duration: 0.75,
@@ -301,7 +305,6 @@ function executeOrangeHandoff(introScreen, orangeHandoff) {
     introScreen.classList.add('is-hidden');
   }
 
-  // 4. Reveal hero content picking up from the wipe
   triggerHeroReveal();
 }
 
@@ -334,50 +337,59 @@ function triggerHeroReveal() {
 }
 
 // ==========================================================================
-// 4. PROJECT CATEGORY FILTERING
+// 5. EXPANDABLE SERVICES BENTO TILES
 // ==========================================================================
-function setupProjectFilters() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-  if (!filterBtns.length) return;
-
-  filterBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.getAttribute('data-filter');
-
-      projectCards.forEach((card) => {
-        const cat = card.getAttribute('data-category');
-        if (filter === 'all' || cat === filter) {
-          gsap.to(card, {
-            display: 'flex',
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 0.45,
-            ease: 'power2.out'
-          });
-        } else {
-          gsap.to(card, {
-            opacity: 0,
-            scale: 0.95,
-            y: 15,
-            duration: 0.35,
-            ease: 'power2.in',
-            onComplete: () => {
-              card.style.display = 'none';
-            }
-          });
-        }
-      });
+function setupExpandableServices() {
+  const serviceTiles = document.querySelectorAll('.service-bento-tile');
+  serviceTiles.forEach(tile => {
+    tile.addEventListener('click', () => {
+      const isAlreadyExpanded = tile.classList.contains('is-expanded');
+      serviceTiles.forEach(t => t.classList.remove('is-expanded'));
+      if (!isAlreadyExpanded) {
+        tile.classList.add('is-expanded');
+      }
     });
   });
 }
 
 // ==========================================================================
-// 6. INTERACTIVE CONTROLS & CONTACT FORM
+// 6. SPOTLIGHT BORDER HOVER EFFECT
+// ==========================================================================
+function setupSpotlightCards() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  const cards = document.querySelectorAll('.spotlight-card, .chamfer-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+}
+
+// ==========================================================================
+// 7. STICKY MINI CTA BAR ON MOBILE
+// ==========================================================================
+function setupMobileStickyCta() {
+  const stickyCta = document.getElementById('mobile-sticky-cta');
+  if (!stickyCta) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth < 768) {
+      if (window.scrollY > 450) {
+        stickyCta.classList.add('is-visible');
+      } else {
+        stickyCta.classList.remove('is-visible');
+      }
+    }
+  }, { passive: true });
+}
+
+// ==========================================================================
+// 8. INTERACTIVE CONTROLS & CONTACT FORM
 // ==========================================================================
 function setupInteractiveControls() {
   // One-click copy buttons
@@ -405,7 +417,7 @@ function setupInteractiveControls() {
     });
   });
 
-  // Contact Form Submission (Validation, WhatsApp Direct & Success State)
+  // Contact Form Submission (3 Streamlined Fields)
   const contactForm = document.getElementById('portfolio-contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -413,44 +425,32 @@ function setupInteractiveControls() {
 
       const nameInput = document.getElementById('form-name');
       const contactInput = document.getElementById('form-contact');
-      const serviceSelect = document.getElementById('form-service');
       const messageInput = document.getElementById('form-message');
 
       const name = nameInput.value.trim();
       const contact = contactInput.value.trim();
-      const service = serviceSelect.options[serviceSelect.selectedIndex].text;
       const message = messageInput.value.trim();
       const lang = getLanguage();
 
-      // Reset previous error indicators
       [nameInput, contactInput, messageInput].forEach(inp => inp.classList.remove('input-error'));
-      const existingError = contactForm.querySelector('.form-error-banner');
-      if (existingError) existingError.remove();
 
-      // Validation check
       if (!name || !contact || !message) {
         if (!name) nameInput.classList.add('input-error');
         if (!contact) contactInput.classList.add('input-error');
         if (!message) messageInput.classList.add('input-error');
 
         const errorMsg = lang === 'ar'
-          ? 'من فضلك املأ جميع الحقول المطلوبة (الاسم، طريقة التواصل، والتفاصيل).'
+          ? 'من فضلك املأ جميع الحقول المطلوبة (الاسم، وسيلة التواصل، والتفاصيل).'
           : 'Please fill in all required fields (Name, Contact info, and Details).';
-        
-        const errDiv = document.createElement('div');
-        errDiv.className = 'form-error-banner';
-        errDiv.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <span>${errorMsg}</span>`;
-        contactForm.prepend(errDiv);
         showToast(errorMsg, '⚠️');
         return;
       }
 
-      // Success Confetti
       fireSuccessConfetti();
 
       const whatsappText = lang === 'ar'
-        ? `👋 أهلاً يا بشمهندس عمر ويا بشمهندس مصطفى، أنا *${name}*\n\n📱 وسيلة التواصل: ${contact}\n🎯 محتاج: *${service}*\n\n📝 تفاصيل مشروعي:\n${message}\n\n---\n🌐 مرسلة من موقع 7P Studio (7pstudio.tech)`
-        : `👋 Hi Eng. Omar & Eng. Mostafa, I am *${name}*\n\n📱 Contact: ${contact}\n🎯 Requested: *${service}*\n\n📝 Project details:\n${message}\n\n---\n🌐 Sent from 7P Studio (7pstudio.tech)`;
+        ? `👋 مساء الخير يا عمر ويا مصطفى، أنا *${name}*\n\n📱 وسيلة التواصل: ${contact}\n\n📝 تفاصيل مشروعي:\n${message}\n\n---\n🌐 مرسلة من موقع 7P Studio (7pstudio.tech)`
+        : `👋 Hi Omar & Mostafa, I am *${name}*\n\n📱 Contact: ${contact}\n\n📝 Project details:\n${message}\n\n---\n🌐 Sent from 7P Studio (7pstudio.tech)`;
 
       const encodedMsg = encodeURIComponent(whatsappText);
       const whatsappUrl = `https://wa.me/201515047449?text=${encodedMsg}`;
@@ -460,14 +460,11 @@ function setupInteractiveControls() {
         : `Thank you, ${name}! Redirecting to WhatsApp with your details...`;
       showToast(successToast, '🚀');
 
-      // Visual success state on submit button
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalBtnHTML = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.classList.add('btn-success-state');
       submitBtn.innerHTML = `<i class="fa-solid fa-check"></i> <span>${lang === 'ar' ? 'تم تجهيز الرسالة!' : 'Message Ready!'}</span>`;
 
-      // Open WhatsApp directly
       setTimeout(() => {
         const opened = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         if (!opened || opened.closed || typeof opened.closed === 'undefined') {
@@ -476,7 +473,6 @@ function setupInteractiveControls() {
         contactForm.reset();
         setTimeout(() => {
           submitBtn.disabled = false;
-          submitBtn.classList.remove('btn-success-state');
           submitBtn.innerHTML = originalBtnHTML;
         }, 2500);
       }, 400);
@@ -519,17 +515,28 @@ function setupInteractiveControls() {
     });
   }
 
-  // Floating Back-to-Top Button & Footer Back-to-Top
+  // Floating Back-to-Top Button & Upward Rocket Launch
   const floatingBackTop = document.getElementById('floating-back-top');
   const footerBackTop = document.querySelector('.footer-back-to-top');
 
   const scrollToTop = () => {
+    // Upward launch effect
+    if (floatingBackTop) {
+      gsap.to(floatingBackTop, {
+        y: -30,
+        opacity: 0,
+        duration: 0.35,
+        ease: 'power2.in',
+        onComplete: () => {
+          gsap.set(floatingBackTop, { y: 0, opacity: 1 });
+        }
+      });
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   if (floatingBackTop) {
     floatingBackTop.addEventListener('click', scrollToTop);
-
     window.addEventListener('scroll', () => {
       if (window.scrollY > 380) {
         floatingBackTop.classList.add('is-visible');
@@ -545,7 +552,7 @@ function setupInteractiveControls() {
 }
 
 // ==========================================================================
-// 7. MOBILE NAVIGATION DRAWER
+// 9. MOBILE NAVIGATION DRAWER
 // ==========================================================================
 function setupMobileNav() {
   const menuToggle = document.getElementById('menu-toggle');

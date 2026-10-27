@@ -1,111 +1,163 @@
 /* ==========================================================================
-   OMAR PORTFOLIO / 7P STUDIO — BRAND SPECTRUM: NEON MAGENTA, VIOLET & CYAN
-   Directly derived from the 7P 3D holographic folded geometric logo
-   Top Wing: Electric Neon Magenta (#E02BFB / #D946EF)
-   Center Fold: Cosmic Royal Violet & Indigo (#7C3AED / #6366F1)
-   Bottom Wing: Electric Cyber Cyan & Aqua (#00F0FF / #0EA5E9)
-   Cosmic Void Backdrop: Deep Obsidian (#070913 / #0B0E24)
+   7P STUDIO — COMPLETE DESIGN SYSTEM & TOKEN ARCHITECTURE
+   Brand: Neon Bolt in Violet (#8B3DFF), Magenta (#FF3DF0), and Cyan (#2EE6FF)
+   Deep Cosmic Backdrops: #07060C and #070A14
+   Typography: Alexandria (Display), IBM Plex Sans Arabic (Body),
+               Unbounded (Numerals/Badges), JetBrains Mono (Tech Tags)
    ========================================================================== */
 
+@import './fonts.css';
+
 :root {
-  /* Surfaces & Backgrounds (Crisp Pearl / Light Luxury Theme) */
-  --bg-dark: #FAF9FE;              /* Pearl canvas with soft violet tint */
-  --bg-navy: #F3F0FF;              /* Elevated surface tint */
-  --bg-surface: #FFFFFF;           /* Card & Container surface */
-  --bg-elevated: #F8F5FF;          /* Slightly elevated cards / hover states */
-  --bg-card: rgba(255, 255, 255, 0.92);
-  --bg-card-hover: #FFFFFF;
-  --bg-glass: rgba(255, 255, 255, 0.88);
-  --bg-glass-strong: rgba(255, 255, 255, 0.96);
+  /* ------------------------------------------------------------------------
+     1. SURFACES & SYSTEM BACKGROUNDS (Near-black luxury studio aesthetic)
+     ------------------------------------------------------------------------ */
+  --bg-primary: #07060C;            /* Obsidian canvas */
+  --bg-secondary: #0A0914;          /* Secondary background layer */
+  --bg-surface: #100E1E;            /* Elevated panel surface */
+  --bg-surface-elevated: #16132A;   /* Higher elevation surface */
+  --bg-card: rgba(16, 14, 30, 0.72);/* Bento card translucent fill */
+  --bg-card-hover: rgba(22, 19, 42, 0.88);
+  --bg-glass: rgba(16, 14, 30, 0.82);
+  --bg-glass-strong: rgba(10, 9, 20, 0.94);
+  --bg-glass-pill: rgba(255, 255, 255, 0.05);
 
-  /* 7P Studio Signature Palette */
-  --accent-magenta: #E02BFB;       /* Electric Neon Magenta */
-  --accent-magenta-light: #F472B6;
-  --accent-magenta-deep: #C026D3;
-  --accent-magenta-glow: rgba(224, 43, 251, 0.38);
+  /* Legacy aliases for backward compatibility */
+  --bg-dark: var(--bg-primary);
+  --bg-navy: var(--bg-secondary);
 
-  --accent-violet: #7C3AED;        /* Cosmic Royal Violet */
-  --accent-violet-light: #8B5CF6;
-  --accent-violet-deep: #6D28D9;
-  --accent-violet-glow: rgba(124, 58, 237, 0.35);
+  /* ------------------------------------------------------------------------
+     2. 7P SIGNATURE COLOR PALETTE (Precision tuned, rich, un-muddy)
+     ------------------------------------------------------------------------ */
+  /* Violet (Cosmic Base) */
+  --accent-violet: #8B3DFF;
+  --accent-violet-light: #A86BFF;
+  --accent-violet-deep: #6D25D9;
+  --accent-violet-glow: rgba(139, 61, 255, 0.32);
 
-  --accent-cyan: #00F0FF;          /* Pure Cyber Cyan */
-  --accent-cyan-light: #38BDF8;
-  --accent-cyan-bright: #06B6D4;
-  --accent-cyan-glow: rgba(0, 240, 255, 0.38);
+  /* Magenta (Electric Energy) */
+  --accent-magenta: #FF3DF0;
+  --accent-magenta-light: #FF70F4;
+  --accent-magenta-deep: #D916C8;
+  --accent-magenta-glow: rgba(255, 61, 240, 0.32);
 
-  --accent-ice: #F3E8FF;           /* Soft lilac ice for badges */
-  --accent-ice-light: #FAF5FF;
+  /* Cyan (Cyber Clarity) */
+  --accent-cyan: #2EE6FF;
+  --accent-cyan-light: #6AEFFF;
+  --accent-cyan-bright: #00D5F0;
+  --accent-cyan-glow: rgba(46, 230, 255, 0.32);
 
-  /* Backward-Compatible Aliases (Harmonized with 7P Spectrum) */
-  --accent-blue: #7C3AED;          /* Royal Violet primary */
-  --accent-blue-deep: #6D28D9;
-  --accent-blue-light: #8B5CF6;
-  --accent-blue-glow: rgba(124, 58, 237, 0.35);
-
-  --accent-orange: #E02BFB;        /* Re-routed to Electric Magenta */
-  --accent-orange-bright: #00F0FF;
-  --accent-orange-light: #F472B6;
-  --accent-orange-glow: rgba(224, 43, 251, 0.35);
-  --accent-coral: #E02BFB;
-  --accent-teal: #00F0FF;
-  --accent-gold: #00F0FF;
-  --accent-ember: #7C3AED;
-
-  /* Additional Harmonious Accents */
-  --accent-amber: #F59E0B;
-  --accent-amber-light: #FBBF24;
+  /* Supporting Functional Accents */
+  --accent-amber: #FFB800;
+  --accent-amber-light: #FFCA40;
   --accent-emerald: #10B981;
-  --accent-indigo: #6366F1;
-  --accent-pink: #EC4899;
+  --accent-emerald-light: #34D399;
+  --accent-emerald-glow: rgba(16, 185, 129, 0.32);
+  --accent-coral: #FF4757;
 
-  /* 7P Holographic Gradients */
-  --grad-primary: linear-gradient(135deg, #E02BFB 0%, #7C3AED 48%, #00F0FF 100%);
-  --grad-logo: linear-gradient(135deg, #E02BFB 0%, #7C3AED 52%, #00F0FF 100%);
-  --grad-blue: linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #00F0FF 100%);
-  --grad-cyan: linear-gradient(135deg, #7C3AED 0%, #00F0FF 100%);
-  --grad-magenta: linear-gradient(135deg, #E02BFB 0%, #7C3AED 100%);
-  --grad-card-border: linear-gradient(135deg, rgba(224, 43, 251, 0.35) 0%, rgba(124, 58, 237, 0.25) 50%, rgba(0, 240, 255, 0.35) 100%);
-  --grad-glow: radial-gradient(circle, rgba(224, 43, 251, 0.16) 0%, transparent 70%);
+  /* Aliases */
+  --accent-blue: var(--accent-violet);
+  --accent-blue-deep: var(--accent-violet-deep);
+  --accent-blue-light: var(--accent-violet-light);
+  --accent-blue-glow: var(--accent-violet-glow);
+  --accent-orange: var(--accent-magenta);
+  --accent-teal: var(--accent-cyan);
+  --accent-gold: var(--accent-amber);
 
-  /* Typography */
-  --font-display-en: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-heading-en: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-body-en: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  /* ------------------------------------------------------------------------
+     3. 7P SIGNATURE GRADIENTS & RADIALS
+     ------------------------------------------------------------------------ */
+  --grad-bolt: linear-gradient(135deg, #8B3DFF 0%, #FF3DF0 50%, #2EE6FF 100%);
+  --grad-primary: linear-gradient(135deg, #8B3DFF 0%, #FF3DF0 100%);
+  --grad-cyan: linear-gradient(135deg, #8B3DFF 0%, #2EE6FF 100%);
+  --grad-magenta: linear-gradient(135deg, #FF3DF0 0%, #8B3DFF 100%);
+  --grad-card-border: linear-gradient(135deg, rgba(139, 61, 255, 0.3) 0%, rgba(255, 61, 240, 0.2) 50%, rgba(46, 230, 255, 0.3) 100%);
+  --grad-subtle-glow: radial-gradient(circle, rgba(139, 61, 255, 0.12) 0%, transparent 70%);
 
-  --font-display-ar: 'Cairo', 'IBM Plex Sans Arabic', system-ui, sans-serif;
-  --font-heading-ar: 'Cairo', 'Tajawal', system-ui, sans-serif;
-  --font-body-ar: 'Cairo', 'Tajawal', system-ui, sans-serif;
+  /* ------------------------------------------------------------------------
+     4. TYPOGRAPHY SCALE & SELF-HOSTED FAMILIES
+     ------------------------------------------------------------------------ */
+  --font-display: 'Alexandria', system-ui, -apple-system, sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
+  --font-numeral: 'Unbounded', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  --font-mono: 'Space Mono', 'JetBrains Mono', monospace;
+  /* Heading & body overrides for seamless i18n */
+  --font-heading: var(--font-display);
+  --font-display-en: 'Alexandria', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body-en: 'IBM Plex Sans Arabic', system-ui, sans-serif;
 
-  /* Defaults */
-  --font-display: var(--font-display-ar);
-  --font-heading: var(--font-heading-ar);
-  --font-body: var(--font-body-ar);
+  /* Type Scale */
+  --text-hero: clamp(2.4rem, 5.5vw, 4.4rem);
+  --text-h1: clamp(2rem, 4vw, 3.2rem);
+  --text-h2: clamp(1.65rem, 3vw, 2.4rem);
+  --text-h3: clamp(1.25rem, 2vw, 1.6rem);
+  --text-body: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
 
-  /* Text Colors (High Contrast Deep Navy & Slate - WCAG AAA Compliant) */
-  --text-main: #0B0E24;            /* Deep Obsidian Slate */
-  --text-soft: #2E335B;            /* Slate Indigo */
-  --text-muted: #4B5282;           /* Accessible Secondary Text */
-  --text-dim: #6B729E;             /* Tertiary Text */
-  --text-hud: rgba(11, 14, 36, 0.85);
+  /* ------------------------------------------------------------------------
+     5. TEXT TONES (High-contrast, crisp readable levels)
+     ------------------------------------------------------------------------ */
+  --text-main: #FFFFFF;             /* Pure white headers & primary copy */
+  --text-sub: #E2E8F0;              /* Soft high-contrast body */
+  --text-muted: #94A3B8;            /* Secondary information */
+  --text-dim: #64748B;              /* Technical subtext & borders */
+  --text-hud: rgba(255, 255, 255, 0.92);
 
-  /* Borders & Glows */
-  --border-subtle: rgba(124, 58, 237, 0.16);
-  --border-glass: rgba(224, 43, 251, 0.22);
-  --border-glow: #7C3AED;
-  --border-amber: rgba(245, 158, 11, 0.35);
+  /* ------------------------------------------------------------------------
+     6. BORDERS & GLASS DETAIL
+     ------------------------------------------------------------------------ */
+  --border-subtle: rgba(139, 61, 255, 0.16);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-glow: #8B3DFF;
+  --border-active: #FF3DF0;
 
-  /* Glows & Shadows */
-  --glow-orange: 0 0 25px rgba(224, 43, 251, 0.38);
-  --glow-amber: 0 0 25px rgba(124, 58, 237, 0.3);
-  --glow-cyan: 0 0 25px rgba(0, 240, 255, 0.38);
-  --glow-magenta: 0 0 25px rgba(224, 43, 251, 0.45);
-  --shadow-card: 0 12px 32px -8px rgba(124, 58, 237, 0.1), 0 4px 12px -2px rgba(11, 14, 36, 0.04);
-  --shadow-lg: 0 24px 48px -12px rgba(124, 58, 237, 0.16), 0 8px 18px -4px rgba(11, 14, 36, 0.08);
+  /* ------------------------------------------------------------------------
+     7. SHADOWS & CONTROLLED GLOW (No heavy glow soup!)
+     ------------------------------------------------------------------------ */
+  --shadow-card: 0 16px 36px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 61, 255, 0.08);
+  --shadow-elevated: 0 24px 48px -12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 61, 240, 0.1);
+  --glow-subtle-violet: 0 0 20px rgba(139, 61, 255, 0.25);
+  --glow-subtle-magenta: 0 0 20px rgba(255, 61, 240, 0.25);
+  --glow-subtle-cyan: 0 0 20px rgba(46, 230, 255, 0.25);
 
-  /* Spacing & Radii */
+  /* ------------------------------------------------------------------------
+     8. BENTO & BRAND CLIP-PATHS (Chamfered bolt-notched geometry)
+     ------------------------------------------------------------------------ */
+  --clip-chamfer: polygon(
+    0 0,
+    calc(100% - 16px) 0,
+    100% 16px,
+    100% 100%,
+    16px 100%,
+    0 calc(100% - 16px)
+  );
+  --clip-chamfer-sm: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+
+  /* ------------------------------------------------------------------------
+     9. SECTION DOMINANT THEMES
+     ------------------------------------------------------------------------ */
+  --theme-hero-accent: var(--accent-violet);
+  --theme-projects-accent: var(--accent-magenta);
+  --theme-comparison-accent: var(--accent-cyan);
+  --theme-diagnosis-accent: var(--accent-violet);
+  --theme-estimator-accent: var(--accent-violet);
+  --theme-services-accent: var(--accent-cyan);
+  --theme-trust-accent: var(--accent-emerald);
+  --theme-process-accent: var(--accent-cyan);
+  --theme-contact-accent: var(--accent-magenta);
+
+  /* ------------------------------------------------------------------------
+     10. SPACING & LAYOUT METRICS
+     ------------------------------------------------------------------------ */
   --container-max: 1240px;
   --header-height: 80px;
   --radius-sm: 8px;
@@ -122,41 +174,8 @@
   --transition-smooth: 0.6s var(--ease-out-expo);
 }
 
-/* LTR overrides for English mode */
+/* English LTR font family consistency */
 html[lang="en"] {
-  --font-display: var(--font-display-en);
-  --font-heading: var(--font-heading-en);
-  --font-body: var(--font-body-en);
-}
-
-/* ==========================================================================
-   DARK THEME: OBSIDIAN COSMIC VOID, NEON MAGENTA, VIOLET & CYAN AURA
-   Directly mirrors the glowing 3D logo environment
-   ========================================================================== */
-[data-theme="dark"] {
-  /* Surfaces & Backgrounds */
-  --bg-dark: #070913;              /* Obsidian Deep Space Void */
-  --bg-navy: #0B0E24;              /* Deep Cosmic Indigo Navy */
-  --bg-surface: #101432;           /* Elevated surface */
-  --bg-elevated: #171C44;          /* Slate violet elevation */
-  --bg-card: rgba(16, 20, 50, 0.82);
-  --bg-card-hover: rgba(23, 28, 68, 0.95);
-  --bg-glass: rgba(11, 14, 36, 0.85);
-  --bg-glass-strong: rgba(7, 9, 21, 0.94);
-
-  /* Text Colors (Crisp White and Soft Slate - WCAG AA/AAA compliant) */
-  --text-main: #F8FAFC;            /* Crisp White */
-  --text-soft: #E2E8F0;            /* Soft Slate */
-  --text-muted: #CBD5E1;           /* Clear Slate */
-  --text-dim: #94A3B8;             /* Tertiary Slate */
-  --text-hud: rgba(248, 250, 252, 0.92);
-
-  /* Borders */
-  --border-subtle: rgba(124, 58, 237, 0.24);
-  --border-glass: rgba(224, 43, 251, 0.28);
-  --border-glow: #00F0FF;
-
-  /* Shadows & Luminous Glows */
-  --shadow-card: 0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 24px rgba(224, 43, 251, 0.14);
-  --shadow-lg: 0 24px 50px -12px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 240, 255, 0.2);
+  --font-display: 'Alexandria', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Alexandria', 'Plus Jakarta Sans', system-ui, sans-serif;
 }

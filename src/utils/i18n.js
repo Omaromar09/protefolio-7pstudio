@@ -1,7 +1,8 @@
 /**
  * ==========================================================================
  * BILINGUAL i18n SYSTEM — ARABIC (DEFAULT) & ENGLISH
- * 7P Studio (Eng: Omar / Mostafa) — High Performance, Clean Web Development
+ * 7P Studio (Omar & Mostafa Gad) — High Performance, Clean Web Development
+ * Egyptian Arabic, confident, direct, light humor, no inflated titles.
  * ==========================================================================
  */
 
@@ -11,9 +12,8 @@ import { renderTestimonials } from './testimonials.js';
 // 1. EASILY EDITABLE CONSTANTS (تعديل الأسعار والملاحظات بسهولة هنا)
 // ==========================================================================
 export const PRICING_CONFIG = {
-  // غير القيمة دي في أي وقت لتعديل سعر البداية لصفحات الهبوط
-  landingPageStartingFrom_ar: '[X]',
-  landingPageStartingFrom_en: '[X]'
+  landingPageStartingFrom_ar: '[EDIT: 3,500 ج.م]',
+  landingPageStartingFrom_en: '[EDIT: 3,500 EGP]'
 };
 
 // ==========================================================================
@@ -22,8 +22,8 @@ export const PRICING_CONFIG = {
 export const translations = {
   ar: {
     // Page Meta
-    pageTitle: '7P STUDIO — م. عمر & م. مصطفى جاد | مواقع عصرية وتفاعلية وسريعة',
-    pageMetaDesc: '7P STUDIO / م. عمر & م. مصطفى جاد - مهندسو ومطورو ويب نبني مواقع نظيفة، عصرية، تفاعلية وسريعة ونحل مشاكل المواقع. تصميم وتطوير مواقع، أبعاد ثلاثية 3D، ودعم فني متكامل.',
+    pageTitle: '7P STUDIO — عمر & مصطفى جاد | استوديو مواقع عصرية وتفاعلية وسريعة',
+    pageMetaDesc: '7P STUDIO / عمر & مصطفى جاد - استوديو تطوير مواقع نبني مواقع نظيفة، عصرية، تفاعلية وسريعة ونحول زوارك لعملاء فعليين. أبعاد ثلاثية 3D وربط واتساب ودعم فني متكامل.',
 
     // Intro Stage
     soundOn: 'تشغيل الصوت',
@@ -31,86 +31,92 @@ export const translations = {
     skipIntro: 'تخطي',
 
     // Navigation & Header
-    navBrand: 'STUDIO',
+    navBrand: '7P STUDIO',
     navHome: 'الرئيسية',
     navAbout: 'عنّا',
     navWork: 'أعمالنا',
+    navComparison: 'الفرق مع 7P',
+    navDiagnosis: 'شخّص موقعك',
     navServices: 'خدماتنا',
     navEstimator: 'احسب مشروعك',
+    navTrust: 'ليه 7P',
     navProcess: 'طريقة شغلنا',
     navContact: 'تواصل معانا',
     navCta: 'تكلم معانا',
     mobileCta: 'ابدأ موقعك معانا',
-    availableBadge: 'متاحين لمشاريع',
+    availableBadge: 'متاحين لمشاريع جديدة',
     waTooltipTitle: 'متاحين للشات دلوقتي',
     waTooltipSub: 'كلمنا واتساب مباشر',
     copyLinkSuccess: 'تم نسخ رابط المشروع بنجاح!',
 
     // Hero Section
-    heroBadge1: '⚡ جاهز لنقل بيزنسك للرقمية أسرع وبدون صداع',
-    heroBadge2: 'ويبسايت على كيفك وحركات 3D خفيفة',
-    heroTitle: 'ويبسايت على كيفك، <span class="highlight">شكله رايق،</span> وسريع.',
-    heroSubtitle: 'أهلاً بيك! إحنا <strong>بشمهندس عمر</strong> و<strong>بشمهندس مصطفى جاد</strong> (7P Studio). بنبني مواقع عصرية للبيزنس والشركات، بنحل أي مشاكل تقنية أو باجات، وبنظبط موقعك بأعلى كفاءة وبدون صداع.',
+    heroBadge1: '⚡ استوديو متخصص في بناء مواقع البيزنس الحديثة',
+    heroBadge2: 'أبعاد ثلاثية 3D وتجاوب صاروخي على الموبايل',
+    heroTitle: 'مواقع عصرية، <span class="highlight">شكلها رايق،</span> وسريعة بتجيب زباين.',
+    heroSubtitle: 'أهلاً بيك! إحنا <strong>عمر</strong> و<strong>مصطفى جاد</strong> في 7P Studio. بنبني مواقع استثنائية وسريعة تُحوّل زوارك لعملاء فعليين، بنحل المشاكل البرمجية، وبنظبط موقعك بأعلى كفاءة وبدون صداع.',
     heroCtaWork: 'شوف شغلنا',
+    heroCtaEstimator: 'اعرف سعر مشروعك في 30 ثانية',
     heroCtaContact: 'ابدأ مشروعك معانا 🚀',
-    heroStat1: 'تسليم سريع وفي الميعاد بالظبط',
-    heroStat2: 'مضبوط 100% على الموبايل والكمبيوتر',
-    heroStat3: 'دعم فني وتعديلات بعد التسليم',
     hero3dHint: 'حرك الماوس لتلف المجسم 3D',
 
-    // Partners & Projects Showcase
-    partnersBadge: 'أعمالنا ومشاريعنا',
-    partnersTitle: 'أعمالنا <span class="highlight">ومشاريع نفذناها</span>',
-    partnersSubtitle: 'دوس على أي موقع عشان تفتحه، أو وقّف الماوس عليه عشان تشوف تفاصيله',
-    badgeClientWork: 'مشروع اتسلم لعميل',
-    badgeReadyDesign: 'شغال وجاهز يتعدل ليك',
-    badgeDemoDesign: 'نموذج تجريبي جاهز',
-    visitLiveBtn: 'افتح الموقع لايف',
+    // Real Proof Row (Computed from data, no fake numbers)
+    heroProofProjectsVal: '6 مشاريع',
+    heroProofProjectsLabel: 'شغالة لايف دلوقتي',
+    heroProofIndustriesVal: '5 مجالات',
+    heroProofIndustriesLabel: 'متاجر، مطاعم، أزياء، 3D',
+    heroProofDeliveryVal: '7 - 14 يوم',
+    heroProofDeliveryLabel: 'تسليم قياسي متفق عليه',
+    heroProofSupportVal: 'طوال الأسبوع',
+    heroProofSupportLabel: 'رد ومتابعة على واتساب',
 
-    p1Title: 'متجر آية للاكسسوارات (Aya Accessories)',
-    p1Short: 'متجر إكسسوارات وباندانات هاندميد، مع فلاتر سريعة وسلة لطلب الأوردر على الواتساب علطول.',
-    p1Tag1: 'سلة طلب',
-    p1Tag2: 'واتساب فوري',
-    p1Tag3: 'Mobile-First',
+    // Showcase Section
+    showcaseBadge: 'معرض الأعمال التفاعلي',
+    showcaseTitle: 'أعمالنا <span class="highlight">ومشاريع نفذناها</span>',
+    showcaseSubtitle: 'تصفح مشاريعنا الحية، جرب تفاصيلها، أو اطلب موقع بنفس الجودة لبيزنسك',
 
-    p2Title: 'حلواني فيستيفال فايف ستار (Festival Pastry)',
-    p2Short: 'موقع لحلواني تورت وحلويات في الهرم، بيعرض الأصناف والأسعار وفروع المحل والطلب أونلاين.',
-    p2Tag1: 'منيو وتورت تفاعلية',
-    p2Tag2: 'فروع ومواعيد',
-    p2Tag3: 'خفيف وسريع',
+    // Before / After Comparison
+    comparisonBadge: 'ليه تختار 7P؟',
+    comparisonTitle: 'شوف الفرق بنفسك: <span class="highlight">موقع عادي vs موقع من 7P</span>',
+    comparisonSubtitle: 'اسحب الخط الفاصل وشوف الفرق بين موقع بطيء بيضيع زباين، وموقع من 7P فائق السرعة وجذاب',
+    compBeforeBadge: 'موقع عادي تقليدي',
+    compBeforeTitle: 'بطيء، تصميمه قديم، وبيخسر عملاء',
+    compBeforeSpeed: 'نتيجة سرعة ضعيفة 34/100',
+    compBeforeLoad: 'تحميل 4.8 ثانية (الزبون بيمشي)',
+    compBeforeMobile: 'مش متجاوب والخطوط متداخلة',
+    compBeforeSales: 'مفيش سلة واتساب ولا حجز سريع',
 
-    p3Title: 'مطعم المحترف (Elmo7taref Restaurant)',
-    p3Short: 'موقع لمطعم وجبات ومشويات، فيه فلاتر سريعة للأكل ومعاينة للساندوتشات وطلب واتساب مباشر.',
-    p3Tag1: 'أصناف ومعاينة',
-    p3Tag2: 'حساب فاتورة',
-    p3Tag3: 'طلب مباشر',
+    compAfterBadge: 'موقع من 7P Studio',
+    compAfterTitle: 'سريع، تفاعلي 3D، ومربوط بسلة واتساب',
+    compAfterSpeed: 'نتيجة سرعة قياسية 98/100',
+    compAfterLoad: 'تحميل فوري تحت 1.2 ثانية',
+    compAfterMobile: 'متجاوب 100% ومصمم للموبايل أولاً',
+    compAfterSales: 'سلة وفاتورة واتساب فورية لزيادة المبيعات',
 
-    p4Title: 'كيان للملابس (Kayan Apparel)',
-    p4Short: 'موقع لبراند ملابس، بيعرض الكولكشن بشكل شيك وسلس مع سلة مشتريات تفاعلية.',
-    p4Tag1: 'كولكشن وسلايدر',
-    p4Tag2: 'سلة مشتريات',
-    p4Tag3: 'أنيق وعصري',
+    // Quick Diagnosis
+    diagnosisBadge: 'شخّص موقعك في دقيقة',
+    diagnosisTitle: 'مش متأكد موقعك محتاج إيه؟ <span class="highlight">شخّصه في دقيقة</span>',
+    diagnosisSubtitle: 'جاوب 5 أسئلة سريعة وهنقولك بالظبط إيه اللي محتاجه بيزنسك لزيادة مبيعاته:',
 
-    p5Title: 'مساحة عمل الڤراندا (El Veranda)',
-    p5Short: 'موقع لوورك سبيس ومكان مذاكرة في شبرا، فيه أسعار الساعات والغرف والحجز.',
-    p5Tag1: 'محاسبة بالساعة',
-    p5Tag2: 'تفاصيل الغرف',
-    p5Tag3: 'تسليم سريع',
-
-    p6Title: 'متجر رَوْنَـق للعطور الفاخرة (Rawnaq 3D)',
-    p6Short: 'متجر وتجربة تفاعلية لبراند عطور فاخرة، فيه زجاجة عطر 3D تفاعلية مع إمكانية التدوير ورشّة عطر، وسلة شراء وطلب مباشر عبر واتساب.',
-    p6Tag1: 'زجاجة عطر 3D تفاعلية',
-    p6Tag2: 'سلة طلب واتساب',
-    p6Tag3: 'ضمان وشحن فاخر',
-
-    // Testimonials / Social Proof (Placeholder/Configured)
+    // Testimonials / Social Proof
     testimonialsBadge: 'آراء العملاء',
     testimonialsTitle: 'كلام من <span class="highlight">أصحاب المشاريع</span>',
     testimonialsDesc: 'تجارب حقيقية لعملاء اشتغلنا سوا وطلعنا بمواقع لايف ناجحة:',
 
+    // Trust Section
+    trustBadge: 'ثقة وأمان',
+    trustTitle: 'ليه تثق في <span class="highlight">7P Studio</span> لشغلك؟',
+    trustSubtitle: 'شغل شفاف، التزام كامل بالمواعيد، وضمان جودة حقيقي بعد التسليم:',
+    trustLiveHeader: '6 مشاريع حقيقية شغالة لايف دلوقتي:',
+    trustPromise1Title: 'رد سريع وتواصل مباشر',
+    trustPromise1Desc: 'تواصل مباشر مع عمر ومصطفى، بنسمع تفاصيل بيزنسك وبنرد علطول بدون تأخير.',
+    trustPromise2Title: 'تسليم في الميعاد المحدد',
+    trustPromise2Desc: 'بنتفق على جدول زمني واضح وبنلتزم بيه باليوم والساعة بدون مماطلة.',
+    trustPromise3Title: 'دعم فني وضمان بعد الإطلاق',
+    trustPromise3Desc: 'مش بنسيبك بعد التسليم؛ بنفضل معاك في أي تعديل وصيانة وتدريب على إدارة موقعك.',
+
     // About Section
-    aboutBadge: 'مين عمر ومصطفى',
-    aboutTitle: 'من غير لف ودوران.. موقعك معمول على كيفك مع بشمهندس عمر وبشمهندس جاد.',
+    aboutBadge: 'عن الفريق',
+    aboutTitle: 'من غير لف ودوران.. موقعك معمول على كيفك مع عمر ومصطفى جاد.',
     aboutDesc: 'هدفنا إن موقعك يكون شكله رايق، سريع جداً على الموبايل والكمبيوتر، ومريح للعميل اللي بيفتحه.',
     aboutP1: 'إحنا عمر ومصطفى جاد، شركاء ومطورو ويب في 7P Studio. بنبني مواقع من الصفر أو بنعدل على موقعك القديم، وبنصلح أي مشكلة برمجية عشان يرجع يشتغل تمام بأعلى أداء.',
     aboutP2: 'لو عندك فكرة موقع جديدة، أو عندك موقع حالي وفيه باجات ومحتاج صيانة، تسريع، أو إضافة ميزات وصفحات إضافية — بنعملهولك خطوة بخطوة وبتنسيق كامل يناسب بيزنسك.',
@@ -125,8 +131,8 @@ export const translations = {
     pillar4Title: 'تعديل وتفصيل على طلبك',
     pillar4Desc: 'بنظبط الألوان والتصميم والأقسام على حسب طلبك ونوع شغلك.',
 
-    // Skills Matrix (Strictly Web Development)
-    skillsTitle: 'تقنيات وأدوات بنشتغل بيها',
+    // Skills Matrix
+    skillsTitle: 'تقنيات بنعتمد عليها في الشغل',
     skillJs: 'جافاسكريبت (JavaScript)',
     skillHtml: 'HTML5 القياسي',
     skillCss: 'CSS3 وتصميم متجاوب',
@@ -139,22 +145,34 @@ export const translations = {
     // Services Section
     servicesBadge: 'خدماتنا',
     servicesTitle: 'إيه اللي نقدر نساعدك فيه؟',
-    servicesDesc: 'شغل واضح ومحدد حسب اللي محتاجه بيزنسك بالظبط:',
+    servicesDesc: 'اضغط على أي خدمة لترى التفاصيل الكاملة وما يتضمنه التنفيذ:',
     s1Title: 'تطوير موقع كامل (Landing Page / E-commerce)',
     s1Desc: 'من الفكرة والتصميم لحد كود شغال وسريع، متوافق مع الموبايل ومربوط بسلة شراء ودومين واستضافة جاهزة.',
+    s1DeliverablesTitle: 'ما يتضمنه العمل:',
+    s1Deliverables: 'تصميم واجهة متجاوبة، سلة شراء وفاتورة، لوحة تحكم سهلة، ربط دومين واستضافة.',
+    s1AudienceTitle: 'مناسب لمين:',
+    s1Audience: 'المتاجر والمطاعم، البراندات، والأنشطة التجارية الراغبة في مبيعات رقمية.',
+
     s2Title: 'حل الباجات والصيانة السريعة',
     s2Desc: 'لو موقعك فيه مشكلة، بطيء، أزرار مش شغالة، أو شكله متلخبط على التليفون، بنصلحهولك فوري وبدون صداع.',
+    s2DeliverablesTitle: 'ما يتضمنه العمل:',
+    s2Deliverables: 'فحص الأخطاء البرمجية، تسريع الصور والأكواد، وضبط العرض على كل شاشات الموبايل.',
+    s2AudienceTitle: 'مناسب لمين:',
+    s2Audience: 'أصحاب المواقع التي تعاني من بطء في التحميل أو أخطاء تمنع إتمام الطلبات.',
+
     s3Title: 'تعديل وتطوير الـ UI/UX',
     s3Desc: 'تظبيط وتحديث شكل موقعك الحالي وتحويله لتصميم عصري جذاب يريح الزبون ويزود ثقته في بيزنسك.',
+    s3DeliverablesTitle: 'ما يتضمنه العمل:',
+    s3Deliverables: 'إعادة هيكلة الصفحات، ألوان متناسقة، أيقونات وفونتات مميزة، وتحسين رحلة المستخدم.',
+    s3AudienceTitle: 'مناسب لمين:',
+    s3Audience: 'المواقع القديمة التي تحتاج مظهر عصري ينافس في السوق الحالي.',
+
     s4Title: 'ربط واتساب وميزات تفاعلية ذكية',
     s4Desc: 'ربط مباشر لطلبات الشراء على الواتساب، فورمات تواصل وحجز سريعة، ولمسات تفاعلية 3D تميزك عن غيرك.',
-
-    // Pricing Hint (No Fixed Numbers)
-    pricingHintTag: 'تكلفة تقديرية',
-    pricingHintTitle: 'عايز تعرف متوسط التكلفة؟',
-    pricingHintDesc: `صفحات الهبوط بتبدأ من <strong class="pricing-highlight">${PRICING_CONFIG.landingPageStartingFrom_ar}</strong>. المتاجر والمشاريع الأكبر بنحدد تكلفتها بدقة بعد ما نتكلم ونفهم تفاصيل طلبك.`,
-    pricingLandingStart: PRICING_CONFIG.landingPageStartingFrom_ar,
-    pricingHintCta: 'اطلب عرض سعر لمشروعك',
+    s4DeliverablesTitle: 'ما يتضمنه العمل:',
+    s4Deliverables: 'ربط سلة الواتساب التلقائية، مجسمات 3D تفاعلية بـ Three.js، وأنيميشن ناعم بـ GSAP.',
+    s4AudienceTitle: 'مناسب لمين:',
+    s4Audience: 'البراندات التي تريد إبهار عملائها وتسهيل التواصل الفوري المباشر.',
 
     // 7P Project Estimator
     estimatorBadge: 'حاسبة وكوتيشن 7P الذكية',
@@ -188,28 +206,30 @@ export const translations = {
     estSpeedExpDays: 'تسليم عاجل خلال 48-72 ساعة',
     hudLabelScope: 'نوع المشروع',
     hudLabelDelivery: 'وقت التسليم المقدر',
+    hudLabelPriceRange: 'التكلفة التقديرية',
     hudLabelFeatures: 'الميزات المختارة',
     hudLabelStack: 'حزمة الكود',
     hudGuaranteeText: 'ضمان جودة 7P Studio: تسليم بدون باجات، كود نظيف وسريع، وتعديلات ومتابعة مستمرة بعد التسليم.',
-    hudCtaBtn: 'إرسال الكوتيشن وبدء التنفيذ',
+    hudCtaBtn: 'إرسال الكوتيشن لواتساب وبدء التنفيذ',
+    hudSaveQuoteBtn: 'نسخ وحفظ تفاصيل الكوتيشن',
     hudSubhint: 'تجهيز فوري للرسالة والتواصل المباشر مع عمر ومصطفى',
 
     // Process Section
     processBadge: 'طريقة شغلنا',
     processTitle: 'بنشتغل إزاي؟',
-    processDesc: 'أربع خطوات بسيطة بدون تضييع وقت:',
+    processDesc: 'أربع خطوات بسيطة بدون تضييع وقت وبدون تعقيد:',
     pr1Step: 'الخطوة 01',
     pr1Title: 'نتفق على المطلوب',
-    pr1Desc: 'بنتكلم شات أو مكالمة سريعة، بنعرف منك محتاج إيه بالظبط وبنحدد الوقت والتكلفة.',
+    pr1Desc: 'بنتكلم شات أو مكالمة سريعة، بنعرف منك محتاج إيه بالظبط وبنحدد الوقت والتكلفة بدقة.',
     pr2Step: 'الخطوة 02',
-    pr2Title: 'الشكل والتوزيع',
-    pr2Desc: 'بنستقر على التصميم والألوان وتقسيمة الصفحات المناسبة لفكرتك.',
+    pr2Title: 'التصميم والتوزيع',
+    pr2Desc: 'بنستقر على التصميم والألوان وتقسيمة الصفحات المناسبة لفكرتك ولجمهورك المستهدف.',
     pr3Step: 'الخطوة 03',
-    pr3Title: 'الكود والتنفيذ',
-    pr3Desc: 'بنبني الموقع وبنضيف الحركات، وبنجرب كل حاجة عشان تتأكد إنها شغالة 100% على أي شاشة.',
+    pr3Title: 'الكود والأداء',
+    pr3Desc: 'بنبني الموقع بأحدث تقنيات الويب، وبنختبر السرعة والتجاوب على كل الموبايلات والشاشات.',
     pr4Step: 'الخطوة 04',
-    pr4Title: 'التسليم والمراجعة',
-    pr4Desc: 'بنرفع الموقع لايف، بنجرب كل زرار وكل رابط، وبتستلم موقعك جاهز وشغال تمام.',
+    pr4Title: 'التسليم والدعم',
+    pr4Desc: 'بنرفع الموقع لايف ونربطه بالدومين، وبنفضل معاك بالدعم والتعديلات لضمان نجاحه.',
 
     // Contact Section
     contactBadge: 'تواصل معانا',
@@ -219,26 +239,23 @@ export const translations = {
     waDirectBtn: 'شات مباشر على واتساب 🚀',
     waDirectSub: 'رد فوري لمناقشة فكرتك والبدء علطول',
     cMethodPhone: 'واتساب / اتصال',
-    cMethodEmail: 'الإيميل',
     cMethodInsta: 'انستجرام',
     cMethodTiktok: 'تيك توك',
     replayIntroBtn: 'إعادة تشغيل الإنترو 3D',
-    formNameLabel: 'اسمك',
+    formNameLabel: 'اسمك الكريم',
     formNamePlaceholder: 'مثلاً: كريم، أحمد، سارة',
-    formContactLabel: 'طريقة التواصل',
-    formContactPlaceholder: 'رقم الواتساب أو التليفون',
-    formServiceLabel: 'محتاج إيه؟',
-    formOptBuildProject: 'بناء موقع لمشروع',
-    formOptScratch: 'تطوير موقع كامل من الصفر (Landing Page / E-commerce)',
-    formOptReady: 'تعديل وتخصيص نموذج جاهز لبيزنسي',
-    formOptBug: 'حل باجات وصيانة سريعة لموقع موجود',
-    formOptCustom: 'تطوير الـ UI/UX وإضافة صفحات وميزات',
-    formOpt3d: 'ربط واتساب وميزات تفاعلية 3D',
-    formMsgLabel: 'تفاصيل طلبك',
-    formMsgPlaceholder: 'اكتب باختصار محتاج موقع جديد، ولا عندك مشكلة معينة عايز تصلحها...',
-    formSubmitBtn: 'ابعت الرسالة',
+    formContactLabel: 'رقم الواتساب أو الهاتف',
+    formContactPlaceholder: '01XXXXXXXXX',
+    formMsgLabel: 'تفاصيل مشروعك أو مشكلتك',
+    formMsgPlaceholder: 'اكتب باختصار محتاج موقع جديد، متجر، أو عندك مشكلة معينة عايز تصلحها...',
+    formSubmitBtn: 'ابعت التفاصيل على واتساب',
     formPrivacyNote: 'بياناتك بتتبعت على واتساب بس ومش بنحفظها',
     privacyPolicyLink: 'سياسة الخصوصية',
+
+    // Sticky Mobile CTA
+    stickyCtaTitle: 'عندك فكرة مشروع؟',
+    stickyCtaSub: 'عمر ومصطفى متاحين الآن',
+    stickyCtaBtn: 'كلمنا واتساب',
 
     // Privacy Modal
     privacyModalTitle: 'سياسة الخصوصية وحماية البيانات',
@@ -249,14 +266,14 @@ export const translations = {
     privacyModalCloseBtn: 'فهمت، إغلاق',
 
     // Footer
-    footerCopy: '© 2026 7P Studio (Eng: Omar / Mostafa) — جميع الحقوق محفوظة. مواقع عصرية معمولة على كيفك.',
+    footerCopy: '© 2026 7P Studio (عمر & مصطفى جاد) — جميع الحقوق محفوظة. مواقع عصرية معمولة على كيفك.',
     backToTopBtn: 'للأعلى'
   },
 
   en: {
     // Page Meta
-    pageTitle: '7P STUDIO — Eng. Omar & Eng. Mostafa Gad | Modern Interactive Web Development',
-    pageMetaDesc: '7P STUDIO / Eng. Omar & Eng. Mostafa Gad - Modern, interactive web development partners creating fast, high-converting websites and fixing technical bugs.',
+    pageTitle: '7P STUDIO — Omar & Mostafa Gad | Modern Interactive Web Development Studio',
+    pageMetaDesc: '7P STUDIO / Omar & Mostafa Gad - Modern web development studio creating fast, high-converting interactive websites and fixing technical bugs.',
 
     // Intro Stage
     soundOn: 'Sound On',
@@ -264,14 +281,17 @@ export const translations = {
     skipIntro: 'Skip',
 
     // Navigation & Header
-    navBrand: 'STUDIO',
+    navBrand: '7P STUDIO',
     navHome: 'Home',
     navAbout: 'About Us',
     navWork: 'Our Work',
-    navServices: 'Our Services',
+    navComparison: 'Why 7P',
+    navDiagnosis: 'Diagnosis',
+    navServices: 'Services',
     navEstimator: 'Estimator',
-    navProcess: 'How We Work',
-    navContact: 'Contact Us',
+    navTrust: 'Trust',
+    navProcess: 'Process',
+    navContact: 'Contact',
     navCta: 'Talk With Us',
     mobileCta: 'Start Your Project With Us',
     availableBadge: 'Available for work',
@@ -280,283 +300,279 @@ export const translations = {
     copyLinkSuccess: 'Project link copied!',
 
     // Hero Section
-    heroBadge1: '⚡ Ready to take your business digital faster & headache-free',
-    heroBadge2: 'Websites made your way & smooth 3D motion',
-    heroTitle: 'Websites made your way, <span class="highlight">looking sharp,</span> and lightning fast.',
-    heroSubtitle: "Hey there! We are <strong>Eng. Omar</strong> and <strong>Eng. Mostafa Gad</strong> (7P Studio). We craft high-performance websites for clients and businesses, resolve complex bugs, and engineer your digital presence headache-free.",
+    heroBadge1: '⚡ Studio specializing in high-performance business web development',
+    heroBadge2: 'Interactive 3D WebGL & lightning fast mobile responsiveness',
+    heroTitle: 'Websites made your way, <span class="highlight">looking sharp,</span> converting visitors.',
+    heroSubtitle: "Hey there! We are <strong>Omar</strong> and <strong>Mostafa Gad</strong> (7P Studio). We craft high-performance websites that convert visitors into paying clients, resolve complex bugs, and engineer your digital presence headache-free.",
     heroCtaWork: 'See Our Work',
+    heroCtaEstimator: 'Calculate Your Quote in 30s',
     heroCtaContact: 'Start Your Project With Us 🚀',
-    heroStat1: 'Fast on-time delivery guaranteed',
-    heroStat2: '100% responsive on mobile & desktop',
-    heroStat3: 'Post-delivery support & tweaks',
     hero3dHint: 'Drag or hover to rotate 3D',
 
-    // Partners & Projects Showcase
-    partnersBadge: 'Our Work & Projects',
-    partnersTitle: 'Our Work & <span class="highlight">Featured Projects</span>',
-    partnersSubtitle: 'Click any site to visit it live, or hover to preview project details',
-    badgeClientWork: 'Delivered Client Project',
-    badgeReadyDesign: 'Ready to Customize',
-    badgeDemoDesign: 'Interactive Demo Concept',
-    visitLiveBtn: 'Open Live Site',
+    // Real Proof Row
+    heroProofProjectsVal: '6 Projects',
+    heroProofProjectsLabel: 'Live & Operational',
+    heroProofIndustriesVal: '5 Domains',
+    heroProofIndustriesLabel: 'Stores, Food, Fashion, 3D',
+    heroProofDeliveryVal: '7 - 14 Days',
+    heroProofDeliveryLabel: 'Standard Turnaround',
+    heroProofSupportVal: '7 Days a Week',
+    heroProofSupportLabel: 'Active WhatsApp Support',
 
-    p1Title: 'Aya Accessories (Handmade Boutique)',
-    p1Short: 'Handmade accessories boutique with instant product filters and direct WhatsApp ordering.',
-    p1Tag1: 'Direct Cart',
-    p1Tag2: 'WhatsApp Orders',
-    p1Tag3: 'Mobile-First',
+    // Showcase Section
+    showcaseBadge: 'Interactive Showcase',
+    showcaseTitle: 'Our Work & <span class="highlight">Featured Projects</span>',
+    showcaseSubtitle: 'Browse our live projects, inspect features, or commission a site with the same standard',
 
-    p2Title: 'Festival Pastry Five Star',
-    p2Short: 'Commercial website for a pastry and torte brand in Haram, showcasing items, prices, and branches.',
-    p2Tag1: 'Interactive Menu',
-    p2Tag2: 'Branches & Hours',
-    p2Tag3: 'Fast & Lightweight',
+    // Before / After Comparison
+    comparisonBadge: 'Why Choose 7P?',
+    comparisonTitle: 'See the difference: <span class="highlight">Generic Website vs 7P Studio</span>',
+    comparisonSubtitle: 'Drag the split handle to compare a slow, customer-leaking template against a fast, conversion-focused build',
+    compBeforeBadge: 'Generic Slow Template',
+    compBeforeTitle: 'Clunky, outdated design, losing customers',
+    compBeforeSpeed: 'Poor PageSpeed score 34/100',
+    compBeforeLoad: '4.8s loading time (clients bounce)',
+    compBeforeMobile: 'Broken layout on mobile viewports',
+    compBeforeSales: 'No direct WhatsApp cart or quick checkout',
 
-    p3Title: 'Elmo7taref Restaurant & Grill',
-    p3Short: 'Fast-casual restaurant site with meal filters, burger preview modal, and instant WhatsApp orders.',
-    p3Tag1: 'Meal Preview',
-    p3Tag2: 'Bill Summary',
-    p3Tag3: 'Direct Checkout',
+    compAfterBadge: 'Crafted by 7P Studio',
+    compAfterTitle: 'Ultra-fast, interactive 3D, instant WhatsApp cart',
+    compAfterSpeed: 'Flawless 98/100 PageSpeed score',
+    compAfterLoad: 'Sub-1.2s instant page load',
+    compAfterMobile: '100% mobile-first precision responsiveness',
+    compAfterSales: 'Direct WhatsApp order checkout boosting sales',
 
-    p4Title: 'Kayan Apparel Store',
-    p4Short: 'Modern apparel brand storefront showcasing collections smoothly with an interactive cart.',
-    p4Tag1: 'Sleek Catalog',
-    p4Tag2: 'Slide-out Cart',
-    p4Tag3: 'Smooth Motion',
+    // Quick Diagnosis
+    diagnosisBadge: '1-Minute Diagnosis',
+    diagnosisTitle: 'Unsure what your site needs? <span class="highlight">Diagnose in 1 minute</span>',
+    diagnosisSubtitle: 'Answer 5 quick questions to get an instant tailored recommendation to grow your business:',
 
-    p5Title: 'El Veranda Workspace',
-    p5Short: 'Coworking and study hub web presence in Shubra with room rates and booking inquiries.',
-    p5Tag1: 'Hourly Rates',
-    p5Tag2: 'Room Amenities',
-    p5Tag3: 'Fast Delivery',
-
-    p6Title: 'Rawnaq Luxury Perfumes (3D Experience)',
-    p6Short: 'Interactive luxury perfume storefront featuring an interactive 3D bottle with drag rotation, spray animation, and direct WhatsApp checkout.',
-    p6Tag1: 'Interactive 3D Bottle',
-    p6Tag2: 'WhatsApp Cart',
-    p6Tag3: 'Demo / Ready Concept',
-
-    // Testimonials / Social Proof
-    testimonialsBadge: 'What Clients Say',
+    // Testimonials
+    testimonialsBadge: 'Client Reviews',
     testimonialsTitle: 'Words from <span class="highlight">Business Owners</span>',
-    testimonialsDesc: 'Real experiences from clients we teamed up with to launch live, successful websites:',
+    testimonialsDesc: 'Real feedback from partners we collaborated with to launch live digital experiences:',
+
+    // Trust Section
+    trustBadge: 'Trust & Guarantees',
+    trustTitle: 'Why Trust <span class="highlight">7P Studio</span>?',
+    trustSubtitle: 'Transparent workflow, strict adherence to deadlines, and post-launch quality guarantee:',
+    trustLiveHeader: '6 verified projects live right now:',
+    trustPromise1Title: 'Swift direct communication',
+    trustPromise1Desc: 'Direct access to Omar and Mostafa with zero middleman friction.',
+    trustPromise2Title: 'Guaranteed on-time delivery',
+    trustPromise2Desc: 'We commit to clear milestones and deliver on schedule without delays.',
+    trustPromise3Title: 'Post-launch warranty & support',
+    trustPromise3Desc: 'We stand by our work, providing ongoing assistance and site maintenance.',
 
     // About Section
-    aboutBadge: 'About Us (Omar & Mostafa)',
-    aboutTitle: 'No fluff, no headache. Engineered your way with Eng. Omar & Eng. Mostafa Gad.',
+    aboutBadge: 'About the Team',
+    aboutTitle: 'No fluff, no headache. Engineered your way with Omar & Mostafa Gad.',
     aboutDesc: 'Our goal is to build sites that look stunning, run lightning fast on mobile and desktop, and feel effortless to use.',
     aboutP1: "We are Omar and Mostafa Gad, web development partners at 7P Studio. We build websites from scratch, revamp existing platforms, and resolve technical bugs so your digital presence runs at peak performance.",
     aboutP2: "Whether you have a new project idea, an existing site requiring optimization or bug fixing, or want to expand with new pages and custom integrations — we engineer it step by step to fit your business perfectly.",
 
-    // About Pillars
-    pillar1Title: 'Fast & Lightweight',
-    pillar1Desc: 'Loads in seconds, browses smoothly on any phone, and keeps things lightweight.',
-    pillar2Title: 'Fast Bug Fixing',
-    pillar2Desc: 'We track down the root cause in code or CSS and fix it without delay.',
-    pillar3Title: 'Smooth Motion & 3D',
-    pillar3Desc: 'Subtle animations and 3D touches to make your site stand out.',
-    pillar4Title: 'Full Customization',
-    pillar4Desc: 'Tuning colors, layout, and sections to match exactly what you want.',
+    // Pillars
+    pillar1Title: 'Fast & Lightweight Browsing',
+    pillar1Desc: 'Sites open in seconds and run smoothly across mobile devices without lag.',
+    pillar2Title: 'Bug Fixing & Optimization',
+    pillar2Desc: 'We pinpoint root causes in code and resolve them cleanly so you save time.',
+    pillar3Title: 'Subtle 3D & Smooth Motion',
+    pillar3Desc: 'Refined Three.js and GSAP interactions giving your site a signature modern feel.',
+    pillar4Title: 'Customized to Your Needs',
+    pillar4Desc: 'We tailor the styling, architecture, and sections specifically to your business niche.',
 
-    // Skills Matrix (Strictly Web Development)
-    skillsTitle: 'Technologies & Tools We Use',
-    skillJs: 'JavaScript (ES6+)',
+    // Skills
+    skillsTitle: 'Core Technologies We Depend On',
+    skillJs: 'Standard JavaScript (ESNext)',
     skillHtml: 'Semantic HTML5',
-    skillCss: 'CSS3 & Responsive Layouts',
-    skillGsap: 'GSAP Animations & Motion',
-    skillThree: 'Three.js 3D Interactive',
+    skillCss: 'CSS3 & Responsive Design',
+    skillGsap: 'GSAP Animation & Motion',
+    skillThree: 'Three.js & 3D WebGL',
     skillResp: 'Mobile-First Responsive',
-    skillBug: 'Bug Fixing & Debugging',
-    skillCustom: 'Custom Site Tweaks',
+    skillBug: 'Bug Fixing & Diagnostics',
+    skillCustom: 'Customization & Revamping',
 
-    // Services Section
+    // Services
     servicesBadge: 'Our Services',
-    servicesTitle: 'How We Can Help You',
-    servicesDesc: 'Clear, straightforward work tailored to what you actually need:',
-    s1Title: 'Full Website & E-commerce Development',
-    s1Desc: 'From idea to delivery: complete, fast, mobile-first websites with custom domain, hosting, and order carts.',
-    s2Title: 'Instant Bug Fixing & Maintenance',
-    s2Desc: 'Got broken buttons, slow load times, or layout glitches on mobile? We troubleshoot and fix them immediately.',
+    servicesTitle: 'What We Can Do for Your Business',
+    servicesDesc: 'Click on any service tile to view full deliverables and target fit:',
+    s1Title: 'Full Website Development (Landing / E-commerce)',
+    s1Desc: 'From concept and design to clean, performant code with shopping cart, domain, and hosting ready.',
+    s1DeliverablesTitle: 'What is included:',
+    s1Deliverables: 'Responsive UI, WhatsApp cart & checkout, easy management, domain & hosting configuration.',
+    s1AudienceTitle: 'Who it is for:',
+    s1Audience: 'E-commerce brands, restaurants, and businesses seeking high-converting digital storefronts.',
+
+    s2Title: 'Bug Fixing & Rapid Maintenance',
+    s2Desc: 'If your site is slow, buttons fail, or layout breaks on mobile, we fix it cleanly and promptly.',
+    s2DeliverablesTitle: 'What is included:',
+    s2Deliverables: 'Bug debugging, image/asset compression, mobile CSS repair, and speed optimization.',
+    s2AudienceTitle: 'Who it is for:',
+    s2Audience: 'Site owners experiencing performance bottlenecks or glitches preventing checkout.',
+
     s3Title: 'UI/UX Redesign & Modernization',
-    s3Desc: 'Revamp your existing website with a fresh, modern aesthetic, sharper colors, and better user experience.',
-    s4Title: 'WhatsApp Integration & Smart Features',
-    s4Desc: 'Direct WhatsApp checkout, interactive booking forms, and sleek 3D motion that sets your business apart.',
+    s3Desc: 'Modernizing your existing layout into a sleek, trustworthy digital experience.',
+    s3DeliverablesTitle: 'What is included:',
+    s3Deliverables: 'Page restructuring, unified typography and color harmony, conversion UX improvements.',
+    s3AudienceTitle: 'Who it is for:',
+    s3Audience: 'Outdated websites needing a competitive visual upgrade.',
 
-    // Pricing Hint (No Fixed Numbers)
-    pricingHintTag: 'Estimated Investment',
-    pricingHintTitle: 'Wondering about project pricing?',
-    pricingHintDesc: `Landing pages start from <strong class="pricing-highlight">${PRICING_CONFIG.landingPageStartingFrom_en}</strong>. Stores and bigger projects are priced after we talk through your exact needs.`,
-    pricingLandingStart: PRICING_CONFIG.landingPageStartingFrom_en,
-    pricingHintCta: 'Get a custom quote',
+    s4Title: 'WhatsApp Integration & 3D Features',
+    s4Desc: 'Direct WhatsApp sales funnel, booking modals, and interactive 3D touches.',
+    s4DeliverablesTitle: 'What is included:',
+    s4Deliverables: 'Automated WhatsApp cart messages, Three.js 3D models, and smooth GSAP choreography.',
+    s4AudienceTitle: 'Who it is for:',
+    s4Audience: 'Brands aiming to impress clients and make purchasing instantaneous.',
 
-    // 7P Project Estimator
-    estimatorBadge: '7P Smart Project Estimator',
-    estimatorTitle: 'Configure Your Scope & Get an <span class="highlight">Instant WhatsApp Quote</span>',
-    estimatorDesc: 'Select your project scope, choose key features, review estimated turnaround time, and launch an instant WhatsApp inquiry.',
-    estStep1Title: 'Core Project Scope',
-    estStep1Desc: 'Select one',
-    estType1Name: 'Landing Page',
-    estType1Desc: 'High conversion for single product or lead gen',
-    estType2Name: 'E-Commerce Store',
-    estType2Desc: 'Product catalog, cart, and instant billing',
-    estType3Name: 'Corporate / Business',
-    estType3Desc: 'Showcase agency/company services & credibility',
-    estType4Name: 'Smart QR Menu',
-    estType4Desc: 'Mobile QR menu with direct WhatsApp order',
-    estType5Name: 'Bug Fix & Upgrade',
-    estType5Desc: 'Fix bugs, boost PageSpeed, solve mobile issues',
-    estStep2Title: 'Power Features',
-    estStep2Desc: 'Choose all that apply',
-    estFeat1: 'Instant WhatsApp Chat & Sync',
-    estFeat2: '100% Fluid Mobile Responsive',
-    estFeat3: '95+ Google PageSpeed Guarantee',
-    estFeat4: 'Interactive 3D / WebGL Atmosphere',
-    estFeat5: 'Full Domain & Cloud Hosting Setup',
-    estFeat6: 'SEO & Social Sharing Optimization',
-    estStep3Title: 'Delivery Timeline',
-    estStep3Desc: 'Pick turnaround',
-    estSpeedStdTitle: 'Standard Production',
-    estSpeedStdDays: '5 - 7 business days',
-    estSpeedExpTitle: 'Express Rush Delivery',
-    estSpeedExpDays: 'Fast-track in 48 - 72 hours ⚡',
+    // Estimator
+    estimatorBadge: '7P Project Architect',
+    estimatorTitle: 'Calculate your scope and receive <span class="highlight">instant WhatsApp quote</span>',
+    estimatorDesc: 'Choose your scope and features to view estimated turnaround, stack, and kick off immediately.',
+    estStep1Title: 'Primary Project Type',
+    estStep1Desc: 'Select one type',
+    estType1Name: 'High-Converting Landing Page',
+    estType1Desc: 'Fast launch for products or services to boost leads',
+    estType2Name: 'E-Commerce Store & Cart',
+    estType2Desc: 'Catalog showcase, instant cart, and WhatsApp orders',
+    estType3Name: 'Corporate Business Website',
+    estType3Desc: 'Professional service presentation and trust building',
+    estType4Name: 'Smart QR Menu & Ordering',
+    estType4Desc: 'Fast QR menu for cafes and restaurants with instant checkout',
+    estType5Name: 'Bug Fixing & Speed Boost',
+    estType5Desc: 'Resolve bugs, speed up loading, and fix mobile responsiveness',
+    estStep2Title: 'Suggested Features',
+    estStep2Desc: 'Select all that apply',
+    estFeat1: 'Instant WhatsApp Sync',
+    estFeat2: '100% Mobile Responsive',
+    estFeat3: 'Ultra Speed 95+ Score',
+    estFeat4: '3D WebGL Atmosphere',
+    estFeat5: 'Domain & Cloud Setup',
+    estFeat6: 'SEO & OpenGraph Optimization',
+    estStep3Title: 'Turnaround Speed',
+    estStep3Desc: 'Select priority',
+    estSpeedStdTitle: 'Standard Turnaround',
+    estSpeedStdDays: 'Careful precision execution without rush',
+    estSpeedExpTitle: 'Express Rush',
+    estSpeedExpDays: 'Urgent turnaround in 48-72 hours',
     hudLabelScope: 'Project Scope',
-    hudLabelDelivery: 'Estimated Turnaround',
-    hudLabelFeatures: 'Active Features',
+    hudLabelDelivery: 'Estimated Delivery',
+    hudLabelPriceRange: 'Estimated Range',
+    hudLabelFeatures: 'Selected Features',
     hudLabelStack: 'Tech Stack',
-    hudGuaranteeText: '7P Studio Quality Pledge: Zero-bug delivery, ultra-clean code, and continuous post-launch support.',
-    hudCtaBtn: 'Launch Quote on WhatsApp',
-    hudSubhint: 'Instant message generation & direct chat with Omar & Mostafa',
+    hudGuaranteeText: '7P Studio Guarantee: Bug-free delivery, clean performant code, and post-launch support.',
+    hudCtaBtn: 'Send Quote to WhatsApp & Start',
+    hudSaveQuoteBtn: 'Copy & Save Quote Details',
+    hudSubhint: 'Instant WhatsApp message preparation for Omar & Mostafa',
 
-    // Process Section
-    processBadge: 'How We Work',
-    processTitle: 'How We Work Together',
-    processDesc: 'Four straightforward steps without wasted time:',
-    pr1Step: 'STEP 01',
-    pr1Title: 'Clarify What You Need',
-    pr1Desc: 'A quick chat or call to understand your goal, agree on timeline, and set the price.',
-    pr2Step: 'STEP 02',
-    pr2Title: 'Layout & Design',
-    pr2Desc: 'We settle on the colors, layout, and sections that fit your idea.',
-    pr3Step: 'STEP 03',
-    pr3Title: 'Coding & Building',
-    pr3Desc: 'We build the site, add smooth motion, and test everything thoroughly so it works 100% on any screen.',
-    pr4Step: 'STEP 04',
-    pr4Title: 'Review & Delivery',
-    pr4Desc: 'We launch live, verify every button and link, and hand over your ready-to-use site.',
+    // Process
+    processBadge: 'Our Process',
+    processTitle: 'How We Work',
+    processDesc: 'Four straightforward steps without wasting time or over-complicating:',
+    pr1Step: 'Step 01',
+    pr1Title: 'Align & Understand',
+    pr1Desc: 'A focused discussion to pinpoint your exact goals, requirements, timeline, and cost.',
+    pr2Step: 'Step 02',
+    pr2Title: 'Design & Structure',
+    pr2Desc: 'We solidify the UI aesthetic, colors, and layout tailored for your target audience.',
+    pr3Step: 'Step 03',
+    pr3Title: 'Code & Performance',
+    pr3Desc: 'We engineer the site with modern web standards and test speed across all screens.',
+    pr4Step: 'Step 04',
+    pr4Title: 'Launch & Support',
+    pr4Desc: 'We deploy the site live, connect custom domains, and support you after launch.',
 
-    // Contact Section
+    // Contact
     contactBadge: 'Contact Us',
-    contactTitle: 'Got a project idea and want a standout website?',
-    contactDesc: 'Reach out right now and let’s get started — direct WhatsApp chat, or drop a message below and we will get back to you immediately.',
-    waFastBadge: 'Fastest way to talk',
-    waDirectBtn: 'Chat Directly on WhatsApp 🚀',
-    waDirectSub: 'Instant response to discuss your project',
-    cMethodPhone: 'WhatsApp / Phone',
-    cMethodEmail: 'Email',
+    contactTitle: 'Have a project idea you want to bring to life?',
+    contactDesc: 'Message us now — direct WhatsApp chat, or leave your details in the form and we will reply promptly.',
+    waFastBadge: 'Fastest Response',
+    waDirectBtn: 'Direct WhatsApp Chat 🚀',
+    waDirectSub: 'Instant reply to discuss your project and start',
+    cMethodPhone: 'WhatsApp / Call',
     cMethodInsta: 'Instagram',
     cMethodTiktok: 'TikTok',
     replayIntroBtn: 'Replay 3D Intro',
     formNameLabel: 'Your Name',
-    formNamePlaceholder: 'e.g. Karim or Sarah',
-    formContactLabel: 'Contact Info',
-    formContactPlaceholder: 'WhatsApp or phone number',
-    formServiceLabel: 'What do you need?',
-    formOptBuildProject: 'Build a website for a project',
-    formOptScratch: 'Build a full site from scratch (Landing Page / E-commerce)',
-    formOptReady: 'Customize one of the showcase designs',
-    formOptBug: 'Fix bugs and fast maintenance on existing site',
-    formOptCustom: 'UI/UX revamp and add new pages/features',
-    formOpt3d: 'WhatsApp integration & interactive 3D touches',
-    formMsgLabel: 'Details',
-    formMsgPlaceholder: 'Briefly describe what you want to build or what needs fixing...',
-    formSubmitBtn: 'Send Message',
-    formPrivacyNote: 'Your details go to WhatsApp only and are not stored.',
+    formNamePlaceholder: 'e.g. Karim, Ahmed, Sarah',
+    formContactLabel: 'WhatsApp or Phone Number',
+    formContactPlaceholder: '01XXXXXXXXX or International',
+    formMsgLabel: 'Project Details or Issue',
+    formMsgPlaceholder: 'Briefly describe your vision, new site requirements, or bugs you need fixed...',
+    formSubmitBtn: 'Send Details via WhatsApp',
+    formPrivacyNote: 'Your details are sent strictly to WhatsApp and never stored on any server',
     privacyPolicyLink: 'Privacy Policy',
 
+    // Sticky Mobile CTA
+    stickyCtaTitle: 'Have a project idea?',
+    stickyCtaSub: 'Omar & Mostafa are online',
+    stickyCtaBtn: 'Chat WhatsApp',
+
     // Privacy Modal
-    privacyModalTitle: 'Privacy Policy & Data Transparency',
-    privacyModalP1: 'At 7P Studio, your privacy is straightforward and strictly respected:',
-    privacyModalItem1: '<strong>Zero Backend Storage:</strong> This website does not log, save, or store any personal information submitted through forms.',
-    privacyModalItem2: '<strong>Direct WhatsApp Transmission:</strong> Submitting the contact form creates an instant pre-filled message directly on your own WhatsApp client.',
-    privacyModalItem3: '<strong>No Ad Tracking:</strong> We do not use tracking or advertising cookies of any kind.',
-    privacyModalCloseBtn: 'Got it, Close',
+    privacyModalTitle: 'Privacy Policy & Data Protection',
+    privacyModalP1: 'At 7P Studio, your privacy is straightforward and strictly guarded:',
+    privacyModalItem1: '<strong>No Storage Servers or Database:</strong> The website does not store or log any data you enter into the contact form.',
+    privacyModalItem2: '<strong>Direct WhatsApp Transmission:</strong> Submitting formats your details into an encrypted message on your own WhatsApp application directly.',
+    privacyModalItem3: '<strong>Zero Tracking Cookies:</strong> We do not deploy any third-party advertising or invasive tracking cookies.',
+    privacyModalCloseBtn: 'Understood, Close',
 
     // Footer
-    footerCopy: '© 2026 7P Studio (Eng: Omar / Mostafa). All rights reserved. Websites crafted your way.',
-    backToTopBtn: 'Back to Top'
+    footerCopy: '© 2026 7P Studio (Omar & Mostafa Gad) — All Rights Reserved. Modern Websites Engineered Your Way.',
+    backToTopBtn: 'Top'
   }
 };
 
-// ==========================================================================
-// 3. STORAGE & LANGUAGE RETRIEVAL (Safe localStorage with try/catch)
-// ==========================================================================
-export function getSavedLanguage() {
-  try {
-    const val = localStorage.getItem('omar_lang');
-    return (val === 'ar' || val === 'en') ? val : 'ar';
-  } catch (e) {
-    return 'ar';
+let currentLang = 'ar';
+
+export function initLanguage() {
+  const savedLang = localStorage.getItem('omar_portfolio_lang') || 'ar';
+  setLanguage(savedLang, false);
+
+  const langButtons = document.querySelectorAll('.lang-btn');
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetLang = btn.getAttribute('data-lang');
+      if (targetLang && targetLang !== currentLang) {
+        setLanguage(targetLang, true);
+      }
+    });
+  });
+}
+
+export function setLanguage(lang, persist = true) {
+  if (lang !== 'ar' && lang !== 'en') return;
+  currentLang = lang;
+
+  if (persist) {
+    try {
+      localStorage.setItem('omar_portfolio_lang', lang);
+    } catch (e) {}
   }
-}
 
-export function saveLanguage(lang) {
-  try {
-    localStorage.setItem('omar_lang', lang);
-  } catch (e) {}
-}
+  const html = document.documentElement;
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
 
-let currentLang = getSavedLanguage();
+  applyTranslations(lang);
+  updateLanguageToggles(lang);
+
+  renderTestimonials(lang);
+
+  window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
+}
 
 export function getLanguage() {
   return currentLang;
 }
 
-export function setLanguage(lang) {
-  if (lang !== 'ar' && lang !== 'en') return;
-  currentLang = lang;
-  saveLanguage(lang);
-
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-  applyTranslations(lang);
-  updateToggleButtons(lang);
-  renderTestimonials(lang);
-
-  // Dispatch custom event for any listeners (sound, scenes, etc.)
-  window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
+export function t(key) {
+  const dict = translations[currentLang] || translations.ar;
+  return dict[key] || key;
 }
 
-// ==========================================================================
-// 4. TRANSLATIONS DOM APPLICATION
-// ==========================================================================
-export function applyTranslations(lang) {
-  const dict = translations[lang];
-  if (!dict) return;
+function applyTranslations(lang) {
+  const dict = translations[lang] || translations.ar;
 
-  // 1. Text elements
-  const elements = document.querySelectorAll('[data-i18n]');
-  elements.forEach((el) => {
-    const key = el.getAttribute('data-i18n');
-    if (dict[key] !== undefined) {
-      if (dict[key].includes('<')) {
-        el.innerHTML = dict[key];
-      } else {
-        el.textContent = dict[key];
-      }
-    }
-  });
-
-  // 2. Placeholders
-  const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
-  placeholderElements.forEach((el) => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (dict[key] !== undefined) {
-      el.setAttribute('placeholder', dict[key]);
-    }
-  });
-
-  // 3. Document Title & Meta Description
   if (dict.pageTitle) {
     document.title = dict.pageTitle;
   }
@@ -564,36 +580,30 @@ export function applyTranslations(lang) {
   if (metaDesc && dict.pageMetaDesc) {
     metaDesc.setAttribute('content', dict.pageMetaDesc);
   }
-}
 
-function updateToggleButtons(lang) {
-  const buttons = document.querySelectorAll('.lang-btn');
-  buttons.forEach((btn) => {
-    if (btn.getAttribute('data-lang') === lang) {
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
-    } else {
-      btn.classList.remove('active');
-      btn.setAttribute('aria-pressed', 'false');
+  const i18nElements = document.querySelectorAll('[data-i18n]');
+  i18nElements.forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) {
+      el.innerHTML = dict[key];
+    }
+  });
+
+  const i18nPlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
+  i18nPlaceholders.forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (dict[key]) {
+      el.setAttribute('placeholder', dict[key]);
     }
   });
 }
 
-// ==========================================================================
-// 5. INITIALIZATION
-// ==========================================================================
-export function initLanguage() {
-  const initial = getSavedLanguage();
-  setLanguage(initial);
-
-  // Bind clicks on all toggle buttons (desktop + mobile drawer)
-  document.querySelectorAll('.lang-btn').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetLang = btn.getAttribute('data-lang');
-      if (targetLang) {
-        setLanguage(targetLang);
-      }
-    });
+function updateLanguageToggles(lang) {
+  const langButtons = document.querySelectorAll('.lang-btn');
+  langButtons.forEach(btn => {
+    const btnLang = btn.getAttribute('data-lang');
+    const isActive = btnLang === lang;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
   });
 }
