@@ -26,9 +26,9 @@ export const translations = {
     pageMetaDesc: '7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك.',
 
     // Intro Stage
-    soundOn: 'تشغيل الصوت',
-    soundOff: 'كتم الصوت',
-    skipIntro: 'تخطي',
+    soundOn: 'SOUND ON',
+    soundOff: 'SOUND OFF',
+    skipIntro: 'SKIP',
 
     // Navigation & Header
     navBrand: '7P STUDIO',

@@ -142,11 +142,15 @@ export class DeterministicIntro {
       ctx.scale(scale, scale);
 
       const floodElapsed = t - 2.813;
+      const leftVirtualX = -offsetX / scale;
+      const virtualWidth = vw / scale;
+      const targetX = isPortrait ? (leftVirtualX + 120) : 140;
+      const maxLineWidth = isPortrait ? Math.min(1250, virtualWidth - 240) : 1250;
 
       // Deep Navy accent bar slides in from left in 0.22s
       const barProgress = Math.min(floodElapsed / 0.22, 1);
       const barEase = 1 - Math.pow(1 - barProgress, 3);
-      const barX = -200 + barEase * 340; // settles at 140
+      const barX = (targetX - 340) + barEase * 340; // settles at targetX
       ctx.fillStyle = '#0F172A';
       ctx.fillRect(barX, 420, 160, 12);
 
@@ -154,15 +158,17 @@ export class DeterministicIntro {
       ctx.font = '700 13px "Space Mono", monospace';
       ctx.fillStyle = 'rgba(15, 23, 42, 0.75)';
       ctx.textAlign = 'left';
-      ctx.fillText('01 — PORTFOLIO 2026', 140, 480);
+      ctx.fillText('01 — PORTFOLIO 2026', targetX, 480);
 
       // Giant black/navy headline word slams in with horizontal motion blur in 0.26s
       const slamProgress = Math.min(floodElapsed / 0.26, 1);
       const slamEase = 1 - Math.pow(1 - slamProgress, 3);
-      const headlineX = -300 + slamEase * 440; // settles at 140
+      const headlineX = (targetX - 440) + slamEase * 440; // settles at targetX
       const headlineText = 'OMAR & GAD';
 
-      ctx.font = '900 96px "Plus Jakarta Sans", system-ui, sans-serif';
+      // Responsive font size so it fits comfortably on any screen width
+      const fontSize = isPortrait ? Math.min(96, Math.floor((virtualWidth - 240) / 6.5)) : 96;
+      ctx.font = `900 ${fontSize}px "Plus Jakarta Sans", system-ui, sans-serif`;
       ctx.fillStyle = '#0F172A';
       ctx.letterSpacing = '-0.03em';
 
@@ -180,7 +186,7 @@ export class DeterministicIntro {
       const lineProgress = Math.min(floodElapsed / 0.3, 1);
       const lineEase = 1 - Math.pow(1 - lineProgress, 3);
       ctx.fillStyle = '#0F172A';
-      ctx.fillRect(140, 650, lineEase * 1250, 4);
+      ctx.fillRect(targetX, 650, lineEase * maxLineWidth, 4);
 
       ctx.restore(); // restores virtual stage
       ctx.restore(); // restores DPR scale
@@ -693,33 +699,50 @@ export class DeterministicIntro {
     const pad = 42;
     const len = 26;
 
+    const isPortrait = this.viewportHeight > this.viewportWidth;
+    let scale = Math.min(this.viewportWidth / this.stageWidth, this.viewportHeight / this.stageHeight);
+    if (isPortrait) {
+      scale = (this.viewportWidth / this.stageWidth) * 1.35;
+    }
+    const offsetX = (this.viewportWidth - this.stageWidth * scale) / 2;
+    const offsetY = (this.viewportHeight - this.stageHeight * scale) / 2;
+    const leftVirtualX = -offsetX / scale;
+    const rightVirtualX = (this.viewportWidth - offsetX) / scale;
+    const topVirtualY = -offsetY / scale;
+    const bottomVirtualY = (this.viewportHeight - offsetY) / scale;
+
+    const hudLeft = isPortrait ? (leftVirtualX + 50) : pad;
+    const hudRight = isPortrait ? (rightVirtualX - 50) : (1920 - pad);
+    const hudTop = isPortrait ? (topVirtualY + 50) : pad;
+    const hudBottom = isPortrait ? (bottomVirtualY - 50) : (1080 - pad);
+
     // Corner brackets
     // Top-Left
     ctx.beginPath();
-    ctx.moveTo(pad, pad + len);
-    ctx.lineTo(pad, pad);
-    ctx.lineTo(pad + len, pad);
+    ctx.moveTo(hudLeft, hudTop + len);
+    ctx.lineTo(hudLeft, hudTop);
+    ctx.lineTo(hudLeft + len, hudTop);
     ctx.stroke();
 
     // Top-Right
     ctx.beginPath();
-    ctx.moveTo(1920 - pad - len, pad);
-    ctx.lineTo(1920 - pad, pad);
-    ctx.lineTo(1920 - pad, pad + len);
+    ctx.moveTo(hudRight - len, hudTop);
+    ctx.lineTo(hudRight, hudTop);
+    ctx.lineTo(hudRight, hudTop + len);
     ctx.stroke();
 
     // Bottom-Left
     ctx.beginPath();
-    ctx.moveTo(pad, 1080 - pad - len);
-    ctx.lineTo(pad, 1080 - pad);
-    ctx.lineTo(pad + len, 1080 - pad);
+    ctx.moveTo(hudLeft, hudBottom - len);
+    ctx.lineTo(hudLeft, hudBottom);
+    ctx.lineTo(hudLeft + len, hudBottom);
     ctx.stroke();
 
     // Bottom-Right
     ctx.beginPath();
-    ctx.moveTo(1920 - pad - len, 1080 - pad);
-    ctx.lineTo(1920 - pad, 1080 - pad);
-    ctx.lineTo(1920 - pad, 1080 - pad - len);
+    ctx.moveTo(hudRight - len, hudBottom);
+    ctx.lineTo(hudRight, hudBottom);
+    ctx.lineTo(hudRight, hudBottom - len);
     ctx.stroke();
 
     // Typography
@@ -729,12 +752,12 @@ export class DeterministicIntro {
     // Top-Left: "OMAR & GAD   PORTFOLIO 2026"
     ctx.fillStyle = `rgba(15, 23, 42, ${alpha * 0.85})`;
     ctx.textAlign = 'left';
-    ctx.fillText('OMAR & GAD   PORTFOLIO 2026', pad + 15, pad + 18);
+    ctx.fillText('OMAR & GAD   PORTFOLIO 2026', hudLeft + 15, hudTop + 18);
 
-    // Top-Right: "128 BPM   60 FPS   1920x1080"
+    // Top-Right: "128 BPM   60 FPS"
     ctx.fillStyle = `rgba(14, 165, 233, ${alpha * 0.75})`;
     ctx.textAlign = 'right';
-    ctx.fillText('128 BPM   60 FPS   1920x1080', 1920 - pad - 15, pad + 18);
+    ctx.fillText('128 BPM   60 FPS', hudRight - 15, hudTop + 18);
 
     // Bottom-Left: Running timecode "00:00:00:FF"
     const frames = Math.floor((t * 60) % 60);
@@ -745,11 +768,11 @@ export class DeterministicIntro {
 
     ctx.textAlign = 'left';
     ctx.fillStyle = `rgba(15, 23, 42, ${alpha * 0.9})`;
-    ctx.fillText(timecode, pad + 15, 1080 - pad - 12);
+    ctx.fillText(timecode, hudLeft + 15, hudBottom - 12);
 
     // 4 step squares (first one filled sky blue)
-    const sqX = pad + 140;
-    const sqY = 1080 - pad - 20;
+    const sqX = hudLeft + 140;
+    const sqY = hudBottom - 20;
     for (let i = 0; i < 4; i++) {
       if (i === 0) {
         ctx.fillStyle = '#0EA5E9';
@@ -761,7 +784,7 @@ export class DeterministicIntro {
     }
 
     // Hairline progress bar
-    const barW = 80;
+    const barW = isPortrait ? 50 : 80;
     const pW = (t / 3.0) * barW;
     ctx.fillStyle = `rgba(14, 165, 233, ${alpha * 0.2})`;
     ctx.fillRect(sqX + 68, sqY + 3, barW, 2);
@@ -775,7 +798,7 @@ export class DeterministicIntro {
 
     ctx.textAlign = 'right';
     ctx.fillStyle = `rgba(15, 23, 42, ${alpha * 0.85})`;
-    ctx.fillText(sectionName, 1920 - pad - 15, 1080 - pad - 12);
+    ctx.fillText(sectionName, hudRight - 15, hudBottom - 12);
 
     ctx.restore(); // restores virtual stage
     ctx.restore(); // restores DPR scale

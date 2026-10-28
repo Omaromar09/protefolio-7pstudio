@@ -170,8 +170,8 @@ function setupSoundControls() {
 
   function updateSoundUI(isOn) {
     const lang = getLanguage();
-    const onText = lang === 'ar' ? 'تشغيل الصوت' : 'SOUND ON';
-    const offText = lang === 'ar' ? 'كتم الصوت' : 'SOUND OFF';
+    const onText = 'SOUND ON';
+    const offText = 'SOUND OFF';
 
     if (introSoundIcon) {
       introSoundIcon.className = isOn ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
