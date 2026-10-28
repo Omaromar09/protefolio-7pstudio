@@ -1,0 +1,361 @@
+/* ==========================================================================
+   7P STUDIO — APPLE iOS FROSTED GLASSMORPHISM DESIGN SYSTEM
+   Authentic iPhone frosted glass for all cards, containers, and data inputs
+   Seamlessly active in default Light Mode and adaptive in Dark Mode
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. AMBIENT LIGHT REFRACTION (LIGHT MODE)
+   Fixed multi-point radiant aura to provide rich background color refraction
+   -------------------------------------------------------------------------- */
+[data-theme="light"] body {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 12% 15%, rgba(139, 61, 255, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 88% 22%, rgba(14, 165, 233, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 50% 65%, rgba(255, 61, 240, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 20% 85%, rgba(16, 185, 129, 0.05) 0%, transparent 45%),
+    radial-gradient(rgba(139, 61, 255, 0.035) 1.2px, transparent 1.2px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 40px 40px;
+  background-attachment: fixed;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   2. CONTACT FORM & DATA INPUT BOXES (iPHONE FROSTED GLASS CELL ARCHITECTURE)
+   Exact replica of Apple iOS Control Center connectivity box & inputs
+   -------------------------------------------------------------------------- */
+/* Contact Form Main Container Box */
+[data-theme="light"] .contact-form-card {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(30px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-radius: 26px !important;
+  box-shadow: 
+    0 20px 45px -10px rgba(15, 23, 42, 0.07),
+    0 0 0 1px rgba(226, 232, 240, 0.6),
+    inset 0 1px 2px 0 #ffffff !important;
+  transition: all var(--transition-normal);
+}
+
+[data-theme="light"] .contact-form-card:hover {
+  box-shadow: 
+    0 25px 55px -12px rgba(139, 61, 255, 0.1),
+    0 0 0 1px rgba(139, 61, 255, 0.15),
+    inset 0 1px 2px 0 #ffffff !important;
+}
+
+/* Form Labels in Light Mode */
+[data-theme="light"] .form-label {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+  font-size: 0.94rem !important;
+}
+
+/* Data Input Boxes: Name, WhatsApp, Project Type, Project Details */
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-select,
+[data-theme="light"] .form-textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.62) !important;
+  backdrop-filter: blur(18px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  border-radius: 14px !important;
+  padding: 0.95rem 1.25rem !important;
+  color: #0F172A !important;
+  font-weight: 500 !important;
+  font-size: 0.98rem !important;
+  box-shadow: 
+    inset 0 1px 2px 0 rgba(15, 23, 42, 0.04), 
+    0 2px 8px -1px rgba(15, 23, 42, 0.03) !important;
+  outline: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+[data-theme="light"] .form-input::placeholder,
+[data-theme="light"] .form-textarea::placeholder {
+  color: #64748B !important;
+  opacity: 0.85 !important;
+}
+
+/* Input Focus State: iOS Tactile Illumination */
+[data-theme="light"] .form-input:focus,
+[data-theme="light"] .form-select:focus,
+[data-theme="light"] .form-textarea:focus {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: #8B3DFF !important;
+  box-shadow: 
+    0 0 0 3.5px rgba(139, 61, 255, 0.18),
+    inset 0 1px 2px #ffffff !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .form-select option {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. CONTACT METHOD WIDGETS (WHATSAPP, INSTAGRAM, TIKTOK CARDS)
+   -------------------------------------------------------------------------- */
+[data-theme="light"] .contact-method-card {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(22px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.88) !important;
+  border-radius: 18px !important;
+  box-shadow: 
+    0 8px 24px -4px rgba(15, 23, 42, 0.05),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-theme="light"] .contact-method-card:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(139, 61, 255, 0.35) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 
+    0 16px 36px -6px rgba(139, 61, 255, 0.12),
+    inset 0 1px 1px 0 #ffffff !important;
+}
+
+[data-theme="light"] .contact-method-title {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .contact-method-handle {
+  color: #64748B !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. SERVICES BENTO TILES (iPHONE TRANSLUCENT FROSTED GLASS)
+   -------------------------------------------------------------------------- */
+[data-theme="light"] .service-bento-tile,
+[data-theme="light"] .spotlight-card,
+[data-theme="light"] .chamfer-card {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.88) !important;
+  box-shadow: 
+    0 10px 30px -5px rgba(15, 23, 42, 0.05),
+    0 4px 12px -2px rgba(15, 23, 42, 0.03),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-theme="light"] .service-bento-tile:hover,
+[data-theme="light"] .spotlight-card:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(139, 61, 255, 0.35) !important;
+  box-shadow: 
+    0 20px 45px -10px rgba(139, 61, 255, 0.12),
+    0 8px 16px -4px rgba(15, 23, 42, 0.04),
+    inset 0 1px 1px 0 #ffffff !important;
+}
+
+[data-theme="light"] .service-bento-tile h3 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .service-bento-tile p {
+  color: #334155 !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. PROJECT SHOWCASE & CARDS (iPHONE FROSTED SHELL)
+   -------------------------------------------------------------------------- */
+[data-theme="light"] .showcase-shell {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(30px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 
+    0 20px 50px -10px rgba(15, 23, 42, 0.07),
+    0 0 0 1px rgba(226, 232, 240, 0.5),
+    inset 0 1px 2px 0 #ffffff !important;
+}
+
+[data-theme="light"] .showcase-tab-btn {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .showcase-tab-btn:hover,
+[data-theme="light"] .showcase-tab-btn.is-active {
+  background: rgba(139, 61, 255, 0.12) !important;
+  border-color: #8B3DFF !important;
+  color: #7C3AED !important;
+}
+
+[data-theme="light"] .project-card,
+[data-theme="light"] .partner-card {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.88) !important;
+  box-shadow: 
+    0 10px 30px -5px rgba(15, 23, 42, 0.05),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-theme="light"] .project-card:hover,
+[data-theme="light"] .partner-card:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+  box-shadow: 
+    0 18px 40px -8px rgba(14, 165, 233, 0.14),
+    inset 0 1px 1px 0 #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. ESTIMATOR HUD BOX & FEATURE CARDS (iPHONE TRANSLUCENT HUD)
+   -------------------------------------------------------------------------- */
+[data-theme="light"] .estimator-hud-box,
+[data-theme="light"] .estimator-hud-container {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(30px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 
+    0 20px 48px -10px rgba(15, 23, 42, 0.07),
+    inset 0 1px 2px 0 #ffffff !important;
+}
+
+[data-theme="light"] .feature-toggle-card {
+  background: rgba(255, 255, 255, 0.58) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.03) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-theme="light"] .feature-toggle-card:hover {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(139, 61, 255, 0.3) !important;
+}
+
+[data-theme="light"] .feature-toggle-card.is-active {
+  background: rgba(139, 61, 255, 0.1) !important;
+  border-color: #8B3DFF !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. DIAGNOSIS QUIZ & COMPARISON BOXES
+   -------------------------------------------------------------------------- */
+[data-theme="light"] .diagnosis-quiz-card,
+[data-theme="light"] .comparison-slider-wrapper {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(28px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.88) !important;
+  box-shadow: 
+    0 18px 45px -10px rgba(15, 23, 42, 0.06),
+    inset 0 1px 2px 0 #ffffff !important;
+}
+
+[data-theme="light"] .diagnosis-opt-btn {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  color: #1E293B !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02) !important;
+}
+
+[data-theme="light"] .diagnosis-opt-btn:hover {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(139, 61, 255, 0.35) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .diagnosis-opt-btn.is-selected {
+  background: rgba(139, 61, 255, 0.12) !important;
+  border-color: #8B3DFF !important;
+  color: #6D28D9 !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. HERO STATS, TRUST BADGES & PILLARS
+   -------------------------------------------------------------------------- */
+[data-theme="light"] .hero-proof-card,
+[data-theme="light"] .trust-live-item,
+[data-theme="light"] .trust-promises-card,
+[data-theme="light"] .pillar-card,
+[data-theme="light"] .skills-interactive-box {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.88) !important;
+  box-shadow: 
+    0 8px 24px -4px rgba(15, 23, 42, 0.04),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. FLOATING NAVBAR & PRIVACY MODAL
+   -------------------------------------------------------------------------- */
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(28px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 
+    0 12px 32px -8px rgba(15, 23, 42, 0.06),
+    0 4px 12px -2px rgba(15, 23, 42, 0.02),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-theme="light"] .privacy-modal-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(32px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.15) !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. DARK MODE ADAPTATIONS (PRESERVE LUXURY OBSIDIAN & NEON CHROME)
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .contact-form-card {
+  background: rgba(16, 14, 30, 0.78) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(139, 61, 255, 0.25) !important;
+  box-shadow: 
+    0 20px 50px -10px rgba(0, 0, 0, 0.7),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-textarea {
+  background: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.28) !important;
+  color: #F8FAFC !important;
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.35) !important;
+}
+
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-select:focus,
+[data-theme="dark"] .form-textarea:focus {
+  background: rgba(19, 26, 51, 0.9) !important;
+  color: #F8FAFC !important;
+  border-color: var(--accent-cyan) !important;
+  box-shadow: 0 0 16px rgba(14, 165, 233, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+}

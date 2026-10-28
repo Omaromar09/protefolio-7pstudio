@@ -6,7 +6,7 @@ import { getLanguage } from './i18n.js';
  * Persists user preference in localStorage and toggles data-theme attribute
  */
 
-let currentTheme = 'dark';
+let currentTheme = 'light';
 
 export function getTheme() {
   return currentTheme;
@@ -55,9 +55,9 @@ function updateThemeIcons(theme) {
 }
 
 export function initTheme() {
-  let savedTheme = 'dark';
+  let savedTheme = 'light';
   try {
-    savedTheme = localStorage.getItem('omar_theme') || 'dark';
+    savedTheme = localStorage.getItem('omar_theme') || 'light';
   } catch (e) {
     savedTheme = 'dark';
   }
