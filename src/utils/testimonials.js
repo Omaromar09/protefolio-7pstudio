@@ -19,8 +19,8 @@ export const CLIENT_REVIEWS = [
     business_en: 'Aya Accessories Boutique',
     role_ar: 'صاحبة المتجر',
     role_en: 'Store Founder',
-    quote_ar: 'بشمهندس عمر وبشمهندس مصطفى عملوا لي متجر ممتاز وسريع جداً، وتنسيق المنتجات وسلة الواتساب ريحتني وسهلت طلبات الزباين بشكل كبير!',
-    quote_en: 'Eng. Omar & Eng. Mostafa built a gorgeous and incredibly fast online boutique for my store. WhatsApp ordering made taking customer orders effortless!',
+    quote_ar: 'عمر وجاد من 7P Studio عملوا لي متجر ممتاز وسريع جداً، وتنسيق المنتجات وسلة الواتساب ريحتني وسهلت طلبات الزباين بشكل كبير!',
+    quote_en: 'Omar & Gad (7P Studio) built a gorgeous and incredibly fast online boutique for my store. WhatsApp ordering made taking customer orders effortless!',
     rating: 5,
     avatar: './projects/aya-logo.jpg'
   },

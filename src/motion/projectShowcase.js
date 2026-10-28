@@ -169,8 +169,8 @@ function updateSimilarWhatsAppLink(project) {
   const lang = getLanguage();
   const projectName = project.title[lang] || project.title.ar;
   const msg = lang === 'ar'
-    ? `مساء الخير يا عمر ويا مصطفى، شوفت موقع "${projectName}" في أعمال 7P Studio وحابب أعمل موقع زيه لبيزنسي.`
-    : `Hi Omar & Mostafa, I saw "${projectName}" on 7P Studio and I would like to build a similar website for my business.`;
+    ? `مساء الخير يا عمر ويا جاد، شوفت موقع "${projectName}" في أعمال 7P Studio وحابب أعمل موقع زيه لبيزنسي.`
+    : `Hi Omar & Gad, I saw "${projectName}" on 7P Studio and I would like to build a similar website for my business.`;
 
   similarBtn.href = `https://wa.me/201515047449?text=${encodeURIComponent(msg)}`;
 }

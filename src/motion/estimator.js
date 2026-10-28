@@ -103,7 +103,7 @@ export function initProjectEstimator() {
 
     let waMessage = '';
     if (isAr) {
-      waMessage = `أهلاً يا عمر ويا مصطفى (7P Studio)! قمت بتحديد مواصفات مشروعي على موقعكم وعايز أعرف التكلفة ونبدأ:
+      waMessage = `أهلاً يا عمر ويا جاد (7P Studio)! قمت بتحديد مواصفات مشروعي على موقعكم وعايز أعرف التكلفة ونبدأ:
 📌 كود الطلب: ${quoteId}
 🚀 نوع المشروع: ${typeName}
 ✨ الميزات المطلوبة: ${featuresListStr}
@@ -112,7 +112,7 @@ export function initProjectEstimator() {
 
 ممكن نتفق على التكلفة والتفاصيل ونبدأ؟`;
     } else {
-      waMessage = `Hello Omar & Mostafa (7P Studio)! I configured my project specifications on your website and would like to get a quote and start:
+      waMessage = `Hello Omar & Gad (7P Studio)! I configured my project specifications on your website and would like to get a quote and start:
 📌 Quote ID: ${quoteId}
 🚀 Project Scope: ${typeName}
 ✨ Selected Features: ${featuresListStr}

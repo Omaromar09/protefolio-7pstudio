@@ -307,7 +307,7 @@ function showDiagnosisResult(mount, answers, branch) {
     lines.push(`${i + 1}. ${ans.text}`);
   });
 
-  lines.push(`\n---\nمساء الخير يا عمر ويا مصطفى، عملت اختبار التشخيص وحابب نتناقش في التفاصيل ونبدأ.`);
+  lines.push(`\n---\nمساء الخير يا عمر ويا جاد، عملت اختبار التشخيص وحابب نتناقش في التفاصيل ونبدأ.`);
 
   const waUrl = `https://wa.me/201515047449?text=${encodeURIComponent(lines.join('\n'))}`;
 

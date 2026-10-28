@@ -160,7 +160,7 @@ export class DeterministicIntro {
       const slamProgress = Math.min(floodElapsed / 0.26, 1);
       const slamEase = 1 - Math.pow(1 - slamProgress, 3);
       const headlineX = -300 + slamEase * 440; // settles at 140
-      const headlineText = 'ENG. OMAR & ENG. MOSTAFA';
+      const headlineText = 'OMAR & GAD';
 
       ctx.font = '900 96px "Plus Jakarta Sans", system-ui, sans-serif';
       ctx.fillStyle = '#0F172A';
@@ -237,7 +237,7 @@ export class DeterministicIntro {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.letterSpacing = '-0.02em';
-      ctx.fillText('ENG. OMAR & ENG. MOSTAFA', 0, -10);
+      ctx.fillText('OMAR & GAD', 0, -10);
 
       // Subtitle "PARTNERS — 7P STUDIO"
       if (titleScaleY > 0.2) {
@@ -726,10 +726,10 @@ export class DeterministicIntro {
     ctx.font = '700 11px "Space Mono", monospace';
     ctx.letterSpacing = '0.08em';
 
-    // Top-Left: "ENG. OMAR & ENG. MOSTAFA   PORTFOLIO 2026"
+    // Top-Left: "OMAR & GAD   PORTFOLIO 2026"
     ctx.fillStyle = `rgba(15, 23, 42, ${alpha * 0.85})`;
     ctx.textAlign = 'left';
-    ctx.fillText('ENG. OMAR & ENG. MOSTAFA   PORTFOLIO 2026', pad + 15, pad + 18);
+    ctx.fillText('OMAR & GAD   PORTFOLIO 2026', pad + 15, pad + 18);
 
     // Top-Right: "128 BPM   60 FPS   1920x1080"
     ctx.fillStyle = `rgba(14, 165, 233, ${alpha * 0.75})`;
