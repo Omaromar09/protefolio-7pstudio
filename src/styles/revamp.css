@@ -27,6 +27,42 @@
   transition: background 0.3s ease, border-color 0.3s ease;
 }
 
+@media (max-width: 768px) {
+  .navbar-wrapper {
+    top: 0.65rem !important;
+    padding-inline: 0.65rem !important;
+  }
+  .navbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.45rem 0.85rem !important;
+    gap: 0.5rem !important;
+  }
+  .nav-brand-group {
+    gap: 0.5rem !important;
+  }
+  .nav-brand {
+    font-size: 1.05rem !important;
+    gap: 0.5rem !important;
+  }
+  .nav-brand img, .brand-logo-img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .nav-actions {
+    gap: 0.4rem !important;
+  }
+  .nav-actions .btn-primary,
+  .nav-actions #nav-sound-toggle,
+  .nav-actions .lang-toggle {
+    display: none !important;
+  }
+  .menu-toggle {
+    display: flex !important;
+    flex-shrink: 0;
+  }
+}
+
 .nav-brand-group {
   display: flex;
   align-items: center;
@@ -1153,4 +1189,150 @@ html[dir="ltr"] .ba-panel {
   font-weight: 700;
   font-size: 0.9rem;
   box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+}
+
+/* ==========================================================================
+   MOBILE INTERFACE REFINEMENT & RESPONSIVE POLISH (< 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Showcase Section */
+  .showcase-section {
+    padding: 3rem 0 !important;
+  }
+  .showcase-shell {
+    padding: 1.25rem 0.85rem !important;
+    border-radius: var(--radius-lg) !important;
+  }
+  .showcase-tabs-nav {
+    gap: 0.5rem !important;
+    padding-bottom: 0.85rem !important;
+    margin-bottom: 1.25rem !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+  }
+  .showcase-tab-btn {
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.82rem !important;
+    scroll-snap-align: start !important;
+    flex-shrink: 0 !important;
+  }
+  .showcase-grid {
+    gap: 1.5rem !important;
+  }
+  .showcase-info-panel {
+    padding: 1.25rem 0.85rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+  .project-hero-title {
+    font-size: 1.35rem !important;
+  }
+  .project-desc {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+  }
+  .project-actions-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.65rem !important;
+  }
+  .project-actions-row .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .laptop-browser-bar {
+    max-width: 140px !important;
+    overflow: hidden !important;
+  }
+  .laptop-url-text {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    max-width: 105px !important;
+  }
+
+  /* Comparison Section */
+  .comparison-section {
+    padding: 3.5rem 0 !important;
+  }
+  .ba-slider-container {
+    min-height: 480px !important;
+    touch-action: pan-y !important;
+  }
+  .ba-slider-handle {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 0.75rem !important;
+    touch-action: none !important;
+  }
+  .ba-panel {
+    padding: 1.5rem 1rem !important;
+  }
+  .ba-title {
+    font-size: 1.15rem !important;
+  }
+  .ba-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.55 !important;
+  }
+  .ba-mock-ui {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+  .ba-stat-box {
+    padding: 0.5rem 0.6rem !important;
+  }
+  .ba-stat-box-val {
+    font-size: 0.95rem !important;
+  }
+  .ba-stat-box-label {
+    font-size: 0.72rem !important;
+  }
+
+  /* Diagnosis Section */
+  .diagnosis-section {
+    padding: 3.5rem 0 !important;
+  }
+  .diagnosis-card {
+    padding: 1.35rem 1rem !important;
+  }
+  .diagnosis-opt-btn {
+    padding: 0.85rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+  .diagnosis-result-card {
+    padding: 1.5rem 1rem !important;
+  }
+  .result-cta-row {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+  .result-cta-row .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Services Bento Grid */
+  .service-bento-tile {
+    padding: 1.35rem 1rem !important;
+  }
+
+  /* Estimator Section */
+  .estimator-section {
+    padding: 3.5rem 0 !important;
+  }
+  .estimator-card-main {
+    padding: 1.25rem 0.85rem !important;
+    border-radius: var(--radius-lg) !important;
+  }
+  .estimator-hud-card {
+    padding: 1.25rem 0.85rem !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  /* Sticky CTA Bar Bottom Padding on Footer */
+  .footer {
+    padding-bottom: 5.5rem !important;
+  }
 }
