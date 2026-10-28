@@ -52,7 +52,7 @@ export const translations = {
     // Hero Section
     heroBadge1: '⚡ استوديو متخصص في بناء مواقع البيزنس الحديثة',
     heroBadge2: 'أبعاد ثلاثية 3D وتجاوب صاروخي على الموبايل',
-    heroTitle: 'مواقع عصرية، <span class="highlight">شكلها رايق،</span> وسريعة بتجيب زباين.',
+    heroTitle: '7P Studio — مواقع عصرية، <span class="highlight">شكلها رايق،</span> وسريعة بتجيب زباين.',
     heroSubtitle: 'أهلاً بيك! إحنا <strong>عمر</strong> و<strong>مصطفى جاد</strong> في 7P Studio. بنبني مواقع استثنائية وسريعة تُحوّل زوارك لعملاء فعليين، بنحل المشاكل البرمجية، وبنظبط موقعك بأعلى كفاءة وبدون صداع.',
     heroCtaWork: 'شوف شغلنا',
     heroCtaEstimator: 'اعرف سعر مشروعك في 30 ثانية',
@@ -304,7 +304,7 @@ export const translations = {
     // Hero Section
     heroBadge1: '⚡ Studio specializing in high-performance business web development',
     heroBadge2: 'Interactive 3D WebGL & lightning fast mobile responsiveness',
-    heroTitle: 'Websites made your way, <span class="highlight">looking sharp,</span> converting visitors.',
+    heroTitle: '7P Studio — Modern websites, <span class="highlight">looking sharp,</span> converting visitors.',
     heroSubtitle: "Hey there! We are <strong>Omar</strong> and <strong>Mostafa Gad</strong> (7P Studio). We craft high-performance websites that convert visitors into paying clients, resolve complex bugs, and engineer your digital presence headache-free.",
     heroCtaWork: 'See Our Work',
     heroCtaEstimator: 'Calculate Your Quote in 30s',

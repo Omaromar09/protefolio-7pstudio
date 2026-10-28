@@ -16,7 +16,9 @@ export function initProjectShowcase() {
   const showcaseContainer = document.getElementById('project-showcase-mount');
   if (!showcaseContainer) return;
 
-  renderShowcaseStructure(showcaseContainer);
+  if (!showcaseContainer.querySelector('.showcase-shell')) {
+    renderShowcaseStructure(showcaseContainer);
+  }
   setupShowcaseInteractivity();
 }
 

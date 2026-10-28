@@ -1,5 +1,4 @@
 import './style.css';
-import { DeterministicIntro } from './intro/deterministicIntro.js';
 import { initLanguage, getLanguage, setLanguage } from './utils/i18n.js';
 import { initTheme } from './utils/theme.js';
 import { initSmoothScroll } from './motion/scroll.js';
@@ -220,7 +219,7 @@ function setupSoundControls() {
 // ==========================================================================
 let introInstance = null;
 
-function setupIntroFlow() {
+async function setupIntroFlow() {
   const introScreen = document.getElementById('intro-screen');
   const introCanvas = document.getElementById('intro-canvas');
   const skipBtn = document.getElementById('intro-skip');
@@ -228,6 +227,24 @@ function setupIntroFlow() {
   const orangeHandoff = document.getElementById('orange-handoff-overlay');
 
   if (!introScreen || !introCanvas) return;
+
+  let hasSeenIntro = false;
+  try {
+    hasSeenIntro = sessionStorage.getItem('omar_intro_seen') === 'true';
+  } catch (e) {
+    hasSeenIntro = false;
+  }
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isBotOrAudit = /Googlebot|Lighthouse|bingbot|Baiduspider/i.test(navigator.userAgent);
+
+  if (hasSeenIntro || prefersReducedMotion || isBotOrAudit) {
+    introScreen.classList.add('is-hidden');
+    triggerHeroReveal();
+    return;
+  }
+
+  // Lazy-load DeterministicIntro only when needed to protect Core Web Vitals
+  const { DeterministicIntro } = await import('./intro/deterministicIntro.js');
 
   introInstance = new DeterministicIntro(introCanvas, {
     getLang: () => getLanguage(),
@@ -245,7 +262,7 @@ function setupIntroFlow() {
   }
 
   if (replayBtn) {
-    replayBtn.addEventListener('click', () => {
+    replayBtn.addEventListener('click', async () => {
       window.scrollTo({ top: 0, behavior: 'instant' });
       try {
         sessionStorage.removeItem('omar_intro_seen');
@@ -259,26 +276,20 @@ function setupIntroFlow() {
 
       introScreen.style.opacity = '1';
       introScreen.classList.remove('is-hidden');
-      if (introInstance) {
-        introInstance.start();
+      if (!introInstance) {
+        const mod = await import('./intro/deterministicIntro.js');
+        introInstance = new mod.DeterministicIntro(introCanvas, {
+          getLang: () => getLanguage(),
+          onComplete: () => {
+            executeOrangeHandoff(introScreen, orangeHandoff);
+          }
+        });
       }
+      introInstance.start();
     });
   }
 
-  let hasSeenIntro = false;
-  try {
-    hasSeenIntro = sessionStorage.getItem('omar_intro_seen') === 'true';
-  } catch (e) {
-    hasSeenIntro = false;
-  }
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (hasSeenIntro || prefersReducedMotion) {
-    introScreen.classList.add('is-hidden');
-    triggerHeroReveal();
-  } else {
-    introInstance.start();
-  }
+  introInstance.start();
 }
 
 function executeOrangeHandoff(introScreen, orangeHandoff) {

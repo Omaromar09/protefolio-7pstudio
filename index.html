@@ -3,22 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7P STUDIO — عمر & مصطفى جاد | استوديو مواقع عصرية وتفاعلية وسريعة</title>
-    <meta name="description" content="7P STUDIO / عمر & مصطفى جاد - استوديو تطوير مواقع نبني مواقع نظيفة، عصرية، تفاعلية وسريعة ونحول زوارك لعملاء فعليين. أبعاد ثلاثية 3D وربط واتساب ودعم فني متكامل." />
-    <meta name="keywords" content="7P Studio, 7P, Omar, Mostafa Gad, مصطفى جاد, Web Developer, مطور ويب, تصميم مواقع, Three.js, GSAP, عُمَر, برمجة مواقع" />
-    <meta name="author" content="Omar & Mostafa Gad (7P Studio)" />
+    <title>7P Studio | تصميم وبرمجة مواقع سريعة وتفاعلية - 7PSTUDIO</title>
+    <meta name="description" content="استوديو 7P Studio (7PSTUDIO) لتصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك." />
+    <meta name="author" content="7P Studio (Omar & Mostafa Gad)" />
 
-    <!-- Canonical & Base URLs -->
+    <!-- Canonical URL (Single Canonical, no fake hreflang) -->
     <link rel="canonical" href="https://7pstudio.tech/" />
-    <!-- Vercel Web Analytics (Production only) -->
-    <script>
-      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        const s = document.createElement('script');
-        s.defer = true;
-        s.src = '/_vercel/insights/script.js';
-        document.head.appendChild(s);
-      }
-    </script>
+
+    <!-- Performance: Preload Critical Arabic & Latin Fonts -->
+    <link rel="preload" href="/fonts/UMBXrPdDqW66y0Y2usFeaijdA4M5.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YPO_-CRXMR5Kw.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Favicon & App Icons Set -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#07060C" />
 
     <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
     <meta property="og:type" content="website" />
@@ -26,8 +28,8 @@
     <meta property="og:locale" content="ar_EG" />
     <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:url" content="https://7pstudio.tech/" />
-    <meta property="og:title" content="7P STUDIO — عمر & مصطفى جاد | استوديو مواقع عصرية وتفاعلية وسريعة" />
-    <meta property="og:description" content="7P STUDIO / عمر & مصطفى جاد - استوديو تطوير مواقع نبني مواقع نظيفة، عصرية، تفاعلية وسريعة ونحول زوارك لعملاء فعليين." />
+    <meta property="og:title" content="7P Studio | تصميم وبرمجة مواقع سريعة وتفاعلية - 7PSTUDIO" />
+    <meta property="og:description" content="استوديو 7P Studio (7PSTUDIO) لتصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك." />
     <meta property="og:image" content="https://7pstudio.tech/og-image.jpg" />
     <meta property="og:image:secure_url" content="https://7pstudio.tech/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
@@ -39,16 +41,21 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@7p__studio" />
     <meta name="twitter:creator" content="@7p__studio" />
-    <meta name="twitter:title" content="7P STUDIO — عمر & مصطفى جاد | استوديو مواقع عصرية وتفاعلية وسريعة" />
-    <meta name="twitter:description" content="فريق واستوديو ويب نبني مواقع نظيفة، عصرية، تفاعلية وسريعة. تصميم وتطوير مواقع، أبعاد ثلاثية 3D، ودعم فني متكامل." />
+    <meta name="twitter:title" content="7P Studio | تصميم وبرمجة مواقع سريعة وتفاعلية - 7PSTUDIO" />
+    <meta name="twitter:description" content="استوديو 7P Studio (7PSTUDIO) لتصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر." />
     <meta name="twitter:image" content="https://7pstudio.tech/og-image.jpg" />
 
-    <!-- Favicon & Touch Icons -->
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
-    <meta name="theme-color" content="#07060C" />
+    <!-- Vercel Web Analytics (Production only) -->
+    <script>
+      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        const s = document.createElement('script');
+        s.defer = true;
+        s.src = '/_vercel/insights/script.js';
+        document.head.appendChild(s);
+      }
+    </script>
 
-    <!-- Structured Data (JSON-LD) -->
+    <!-- Structured Data (JSON-LD) for Brand SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -58,24 +65,38 @@
           "@id": "https://7pstudio.tech/#website",
           "url": "https://7pstudio.tech/",
           "name": "7P Studio",
-          "description": "مواقع عصرية وتفاعلية وسريعة - Modern Interactive Web Development",
+          "alternateName": ["7PSTUDIO", "7pstudio.tech", "7P Studio Tech"],
+          "description": "استوديو 7P Studio لتصميم وتطوير مواقع الويب العصرية والسريعة والتفاعلية 3D",
           "inLanguage": ["ar-EG", "en-US"]
         },
         {
-          "@type": "ProfessionalService",
-          "@id": "https://7pstudio.tech/#service",
+          "@type": ["Organization", "ProfessionalService"],
+          "@id": "https://7pstudio.tech/#organization",
           "name": "7P Studio",
+          "alternateName": ["7PSTUDIO", "7pstudio.tech", "7P Studio Tech"],
           "url": "https://7pstudio.tech/",
-          "logo": "https://7pstudio.tech/og-image.jpg",
+          "logo": "https://7pstudio.tech/logo-7p.png",
           "image": "https://7pstudio.tech/og-image.jpg",
-          "description": "7P STUDIO / عمر & مصطفى جاد - استوديو تطوير مواقع نبني مواقع نظيفة، عصرية، تفاعلية وسريعة ونحول زوارك لعملاء فعليين.",
+          "description": "استوديو 7P Studio (7PSTUDIO) لتصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك.",
+          "telephone": "+201515047449",
+          "email": "contact@7pstudio.tech",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "EG"
+          },
+          "areaServed": [
+            { "@type": "Country", "name": "Egypt" },
+            { "@type": "Country", "name": "Saudi Arabia" },
+            { "@type": "Country", "name": "United Arab Emirates" },
+            { "@type": "Country", "name": "Worldwide" }
+          ],
           "founders": [
             {
               "@type": "Person",
               "name": "Omar",
-              "jobTitle": "Web Developer & Co-Founder",
+              "jobTitle": "Co-Founder & Web Developer",
               "sameAs": [
-                "https://instagram.com/7p__studio",
+                "https://www.instagram.com/7p__studio",
                 "https://www.tiktok.com/@7p.studio6",
                 "https://wa.me/201515047449"
               ]
@@ -83,22 +104,27 @@
             {
               "@type": "Person",
               "name": "Mostafa Gad",
-              "jobTitle": "Web Developer & Co-Founder",
+              "jobTitle": "Co-Founder & Web Developer",
               "sameAs": [
-                "https://instagram.com/7p__studio",
+                "https://www.instagram.com/7p__studio",
                 "https://wa.me/201515047449"
               ]
             }
           ],
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+201515047449",
-            "contactType": "customer service",
-            "availableLanguage": ["Arabic", "English"]
-          },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+201515047449",
+              "contactType": "customer service",
+              "contactOption": "WhatsApp",
+              "availableLanguage": ["Arabic", "English"]
+            }
+          ],
           "sameAs": [
-            "https://instagram.com/7p__studio",
-            "https://www.tiktok.com/@7p.studio6"
+            "https://www.instagram.com/7p__studio",
+            "https://www.tiktok.com/@7p.studio6",
+            "https://wa.me/201515047449",
+            "https://github.com/Omaromar09"
           ]
         }
       ]
@@ -244,7 +270,7 @@
             </div>
 
             <h1 class="hero-title" data-i18n="heroTitle">
-              مواقع عصرية، <span class="highlight">شكلها رايق،</span> وسريعة بتجيب زباين.
+              7P Studio — مواقع عصرية، <span class="highlight">شكلها رايق،</span> وسريعة بتجيب زباين.
             </h1>
 
             <p class="hero-subtitle" data-i18n="heroSubtitle">
@@ -326,7 +352,204 @@
           </div>
 
           <!-- Dynamic Pinned Showcase Mount -->
-          <div id="project-showcase-mount"></div>
+          <div id="project-showcase-mount">
+<div class="showcase-shell" id="showcase-shell">
+      <!-- Background Ambient Wipe -->
+      <div class="showcase-ambient-wipe" id="showcase-ambient-wipe" style="--project-accent: #FF3DF0"></div>
+
+      <!-- Top Project Selector Tabs (Quick jump) -->
+      <div class="showcase-tabs-nav" role="tablist" aria-label="Projects">
+        
+          <button type="button" 
+                  class="showcase-tab-btn is-active" 
+                  data-idx="0"
+                  role="tab"
+                  aria-selected="true">
+            <span class="tab-dot" style="background: #FF3DF0"></span>
+            <span class="tab-title">متجر آية للاكسسوارات</span>
+            
+          </button>
+        
+          <button type="button" 
+                  class="showcase-tab-btn " 
+                  data-idx="1"
+                  role="tab"
+                  aria-selected="false">
+            <span class="tab-dot" style="background: #F59E0B"></span>
+            <span class="tab-title">حلواني فيستيفال فايف ستار</span>
+            
+          </button>
+        
+          <button type="button" 
+                  class="showcase-tab-btn " 
+                  data-idx="2"
+                  role="tab"
+                  aria-selected="false">
+            <span class="tab-dot" style="background: #EF4444"></span>
+            <span class="tab-title">مطعم المحترف (تجريبي)</span>
+            <span class="tab-badge-demo">تجريبي</span>
+          </button>
+        
+          <button type="button" 
+                  class="showcase-tab-btn " 
+                  data-idx="3"
+                  role="tab"
+                  aria-selected="false">
+            <span class="tab-dot" style="background: #8B3DFF"></span>
+            <span class="tab-title">كيان للأزياء الفاخرة (تجريبي)</span>
+            <span class="tab-badge-demo">تجريبي</span>
+          </button>
+        
+          <button type="button" 
+                  class="showcase-tab-btn " 
+                  data-idx="4"
+                  role="tab"
+                  aria-selected="false">
+            <span class="tab-dot" style="background: #2EE6FF"></span>
+            <span class="tab-title">مساحة عمل الڤراندا</span>
+            
+          </button>
+        
+          <button type="button" 
+                  class="showcase-tab-btn " 
+                  data-idx="5"
+                  role="tab"
+                  aria-selected="false">
+            <span class="tab-dot" style="background: #FFB800"></span>
+            <span class="tab-title">متجر رَوْنَـق للعطور الفاخرة 3D (تجريبي)</span>
+            <span class="tab-badge-demo">تجريبي</span>
+          </button>
+        
+          <button type="button" 
+                  class="showcase-tab-btn " 
+                  data-idx="6"
+                  role="tab"
+                  aria-selected="false">
+            <span class="tab-dot" style="background: #C69255"></span>
+            <span class="tab-title">لاونج إكس أو بلايستيشن (تجريبي)</span>
+            <span class="tab-badge-demo">تجريبي</span>
+          </button>
+        
+      </div>
+
+      <!-- Main Dual Panel Grid -->
+      <div class="showcase-grid">
+        <!-- Left / Start: 3D Device Mockup Stage -->
+        <div class="showcase-mockup-stage" id="showcase-mockup-stage">
+          <div class="device-laptop-frame" id="device-laptop-frame">
+            <div class="laptop-screen-header">
+              <span class="dot-red"></span>
+              <span class="dot-yellow"></span>
+              <span class="dot-green"></span>
+              <div class="laptop-browser-bar">
+                <i class="fa-solid fa-lock"></i>
+                <span class="laptop-url-text" id="laptop-url-text">aya-accessories.vercel.app/</span>
+              </div>
+            </div>
+            <div class="laptop-screen-inner">
+              <img src="/projects/aya-preview.jpg" 
+                   alt="متجر آية للاكسسوارات" 
+                   class="mockup-img active" 
+                   id="mockup-screen-img"
+                   loading="eager" />
+              <div class="screen-glare"></div>
+            </div>
+            <div class="laptop-base"></div>
+          </div>
+
+          <!-- Mobile Complement Mockup -->
+          <div class="device-mobile-frame" id="device-mobile-frame">
+            <div class="mobile-speaker"></div>
+            <div class="mobile-screen-inner">
+              <img src="/projects/aya-preview.jpg" 
+                   alt="متجر آية للاكسسوارات" 
+                   class="mockup-mobile-img" 
+                   id="mockup-mobile-img"
+                   loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Right / End: Project Info & Features Panel -->
+        <div class="showcase-info-panel chamfer-card" id="showcase-info-panel">
+          <div class="panel-header">
+            <div class="panel-header-tags" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <div class="project-category-pill" id="project-category-pill" style="color: #FF3DF0; border-color: #FF3DF033; background: #FF3DF012;">
+                <span class="category-icon"><i class="fa-solid fa-bolt"></i></span>
+                <span id="project-category-text">متجر وسلة مبيعات</span>
+              </div>
+              <div class="project-partnership-pill" id="project-partnership-pill" style="display: none; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; color: #E0A96D; background: rgba(198, 146, 85, 0.15); border: 1px solid rgba(198, 146, 85, 0.35);">
+                <i class="fa-solid fa-handshake"></i>
+                <span id="project-partnership-text"></span>
+              </div>
+            </div>
+            <span class="project-count-badge numeral">
+              <span id="project-curr-num">01</span> / 07
+            </span>
+          </div>
+
+          <h3 class="project-hero-title" id="project-hero-title">
+            متجر آية للاكسسوارات
+          </h3>
+
+          <p class="project-desc" id="project-desc">
+            متجر إكسسوارات وباندانات هاندميد مع فلاتر سريعة وسلة لطلب الأوردر على الواتساب علطول.
+          </p>
+
+          <div class="project-features-list">
+            <span class="features-label">أبرز الميزات المُنفّذة:</span>
+            <div class="features-chips-wrap" id="features-chips-wrap">
+              
+                <span class="feature-chip"><i class="fa-solid fa-check"></i> سلة طلب واتساب</span>
+              
+                <span class="feature-chip"><i class="fa-solid fa-check"></i> فلاتر سريعة</span>
+              
+                <span class="feature-chip"><i class="fa-solid fa-check"></i> Mobile-First</span>
+              
+                <span class="feature-chip"><i class="fa-solid fa-check"></i> كتالوج تفاعلي</span>
+              
+            </div>
+          </div>
+
+          <div class="project-status-row">
+            <span class="pulse-green"></span>
+            <span class="status-label" id="project-status-label">مشروع حقيقي شغال لايف</span>
+          </div>
+
+          <div class="project-actions-row">
+            <a href="https://aya-accessories.vercel.app/" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn btn-primary showcase-live-btn" 
+               id="showcase-live-btn"
+               style="background: #FF3DF0">
+              <span id="showcase-live-text">افتح الموقع لايف</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+
+            <a href="https://wa.me/201515047449?text=%D9%85%D8%B3%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%20%D9%8A%D8%A7%20%D8%B9%D9%85%D8%B1%20%D9%88%D9%8A%D8%A7%20%D9%85%D8%B5%D8%B7%D9%81%D9%89%D8%8C%20%D8%B4%D9%88%D9%81%D8%AA%20%D9%85%D9%88%D9%82%D8%B9%20%22%D9%85%D8%AA%D8%AC%D8%B1%20%D8%A2%D9%8A%D8%A9%20%D9%84%D9%84%D8%A7%D9%83%D8%B3%D8%B3%D9%88%D8%A7%D8%B1%D8%A7%D8%AA%22%20%D9%81%D9%8A%20%D8%A3%D8%B9%D9%85%D8%A7%D9%84%207P%20Studio%20%D9%88%D8%AD%D8%A7%D8%A8%D8%A8%20%D8%A3%D8%B9%D9%85%D9%84%20%D9%85%D9%88%D9%82%D8%B9%20%D8%B2%D9%8A%D9%87%20%D9%84%D8%A8%D9%8A%D8%B2%D9%86%D8%B3%D9%8A." 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn btn-secondary showcase-similar-btn" 
+               id="showcase-similar-btn">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span id="showcase-similar-text">اطلب زيه</span>
+            </a>
+          </div>
+
+          <!-- Quick Navigation Arrows -->
+          <div class="showcase-arrows-nav">
+            <button type="button" class="arrow-btn" id="showcase-prev-btn" aria-label="Previous Project">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <button type="button" class="arrow-btn" id="showcase-next-btn" aria-label="Next Project">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+          </div>
         </div>
       </section>
 
