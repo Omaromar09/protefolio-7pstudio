@@ -1855,3 +1855,24 @@ html.low-end-or-mobile {
   }
 }
 
+
+
+@media (max-width: 768px) {
+  .estimator-card-main {
+    padding: 1.15rem 0.85rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .estimator-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .estimator-builder {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+

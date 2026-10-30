@@ -1690,44 +1690,108 @@
 
 
 /* ==========================================================================
-   ENHANCED RESPONSIVE ESTIMATOR & TABLET ARCHITECTURE
+   ENHANCED RESPONSIVE ESTIMATOR & TABLET ARCHITECTURE (PERFECT SYMMETRY)
    ========================================================================== */
 @media (max-width: 768px) {
+  .container {
+    padding-inline: 1rem !important;
+  }
+
+  .estimator-section {
+    padding: 3rem 0 !important;
+    overflow: hidden !important;
+  }
+
   .estimator-card-main {
-    padding: 1.25rem 1rem !important;
+    padding: 1.15rem 0.85rem !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
     border-radius: 18px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .estimator-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 1.5rem !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .estimator-builder {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .estimator-step {
-    margin-bottom: 1.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin-bottom: 1.5rem !important;
   }
 
   .estimator-step-header {
     display: flex !important;
-    align-items: center !important;
     flex-wrap: wrap !important;
-    gap: 0.5rem 0.75rem !important;
-    margin-bottom: 0.95rem !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.35rem 0.65rem !important;
+    margin-bottom: 0.85rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .estimator-step-num {
     width: 28px !important;
     height: 28px !important;
-    font-size: 0.85rem !important;
+    font-size: 0.82rem !important;
     flex-shrink: 0 !important;
   }
 
   .estimator-step-title {
-    font-size: 1.05rem !important;
+    font-size: 1.02rem !important;
     font-weight: 800 !important;
-    white-space: nowrap !important;
+    white-space: normal !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
     margin: 0 !important;
   }
 
   .estimator-step-desc {
-    margin-inline-start: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
     font-size: 0.78rem !important;
     color: var(--text-muted) !important;
+    padding-inline-start: calc(28px + 0.65rem) !important;
+    text-align: start !important;
+  }
+
+  .project-type-grid,
+  .features-checklist-grid,
+  .speed-toggle-row {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .type-btn,
+  .feature-toggle-card,
+  .speed-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
   }
 
   /* Compact ergonomic cards: Icon on start, text in center, clean radio check on end */
