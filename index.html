@@ -353,12 +353,55 @@
 
           <!-- Hero 3D Centerpiece -->
           <div class="hero-3d-wrap">
-            <canvas id="hero-3d-canvas"></canvas>
-            <span class="hero-3d-hint">
+            <canvas id="hero-3d-canvas" class="desktop-only-canvas"></canvas>
+            <span class="hero-3d-hint desktop-only-hint">
               <i class="fa-solid fa-arrows-spin" style="margin-inline-end: 4px;"></i>
-              <span data-i18n="hero3dHint">حرك الماوس لتلف المجسم 3D</span>
+              <span data-i18n="hero3dHint">تفاعل مع المجسم 3D</span>
             </span>
-          </div>
+
+            <!-- Mobile Studio Live Showcase Card (Zero GPU Lag, Real Work Proof) -->
+            <div class="hero-mobile-work-card mobile-only-showcase">
+              <div class="mobile-work-header">
+                <span class="status-live-dot"></span>
+                <span class="mobile-work-title">أحدث أعمالنا الحية في السوق</span>
+              </div>
+              <div class="mobile-work-list">
+                <a href="https://aya-accessories.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-work-item">
+                  <div class="mobile-work-icon" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e;"><i class="fa-solid fa-bag-shopping"></i></div>
+                  <div class="mobile-work-info">
+                    <span class="mobile-work-name">متجر آية للاكسسوارات</span>
+                    <span class="mobile-work-tag">سلة مشتريات وطلب واتساب مباشر</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square mobile-work-link-icon"></i>
+                </a>
+                <a href="https://festival-fivestar.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-work-item">
+                  <div class="mobile-work-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;"><i class="fa-solid fa-cake-candles"></i></div>
+                  <div class="mobile-work-info">
+                    <span class="mobile-work-name">حلواني فيستيفال فايف ستار</span>
+                    <span class="mobile-work-tag">منيو أصناف وأسعار وفروع حية</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square mobile-work-link-icon"></i>
+                </a>
+                <a href="https://elvaranda.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-work-item">
+                  <div class="mobile-work-icon" style="background: rgba(14, 165, 233, 0.15); color: #0ea5e9;"><i class="fa-solid fa-building"></i></div>
+                  <div class="mobile-work-info">
+                    <span class="mobile-work-name">مساحة عمل الڤراندا</span>
+                    <span class="mobile-work-tag">حجز غرف وساعات مذاكرة أونلاين</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square mobile-work-link-icon"></i>
+                </a>
+              </div>
+              <div class="mobile-work-footer">
+                <div class="mobile-trust-badge">
+                  <i class="fa-solid fa-code"></i>
+                  <span>كود يدوي مخصص بدون قوالب</span>
+                </div>
+                <div class="mobile-speed-badge">
+                  <i class="fa-solid fa-bolt"></i>
+                  <span>سرعة 99/100 جوجل</span>
+                </div>
+              </div>
+            </div></div>
         </div>
       </section>
 
@@ -792,7 +835,7 @@
                   <i class="fa-brands fa-whatsapp"></i>
                 </div>
               </div>
-              <h3 class="service-title" data-i18n="s4Title">ربط واتساب وميزات تفاعلية ذكية</h3>
+              <h3 class="service-title" data-i18n="s4Title">ربط واتساب وسلة طلبات فورية</h3>
               <p class="service-desc" data-i18n="s4Desc">
                 ربط مباشر لطلبات الشراء على الواتساب، فورمات تواصل وحجز سريعة، ولمسات تفاعلية 3D تميزك عن غيرك.
               </p>
@@ -817,7 +860,7 @@
           <div class="section-header text-center">
             <div class="badge-pill" style="margin-inline: auto;">
               <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-magenta);"></i>
-              <span data-i18n="estimatorBadge">حاسبة وكوتيشن 7P الذكية</span>
+              <span data-i18n="estimatorBadge">حاسبة ومواصفات مشروعك</span>
             </div>
             <h2 class="section-title" data-i18n="estimatorTitle">
               احسب تفاصيل مشروعك واستلم <span class="highlight">كوتيشن واتساب فوري</span>
@@ -862,7 +905,7 @@
                       <span class="type-btn-desc" data-i18n="estType3Desc">تعريف احترافي بالخدمات وبناء الثقة</span>
                       <span class="type-btn-check"><i class="fa-solid fa-check"></i></span>
                     </button>
-                    <button type="button" class="type-btn" data-type-id="menu" data-days="3-5" data-name-ar="منيو مطعم / كافيه ذكي" data-name-en="Smart QR Menu & Ordering">
+                    <button type="button" class="type-btn" data-type-id="menu" data-days="3-5" data-name-ar="منيو مطعم / كافيه QR مع سلة واتساب" data-name-en="Smart QR Menu & Ordering">
                       <div class="type-btn-icon"><i class="fa-solid fa-utensils"></i></div>
                       <span class="type-btn-name" data-i18n="estType4Name">منيو مطعم / كافيه</span>
                       <span class="type-btn-desc" data-i18n="estType4Desc">منيو QR سريع وسهل مع طلب مباشر واتساب</span>

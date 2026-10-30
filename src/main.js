@@ -84,6 +84,8 @@ let heroLoaded = false;
 let skillsLoaded = false;
 
 export async function ensureHeroSceneLoaded() {
+  const isMobileOrTablet = window.innerWidth < 992 || window.matchMedia('(pointer: coarse)').matches;
+  if (isMobileOrTablet) return;
   if (heroLoaded) return;
   const heroCanvas = document.getElementById('hero-3d-canvas');
   if (!heroCanvas) return;
@@ -239,7 +241,8 @@ async function setupIntroFlow() {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isBotOrAudit = /Googlebot|Lighthouse|bingbot|Baiduspider/i.test(navigator.userAgent);
 
-  if (hasSeenIntro || prefersReducedMotion || isBotOrAudit) {
+  const isMobile = window.innerWidth < 768;
+  if (hasSeenIntro || prefersReducedMotion || isBotOrAudit || isMobile) {
     introScreen.classList.add('is-hidden');
     triggerHeroReveal();
     return;

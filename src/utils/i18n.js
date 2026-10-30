@@ -51,13 +51,13 @@ export const translations = {
 
     // Hero Section
     heroBadge1: '⚡ استوديو متخصص في بناء مواقع البيزنس الحديثة',
-    heroBadge2: 'أبعاد ثلاثية 3D وتجاوب صاروخي على الموبايل',
+    heroBadge2: 'برمجة يدوية 100% بدون قوالب جاهزة',
     heroTitle: '7P Studio — مواقع عصرية، <span class="highlight">شكلها رايق،</span> وسريعة بتجيب زباين.',
-    heroSubtitle: 'أهلاً بيك! إحنا <strong>عمر</strong> و<strong>جاد</strong> في 7P Studio. بنبني مواقع استثنائية وسريعة تُحوّل زوارك لعملاء فعليين، بنحل المشاكل البرمجية، وبنظبط موقعك بأعلى كفاءة وبدون صداع.',
+    heroSubtitle: 'أهلاً بيك! إحنا <strong>عمر</strong> و<strong>جاد</strong> في 7P Studio. بنصمم ونكود موقعك بإيدينا من الصفر بأعلى كفاءة وسرعة، بدون قوالب جاهزة مكررة، وبنربطه بسلة واتساب مباشرة بتضاعف مبيعاتك.',
     heroCtaWork: 'شوف شغلنا',
     heroCtaEstimator: 'اعرف سعر مشروعك في 30 ثانية',
     heroCtaContact: 'ابدأ مشروعك معانا 🚀',
-    hero3dHint: 'حرك الماوس لتلف المجسم 3D',
+    hero3dHint: 'تفاعل مع المجسم 3D',
 
     // Real Proof Row (Computed from data, no fake numbers)
     heroProofProjectsVal: '7 مشاريع',
@@ -169,7 +169,7 @@ export const translations = {
     s3AudienceTitle: 'مناسب لمين:',
     s3Audience: 'المواقع القديمة التي تحتاج مظهر عصري ينافس في السوق الحالي.',
 
-    s4Title: 'ربط واتساب وميزات تفاعلية ذكية',
+    s4Title: 'ربط واتساب وسلة طلبات فورية',
     s4Desc: 'ربط مباشر لطلبات الشراء على الواتساب، فورمات تواصل وحجز سريعة، ولمسات تفاعلية 3D تميزك عن غيرك.',
     s4DeliverablesTitle: 'ما يتضمنه العمل:',
     s4Deliverables: 'ربط سلة الواتساب التلقائية، مجسمات 3D تفاعلية بـ Three.js، وأنيميشن ناعم بـ GSAP.',
@@ -177,7 +177,7 @@ export const translations = {
     s4Audience: 'البراندات التي تريد إبهار عملائها وتسهيل التواصل الفوري المباشر.',
 
     // 7P Project Estimator
-    estimatorBadge: 'حاسبة وكوتيشن 7P الذكية',
+    estimatorBadge: 'حاسبة ومواصفات مشروعك',
     estimatorTitle: 'احسب تفاصيل مشروعك واستلم <span class="highlight">كوتيشن واتساب فوري</span>',
     estimatorDesc: 'اختر نوع فكرتك والميزات اللي محتاجها، وشوف جدول التسليم والتقنيات المقترحة، وابدأ تواصل فوري بضغطة زر واحدة.',
     estStep1Title: 'نوع المشروع الأساسي',
@@ -189,7 +189,7 @@ export const translations = {
     estType3Name: 'موقع بيزنس / شركة',
     estType3Desc: 'تعريف احترافي بالخدمات وبناء الثقة',
     estType4Name: 'منيو مطعم / كافيه',
-    estType4Desc: 'منيو QR سريع وسهل مع طلب مباشر واتساب',
+    estType4Desc: 'منيو QR مع سلة أسعار وطلب مباشر واتساب',
     estType5Name: 'إصلاح موقع حالي',
     estType5Desc: 'حل باجات، رفع سرعة، وضبط شكل الموبايل',
     estStep2Title: 'الميزات الإضافية المقترحة',

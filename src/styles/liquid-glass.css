@@ -1753,3 +1753,105 @@ html.low-end-or-mobile {
     }
   }
 }
+
+
+/* ==========================================================================
+   MOBILE & TABLET ULTRA-PERFORMANCE ENGINE (ZERO GPU FREEZING)
+   Disables expensive backdrop-filter GPU passes and moving background orbs
+   on all mobile phones, tablets (< 992px), and touchscreens.
+   Provides crisp, sleek, 120fps hardware-accelerated solid/frost surfaces.
+   ========================================================================== */
+@media (max-width: 991px), (pointer: coarse) {
+  /* 1. Eliminate all backdrop blur re-compositing passes */
+  *,
+  *::before,
+  *::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* 2. Freeze and hide continuous background orb animations */
+  .liquid-orb,
+  .liquid-backdrop-container {
+    display: none !important;
+    animation: none !important;
+  }
+
+  /* 3. Sleek, solid, crisp surfaces in Dark Mode */
+  [data-theme="dark"] .glass,
+  [data-theme="dark"] .glass--card,
+  [data-theme="dark"] .service-bento-tile,
+  [data-theme="dark"] .process-step-card,
+  [data-theme="dark"] .showcase-shell,
+  [data-theme="dark"] .estimator-card-main,
+  [data-theme="dark"] .estimator-hud-card,
+  [data-theme="dark"] .contact-form-card,
+  [data-theme="dark"] .contact-method-card,
+  [data-theme="dark"] .trust-promises-card,
+  [data-theme="dark"] .diagnosis-quiz-card,
+  [data-theme="dark"] .diagnosis-result-card,
+  [data-theme="dark"] .ba-slider-container,
+  [data-theme="dark"] .hero-proof-card,
+  [data-theme="dark"] .pillar-card,
+  [data-theme="dark"] .privacy-modal-card {
+    background: #111827 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  /* 4. Sleek, solid surfaces in Light Mode */
+  [data-theme="light"] .glass,
+  [data-theme="light"] .glass--card,
+  [data-theme="light"] .service-bento-tile,
+  [data-theme="light"] .process-step-card,
+  [data-theme="light"] .showcase-shell,
+  [data-theme="light"] .estimator-card-main,
+  [data-theme="light"] .estimator-hud-card,
+  [data-theme="light"] .contact-form-card,
+  [data-theme="light"] .contact-method-card,
+  [data-theme="light"] .trust-promises-card,
+  [data-theme="light"] .diagnosis-quiz-card,
+  [data-theme="light"] .diagnosis-result-card,
+  [data-theme="light"] .ba-slider-container,
+  [data-theme="light"] .hero-proof-card,
+  [data-theme="light"] .pillar-card,
+  [data-theme="light"] .privacy-modal-card {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* 5. Mobile Navbar */
+  .navbar {
+    background: #0B0F19 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  [data-theme="light"] .navbar {
+    background: #FFFFFF !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  }
+
+  /* 6. Mobile Sticky CTA Bottom Bar */
+  .mobile-sticky-cta {
+    background: #0B0F19 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5) !important;
+    padding: 0.65rem 1rem !important;
+    padding-bottom: max(0.65rem, env(safe-area-inset-bottom, 0px)) !important;
+    z-index: 9999 !important;
+  }
+  [data-theme="light"] .mobile-sticky-cta {
+    background: #FFFFFF !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  /* 7. Mobile Navigation Drawer Overlay */
+  .mobile-nav-overlay {
+    background: #0B0F19 !important;
+  }
+  [data-theme="light"] .mobile-nav-overlay {
+    background: #FFFFFF !important;
+  }
+}
+
