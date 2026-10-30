@@ -55,13 +55,13 @@
      LIQUID GLASS SYSTEM TOKENS (DARK MODE)
      ------------------------------------------------------------------------ */
   /* Layer 1: Base Translucent Fill with Glass Gleam Gradient */
-  --glass-fill: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.035) 45%, rgba(139, 61, 255, 0.065) 100%);
-  --glass-fill-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.055) 45%, rgba(139, 61, 255, 0.1) 100%);
-  --glass-fill-active: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 45%, rgba(139, 61, 255, 0.14) 100%);
+  --glass-fill: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.035) 45%, rgba(139, 61, 255, 0.065) 100%);
+  --glass-fill-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.055) 45%, rgba(139, 61, 255, 0.1) 100%);
+  --glass-fill-active: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 45%, rgba(139, 61, 255, 0.14) 100%);
   --glass-fill-heavy: rgba(16, 14, 30, 0.72);
-  --glass-blur: 24px;
-  --glass-saturate: 200%;
-  --glass-brightness: 1.1;
+  --glass-blur: 16px;
+  --glass-saturate: 160%;
+  --glass-brightness: 1.05;
 
   /* Layer 2: Rim Light (1px gradient mask) */
   --glass-rim-bright: rgba(255, 255, 255, 0.75);

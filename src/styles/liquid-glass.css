@@ -28,22 +28,18 @@
   opacity: 0.9;
 }
 
-/* 3% Fine Grain Noise Layer */
+/* 3% Fine Grain Noise Layer - Disabled for hardware 60fps scrolling */
 .liquid-grain-overlay {
-  position: absolute;
-  inset: 0;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  display: none !important;
 }
 
-/* Drifting Liquid Color Orbs (Pure GPU transform animations) */
+/* Drifting Liquid Color Orbs (Multi-stop radial gradients, zero blur filter cost) */
 .liquid-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(85px);
-  -webkit-filter: blur(85px);
   will-change: transform;
   pointer-events: none;
+  transform: translateZ(0);
 }
 
 .liquid-orb.orb-violet {
@@ -51,7 +47,7 @@
   inset-inline-start: -10vw;
   width: min(800px, 85vw);
   height: min(800px, 85vw);
-  background: radial-gradient(circle, var(--orb-violet-color) 0%, rgba(139, 61, 255, 0.2) 45%, transparent 70%);
+  background: radial-gradient(circle, var(--orb-violet-color) 0%, rgba(139, 61, 255, 0.22) 30%, rgba(139, 61, 255, 0.08) 55%, transparent 75%);
   animation: orbDrift1 45s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
 }
 
@@ -60,7 +56,7 @@
   inset-inline-end: -10vw;
   width: min(750px, 80vw);
   height: min(750px, 80vw);
-  background: radial-gradient(circle, var(--orb-magenta-color) 0%, rgba(255, 61, 240, 0.2) 45%, transparent 70%);
+  background: radial-gradient(circle, var(--orb-magenta-color) 0%, rgba(255, 61, 240, 0.2) 30%, rgba(255, 61, 240, 0.07) 55%, transparent 75%);
   animation: orbDrift2 52s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
 }
 
@@ -69,7 +65,7 @@
   inset-inline-start: -5vw;
   width: min(700px, 75vw);
   height: min(700px, 75vw);
-  background: radial-gradient(circle, var(--orb-cyan-color) 0%, rgba(46, 230, 255, 0.18) 45%, transparent 70%);
+  background: radial-gradient(circle, var(--orb-cyan-color) 0%, rgba(46, 230, 255, 0.2) 30%, rgba(46, 230, 255, 0.06) 55%, transparent 75%);
   animation: orbDrift3 40s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
 }
 
@@ -78,7 +74,7 @@
   inset-inline-end: 25vw;
   width: min(650px, 70vw);
   height: min(650px, 70vw);
-  background: radial-gradient(circle, var(--orb-ambient-color) 0%, rgba(124, 58, 237, 0.18) 50%, transparent 75%);
+  background: radial-gradient(circle, var(--orb-ambient-color) 0%, rgba(124, 58, 237, 0.18) 35%, rgba(124, 58, 237, 0.06) 55%, transparent 75%);
   animation: orbDrift1 58s infinite alternate-reverse cubic-bezier(0.45, 0, 0.55, 1);
 }
 
@@ -89,8 +85,7 @@
 
 /* --------------------------------------------------------------------------
    0.1 SECTION-LEVEL AMBIENT GLOWS
-   Glass needs something vibrant to bend! Ensure EVERY section card sits directly
-   above glowing color nebulae so translucent glass visibly refracts light.
+   Hardware-accelerated multi-stop radial glows (Zero GPU blur filter overhead)
    -------------------------------------------------------------------------- */
 .hero-section::before,
 .showcase-section::before,
@@ -101,10 +96,9 @@
   content: '';
   position: absolute;
   border-radius: 50%;
-  filter: blur(95px);
-  -webkit-filter: blur(95px);
   pointer-events: none;
   z-index: 1;
+  transform: translateZ(0);
 }
 
 .hero-section::before {
@@ -112,7 +106,7 @@
   inset-inline-start: 5%;
   width: min(520px, 60vw);
   height: min(520px, 60vw);
-  background: radial-gradient(circle, var(--orb-violet-color) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--orb-violet-color) 0%, rgba(139, 61, 255, 0.2) 35%, transparent 70%);
 }
 
 .showcase-section::before {
@@ -120,7 +114,7 @@
   inset-inline-end: 5%;
   width: min(540px, 65vw);
   height: min(540px, 65vw);
-  background: radial-gradient(circle, var(--orb-magenta-color) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--orb-magenta-color) 0%, rgba(255, 61, 240, 0.2) 35%, transparent 70%);
 }
 
 .services-section::before {
@@ -128,7 +122,7 @@
   inset-inline-start: 10%;
   width: min(550px, 65vw);
   height: min(550px, 65vw);
-  background: radial-gradient(circle, var(--orb-cyan-color) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--orb-cyan-color) 0%, rgba(46, 230, 255, 0.2) 35%, transparent 70%);
 }
 
 .estimator-section::before {
@@ -136,7 +130,7 @@
   inset-inline-end: 8%;
   width: min(580px, 70vw);
   height: min(580px, 70vw);
-  background: radial-gradient(circle, var(--orb-violet-color) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--orb-violet-color) 0%, rgba(139, 61, 255, 0.2) 35%, transparent 70%);
 }
 
 .contact-section::before {
@@ -144,7 +138,7 @@
   inset-inline-start: 3%;
   width: min(560px, 65vw);
   height: min(560px, 65vw);
-  background: radial-gradient(circle, var(--orb-magenta-color) 0%, rgba(139, 61, 255, 0.25) 50%, transparent 75%);
+  background: radial-gradient(circle, var(--orb-magenta-color) 0%, rgba(139, 61, 255, 0.22) 40%, transparent 75%);
 }
 
 .contact-section::after {
@@ -152,7 +146,7 @@
   inset-inline-end: 5%;
   width: min(520px, 60vw);
   height: min(520px, 60vw);
-  background: radial-gradient(circle, var(--orb-cyan-color) 0%, rgba(37, 211, 102, 0.22) 50%, transparent 75%);
+  background: radial-gradient(circle, var(--orb-cyan-color) 0%, rgba(37, 211, 102, 0.2) 40%, transparent 75%);
 }
 
 /* --------------------------------------------------------------------------
@@ -260,22 +254,7 @@
   transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 1.4 REFRACTION (Layer 4: Progressive Enhancement via Chromium SVG filter) */
-@supports (backdrop-filter: url(#liquid-distort)) {
-  html.supports-liquid-refraction .glass,
-  html.supports-liquid-refraction .glass--card,
-  html.supports-liquid-refraction .service-bento-tile,
-  html.supports-liquid-refraction .showcase-shell,
-  html.supports-liquid-refraction .estimator-card-main,
-  html.supports-liquid-refraction .contact-form-card,
-  html.supports-liquid-refraction .diagnosis-result-card,
-  html.supports-liquid-refraction .ba-slider-container {
-    backdrop-filter: url(#liquid-distort) blur(var(--glass-blur)) saturate(var(--glass-saturate)) brightness(var(--glass-brightness));
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) brightness(var(--glass-brightness));
-  }
-}
-
-/* 1.5 MOTION: Tactile Lift on Hover & Squish on Press */
+/* 1.4 REFRACTION & MOTION: Tactile Lift on Hover & Squish on Press */
 .glass--card:hover,
 .glass:hover {
   transform: translateY(-2px);
