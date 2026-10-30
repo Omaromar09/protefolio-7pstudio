@@ -1,7 +1,22 @@
 <!doctype html>
-<html lang="ar" dir="rtl" data-theme="light">
+<html lang="ar" dir="rtl" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('omar_theme');
+          var theme = (saved === 'light' || saved === 'dark') ? saved : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          var metaTheme = document.querySelector('meta[name="theme-color"]');
+          if (metaTheme) {
+            metaTheme.setAttribute('content', theme === 'dark' ? '#07060C' : '#F4F2FA');
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>7P Studio — عمر وجاد | مواقع عصرية وتفاعلية وسريعة - 7PSTUDIO</title>
     <meta name="description" content="7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك." />
@@ -20,7 +35,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#F8FAFC" />
+    <meta name="theme-color" content="#07060C" />
 
     <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
     <meta property="og:type" content="website" />
@@ -140,6 +155,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
+    <!-- Inline SVG Liquid Distortion Filter (Chromium Progressive Enhancement) -->
+    <svg class="liquid-glass-svg-filters" aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
+      <defs>
+        <filter id="liquid-distort" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.015 0.02" numOctaves="2" result="noise" />
+          <feGaussianBlur in="noise" stdDeviation="2.5" result="smoothNoise" />
+          <feDisplacementMap in="SourceGraphic" in2="smoothNoise" scale="14" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- Ambient Liquid Glass Refraction Backdrop & Drifting Color Orbs -->
+    <div class="liquid-backdrop-container" aria-hidden="true">
+      <div class="liquid-grid-overlay"></div>
+      <div class="liquid-grain-overlay"></div>
+      <div class="liquid-orb orb-violet"></div>
+      <div class="liquid-orb orb-magenta"></div>
+      <div class="liquid-orb orb-cyan"></div>
+      <div class="liquid-orb orb-ambient"></div>
+    </div>
     <!-- Custom Cursor (Desktop Only) -->
     <div class="custom-cursor"></div>
     <div class="cursor-follower"></div>

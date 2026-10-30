@@ -12,6 +12,7 @@ import { renderTestimonials } from './utils/testimonials.js';
 import { showToast } from './utils/toast.js';
 import { fireSuccessConfetti } from './utils/confetti.js';
 import { initAudio, toggleAudio, getAudioState } from './intro/soundSynth.js';
+import { initLiquidGlass } from './motion/liquidGlass.js';
 import gsap from 'gsap';
 
 // ==========================================================================
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Light / Dark Theme Switcher
   initTheme();
+  initLiquidGlass();
 
   // Initialize Smooth Scrolling & Lenis
   initSmoothScroll();

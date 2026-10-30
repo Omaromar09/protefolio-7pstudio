@@ -1,69 +1,160 @@
 /* ==========================================================================
    7P STUDIO — COMPLETE DESIGN SYSTEM & TOKEN ARCHITECTURE
    Brand: Neon Bolt in Violet (#8B3DFF), Magenta (#FF3DF0), and Cyan (#2EE6FF)
-   Dark Theme (Default): Deep Obsidian (#07060C and #070A14)
-   Light Theme: Crisp Pearl Luxury (#FAF9FE and #FFFFFF)
+   Dark Theme (Default & Primary): Deep Cosmic Obsidian (#07060C to #0A0B16)
+   Light Theme: Crisp Luxury Pearl & Lavender (#F4F2FA to #FFFFFF)
    Typography: Alexandria (Display), IBM Plex Sans Arabic (Body),
                Unbounded (Numerals/Badges), JetBrains Mono (Tech Tags)
+   Liquid Glass System: Apple iOS 26 Inspired Translucent Layering
    ========================================================================== */
 
 @import './fonts.css';
 
+/* --------------------------------------------------------------------------
+   GLOBAL DIRECTION-AWARE RIM LIGHT ANGLES
+   RTL (Arabic default): 225deg (light enters from top-right)
+   LTR (English): 135deg (light enters from top-left)
+   -------------------------------------------------------------------------- */
+:root,
+[dir="rtl"] {
+  --rim-angle: 225deg;
+}
+
+[dir="ltr"] {
+  --rim-angle: 135deg;
+}
+
+/* ==========================================================================
+   1. DARK THEME (DEFAULT & PRIMARY MODE)
+   ========================================================================== */
 :root,
 [data-theme="dark"] {
-  /* ------------------------------------------------------------------------
-     1. SURFACES & SYSTEM BACKGROUNDS (Dark Obsidian Luxury Mode)
-     ------------------------------------------------------------------------ */
+  --theme-mode: dark;
+
+  /* Surfaces & Canvas */
   --bg-primary: #07060C;
-  --bg-secondary: #0A0914;
+  --bg-secondary: #0A0B16;
   --bg-surface: #100E1E;
   --bg-surface-elevated: #16132A;
-  --bg-card: rgba(16, 14, 30, 0.76);
-  --bg-card-hover: rgba(22, 19, 42, 0.92);
-  --bg-glass: rgba(16, 14, 30, 0.82);
-  --bg-glass-strong: rgba(10, 9, 20, 0.95);
-  --bg-glass-pill: rgba(255, 255, 255, 0.05);
-
-  /* Legacy aliases */
   --bg-dark: var(--bg-primary);
   --bg-navy: var(--bg-secondary);
 
-  /* Text Tones (Crisp White & Clear Slate) */
+  /* Typography & High-Contrast Tones (WCAG AA Compliant) */
   --text-main: #FFFFFF;
   --text-sub: #E2E8F0;
   --text-muted: #94A3B8;
   --text-dim: #64748B;
-  --text-hud: rgba(255, 255, 255, 0.92);
+  --text-hud: rgba(255, 255, 255, 0.94);
+  --text-soft: #CBD5E1;
 
-  /* Borders & Shadows */
-  --border-subtle: rgba(139, 61, 255, 0.18);
-  --border-glass: rgba(255, 255, 255, 0.08);
-  --shadow-card: 0 16px 36px -10px rgba(0, 0, 0, 0.65), 0 0 20px rgba(139, 61, 255, 0.08);
-  --shadow-elevated: 0 24px 48px -12px rgba(0, 0, 0, 0.75), 0 0 30px rgba(255, 61, 240, 0.12);
+  /* Accessibility & Focus Ring */
+  --focus-ring-color: #2EE6FF;
+  --focus-ring-shadow: 0 0 0 3px rgba(46, 230, 255, 0.35);
 
   /* ------------------------------------------------------------------------
-     2. 7P SIGNATURE COLOR PALETTE (Precision tuned)
+     LIQUID GLASS SYSTEM TOKENS (DARK MODE)
      ------------------------------------------------------------------------ */
+  /* Layer 1: Base Translucent Fill with Glass Gleam Gradient */
+  --glass-fill: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.035) 45%, rgba(139, 61, 255, 0.065) 100%);
+  --glass-fill-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.055) 45%, rgba(139, 61, 255, 0.1) 100%);
+  --glass-fill-active: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 45%, rgba(139, 61, 255, 0.14) 100%);
+  --glass-fill-heavy: rgba(16, 14, 30, 0.72);
+  --glass-blur: 24px;
+  --glass-saturate: 200%;
+  --glass-brightness: 1.1;
+
+  /* Layer 2: Rim Light (1px gradient mask) */
+  --glass-rim-bright: rgba(255, 255, 255, 0.75);
+  --glass-rim-mid: rgba(255, 255, 255, 0.35);
+  --glass-rim-faint: rgba(255, 255, 255, 0.1);
+  --glass-rim-bottom: rgba(255, 255, 255, 0.35);
+  --glass-rim-active: rgba(255, 255, 255, 0.95);
+
+  /* Inset & Outer Shadows */
+  --glass-highlight-top: inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.45);
+  --glass-highlight-bottom: inset 0 -1px 1px 0 rgba(255, 255, 255, 0.1);
+  --glass-shadow-outer: 0 20px 48px -10px rgba(0, 0, 0, 0.75), 0 0 28px -4px rgba(139, 61, 255, 0.22), inset 0 0 20px 0 rgba(255, 255, 255, 0.02);
+  --glass-shadow-hover: 0 28px 56px -12px rgba(0, 0, 0, 0.85), 0 0 40px rgba(139, 61, 255, 0.35), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.65);
+
+  /* Legacy card aliases */
+  --bg-card: var(--glass-fill);
+  --bg-card-hover: var(--glass-fill-hover);
+  --bg-glass: var(--glass-fill);
+  --bg-glass-strong: rgba(10, 9, 20, 0.85);
+  --bg-glass-pill: rgba(255, 255, 255, 0.06);
+  --border-subtle: rgba(139, 61, 255, 0.22);
+  --border-glass: rgba(255, 255, 255, 0.1);
+  --shadow-card: var(--glass-shadow-outer);
+  --shadow-elevated: var(--glass-shadow-hover);
+
+  /* Layer 3: Specular Sheen */
+  --glass-sheen-color: rgba(255, 255, 255, 0.15);
+  --glass-sheen-opacity: 0.12;
+  --glass-sheen-hover-opacity: 0.25;
+
+  /* Layer 4: Recessed Input Wells */
+  --glass-input-bg: rgba(0, 0, 0, 0.45);
+  --glass-input-border: rgba(255, 255, 255, 0.14);
+  --glass-input-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.75), inset 0 1px 2px 0 rgba(0, 0, 0, 0.9), 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  --glass-input-text: #FFFFFF;
+  --glass-input-placeholder: #94A3B8;
+  --glass-input-focus-bg: rgba(10, 8, 22, 0.85);
+  --glass-input-focus-border: #2EE6FF;
+  --glass-input-focus-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.7), 0 0 0 3px rgba(46, 230, 255, 0.35), 0 0 20px rgba(46, 230, 255, 0.4);
+
+  /* Layer 5: Buttons */
+  --glass-btn-primary-bg: linear-gradient(135deg, rgba(139, 61, 255, 0.88) 0%, rgba(255, 61, 240, 0.88) 100%);
+  --glass-btn-primary-rim: rgba(255, 255, 255, 0.55);
+  --glass-btn-primary-shadow: 0 8px 24px -4px rgba(224, 43, 251, 0.5), 0 2px 12px rgba(46, 230, 255, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+  --glass-btn-primary-hover-shadow: 0 12px 32px -4px rgba(224, 43, 251, 0.72), 0 0 24px rgba(46, 230, 255, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.65);
+
+  --glass-btn-secondary-bg: rgba(255, 255, 255, 0.07);
+  --glass-btn-secondary-border: rgba(255, 255, 255, 0.12);
+  --glass-btn-secondary-text: #FFFFFF;
+  --glass-btn-secondary-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.18);
+  --glass-btn-secondary-hover-bg: rgba(255, 255, 255, 0.12);
+  --glass-btn-secondary-hover-border: rgba(46, 230, 255, 0.45);
+
+  /* Glass Pills & Chips */
+  --glass-pill-bg: rgba(255, 255, 255, 0.06);
+  --glass-pill-border: rgba(255, 255, 255, 0.12);
+  --glass-pill-text: #FFFFFF;
+
+  /* Flattened Nested Elements (Anti-mud) */
+  --glass-nested-fill: rgba(255, 255, 255, 0.04);
+  --glass-nested-border: rgba(255, 255, 255, 0.08);
+
+  /* Header Scrolled */
+  --glass-header-scrolled-fill: rgba(7, 6, 12, 0.85);
+
+  /* Background Drifting Orbs - High Luminosity for Visible Refraction */
+  --liquid-grid-dot: rgba(255, 255, 255, 0.06);
+  --orb-violet-color: rgba(139, 61, 255, 0.55);
+  --orb-magenta-color: rgba(255, 61, 240, 0.48);
+  --orb-cyan-color: rgba(46, 230, 255, 0.45);
+  --orb-ambient-color: rgba(124, 58, 237, 0.4);
+
+  /* Brand Accents */
   --accent-violet: #8B3DFF;
   --accent-violet-light: #A86BFF;
   --accent-violet-deep: #6D25D9;
-  --accent-violet-glow: rgba(139, 61, 255, 0.32);
+  --accent-violet-glow: rgba(139, 61, 255, 0.35);
 
   --accent-magenta: #FF3DF0;
   --accent-magenta-light: #FF70F4;
   --accent-magenta-deep: #D916C8;
-  --accent-magenta-glow: rgba(255, 61, 240, 0.32);
+  --accent-magenta-glow: rgba(255, 61, 240, 0.35);
 
   --accent-cyan: #2EE6FF;
   --accent-cyan-light: #6AEFFF;
   --accent-cyan-bright: #00D5F0;
-  --accent-cyan-glow: rgba(46, 230, 255, 0.32);
+  --accent-cyan-glow: rgba(46, 230, 255, 0.35);
 
   --accent-amber: #FFB800;
   --accent-amber-light: #FFCA40;
   --accent-emerald: #10B981;
   --accent-emerald-light: #34D399;
-  --accent-emerald-glow: rgba(16, 185, 129, 0.32);
+  --accent-emerald-glow: rgba(16, 185, 129, 0.35);
   --accent-coral: #FF4757;
 
   /* Aliases */
@@ -106,7 +197,7 @@
     0 calc(100% - 10px)
   );
 
-  /* Spacing */
+  /* Dimensions & Geometry */
   --container-max: 1240px;
   --header-height: 80px;
   --radius-sm: 8px;
@@ -124,34 +215,113 @@
 }
 
 /* ==========================================================================
-   LIGHT LUXURY THEME (CRISP PEARL CANVAS & OBSIDIAN SLATE TYPE)
+   2. LIGHT THEME (CRISP LUXURY PEARL & HIGH CONTRAST)
    ========================================================================== */
 [data-theme="light"] {
-  --bg-primary: #F8FAFC;
-  --bg-secondary: #F1F5F9;
-  --bg-surface: rgba(255, 255, 255, 0.72);
-  --bg-surface-elevated: rgba(255, 255, 255, 0.85);
-  --bg-card: rgba(255, 255, 255, 0.68);
-  --bg-card-hover: rgba(255, 255, 255, 0.88);
-  --bg-glass: rgba(255, 255, 255, 0.65);
-  --bg-glass-strong: rgba(255, 255, 255, 0.85);
-  --bg-glass-pill: rgba(255, 255, 255, 0.58);
+  --theme-mode: light;
 
+  /* Canvas */
+  --bg-primary: #F4F2FA;
+  --bg-secondary: #EBE8F5;
+  --bg-surface: rgba(255, 255, 255, 0.72);
+  --bg-surface-elevated: rgba(255, 255, 255, 0.88);
   --bg-dark: var(--bg-primary);
   --bg-navy: var(--bg-secondary);
 
-  /* High Contrast Deep Obsidian Slate */
-  --text-main: #0F172A;
-  --text-sub: #334155;
-  --text-muted: #64748B;
-  --text-dim: #94A3B8;
-  --text-hud: rgba(15, 23, 42, 0.92);
+  /* Typography: High-Contrast Deep Obsidian Slate (Strict WCAG AA > 7:1) */
+  --text-main: #0B0F19;
+  --text-sub: #1E293B;
+  --text-muted: #475569;
+  --text-dim: #64748B;
+  --text-hud: #0B0F19;
+  --text-soft: #334155;
 
-  /* Apple iOS Glass Specular Borders & Diffuse Shadows */
+  /* Focus Ring */
+  --focus-ring-color: #8B3DFF;
+  --focus-ring-shadow: 0 0 0 3px rgba(139, 61, 255, 0.25);
+
+  /* ------------------------------------------------------------------------
+     LIQUID GLASS SYSTEM TOKENS (LIGHT MODE)
+     ------------------------------------------------------------------------ */
+  /* Layer 1: Base Translucent Fill */
+  --glass-fill: rgba(255, 255, 255, 0.55);
+  --glass-fill-hover: rgba(255, 255, 255, 0.78);
+  --glass-fill-active: rgba(255, 255, 255, 0.88);
+  --glass-fill-heavy: rgba(255, 255, 255, 0.82);
+  --glass-blur: 20px;
+  --glass-saturate: 180%;
+  --glass-brightness: 1.05;
+
+  /* Layer 2: Rim Light (1px gradient mask) */
+  --glass-rim-bright: rgba(255, 255, 255, 0.96);
+  --glass-rim-mid: rgba(255, 255, 255, 0.68);
+  --glass-rim-faint: rgba(255, 255, 255, 0.25);
+  --glass-rim-bottom: rgba(255, 255, 255, 0.85);
+  --glass-rim-active: #FFFFFF;
+
+  /* Inset & Outer Shadows */
+  --glass-highlight-top: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+  --glass-highlight-bottom: inset 0 -1px 1px 0 rgba(255, 255, 255, 0.45);
+  --glass-shadow-outer: 0 16px 36px -8px rgba(15, 23, 42, 0.07), 0 4px 14px -2px rgba(139, 61, 255, 0.05);
+  --glass-shadow-hover: 0 24px 48px -10px rgba(139, 61, 255, 0.12), 0 8px 20px -4px rgba(15, 23, 42, 0.06);
+
+  /* Legacy card aliases */
+  --bg-card: var(--glass-fill);
+  --bg-card-hover: var(--glass-fill-hover);
+  --bg-glass: var(--glass-fill);
+  --bg-glass-strong: rgba(255, 255, 255, 0.85);
+  --bg-glass-pill: rgba(255, 255, 255, 0.65);
   --border-subtle: rgba(255, 255, 255, 0.85);
   --border-glass: rgba(255, 255, 255, 0.9);
-  --shadow-card: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 4px 12px -2px rgba(15, 23, 42, 0.03), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
-  --shadow-elevated: 0 20px 45px -10px rgba(15, 23, 42, 0.08), 0 8px 16px -4px rgba(15, 23, 42, 0.04), inset 0 1px 1px 0 #ffffff;
+  --shadow-card: var(--glass-shadow-outer);
+  --shadow-elevated: var(--glass-shadow-hover);
+
+  /* Layer 3: Specular Sheen */
+  --glass-sheen-color: rgba(255, 255, 255, 0.45);
+  --glass-sheen-opacity: 0.18;
+  --glass-sheen-hover-opacity: 0.32;
+
+  /* Layer 4: Recessed Input Wells */
+  --glass-input-bg: rgba(255, 255, 255, 0.72);
+  --glass-input-border: rgba(203, 213, 225, 0.85);
+  --glass-input-shadow: inset 0 2px 4px 0 rgba(15, 23, 42, 0.06), inset 0 1px 1px 0 rgba(15, 23, 42, 0.04);
+  --glass-input-text: #0B0F19;
+  --glass-input-placeholder: #64748B;
+  --glass-input-focus-bg: #FFFFFF;
+  --glass-input-focus-border: #8B3DFF;
+  --glass-input-focus-shadow: inset 0 1px 2px 0 rgba(15, 23, 42, 0.04), 0 0 0 3.5px rgba(139, 61, 255, 0.18), 0 2px 10px rgba(139, 61, 255, 0.12);
+
+  /* Layer 5: Buttons */
+  --glass-btn-primary-bg: linear-gradient(135deg, rgba(139, 61, 255, 0.92) 0%, rgba(255, 61, 240, 0.92) 100%);
+  --glass-btn-primary-rim: rgba(255, 255, 255, 0.85);
+  --glass-btn-primary-shadow: 0 8px 24px -4px rgba(139, 61, 255, 0.42), 0 2px 10px rgba(255, 61, 240, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  --glass-btn-primary-hover-shadow: 0 12px 32px -4px rgba(139, 61, 255, 0.58), 0 4px 16px rgba(255, 61, 240, 0.35), inset 0 1px 1px #ffffff;
+
+  --glass-btn-secondary-bg: rgba(255, 255, 255, 0.65);
+  --glass-btn-secondary-border: rgba(255, 255, 255, 0.92);
+  --glass-btn-secondary-text: #0B0F19;
+  --glass-btn-secondary-shadow: 0 4px 14px rgba(15, 23, 42, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  --glass-btn-secondary-hover-bg: rgba(255, 255, 255, 0.92);
+  --glass-btn-secondary-hover-border: rgba(139, 61, 255, 0.4);
+
+  /* Glass Pills & Chips */
+  --glass-pill-bg: rgba(255, 255, 255, 0.65);
+  --glass-pill-border: rgba(255, 255, 255, 0.88);
+  --glass-pill-text: #0B0F19;
+
+  /* Flattened Nested Elements (Anti-mud) */
+  --glass-nested-fill: rgba(255, 255, 255, 0.5);
+  --glass-nested-border: rgba(226, 232, 240, 0.85);
+
+  /* Header Scrolled */
+  --glass-header-scrolled-fill: rgba(255, 255, 255, 0.88);
+
+  /* Background Drifting Orbs (Soft Pastel) */
+  --liquid-grid-dot: rgba(139, 61, 255, 0.045);
+  --orb-violet-color: rgba(196, 181, 253, 0.38);
+  --orb-magenta-color: rgba(251, 207, 232, 0.32);
+  --orb-cyan-color: rgba(186, 230, 253, 0.38);
+  --orb-ambient-color: rgba(233, 213, 255, 0.28);
 }
 
 /* English LTR font family consistency */
