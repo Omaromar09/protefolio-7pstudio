@@ -11,7 +11,6 @@ import { initProjectEstimator } from './motion/estimator.js';
 import { renderTestimonials } from './utils/testimonials.js';
 import { showToast } from './utils/toast.js';
 import { fireSuccessConfetti } from './utils/confetti.js';
-import { initAudio, toggleAudio, getAudioState } from './intro/soundSynth.js';
 import { initLiquidGlass } from './motion/liquidGlass.js';
 import gsap from 'gsap';
 
@@ -55,9 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Client Testimonials / Social Proof (Strictly rendered only if real reviews exist)
   renderTestimonials(getLanguage());
-
-  // Setup Sound Controls & Synthesizer (Default Muted / Strictly Opt-in)
-  setupSoundControls();
 
   // Setup 3D Scenes (Hero Centerpiece + Skills Constellation)
   setup3DScenes();
@@ -162,61 +158,6 @@ function setup3DScenes() {
   }
 }
 
-// ==========================================================================
-// 3. SOUND SYNTHESIZER & CONTROLS (STRICTLY OPT-IN, NEVER AUTOPLAYS)
-// ==========================================================================
-function setupSoundControls() {
-  const introSoundToggle = document.getElementById('intro-sound-toggle');
-  const navSoundToggle = document.getElementById('nav-sound-toggle');
-  const introSoundIcon = document.getElementById('intro-sound-icon');
-  const introSoundText = document.getElementById('intro-sound-text');
-  const navSoundIcon = document.getElementById('nav-sound-icon');
-
-  function updateSoundUI(isOn) {
-    const lang = getLanguage();
-    const onText = 'SOUND ON';
-    const offText = 'SOUND OFF';
-
-    if (introSoundIcon) {
-      introSoundIcon.className = isOn ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
-    }
-    if (introSoundText) {
-      introSoundText.textContent = isOn ? onText : offText;
-    }
-    if (navSoundIcon) {
-      navSoundIcon.className = isOn ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
-    }
-    if (navSoundToggle) {
-      navSoundToggle.classList.toggle('is-on', isOn);
-      navSoundToggle.setAttribute('title', isOn 
-        ? (lang === 'ar' ? 'الصوت: شغال' : 'Sound: On') 
-        : (lang === 'ar' ? 'الصوت: مكتوم' : 'Sound: Off'));
-      navSoundToggle.setAttribute('aria-label', isOn 
-        ? (lang === 'ar' ? 'كتم الصوت' : 'Mute sound') 
-        : (lang === 'ar' ? 'تشغيل الصوت' : 'Enable sound'));
-    }
-    if (introSoundToggle) {
-      introSoundToggle.classList.toggle('is-muted', !isOn);
-      introSoundToggle.setAttribute('aria-label', isOn 
-        ? (lang === 'ar' ? 'كتم الصوت' : 'Mute sound') 
-        : (lang === 'ar' ? 'تشغيل الصوت' : 'Enable sound'));
-    }
-  }
-
-  const handleToggle = () => {
-    const newState = toggleAudio();
-    updateSoundUI(newState);
-  };
-
-  if (introSoundToggle) introSoundToggle.addEventListener('click', handleToggle);
-  if (navSoundToggle) navSoundToggle.addEventListener('click', handleToggle);
-
-  window.addEventListener('languagechange', () => {
-    updateSoundUI(getAudioState());
-  });
-
-  updateSoundUI(false);
-}
 
 // ==========================================================================
 // 4. DETERMINISTIC 3-SECOND INTRO & ORANGE HAND-OFF

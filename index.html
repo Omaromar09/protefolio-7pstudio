@@ -1,25 +1,31 @@
 <!doctype html>
-<html lang="ar" dir="rtl" data-theme="dark">
+<html lang="en" dir="ltr" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <script>
       (function() {
         try {
-          var saved = localStorage.getItem('omar_theme');
-          var theme = (saved === 'light' || saved === 'dark') ? saved : 'dark';
+          var savedTheme = localStorage.getItem('omar_theme');
+          var theme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : 'dark';
           document.documentElement.setAttribute('data-theme', theme);
           var metaTheme = document.querySelector('meta[name="theme-color"]');
           if (metaTheme) {
             metaTheme.setAttribute('content', theme === 'dark' ? '#07060C' : '#F4F2FA');
           }
+          var savedLang = localStorage.getItem('omar_portfolio_lang');
+          var lang = (savedLang === 'ar' || savedLang === 'en') ? savedLang : 'en';
+          document.documentElement.setAttribute('lang', lang);
+          document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.setAttribute('lang', 'en');
+          document.documentElement.setAttribute('dir', 'ltr');
         }
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7P Studio — عمر وجاد | مواقع عصرية وتفاعلية وسريعة - 7PSTUDIO</title>
-    <meta name="description" content="7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك." />
+    <title>7P Studio — Omar & Gad | Modern & Fast Interactive Websites - 7PSTUDIO</title>
+    <meta name="description" content="7P Studio (Omar & Gad) — Custom high-performance web development, 3D interactive experiences, direct WhatsApp integration, and dedicated ongoing support." />
     <meta name="author" content="7P Studio (Omar & Gad)" />
 
     <!-- Canonical URL (Single Canonical, no fake hreflang) -->
@@ -40,11 +46,11 @@
     <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="7P Studio" />
-    <meta property="og:locale" content="ar_EG" />
-    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_EG" />
     <meta property="og:url" content="https://7pstudio.tech/" />
-    <meta property="og:title" content="7P Studio — عمر وجاد | مواقع عصرية وتفاعلية وسريعة - 7PSTUDIO" />
-    <meta property="og:description" content="7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك." />
+    <meta property="og:title" content="7P Studio — Omar & Gad | Modern & Fast Interactive Websites - 7PSTUDIO" />
+    <meta property="og:description" content="7P Studio (Omar & Gad) — Custom high-performance web development, 3D interactive experiences, direct WhatsApp integration, and dedicated ongoing support." />
     <meta property="og:image" content="https://7pstudio.tech/og-image.jpg" />
     <meta property="og:image:secure_url" content="https://7pstudio.tech/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
@@ -180,10 +186,6 @@
       <canvas id="intro-canvas"></canvas>
 
       <div class="intro-controls">
-        <button id="intro-sound-toggle" class="intro-hud-btn is-muted" aria-label="Toggle Sound">
-          <i class="fa-solid fa-volume-xmark" id="intro-sound-icon"></i>
-          <span id="intro-sound-text">SOUND OFF</span>
-        </button>
         <button id="intro-skip" class="intro-hud-btn" aria-label="Skip Intro">
           <span>SKIP</span>
           <i class="fa-solid fa-forward-step"></i>
@@ -216,14 +218,9 @@
         <div class="nav-actions">
           <!-- Language Toggle Segmented Pill -->
           <div class="lang-toggle" role="group" aria-label="Language Toggle">
-            <button class="lang-btn active" data-lang="ar" aria-pressed="true">عربي</button>
-            <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+            <button class="lang-btn" data-lang="ar" aria-pressed="false">عربي</button>
+            <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
           </div>
-
-          <!-- Sound Toggle Button (Default OFF) -->
-          <button class="sound-toggle-btn" id="nav-sound-toggle" title="Sound: Off" aria-label="Toggle Sound">
-            <i class="fa-solid fa-volume-xmark" id="nav-sound-icon"></i>
-          </button>
 
           <!-- Theme Toggle Button -->
           <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
@@ -262,8 +259,8 @@
 
       <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 2rem;">
         <div class="lang-toggle" role="group" aria-label="Mobile Language Toggle">
-          <button class="lang-btn active" data-lang="ar">عربي</button>
-          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ar">عربي</button>
+          <button class="lang-btn active" data-lang="en">EN</button>
         </div>
 
         <button class="theme-toggle-btn" id="mobile-theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
@@ -363,30 +360,30 @@
             <div class="hero-mobile-work-card mobile-only-showcase">
               <div class="mobile-work-header">
                 <span class="status-live-dot"></span>
-                <span class="mobile-work-title">أحدث أعمالنا الحية في السوق</span>
+                <span class="mobile-work-title" data-i18n="mobileWorkTitle">Our Latest Live Projects in the Market</span>
               </div>
               <div class="mobile-work-list">
                 <a href="https://aya-accessories.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-work-item">
                   <div class="mobile-work-icon" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e;"><i class="fa-solid fa-bag-shopping"></i></div>
                   <div class="mobile-work-info">
-                    <span class="mobile-work-name">متجر آية للاكسسوارات</span>
-                    <span class="mobile-work-tag">سلة مشتريات وطلب واتساب مباشر</span>
+                    <span class="mobile-work-name" data-i18n="mobileWorkAyaName">Aya Accessories Store</span>
+                    <span class="mobile-work-tag" data-i18n="mobileWorkAyaTag">Cart & Direct WhatsApp Ordering</span>
                   </div>
                   <i class="fa-solid fa-arrow-up-right-from-square mobile-work-link-icon"></i>
                 </a>
                 <a href="https://festival-fivestar.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-work-item">
                   <div class="mobile-work-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;"><i class="fa-solid fa-cake-candles"></i></div>
                   <div class="mobile-work-info">
-                    <span class="mobile-work-name">حلواني فيستيفال فايف ستار</span>
-                    <span class="mobile-work-tag">منيو أصناف وأسعار وفروع حية</span>
+                    <span class="mobile-work-name" data-i18n="mobileWorkFestivalName">Festival Five Star Bakery</span>
+                    <span class="mobile-work-tag" data-i18n="mobileWorkFestivalTag">Live Menu, Prices & Branches</span>
                   </div>
                   <i class="fa-solid fa-arrow-up-right-from-square mobile-work-link-icon"></i>
                 </a>
                 <a href="https://elvaranda.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-work-item">
                   <div class="mobile-work-icon" style="background: rgba(14, 165, 233, 0.15); color: #0ea5e9;"><i class="fa-solid fa-building"></i></div>
                   <div class="mobile-work-info">
-                    <span class="mobile-work-name">مساحة عمل الڤراندا</span>
-                    <span class="mobile-work-tag">حجز غرف وساعات مذاكرة أونلاين</span>
+                    <span class="mobile-work-name" data-i18n="mobileWorkElvarandaName">Elvaranda Coworking Space</span>
+                    <span class="mobile-work-tag" data-i18n="mobileWorkElvarandaTag">Online Room & Study Hours Booking</span>
                   </div>
                   <i class="fa-solid fa-arrow-up-right-from-square mobile-work-link-icon"></i>
                 </a>
@@ -394,11 +391,11 @@
               <div class="mobile-work-footer">
                 <div class="mobile-trust-badge">
                   <i class="fa-solid fa-code"></i>
-                  <span>كود يدوي مخصص بدون قوالب</span>
+                  <span data-i18n="mobileWorkBadgeCustom">Handcrafted Custom Code</span>
                 </div>
                 <div class="mobile-speed-badge">
                   <i class="fa-solid fa-bolt"></i>
-                  <span>سرعة 99/100 جوجل</span>
+                  <span data-i18n="mobileWorkBadgeSpeed">Google Speed 99/100</span>
                 </div>
               </div>
             </div></div>

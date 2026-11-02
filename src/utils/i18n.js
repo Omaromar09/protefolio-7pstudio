@@ -26,8 +26,6 @@ export const translations = {
     pageMetaDesc: '7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك.',
 
     // Intro Stage
-    soundOn: 'SOUND ON',
-    soundOff: 'SOUND OFF',
     skipIntro: 'SKIP',
 
     // Navigation & Header
@@ -68,6 +66,17 @@ export const translations = {
     heroProofDeliveryLabel: 'تسليم قياسي متفق عليه',
     heroProofSupportVal: 'طوال الأسبوع',
     heroProofSupportLabel: 'رد ومتابعة على واتساب',
+
+    // Mobile Work Showcase Card
+    mobileWorkTitle: 'أحدث أعمالنا الحية في السوق',
+    mobileWorkAyaName: 'متجر آية للاكسسوارات',
+    mobileWorkAyaTag: 'سلة مشتريات وطلب واتساب مباشر',
+    mobileWorkFestivalName: 'حلواني فيستيفال فايف ستار',
+    mobileWorkFestivalTag: 'منيو أصناف وأسعار وفروع حية',
+    mobileWorkElvarandaName: 'مساحة عمل الڤراندا',
+    mobileWorkElvarandaTag: 'حجز غرف وساعات مذاكرة أونلاين',
+    mobileWorkBadgeCustom: 'كود يدوي مخصص بدون قوالب',
+    mobileWorkBadgeSpeed: 'سرعة 99/100 جوجل',
 
     // Showcase Section
     showcaseBadge: 'معرض الأعمال التفاعلي',
@@ -278,8 +287,6 @@ export const translations = {
     pageMetaDesc: '7P Studio (Omar & Gad) — Custom high-performance web development, 3D interactive experiences, direct WhatsApp integration, and dedicated ongoing support.',
 
     // Intro Stage
-    soundOn: 'Sound On',
-    soundOff: 'Sound Off',
     skipIntro: 'Skip',
 
     // Navigation & Header
@@ -525,10 +532,10 @@ export const translations = {
   }
 };
 
-let currentLang = 'ar';
+let currentLang = 'en';
 
 export function initLanguage() {
-  const savedLang = localStorage.getItem('omar_portfolio_lang') || 'ar';
+  const savedLang = localStorage.getItem('omar_portfolio_lang') || 'en';
   setLanguage(savedLang, false);
 
   const langButtons = document.querySelectorAll('.lang-btn');

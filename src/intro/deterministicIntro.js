@@ -1,4 +1,3 @@
-import { playIntroKick, playIntroFloodHit } from './soundSynth.js';
 
 /**
  * Deterministic Canvas 2D Intro Engine
@@ -12,7 +11,7 @@ export class DeterministicIntro {
     this.canvas = canvasElement;
     this.ctx = canvasElement.getContext('2d');
     this.onComplete = options.onComplete || (() => {});
-    this.getLang = options.getLang || (() => 'ar');
+    this.getLang = options.getLang || (() => 'en');
 
     this.rafId = null;
     this.startTime = null;
@@ -111,24 +110,6 @@ export class DeterministicIntro {
 
     const offsetX = (vw - this.stageWidth * scale) / 2;
     const offsetY = (vh - this.stageHeight * scale) / 2;
-
-    // Procedural sound triggers synchronized to 128 BPM bounce impacts & flood hit
-    if (t >= 1.406 && !this.triggeredBeats.beat3) {
-      this.triggeredBeats.beat3 = true;
-      playIntroKick();
-    }
-    if (t >= 1.875 && !this.triggeredBeats.beat4) {
-      this.triggeredBeats.beat4 = true;
-      playIntroKick();
-    }
-    if (t >= 2.344 && !this.triggeredBeats.beat5) {
-      this.triggeredBeats.beat5 = true;
-      playIntroKick();
-    }
-    if (t >= 2.813 && !this.triggeredBeats.beat6) {
-      this.triggeredBeats.beat6 = true;
-      playIntroFloodHit();
-    }
 
     // -------------------------------------------------------------
     // PHASE 6: SKY BLUE / LABANY FLOOD & HANDOFF (2.813s to totalDuration)
