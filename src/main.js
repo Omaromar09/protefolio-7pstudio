@@ -17,9 +17,44 @@ import gsap from 'gsap';
 // ==========================================================================
 // 1. APPLICATION BOOTSTRAP
 // ==========================================================================
+
+// Dynamic Global WhatsApp link text updates for 100% language fidelity
+function updateGlobalWhatsAppLinks(lang) {
+  const isAr = lang === 'ar';
+
+  // 1. Floating WhatsApp trigger
+  const floatingBtn = document.querySelector('.whatsapp-floating-btn');
+  if (floatingBtn) {
+    const text = isAr
+      ? 'مساء الخير يا عمر ويا جاد، شوفت موقع 7P Studio وحابب نتكلم عن مشروعي'
+      : 'Hi Omar & Gad, I visited 7P Studio and would like to discuss my project';
+    floatingBtn.href = `https://wa.me/201515047449?text=${encodeURIComponent(text)}`;
+  }
+
+  // 2. Mobile Sticky CTA
+  const stickyBtn = document.querySelector('.mobile-sticky-btn');
+  if (stickyBtn) {
+    const text = isAr
+      ? 'مساء الخير يا عمر ويا جاد، عايز أستفسر عن تنفيذ موقع لبيزنسي'
+      : 'Hi Omar & Gad, I would like to inquire about building a website for my business';
+    stickyBtn.href = `https://wa.me/201515047449?text=${encodeURIComponent(text)}`;
+  }
+
+  // 3. Contact section WhatsApp card
+  const contactCard = document.querySelector('.whatsapp-hero-cta-card');
+  if (contactCard) {
+    const text = isAr
+      ? 'مساء الخير يا عمر ويا جاد، عايز أستفسر عن تنفيذ موقع لبيزنسي'
+      : 'Hi Omar & Gad, I would like to inquire about building a website for my business';
+    contactCard.href = `https://wa.me/201515047449?text=${encodeURIComponent(text)}`;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Bilingual Language System (Arabic Default)
   initLanguage();
+  updateGlobalWhatsAppLinks(getLanguage());
+  window.addEventListener('languagechange', (e) => updateGlobalWhatsAppLinks(e.detail.lang));
 
   // Initialize Light / Dark Theme Switcher
   initTheme();
@@ -406,8 +441,8 @@ function setupInteractiveControls() {
       fireSuccessConfetti();
 
       const whatsappText = lang === 'ar'
-        ? `👋 مساء الخير يا عمر ويا مصطفى، أنا *${name}*\n\n📱 وسيلة التواصل: ${contact}\n\n📝 تفاصيل مشروعي:\n${message}\n\n---\n🌐 مرسلة من موقع 7P Studio (7pstudio.tech)`
-        : `👋 Hi Omar & Mostafa, I am *${name}*\n\n📱 Contact: ${contact}\n\n📝 Project details:\n${message}\n\n---\n🌐 Sent from 7P Studio (7pstudio.tech)`;
+        ? `👋 مساء الخير يا عمر ويا جاد، أنا *${name}*\n\n📱 وسيلة التواصل: ${contact}\n\n📝 تفاصيل مشروعي:\n${message}\n\n---\n🌐 مرسلة من موقع 7P Studio (7pstudio.tech)`
+        : `👋 Hi Omar & Gad, I am *${name}*\n\n📱 Contact: ${contact}\n\n📝 Project details:\n${message}\n\n---\n🌐 Sent from 7P Studio (7pstudio.tech)`;
 
       const encodedMsg = encodeURIComponent(whatsappText);
       const whatsappUrl = `https://wa.me/201515047449?text=${encodedMsg}`;

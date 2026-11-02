@@ -1,7 +1,7 @@
 // ==========================================================================
 // 7P STUDIO — CENTRALIZED PROJECT DATA (SINGLE SOURCE OF TRUTH)
 // Aya, Festival, El Veranda (Live Client Work)
-// Elmo7taref, Kayan, Rawnaq (Interactive Demos ready for customization)
+// Kayan, Rawnaq, XO PS (Interactive Demos ready for customization)
 // ==========================================================================
 
 export const PROJECTS_DATA = [
@@ -62,35 +62,6 @@ export const PROJECTS_DATA = [
     },
     isLive: true,
     isDemo: false
-  },
-  {
-    id: 'elmo7taref',
-    title: {
-      ar: 'مطعم المحترف (تجريبي)',
-      en: 'Elmo7taref Restaurant (Demo)'
-    },
-    client: 'Elmo7taref Grill (تجريبي)',
-    category: {
-      ar: 'مطاعم ومشويات · تجريبي',
-      en: 'Grill & Burger Ordering · Demo'
-    },
-    short: {
-      ar: 'نموذج تجريبي جاهز لمطعم وجبات ومشويات، فيه فلاتر سريعة للأكل ومعاينة للساندوتشات وحساب فاتورة وطلب واتساب.',
-      en: 'Interactive demo for burger & grill ordering with quick filters, item modal previews, and cart calculation.'
-    },
-    tags: {
-      ar: ['نموذج تجريبي جاهز', 'أصناف ومعاينة ساندوتشات', 'حساب فاتورة تلقائي', 'طلب مباشر واتساب'],
-      en: ['Interactive Demo', 'Item Previews', 'Cart Calculator', 'WhatsApp Direct']
-    },
-    url: 'https://elmo7taref.vercel.app/',
-    previewImg: '/projects/elmo7taref-preview.jpg',
-    accentColor: '#EF4444',
-    status: {
-      ar: 'نموذج تجريبي جاهز للعرض والتعديل',
-      en: 'Interactive Demo Showcase'
-    },
-    isLive: true,
-    isDemo: true
   },
   {
     id: 'kayan',

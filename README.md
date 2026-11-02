@@ -19,7 +19,7 @@ A personal portfolio built with **Vite**, **Three.js**, **GSAP & ScrollTrigger**
   - Responsive floating navigation bar with scrollspy link highlighting.
 - **Showcase Sections**:
   - **Client Work**: Real delivered projects (Aya Accessories, Festival Five Star Pastry).
-  - **Ready-Made Designs**: Fast-delivery customizable concept platforms (Elmo7taref Restaurant, Kayan Luxury Fashion, El Veranda Workspace).
+  - **Ready-Made Designs**: Fast-delivery customizable concept platforms (Kayan Luxury Fashion, Rawnaq 3D Perfumes, XO PS Gaming Lounge).
   - **Services**: 4 clear, honest offerings (Website from Scratch, Bug Fixing & Repairs, Site Customization & Edits, Animations & 3D Polish).
   - **Process**: Brief → Design → Build → Launch timeline.
   - **Contact**: Direct WhatsApp (`01515047449`), phone, Instagram (`@7p__studio`), TikTok (`@7p.studio6`), one-click copy buttons with toasts, and an interactive form with confetti celebration.

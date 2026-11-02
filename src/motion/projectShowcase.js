@@ -16,15 +16,27 @@ export function initProjectShowcase() {
   const showcaseContainer = document.getElementById('project-showcase-mount');
   if (!showcaseContainer) return;
 
-  if (!showcaseContainer.querySelector('.showcase-shell')) {
-    renderShowcaseStructure(showcaseContainer);
-  }
+  renderShowcaseStructure(showcaseContainer);
   setupShowcaseInteractivity();
+}
+
+function renderTabsHTML(lang) {
+  return PROJECTS_DATA.map((p, idx) => `
+    <button type="button" 
+            class="showcase-tab-btn ${idx === activeIndex ? 'is-active' : ''}" 
+            data-idx="${idx}"
+            role="tab"
+            aria-selected="${idx === activeIndex}">
+      <span class="tab-dot" style="background: ${p.accentColor}"></span>
+      <span class="tab-title">${p.title[lang] || p.title.ar}</span>
+      ${p.isDemo ? `<span class="tab-badge-demo">${lang === 'ar' ? 'تجريبي' : 'Demo'}</span>` : ''}
+    </button>
+  `).join('');
 }
 
 function renderShowcaseStructure(container) {
   const lang = getLanguage();
-  const currentProject = PROJECTS_DATA[activeIndex];
+  const currentProject = PROJECTS_DATA[activeIndex] || PROJECTS_DATA[0];
 
   container.innerHTML = `
     <div class="showcase-shell" id="showcase-shell">
@@ -33,17 +45,7 @@ function renderShowcaseStructure(container) {
 
       <!-- Top Project Selector Tabs (Quick jump) -->
       <div class="showcase-tabs-nav" role="tablist" aria-label="Projects">
-        ${PROJECTS_DATA.map((p, idx) => `
-          <button type="button" 
-                  class="showcase-tab-btn ${idx === activeIndex ? 'is-active' : ''}" 
-                  data-idx="${idx}"
-                  role="tab"
-                  aria-selected="${idx === activeIndex}">
-            <span class="tab-dot" style="background: ${p.accentColor}"></span>
-            <span class="tab-title">${p.title[lang] || p.title.ar}</span>
-            ${p.isDemo ? `<span class="tab-badge-demo">${lang === 'ar' ? 'تجريبي' : 'Demo'}</span>` : ''}
-          </button>
-        `).join('')}
+        ${renderTabsHTML(lang)}
       </div>
 
       <!-- Main Dual Panel Grid -->
@@ -64,7 +66,7 @@ function renderShowcaseStructure(container) {
               <img src="${currentProject.previewImg}" 
                    alt="${currentProject.title[lang] || currentProject.title.ar}" 
                    class="mockup-img active" 
-                   id="mockup-screen-img"
+                   id="mockup-screen-img" 
                    loading="eager" />
               <div class="screen-glare"></div>
             </div>
@@ -78,7 +80,7 @@ function renderShowcaseStructure(container) {
               <img src="${currentProject.previewImg}" 
                    alt="${currentProject.title[lang] || currentProject.title.ar}" 
                    class="mockup-mobile-img" 
-                   id="mockup-mobile-img"
+                   id="mockup-mobile-img" 
                    loading="lazy" />
             </div>
           </div>
@@ -111,7 +113,7 @@ function renderShowcaseStructure(container) {
           </p>
 
           <div class="project-features-list">
-            <span class="features-label">${lang === 'ar' ? 'أبرز الميزات المُنفّذة:' : 'Key Implemented Features:'}</span>
+            <span class="features-label" id="showcase-features-label">${lang === 'ar' ? 'أبرز الميزات المُنفّذة:' : 'Key Implemented Features:'}</span>
             <div class="features-chips-wrap" id="features-chips-wrap">
               ${(currentProject.tags[lang] || currentProject.tags.ar).map(tag => `
                 <span class="feature-chip"><i class="fa-solid fa-check"></i> ${tag}</span>
@@ -129,7 +131,7 @@ function renderShowcaseStructure(container) {
                target="_blank" 
                rel="noopener noreferrer" 
                class="btn btn-primary showcase-live-btn" 
-               id="showcase-live-btn"
+               id="showcase-live-btn" 
                style="background: ${currentProject.accentColor}">
               <span id="showcase-live-text">${lang === 'ar' ? 'افتح الموقع لايف' : 'Open Live Website'}</span>
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -147,10 +149,10 @@ function renderShowcaseStructure(container) {
 
           <!-- Quick Navigation Arrows -->
           <div class="showcase-arrows-nav">
-            <button type="button" class="arrow-btn" id="showcase-prev-btn" aria-label="Previous Project">
+            <button type="button" class="arrow-btn" id="showcase-prev-btn" aria-label="${lang === 'ar' ? 'المشروع السابق' : 'Previous Project'}">
               <i class="fa-solid fa-chevron-right"></i>
             </button>
-            <button type="button" class="arrow-btn" id="showcase-next-btn" aria-label="Next Project">
+            <button type="button" class="arrow-btn" id="showcase-next-btn" aria-label="${lang === 'ar' ? 'المشروع التالي' : 'Next Project'}">
               <i class="fa-solid fa-chevron-left"></i>
             </button>
           </div>
@@ -175,30 +177,34 @@ function updateSimilarWhatsAppLink(project) {
   similarBtn.href = `https://wa.me/201515047449?text=${encodeURIComponent(msg)}`;
 }
 
-function setupShowcaseInteractivity() {
+function bindTabEvents() {
   const tabBtns = document.querySelectorAll('.showcase-tab-btn');
+  tabBtns.forEach(btn => {
+    btn.onclick = () => {
+      const idx = parseInt(btn.getAttribute('data-idx'), 10);
+      switchProject(idx);
+    };
+  });
+}
+
+function setupShowcaseInteractivity() {
+  bindTabEvents();
+
   const prevBtn = document.getElementById('showcase-prev-btn');
   const nextBtn = document.getElementById('showcase-next-btn');
 
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const idx = parseInt(btn.getAttribute('data-idx'), 10);
-      switchProject(idx);
-    });
-  });
-
   if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
+    prevBtn.onclick = () => {
       const newIdx = (activeIndex - 1 + PROJECTS_DATA.length) % PROJECTS_DATA.length;
       switchProject(newIdx);
-    });
+    };
   }
 
   if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
+    nextBtn.onclick = () => {
       const newIdx = (activeIndex + 1) % PROJECTS_DATA.length;
       switchProject(newIdx);
-    });
+    };
   }
 
   // Desktop 3D Tilt on Laptop Frame
@@ -232,13 +238,13 @@ function setupShowcaseInteractivity() {
   // Listen for language switch
   window.addEventListener('languagechange', () => {
     const lang = getLanguage();
-    const curr = PROJECTS_DATA[activeIndex];
+    const curr = PROJECTS_DATA[activeIndex] || PROJECTS_DATA[0];
     updateProjectUI(curr, lang);
   });
 }
 
 function switchProject(newIdx) {
-  if (newIdx === activeIndex) return;
+  if (newIdx < 0 || newIdx >= PROJECTS_DATA.length) return;
   activeIndex = newIdx;
   const project = PROJECTS_DATA[activeIndex];
   const lang = getLanguage();
@@ -291,10 +297,38 @@ function updateProjectUI(project, lang) {
   const chipsWrap = document.getElementById('features-chips-wrap');
   const statusLabel = document.getElementById('project-status-label');
   const liveBtn = document.getElementById('showcase-live-btn');
+  const liveText = document.getElementById('showcase-live-text');
+  const similarText = document.getElementById('showcase-similar-text');
+  const featuresLabel = document.getElementById('showcase-features-label');
+  const prevBtn = document.getElementById('showcase-prev-btn');
+  const nextBtn = document.getElementById('showcase-next-btn');
+
+  // Update tabs HTML on language change
+  const tabsNav = document.querySelector('.showcase-tabs-nav');
+  if (tabsNav) {
+    tabsNav.innerHTML = renderTabsHTML(lang);
+    bindTabEvents();
+  }
 
   if (urlText) urlText.textContent = project.url.replace('https://', '');
   if (currNum) currNum.textContent = (activeIndex + 1).toString().padStart(2, '0');
   if (catText) catText.textContent = project.category[lang] || project.category.ar;
+
+  if (featuresLabel) {
+    featuresLabel.textContent = lang === 'ar' ? 'أبرز الميزات المُنفّذة:' : 'Key Implemented Features:';
+  }
+  if (liveText) {
+    liveText.textContent = lang === 'ar' ? 'افتح الموقع لايف' : 'Open Live Website';
+  }
+  if (similarText) {
+    similarText.textContent = lang === 'ar' ? 'اطلب زيه' : 'Request Similar';
+  }
+  if (prevBtn) {
+    prevBtn.setAttribute('aria-label', lang === 'ar' ? 'المشروع السابق' : 'Previous Project');
+  }
+  if (nextBtn) {
+    nextBtn.setAttribute('aria-label', lang === 'ar' ? 'المشروع التالي' : 'Next Project');
+  }
 
   const partPill = document.getElementById('project-partnership-pill');
   const partText = document.getElementById('project-partnership-text');

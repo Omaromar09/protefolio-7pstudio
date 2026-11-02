@@ -58,7 +58,7 @@ export const translations = {
     hero3dHint: 'تفاعل مع المجسم 3D',
 
     // Real Proof Row (Computed from data, no fake numbers)
-    heroProofProjectsVal: '7 مشاريع',
+    heroProofProjectsVal: '6 مشاريع',
     heroProofProjectsLabel: 'شغالة لايف دلوقتي',
     heroProofIndustriesVal: '6 مجالات',
     heroProofIndustriesLabel: 'متاجر، مطاعم، مساحات، جيمينج، 3D',
@@ -79,6 +79,15 @@ export const translations = {
     mobileWorkBadgeSpeed: 'سرعة 99/100 جوجل',
 
     // Showcase Section
+        showcaseFeaturesLabel: 'أبرز الميزات المُنفّذة:',
+    showcaseLiveBtn: 'افتح الموقع لايف',
+    showcaseSimilarBtn: 'اطلب زيه',
+    compBeforeLoadVal: '4.8 ثواني',
+    compBeforeMobileVal: 'خطوط متداخلة',
+    compBeforeSalesVal: 'بدون سلة',
+    compAfterLoadVal: '1.1 ثانية',
+    compAfterMobileVal: '100% متجاوب',
+    compAfterSalesVal: 'سلة واتساب',
     showcaseBadge: 'معرض الأعمال التفاعلي',
     showcaseTitle: 'أعمالنا <span class="highlight">ومشاريع نفذناها</span>',
     showcaseSubtitle: 'تصفح مشاريعنا الحية، جرب تفاصيلها، أو اطلب موقع بنفس الجودة لبيزنسك',
@@ -117,7 +126,7 @@ export const translations = {
     trustBadge: 'ثقة وأمان',
     trustTitle: 'ليه تثق في <span class="highlight">7P Studio</span> لشغلك؟',
     trustSubtitle: 'شغل شفاف، التزام كامل بالمواعيد، وضمان جودة حقيقي بعد التسليم:',
-    trustLiveHeader: '7 نماذج ومشاريع لايف (مشاريع حقيقية + نماذج تجريبية):',
+    trustLiveHeader: '6 نماذج ومشاريع لايف (مشاريع حقيقية + نماذج تجريبية):',
     trustPromise1Title: 'رد سريع وتواصل مباشر',
     trustPromise1Desc: 'تواصل مباشر مع عمر وجاد، بنسمع تفاصيل بيزنسك وبنرد علطول بدون تأخير.',
     trustPromise2Title: 'تسليم في الميعاد المحدد',
@@ -319,7 +328,7 @@ export const translations = {
     hero3dHint: 'Drag or hover to rotate 3D',
 
     // Real Proof Row
-    heroProofProjectsVal: '7 Projects',
+    heroProofProjectsVal: '6 Projects',
     heroProofProjectsLabel: 'Live & Operational',
     heroProofIndustriesVal: '6 Domains',
     heroProofIndustriesLabel: 'Stores, Food, Gaming, 3D',
@@ -329,6 +338,15 @@ export const translations = {
     heroProofSupportLabel: 'Active WhatsApp Support',
 
     // Showcase Section
+        showcaseFeaturesLabel: 'Key Implemented Features:',
+    showcaseLiveBtn: 'Open Live Website',
+    showcaseSimilarBtn: 'Request Similar',
+    compBeforeLoadVal: '4.8s',
+    compBeforeMobileVal: 'Broken UI',
+    compBeforeSalesVal: 'No Cart',
+    compAfterLoadVal: '1.1s',
+    compAfterMobileVal: '100% Mobile',
+    compAfterSalesVal: 'WhatsApp Cart',
     showcaseBadge: 'Interactive Showcase',
     showcaseTitle: 'Our Work & <span class="highlight">Featured Projects</span>',
     showcaseSubtitle: 'Browse our live projects, inspect features, or commission a site with the same standard',
@@ -367,7 +385,7 @@ export const translations = {
     trustBadge: 'Trust & Guarantees',
     trustTitle: 'Why Trust <span class="highlight">7P Studio</span>?',
     trustSubtitle: 'Transparent workflow, strict adherence to deadlines, and post-launch quality guarantee:',
-    trustLiveHeader: '7 live models & projects (client work + interactive demos):',
+    trustLiveHeader: '6 live models & projects (client work + interactive demos):',
     trustPromise1Title: 'Swift direct communication',
     trustPromise1Desc: 'Direct access to Omar and Gad with zero middleman friction.',
     trustPromise2Title: 'Guaranteed on-time delivery',
