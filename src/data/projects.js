@@ -17,8 +17,8 @@ export const PROJECTS_DATA = [
       en: 'E-Commerce Boutique'
     },
     short: {
-      ar: 'متجر إكسسوارات وباندانات هاندميد مع فلاتر سريعة وسلة لطلب الأوردر على الواتساب علطول.',
-      en: 'Handmade accessories boutique featuring dynamic product filters and instant WhatsApp cart ordering.'
+      ar: 'متجر إكسسوارات هاند ميد، عملناه عشان يسهل على العملاء يختاروا ويطلبوا بالظبط اللي عايزينه عبر الواتساب، من غير تعقيد السلات التقليدية.',
+      en: 'A handmade accessories boutique. We built it to make it easy for customers to browse and order exactly what they want via WhatsApp, cutting out the complexity of traditional carts.'
     },
     tags: {
       ar: ['سلة طلب واتساب', 'فلاتر سريعة', 'Mobile-First', 'كتالوج تفاعلي'],
@@ -46,8 +46,8 @@ export const PROJECTS_DATA = [
       en: 'Food & Pastry'
     },
     short: {
-      ar: 'موقع لحلواني تورت وحلويات في الهرم، بيعرض الأصناف والأسعار وفروع المحل والطلب أونلاين.',
-      en: 'Artisan cake and pastry website showcasing menus, branch locators, and direct online ordering.'
+      ar: 'موقع لحلواني تورت وحلويات في الهرم، بيعرض الأصناف والأسعار وفروع المحل والطلب أونلاين بأسلوب عصري وسريع.',
+      en: 'A dedicated website for a premium cake and pastry shop in Haram, Cairo. Showcases menus, prices, and locations, making online ordering straightforward for their customers.'
     },
     tags: {
       ar: ['منيو تورت تفاعلية', 'فروع ومواعيد', 'خفيف وسريع', 'طلب واتساب'],
