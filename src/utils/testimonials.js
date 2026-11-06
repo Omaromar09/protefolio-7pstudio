@@ -10,7 +10,6 @@
  */
 
 export const CLIENT_REVIEWS = [
-export const CLIENT_REVIEWS = [
   {
     id: 'aya',
     name_ar: 'آية',
@@ -37,7 +36,6 @@ export const CLIENT_REVIEWS = [
     rating: 5,
     avatar: './projects/festival-logo.jpg'
   }
-];
 ];
 
 export function renderTestimonials(lang = 'ar') {
