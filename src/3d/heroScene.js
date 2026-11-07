@@ -2,9 +2,18 @@ import * as THREE from 'three';
 
 /**
  * ==========================================================================
- * 7P STUDIO — LUXURY LIQUID CHROME & PRISMATIC CRYSTAL (HERO 3D)
- * Dynamic, fluid, high-end metallic iridescent centerpiece
- * Radiant & gorgeous in both Dark Mode (Cosmic Neon Chrome) & Light Mode (Platinum Crystal)
+ * 7P STUDIO — AWARD-WINNING HYPER-LUXURY 3D CENTERPIECE (HERO 3D)
+ * Tier-1 Awwwards-Grade Prismatic Chrome & Optical Crystal Artifact
+ * 
+ * Architecture:
+ *   1. Primary Sculpture: Liquid Iridescent Chrome Möbius Ribbon (Ultra-high density, fluid reflections)
+ *   2. Secondary Intertwined Halo: Counter-weaving Prismatic Crystal Ring (Interlocking depth)
+ *   3. Inner Core: Refractive Brilliant-Cut Diamond Prism (Optical glass transmission & dispersion)
+ *   4. Heart: Pulsating Photonic Singularity (Dynamic volumetric illumination through diamond facets)
+ *   5. Kinetic Chrono-Gimbal: Non-intersecting outer aerospace titanium & neon laser track
+ *   6. Satellites: Tumble-orbiting micro-gem crystals & depth-of-field stardust nebula
+ *   7. Procedural Studio HDRI: High-contrast neon & softbox studio reflection environment
+ *   8. Physics: Inertial velocity drag, momentum throw, and spring-damped cursor parallax
  * ==========================================================================
  */
 export class HeroScene {
@@ -25,42 +34,52 @@ export class HeroScene {
   }
 
   init() {
-    const rect = this.canvas.parentElement.getBoundingClientRect();
+    const parent = this.canvas.parentElement;
+    const rect = parent ? parent.getBoundingClientRect() : { width: window.innerWidth, height: 420 };
     const width = Math.min(rect.width || window.innerWidth, window.innerWidth);
     const height = rect.height || 420;
     const isMobile = window.innerWidth < 768;
 
-    // Cinematic perspective camera
-    this.camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-    this.camera.position.z = isMobile ? 6.2 : 5.4;
+    // 1. Perspective Camera
+    this.camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
+    this.camera.position.set(0, 0, isMobile ? 6.2 : 5.4);
 
-    // WebGL Renderer with High-DPI and ACES Filmic Tone Mapping
+    // 2. High-Performance WebGL Renderer with ACES Filmic Tone Mapping
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       antialias: true,
       alpha: true,
-      powerPreference: 'high-performance'
+      powerPreference: 'high-performance',
+      stencil: false,
+      depth: true
     });
     this.renderer.setSize(width, height, false);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.2;
+    this.renderer.toneMappingExposure = 1.35;
+    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-    // Rich 4-Point Studio Lighting
+    // 3. Generate Procedural Studio HDRI Environment for Liquid Chrome Reflections
+    this.pmremGenerator = new THREE.PMREMGenerator(this.renderer);
+    this.pmremGenerator.compileEquirectangularShader();
+    this.updateEnvironmentMap(this.currentTheme === 'dark');
+
+    // 4. Studio Lighting Rig
     this.setupLighting();
 
-    // 3D Objects Setup
+    // 5. Build 3D Kinetic Masterpiece Components
     this.createSculpture(isMobile);
-    this.createGyroRings(isMobile);
+    this.createGimbalRings(isMobile);
+    this.createSatellites(isMobile);
     this.createStardustNebula(isMobile);
 
-    // Apply colors for initial theme
+    // 6. Apply Initial Theme Colors
     this.applyTheme(this.currentTheme);
 
-    // Bind event handlers
+    // 7. Interactive Event Bindings
     this.bindEvents();
 
-    // Intersection observer
+    // 8. Visibility Observer
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         this.isVisible = entry.isIntersecting;
@@ -68,31 +87,136 @@ export class HeroScene {
     }, { threshold: 0.1 });
     this.observer.observe(this.canvas);
 
+    // 9. Start Render Loop
     this.animate();
+  }
+
+  /**
+   * Generates a custom procedural Studio HDRI equirectangular canvas texture.
+   * Creates sweeping neon and white softboxes for high-end automotive/jewelry reflections.
+   */
+  updateEnvironmentMap(isDark) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1024;
+    canvas.height = 512;
+    const ctx = canvas.getContext('2d');
+
+    if (isDark) {
+      // Cosmic Obsidian & Deep Violet Base
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, 512);
+      bgGrad.addColorStop(0, '#150d2e');
+      bgGrad.addColorStop(0.5, '#090514');
+      bgGrad.addColorStop(1, '#040208');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 1024, 512);
+
+      // Softbox 1: Electric Magenta Key (Top-Left)
+      const g1 = ctx.createRadialGradient(260, 150, 10, 260, 150, 250);
+      g1.addColorStop(0, 'rgba(255, 46, 230, 1.0)');
+      g1.addColorStop(0.35, 'rgba(224, 43, 251, 0.85)');
+      g1.addColorStop(0.70, 'rgba(124, 58, 237, 0.35)');
+      g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = g1;
+      ctx.beginPath();
+      ctx.arc(260, 150, 250, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Softbox 2: Radiant Cyber Cyan Fill (Bottom-Right)
+      const g2 = ctx.createRadialGradient(780, 320, 10, 780, 320, 260);
+      g2.addColorStop(0, 'rgba(0, 240, 255, 1.0)');
+      g2.addColorStop(0.35, 'rgba(14, 165, 233, 0.85)');
+      g2.addColorStop(0.70, 'rgba(30, 58, 138, 0.3)');
+      g2.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = g2;
+      ctx.beginPath();
+      ctx.arc(780, 320, 260, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Softbox 3: Ultra-Crisp White Razor Overhead Strip (Gleaming Metallic Edge Glints)
+      const g3 = ctx.createLinearGradient(480, 0, 540, 0);
+      g3.addColorStop(0, 'rgba(255, 255, 255, 0)');
+      g3.addColorStop(0.5, 'rgba(255, 255, 255, 1.0)');
+      g3.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = g3;
+      ctx.fillRect(480, 20, 60, 220);
+
+      // Softbox 4: Royal Purple Horizon Rim
+      const g4 = ctx.createLinearGradient(0, 240, 140, 240);
+      g4.addColorStop(0, 'rgba(139, 92, 246, 0.9)');
+      g4.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = g4;
+      ctx.fillRect(0, 120, 140, 260);
+    } else {
+      // Light Mode: Luxury Platinum, Pure White & Prismatic Rose Gold Studio
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, 512);
+      bgGrad.addColorStop(0, '#ffffff');
+      bgGrad.addColorStop(0.5, '#f1f5f9');
+      bgGrad.addColorStop(1, '#e2e8f0');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 1024, 512);
+
+      // Vibrant Purple-Magenta Keylight
+      const g1 = ctx.createRadialGradient(280, 160, 10, 280, 160, 240);
+      g1.addColorStop(0, 'rgba(168, 85, 247, 0.95)');
+      g1.addColorStop(0.45, 'rgba(217, 70, 239, 0.65)');
+      g1.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = g1;
+      ctx.beginPath();
+      ctx.arc(280, 160, 240, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Deep Azure / Sky Cyan Softbox
+      const g2 = ctx.createRadialGradient(760, 320, 10, 760, 320, 260);
+      g2.addColorStop(0, 'rgba(2, 132, 199, 0.90)');
+      g2.addColorStop(0.5, 'rgba(59, 130, 246, 0.50)');
+      g2.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = g2;
+      ctx.beginPath();
+      ctx.arc(760, 320, 260, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Overhead White Key Strip
+      const g3 = ctx.createLinearGradient(460, 0, 560, 0);
+      g3.addColorStop(0, 'rgba(255, 255, 255, 0)');
+      g3.addColorStop(0.5, 'rgba(255, 255, 255, 1.0)');
+      g3.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = g3;
+      ctx.fillRect(460, 10, 100, 240);
+    }
+
+    const canvasTexture = new THREE.CanvasTexture(canvas);
+    canvasTexture.mapping = THREE.EquirectangularReflectionMapping;
+
+    if (this.currentEnvTarget) {
+      this.currentEnvTarget.dispose();
+    }
+    this.currentEnvTarget = this.pmremGenerator.fromEquirectangular(canvasTexture);
+    this.scene.environment = this.currentEnvTarget.texture;
+    canvasTexture.dispose();
   }
 
   setupLighting() {
     // 1. Balanced Ambient Base
-    this.ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 1.8);
     this.scene.add(this.ambientLight);
 
     // 2. Main Key Directional Light (Electric Magenta)
-    this.dirLight1 = new THREE.DirectionalLight(0xE02BFB, 3.8);
-    this.dirLight1.position.set(5, 4, 4);
+    this.dirLight1 = new THREE.DirectionalLight(0xE02BFB, 4.6);
+    this.dirLight1.position.set(5, 4.5, 4.5);
     this.scene.add(this.dirLight1);
 
     // 3. Secondary Fill Directional Light (Cyber Cyan)
-    this.dirLight2 = new THREE.DirectionalLight(0x00F0FF, 3.2);
-    this.dirLight2.position.set(-5, -3, 4);
+    this.dirLight2 = new THREE.DirectionalLight(0x00F0FF, 4.2);
+    this.dirLight2.position.set(-5, -3.5, 4);
     this.scene.add(this.dirLight2);
 
     // 4. Back Rim Directional Light (Royal Cosmic Violet)
-    this.dirLight3 = new THREE.DirectionalLight(0x7C3AED, 3.5);
-    this.dirLight3.position.set(0, 5, -4);
+    this.dirLight3 = new THREE.DirectionalLight(0x7C3AED, 4.2);
+    this.dirLight3.position.set(0, 5, -4.5);
     this.scene.add(this.dirLight3);
 
     // 5. Dynamic Orbiting Specular Point Light (Creates shimmering glints on curves)
-    this.specularLight = new THREE.PointLight(0xFFFFFF, 4.0, 20);
+    this.specularLight = new THREE.PointLight(0xFFFFFF, 5.5, 25);
     this.specularLight.position.set(0, 0, 4);
     this.scene.add(this.specularLight);
   }
@@ -100,88 +224,154 @@ export class HeroScene {
   createSculpture(isMobile) {
     this.group = new THREE.Group();
 
-    // 1. Primary Hero: Ultra-Smooth Liquid Chrome Möbius Knot (NO WIREFRAME CAGE)
-    const tubularSegments = isMobile ? 96 : 160;
-    const radialSegments = isMobile ? 24 : 36;
-    const knotGeo = new THREE.TorusKnotGeometry(1.15, 0.32, tubularSegments, radialSegments, 2, 3);
+    // 1. PRIMARY HERO SCULPTURE: Liquid Chrome Möbius Ribbon
+    // Smooth geometric curve with high subdivision for fluid continuous specular reflections
+    const tubularSegments = isMobile ? 180 : 280;
+    const radialSegments = isMobile ? 32 : 48;
+    const knotGeo = new THREE.TorusKnotGeometry(1.10, 0.27, tubularSegments, radialSegments, 2, 3);
 
-    // High-End Liquid Metallic Material with deep reflections
-    this.sculptureMat = new THREE.MeshStandardMaterial({
-      color: 0x4C1D95, // Rich royal violet
-      emissive: 0x2E1065,
-      emissiveIntensity: 0.25,
-      roughness: 0.12,
-      metalness: 0.88
+    // State-of-the-Art MeshPhysicalMaterial with Thin-Film Iridescence & Clearcoat
+    this.sculptureMat = new THREE.MeshPhysicalMaterial({
+      color: 0x7C3AED, // Rich royal purple-amethyst base
+      emissive: 0x3B0764,
+      emissiveIntensity: 0.22,
+      metalness: 0.94,
+      roughness: 0.05,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.03,
+      iridescence: 0.96,
+      iridescenceIOR: 1.60,
+      iridescenceThicknessRange: [140, 540],
+      reflectivity: 1.0,
+      envMapIntensity: 2.6
     });
 
     this.sculpture = new THREE.Mesh(knotGeo, this.sculptureMat);
     this.group.add(this.sculpture);
 
-    // 2. Inner Floating Core: Luminous Faceted Diamond Octahedron
-    const coreGeo = new THREE.OctahedronGeometry(0.65, 0);
-    this.coreMat = new THREE.MeshStandardMaterial({
-      color: 0x00F0FF,
+    // 2. INNER FLOATING CORE: Refractive Optical Crystal Diamond (Prismatic Facets)
+    const diamondGeo = new THREE.IcosahedronGeometry(0.55, 0);
+    this.coreMat = new THREE.MeshPhysicalMaterial({
+      color: 0xffffff,
       emissive: 0x00F0FF,
-      emissiveIntensity: 0.75,
-      roughness: 0.15,
-      metalness: 0.85,
-      flatShading: true
+      emissiveIntensity: 0.45,
+      metalness: 0.05,
+      roughness: 0.02,
+      transmission: 0.95,
+      ior: 1.76,
+      thickness: 1.6,
+      attenuationColor: 0x00F0FF,
+      attenuationDistance: 0.7,
+      transparent: true,
+      opacity: 0.98,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.02,
+      flatShading: true,
+      envMapIntensity: 2.6
     });
 
-    this.core = new THREE.Mesh(coreGeo, this.coreMat);
+    this.core = new THREE.Mesh(diamondGeo, this.coreMat);
     this.group.add(this.core);
 
-    // 3. Floating Orbiting Micro-Diamonds
-    this.orbiters = new THREE.Group();
-    const orbiterCount = isMobile ? 3 : 5;
-    this.orbiterMeshes = [];
-    const orbGeo = new THREE.OctahedronGeometry(0.11, 0);
-    const orbColors = [0xE02BFB, 0x00F0FF, 0x7C3AED, 0x38BDF8, 0xF472B6];
+    // 3. PHOTONIC SINGULARITY: High-Energy Pulsating Core Light inside the crystal
+    const singularityGeo = new THREE.SphereGeometry(0.18, 16, 16);
+    this.singularityMat = new THREE.MeshBasicMaterial({
+      color: 0x00F0FF,
+      transparent: true,
+      opacity: 0.95
+    });
+    this.singularity = new THREE.Mesh(singularityGeo, this.singularityMat);
+    this.core.add(this.singularity);
 
-    for (let i = 0; i < orbiterCount; i++) {
-      const orbMat = new THREE.MeshStandardMaterial({
-        color: orbColors[i % orbColors.length],
-        emissive: orbColors[i % orbColors.length],
-        emissiveIntensity: 0.75,
-        roughness: 0.1,
-        metalness: 0.9,
-        flatShading: true
-      });
-      const mesh = new THREE.Mesh(orbGeo, orbMat);
-      const angle = (i / orbiterCount) * Math.PI * 2;
-      const dist = 2.15 + (i % 2) * 0.3;
-      mesh.position.set(Math.cos(angle) * dist, Math.sin(angle * 2) * 0.4, Math.sin(angle) * dist);
-      mesh.userData = { angle, dist, speed: 0.6 + i * 0.15 };
-      this.orbiters.add(mesh);
-      this.orbiterMeshes.push(mesh);
-    }
-    this.group.add(this.orbiters);
+    // Internal Point Light casting colored refraction outwards through the diamond facets
+    this.coreInnerLight = new THREE.PointLight(0x00F0FF, 3.8, 5);
+    this.core.add(this.coreInnerLight);
 
     this.scene.add(this.group);
   }
 
-  createGyroRings(isMobile) {
+  createGimbalRings(isMobile) {
     this.rings = [];
-    const ringRadii = [1.95, 2.35];
 
-    ringRadii.forEach((rad, idx) => {
-      // Razor-thin, glowing precision halo ring
-      const ringGeo = new THREE.TorusGeometry(rad, 0.007, 12, isMobile ? 48 : 84);
-      const ringMat = new THREE.MeshStandardMaterial({
-        color: idx === 0 ? 0xE02BFB : 0x00F0FF,
-        emissive: idx === 0 ? 0xE02BFB : 0x00F0FF,
-        emissiveIntensity: 0.6,
-        roughness: 0.15,
-        metalness: 0.95,
-        transparent: true,
-        opacity: 0.8
-      });
-      const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-      ringMesh.rotation.x = (Math.PI / 3) * (idx + 1);
-      ringMesh.rotation.y = (Math.PI / 4) * (idx + 1);
-      this.group.add(ringMesh);
-      this.rings.push(ringMesh);
+    // Clean, Non-Intersecting Equatorial Chrono-Gimbal Ring (Frames the artifact from outside)
+    // Tilted elegantly at 28 degrees, positioned outside the 1.38 sculpture boundary (radius: 2.22)
+    const ringGeo = new THREE.TorusGeometry(2.22, 0.016, 16, isMobile ? 64 : 128);
+    this.ringMat1 = new THREE.MeshPhysicalMaterial({
+      color: 0x00F0FF,
+      emissive: 0x00F0FF,
+      emissiveIntensity: 0.55,
+      metalness: 0.95,
+      roughness: 0.08,
+      clearcoat: 1.0,
+      transparent: true,
+      opacity: 0.85,
+      envMapIntensity: 2.2
     });
+
+    const ringMesh = new THREE.Mesh(ringGeo, this.ringMat1);
+    ringMesh.rotation.x = Math.PI * 0.42;
+    ringMesh.rotation.y = Math.PI * 0.12;
+    ringMesh.userData = { speed: 0.14 };
+    this.group.add(ringMesh);
+    this.rings.push(ringMesh);
+
+    // Secondary subtle concentric halo orbit
+    const outerHaloGeo = new THREE.TorusGeometry(2.45, 0.007, 12, isMobile ? 48 : 96);
+    this.ringMat2 = new THREE.MeshPhysicalMaterial({
+      color: 0xE02BFB,
+      emissive: 0xE02BFB,
+      emissiveIntensity: 0.45,
+      metalness: 0.95,
+      roughness: 0.10,
+      transparent: true,
+      opacity: 0.65,
+      envMapIntensity: 2.0
+    });
+    const outerHalo = new THREE.Mesh(outerHaloGeo, this.ringMat2);
+    outerHalo.rotation.x = Math.PI * 0.38;
+    outerHalo.rotation.y = -Math.PI * 0.15;
+    outerHalo.userData = { speed: -0.10 };
+    this.group.add(outerHalo);
+    this.rings.push(outerHalo);
+  }
+
+  createSatellites(isMobile) {
+    this.satellites = new THREE.Group();
+    const count = isMobile ? 3 : 5;
+    this.satelliteMeshes = [];
+    const satColors = [0xE02BFB, 0x00F0FF, 0x7C3AED, 0x38BDF8, 0xF472B6];
+
+    for (let i = 0; i < count; i++) {
+      const geo = (i % 2 === 0) ? new THREE.OctahedronGeometry(0.085, 0) : new THREE.TetrahedronGeometry(0.095, 0);
+      const color = satColors[i % satColors.length];
+
+      const mat = new THREE.MeshPhysicalMaterial({
+        color: color,
+        emissive: color,
+        emissiveIntensity: 0.75,
+        metalness: 0.92,
+        roughness: 0.06,
+        clearcoat: 1.0,
+        flatShading: true,
+        envMapIntensity: 2.2
+      });
+
+      const mesh = new THREE.Mesh(geo, mat);
+      const angle = (i / count) * Math.PI * 2;
+      const dist = 2.15 + (i % 2) * 0.35;
+      mesh.position.set(Math.cos(angle) * dist, Math.sin(angle * 2) * 0.40, Math.sin(angle) * dist);
+      mesh.userData = {
+        angle,
+        dist,
+        speed: 0.48 + i * 0.10,
+        rotSpeed: 1.4 + i * 0.25
+      };
+
+      this.satellites.add(mesh);
+      this.satelliteMeshes.push(mesh);
+    }
+
+    this.group.add(this.satellites);
   }
 
   createStardustNebula(isMobile) {
@@ -230,67 +420,90 @@ export class HeroScene {
     this.currentTheme = theme;
     const isDark = theme === 'dark';
 
+    // Update procedural environment map
+    this.updateEnvironmentMap(isDark);
+
     if (isDark) {
-      // DARK MODE: Deep Cosmic Chrome with vibrant Violet/Magenta sheen & Cyan reflections
+      // DARK MODE: Ultra-Gloss Liquid Violet-Amethyst Chrome with Prismatic Sheen
       if (this.sculptureMat) {
-        this.sculptureMat.color.setHex(0x581C87); // Deep royal violet
+        this.sculptureMat.color.setHex(0x7E22CE); // Rich vibrant purple chrome
         this.sculptureMat.emissive.setHex(0x3B0764);
-        this.sculptureMat.emissiveIntensity = 0.28;
-        this.sculptureMat.roughness = 0.12;
-        this.sculptureMat.metalness = 0.88;
+        this.sculptureMat.emissiveIntensity = 0.22;
+        this.sculptureMat.metalness = 0.94;
+        this.sculptureMat.roughness = 0.05;
+        this.sculptureMat.iridescence = 0.96;
+        this.sculptureMat.envMapIntensity = 2.6;
       }
       if (this.coreMat) {
-        this.coreMat.color.setHex(0x00F0FF);
+        this.coreMat.color.setHex(0xffffff);
         this.coreMat.emissive.setHex(0x00F0FF);
-        this.coreMat.emissiveIntensity = 0.85;
+        this.coreMat.emissiveIntensity = 0.45;
+        this.coreMat.attenuationColor.setHex(0x00F0FF);
       }
-      if (this.ambientLight) this.ambientLight.intensity = 1.3;
+      if (this.singularityMat) {
+        this.singularityMat.color.setHex(0x00F0FF);
+      }
+      if (this.coreInnerLight) {
+        this.coreInnerLight.color.setHex(0x00F0FF);
+        this.coreInnerLight.intensity = 3.8;
+      }
+      if (this.ambientLight) this.ambientLight.intensity = 1.6;
       if (this.dirLight1) {
         this.dirLight1.color.setHex(0xE02BFB);
-        this.dirLight1.intensity = 4.2;
+        this.dirLight1.intensity = 4.5;
       }
       if (this.dirLight2) {
         this.dirLight2.color.setHex(0x00F0FF);
-        this.dirLight2.intensity = 3.6;
+        this.dirLight2.intensity = 4.0;
       }
       if (this.dirLight3) {
         this.dirLight3.color.setHex(0x7C3AED);
-        this.dirLight3.intensity = 3.8;
+        this.dirLight3.intensity = 4.2;
       }
       if (this.specularLight) {
         this.specularLight.color.setHex(0xFFFFFF);
-        this.specularLight.intensity = 4.0;
+        this.specularLight.intensity = 5.5;
       }
     } else {
-      // LIGHT MODE: Crisp Platinum & Rose Gold Chrome (Luminous, Prestigious, Bright)
+      // LIGHT MODE: High-Contrast Obsidian Violet & Rose Gold Chrome (Stands out crisp and bold on light background)
       if (this.sculptureMat) {
-        this.sculptureMat.color.setHex(0xE0E7FF); // Bright platinum silver-violet
-        this.sculptureMat.emissive.setHex(0x6366F1);
-        this.sculptureMat.emissiveIntensity = 0.18;
-        this.sculptureMat.roughness = 0.15;
-        this.sculptureMat.metalness = 0.82;
+        this.sculptureMat.color.setHex(0x4C1D95); // Deep royal violet titanium (bold contrast on light background)
+        this.sculptureMat.emissive.setHex(0x581C87);
+        this.sculptureMat.emissiveIntensity = 0.25;
+        this.sculptureMat.metalness = 0.92;
+        this.sculptureMat.roughness = 0.06;
+        this.sculptureMat.iridescence = 0.95;
+        this.sculptureMat.envMapIntensity = 2.6;
       }
       if (this.coreMat) {
-        this.coreMat.color.setHex(0x7C3AED);
-        this.coreMat.emissive.setHex(0x7C3AED);
-        this.coreMat.emissiveIntensity = 0.70;
+        this.coreMat.color.setHex(0xffffff);
+        this.coreMat.emissive.setHex(0x9333EA);
+        this.coreMat.emissiveIntensity = 0.50;
+        this.coreMat.attenuationColor.setHex(0x9333EA);
+      }
+      if (this.singularityMat) {
+        this.singularityMat.color.setHex(0x9333EA);
+      }
+      if (this.coreInnerLight) {
+        this.coreInnerLight.color.setHex(0x9333EA);
+        this.coreInnerLight.intensity = 3.5;
       }
       if (this.ambientLight) this.ambientLight.intensity = 2.0;
       if (this.dirLight1) {
         this.dirLight1.color.setHex(0x7C3AED);
-        this.dirLight1.intensity = 3.5;
+        this.dirLight1.intensity = 4.2;
       }
       if (this.dirLight2) {
-        this.dirLight2.color.setHex(0x0EA5E9);
-        this.dirLight2.intensity = 3.0;
+        this.dirLight2.color.setHex(0x0284C7);
+        this.dirLight2.intensity = 3.8;
       }
       if (this.dirLight3) {
-        this.dirLight3.color.setHex(0xE02BFB);
-        this.dirLight3.intensity = 2.6;
+        this.dirLight3.color.setHex(0xD946EF);
+        this.dirLight3.intensity = 3.2;
       }
       if (this.specularLight) {
         this.specularLight.color.setHex(0xFFFFFF);
-        this.specularLight.intensity = 5.0;
+        this.specularLight.intensity = 6.0;
       }
     }
   }
@@ -301,7 +514,7 @@ export class HeroScene {
       this.mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
     });
 
-    // Touch and drag support with smooth inertia
+    // Touch and Drag with Smooth Inertia Momentum
     const onPointerDown = (e) => {
       this.isDragging = true;
       this.previousMousePosition = {
@@ -318,8 +531,8 @@ export class HeroScene {
       const deltaX = clientX - this.previousMousePosition.x;
       const deltaY = clientY - this.previousMousePosition.y;
 
-      this.rotationVelocity.y += deltaX * 0.004;
-      this.rotationVelocity.x += deltaY * 0.004;
+      this.rotationVelocity.y += deltaX * 0.005;
+      this.rotationVelocity.x += deltaY * 0.005;
 
       this.previousMousePosition = { x: clientX, y: clientY };
     };
@@ -370,43 +583,52 @@ export class HeroScene {
     const delta = this.clock.getDelta();
     const time = this.clock.getElapsedTime();
 
-    // Mouse follow with spring damping
-    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
-    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
+    // Mouse spring damping for cinematic parallax tilt
+    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.06;
+    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.06;
 
+    // Inertial velocity damping
     this.rotationVelocity.x *= 0.94;
     this.rotationVelocity.y *= 0.94;
 
     this.group.rotation.x += this.rotationVelocity.x;
     this.group.rotation.y += this.rotationVelocity.y;
 
-    // Smooth continuous liquid rotation
-    const scrollSpin = this.scrollProgress * 2.2;
-    this.sculpture.rotation.y = time * 0.28 + scrollSpin + this.mouse.x * 0.35;
-    this.sculpture.rotation.x = time * 0.16 + this.mouse.y * 0.35;
+    // Smooth continuous liquid rotation with scroll unwinding
+    const scrollSpin = this.scrollProgress * 2.5;
+    this.sculpture.rotation.y = time * 0.30 + scrollSpin + this.mouse.x * 0.38;
+    this.sculpture.rotation.x = time * 0.16 + this.mouse.y * 0.32;
 
-    // Counter-rotating Inner Core with subtle pulse
-    this.core.rotation.y = -time * 0.55;
+    // Refractive Inner Crystal Core: Counter-rotates with hypnotic breathing pulse
+    this.core.rotation.y = -time * 0.60;
     this.core.rotation.z = time * 0.35;
-    const pulse = 1 + Math.sin(time * 2.4) * 0.04;
+    const pulse = 1.0 + Math.sin(time * 2.8) * 0.05;
     this.core.scale.set(pulse, pulse, pulse);
 
-    // Gyroscope rings rotation
+    // Singularity pulsating luminescence
+    if (this.singularityMat) {
+      this.singularityMat.opacity = 0.75 + Math.sin(time * 3.5) * 0.25;
+    }
+    if (this.coreInnerLight) {
+      this.coreInnerLight.intensity = 3.2 + Math.sin(time * 3.5) * 1.5;
+    }
+
+    // Precision Gyroscope Gimbal Rings Rotation
     this.rings.forEach((ring, idx) => {
-      ring.rotation.z += (0.16 + idx * 0.12) * delta;
-      ring.rotation.y += (0.12 - idx * 0.08) * delta;
+      ring.rotation.z += (ring.userData.speed || 0.15) * delta;
+      ring.rotation.y += (0.08 - idx * 0.05) * delta;
     });
 
-    // Orbiting micro-diamonds
-    this.orbiterMeshes.forEach((mesh) => {
+    // Orbiting Prismatic Satellite Micro-Gems
+    this.satelliteMeshes.forEach((mesh) => {
       mesh.userData.angle += mesh.userData.speed * delta;
       const angle = mesh.userData.angle;
       const dist = mesh.userData.dist;
       mesh.position.x = Math.cos(angle) * dist;
       mesh.position.z = Math.sin(angle) * dist;
-      mesh.position.y = Math.sin(angle * 2 + time * 1.5) * 0.35;
-      mesh.rotation.x += 1.8 * delta;
-      mesh.rotation.y += 1.8 * delta;
+      mesh.position.y = Math.sin(angle * 2 + time * 1.6) * 0.35;
+      mesh.rotation.x += mesh.userData.rotSpeed * delta;
+      mesh.rotation.y += mesh.userData.rotSpeed * delta;
     });
 
     // Stardust subtle nebula drift
@@ -415,14 +637,14 @@ export class HeroScene {
       this.particles.rotation.x = Math.sin(time * 0.04) * 0.08;
     }
 
-    // Natural breathing float
-    this.group.position.y = Math.sin(time * 1.5) * 0.10;
+    // Organic levitation float
+    this.group.position.y = Math.sin(time * 1.6) * 0.12;
 
-    // Orbital specular light movement around the knot for gleaming liquid highlights
+    // Specular Key Light Orbiting for gleam sweeps across chrome curves
     if (this.specularLight) {
-      this.specularLight.position.x = Math.sin(time * 1.2) * 3.5;
-      this.specularLight.position.y = Math.cos(time * 0.9) * 3.0;
-      this.specularLight.position.z = 3.5 + Math.sin(time * 0.5) * 1.0;
+      this.specularLight.position.x = Math.sin(time * 1.4) * 3.8 + this.mouse.x * 2.0;
+      this.specularLight.position.y = Math.cos(time * 1.1) * 3.2 + this.mouse.y * 2.0;
+      this.specularLight.position.z = 4.0 + Math.sin(time * 0.6) * 1.2;
     }
 
     this.renderer.render(this.scene, this.camera);
