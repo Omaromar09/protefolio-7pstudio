@@ -1,21 +1,21 @@
 import * as THREE from 'three';
 
 /**
- * ==========================================================================
- * 7P STUDIO — AWARD-WINNING HYPER-LUXURY 3D CENTERPIECE (HERO 3D)
- * Tier-1 Awwwards-Grade Prismatic Chrome & Optical Crystal Artifact
- * 
- * Architecture:
- *   1. Primary Sculpture: Liquid Iridescent Chrome Möbius Ribbon (Ultra-high density, fluid reflections)
- *   2. Secondary Intertwined Halo: Counter-weaving Prismatic Crystal Ring (Interlocking depth)
- *   3. Inner Core: Refractive Brilliant-Cut Diamond Prism (Optical glass transmission & dispersion)
- *   4. Heart: Pulsating Photonic Singularity (Dynamic volumetric illumination through diamond facets)
- *   5. Kinetic Chrono-Gimbal: Non-intersecting outer aerospace titanium & neon laser track
- *   6. Satellites: Tumble-orbiting micro-gem crystals & depth-of-field stardust nebula
- *   7. Procedural Studio HDRI: High-contrast neon & softbox studio reflection environment
- *   8. Physics: Inertial velocity drag, momentum throw, and spring-damped cursor parallax
- * ==========================================================================
- */
+* ==========================================================================
+* 7P STUDIO — AWARD-WINNING HYPER-LUXURY 3D CENTERPIECE (HERO 3D)
+* Tier-1 Awwwards-Grade Prismatic Chrome & Optical Crystal Artifact
+*
+* Architecture:
+*   1. Primary Sculpture: Liquid Iridescent Chrome Möbius Ribbon (Ultra-high density, fluid reflections)
+*   2. Secondary Intertwined Halo: Counter-weaving Prismatic Crystal Ring (Interlocking depth)
+*   3. Inner Core: Refractive Brilliant-Cut Diamond Prism (Optical glass transmission & dispersion)
+*   4. Heart: Pulsating Photonic Singularity (Dynamic volumetric illumination through diamond facets)
+*   5. Kinetic Chrono-Gimbal: Non-intersecting outer aerospace titanium & neon laser track
+*   6. Satellites: Tumble-orbiting micro-gem crystals & depth-of-field stardust nebula
+*   7. Procedural Studio HDRI: High-contrast neon & softbox studio reflection environment
+*   8. Physics: Inertial velocity drag, momentum throw, and spring-damped cursor parallax
+* ==========================================================================
+*/
 export class HeroScene {
   constructor(canvasElement) {
     this.canvas = canvasElement;
@@ -40,7 +40,7 @@ export class HeroScene {
     const height = rect.height || 420;
     const isMobile = window.innerWidth < 768;
 
-    // 1. Perspective Camera
+    // 1. Perspective Camera with cinematic field of view
     this.camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
     this.camera.position.set(0, 0, isMobile ? 6.2 : 5.4);
 
@@ -51,13 +51,15 @@ export class HeroScene {
       alpha: true,
       powerPreference: 'high-performance',
       stencil: false,
-      depth: true
+      depth: true,
+      preserveDrawingBuffer: false
     });
     this.renderer.setSize(width, height, false);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.5));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.35;
+    this.renderer.toneMappingExposure = 1.42;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+    this.renderer.clearColor(0x000000, 0.0);
 
     // 3. Generate Procedural Studio HDRI Environment for Liquid Chrome Reflections
     this.pmremGenerator = new THREE.PMREMGenerator(this.renderer);
@@ -224,67 +226,74 @@ export class HeroScene {
   createSculpture(isMobile) {
     this.group = new THREE.Group();
 
-    // 1. PRIMARY HERO SCULPTURE: Liquid Chrome Möbius Ribbon
-    // Smooth geometric curve with high subdivision for fluid continuous specular reflections
-    const tubularSegments = isMobile ? 180 : 280;
-    const radialSegments = isMobile ? 32 : 48;
+    // 1. PRIMARY HERO SCULPTURE: Liquid Iridescent Chrome Möbius Ribbon
+    // Ultra-high subdivision for flawless fluid continuous specular reflections
+    const tubularSegments = isMobile ? 220 : 400;
+    const radialSegments = isMobile ? 48 : 96;
     const knotGeo = new THREE.TorusKnotGeometry(1.10, 0.27, tubularSegments, radialSegments, 2, 3);
 
-    // State-of-the-Art MeshPhysicalMaterial with Thin-Film Iridescence & Clearcoat
+    // Award-Winning MeshPhysicalMaterial with Thin-Film Iridescence & Clearcoat
     this.sculptureMat = new THREE.MeshPhysicalMaterial({
       color: 0x7C3AED, // Rich royal purple-amethyst base
       emissive: 0x3B0764,
-      emissiveIntensity: 0.22,
-      metalness: 0.94,
-      roughness: 0.05,
+      emissiveIntensity: 0.35,
+      metalness: 0.96,
+      roughness: 0.02,
       clearcoat: 1.0,
-      clearcoatRoughness: 0.03,
-      iridescence: 0.96,
-      iridescenceIOR: 1.60,
-      iridescenceThicknessRange: [140, 540],
+      clearcoatRoughness: 0.01,
+      iridescence: 1.0,
+      iridescenceIOR: 1.70,
+      iridescenceThicknessRange: [100, 700],
       reflectivity: 1.0,
-      envMapIntensity: 2.6
+      envMapIntensity: 3.2,
+      transmission: 0.1,
+      attenuationDistance: 0.15
     });
 
     this.sculpture = new THREE.Mesh(knotGeo, this.sculptureMat);
+    this.sculpture.castShadow = true;
+    this.sculpture.receiveShadow = true;
     this.group.add(this.sculpture);
 
-    // 2. INNER FLOATING CORE: Refractive Optical Crystal Diamond (Prismatic Facets)
-    const diamondGeo = new THREE.IcosahedronGeometry(0.55, 0);
+    // 2. INNER FLOATING CORE: Refractive Brilliant-Cut Diamond Prism
+    const diamondGeo = new THREE.IcosahedronGeometry(0.55, 2);
     this.coreMat = new THREE.MeshPhysicalMaterial({
       color: 0xffffff,
       emissive: 0x00F0FF,
-      emissiveIntensity: 0.45,
-      metalness: 0.05,
-      roughness: 0.02,
-      transmission: 0.95,
-      ior: 1.76,
-      thickness: 1.6,
+      emissiveIntensity: 0.65,
+      metalness: 0.02,
+      roughness: 0.005,
+      transmission: 0.98,
+      ior: 2.42,
+      thickness: 2.2,
       attenuationColor: 0x00F0FF,
-      attenuationDistance: 0.7,
+      attenuationDistance: 1.2,
       transparent: true,
-      opacity: 0.98,
+      opacity: 0.99,
       clearcoat: 1.0,
-      clearcoatRoughness: 0.02,
-      flatShading: true,
-      envMapIntensity: 2.6
+      clearcoatRoughness: 0.005,
+      flatShading: false,
+      envMapIntensity: 3.5,
+      specularIntensity: 1.8
     });
 
     this.core = new THREE.Mesh(diamondGeo, this.coreMat);
+    this.core.castShadow = true;
     this.group.add(this.core);
 
-    // 3. PHOTONIC SINGULARITY: High-Energy Pulsating Core Light inside the crystal
-    const singularityGeo = new THREE.SphereGeometry(0.18, 16, 16);
+    // 3. PHOTONIC SINGULARITY: High-Energy Pulsating Core Light
+    const singularityGeo = new THREE.SphereGeometry(0.18, 32, 32);
     this.singularityMat = new THREE.MeshBasicMaterial({
       color: 0x00F0FF,
       transparent: true,
-      opacity: 0.95
+      opacity: 0.98,
+      blending: THREE.AdditiveBlending
     });
     this.singularity = new THREE.Mesh(singularityGeo, this.singularityMat);
     this.core.add(this.singularity);
 
-    // Internal Point Light casting colored refraction outwards through the diamond facets
-    this.coreInnerLight = new THREE.PointLight(0x00F0FF, 3.8, 5);
+    // Internal Point Light casting colored refraction through diamond facets
+    this.coreInnerLight = new THREE.PointLight(0x00F0FF, 5.2, 8);
     this.core.add(this.coreInnerLight);
 
     this.scene.add(this.group);
@@ -295,17 +304,20 @@ export class HeroScene {
 
     // Clean, Non-Intersecting Equatorial Chrono-Gimbal Ring (Frames the artifact from outside)
     // Tilted elegantly at 28 degrees, positioned outside the 1.38 sculpture boundary (radius: 2.22)
-    const ringGeo = new THREE.TorusGeometry(2.22, 0.016, 16, isMobile ? 64 : 128);
+    const ringGeo = new THREE.TorusGeometry(2.22, 0.016, 24, isMobile ? 80 : 160);
     this.ringMat1 = new THREE.MeshPhysicalMaterial({
       color: 0x00F0FF,
       emissive: 0x00F0FF,
-      emissiveIntensity: 0.55,
-      metalness: 0.95,
-      roughness: 0.08,
+      emissiveIntensity: 0.75,
+      metalness: 0.97,
+      roughness: 0.03,
       clearcoat: 1.0,
+      clearcoatRoughness: 0.01,
       transparent: true,
-      opacity: 0.85,
-      envMapIntensity: 2.2
+      opacity: 0.90,
+      envMapIntensity: 2.8,
+      transmission: 0.15,
+      reflectivity: 1.0
     });
 
     const ringMesh = new THREE.Mesh(ringGeo, this.ringMat1);
@@ -315,17 +327,20 @@ export class HeroScene {
     this.group.add(ringMesh);
     this.rings.push(ringMesh);
 
-    // Secondary subtle concentric halo orbit
-    const outerHaloGeo = new THREE.TorusGeometry(2.45, 0.007, 12, isMobile ? 48 : 96);
+    // Secondary subtle concentric halo orbit - enhanced with chrome sheen
+    const outerHaloGeo = new THREE.TorusGeometry(2.45, 0.007, 16, isMobile ? 64 : 128);
     this.ringMat2 = new THREE.MeshPhysicalMaterial({
       color: 0xE02BFB,
       emissive: 0xE02BFB,
-      emissiveIntensity: 0.45,
-      metalness: 0.95,
-      roughness: 0.10,
+      emissiveIntensity: 0.65,
+      metalness: 0.98,
+      roughness: 0.02,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.01,
       transparent: true,
-      opacity: 0.65,
-      envMapIntensity: 2.0
+      opacity: 0.75,
+      envMapIntensity: 2.5,
+      reflectivity: 1.0
     });
     const outerHalo = new THREE.Mesh(outerHaloGeo, this.ringMat2);
     outerHalo.rotation.x = Math.PI * 0.38;
@@ -342,18 +357,22 @@ export class HeroScene {
     const satColors = [0xE02BFB, 0x00F0FF, 0x7C3AED, 0x38BDF8, 0xF472B6];
 
     for (let i = 0; i < count; i++) {
-      const geo = (i % 2 === 0) ? new THREE.OctahedronGeometry(0.085, 0) : new THREE.TetrahedronGeometry(0.095, 0);
+      const geo = (i % 2 === 0) ? new THREE.OctahedronGeometry(0.095, 1) : new THREE.TetrahedronGeometry(0.105, 1);
       const color = satColors[i % satColors.length];
 
       const mat = new THREE.MeshPhysicalMaterial({
         color: color,
         emissive: color,
-        emissiveIntensity: 0.75,
-        metalness: 0.92,
-        roughness: 0.06,
+        emissiveIntensity: 0.90,
+        metalness: 0.95,
+        roughness: 0.02,
         clearcoat: 1.0,
-        flatShading: true,
-        envMapIntensity: 2.2
+        clearcoatRoughness: 0.01,
+        envMapIntensity: 3.0,
+        transmission: 0.25,
+        reflectivity: 1.0,
+        flatShading: false,
+        specularIntensity: 1.5
       });
 
       const mesh = new THREE.Mesh(geo, mat);
@@ -375,7 +394,7 @@ export class HeroScene {
   }
 
   createStardustNebula(isMobile) {
-    const count = isMobile ? 35 : 75;
+    const count = isMobile ? 50 : 110;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
@@ -384,6 +403,7 @@ export class HeroScene {
     const cViolet = new THREE.Color(0x7C3AED);
     const cCyan = new THREE.Color(0x00F0FF);
     const cWhite = new THREE.Color(0xFFFFFF);
+    const cSilver = new THREE.Color(0xC0C0C0);
 
     for (let i = 0; i < count; i++) {
       const radius = 1.7 + Math.random() * 2.3;
@@ -395,7 +415,13 @@ export class HeroScene {
       positions[i * 3 + 2] = radius * Math.cos(phi);
 
       const rnd = Math.random();
-      const chosenColor = rnd > 0.7 ? cMagenta : (rnd > 0.4 ? cCyan : (rnd > 0.2 ? cViolet : cWhite));
+      let chosenColor;
+      if (rnd > 0.75) chosenColor = cMagenta;
+      else if (rnd > 0.55) chosenColor = cCyan;
+      else if (rnd > 0.4) chosenColor = cViolet;
+      else if (rnd > 0.25) chosenColor = cSilver;
+      else chosenColor = cWhite;
+
       colors[i * 3] = chosenColor.r;
       colors[i * 3 + 1] = chosenColor.g;
       colors[i * 3 + 2] = chosenColor.b;
@@ -405,11 +431,12 @@ export class HeroScene {
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const material = new THREE.PointsMaterial({
-      size: isMobile ? 0.045 : 0.065,
+      size: isMobile ? 0.055 : 0.085,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
-      blending: THREE.AdditiveBlending
+      opacity: 0.90,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
     });
 
     this.particles = new THREE.Points(geometry, material);
@@ -428,82 +455,84 @@ export class HeroScene {
       if (this.sculptureMat) {
         this.sculptureMat.color.setHex(0x7E22CE); // Rich vibrant purple chrome
         this.sculptureMat.emissive.setHex(0x3B0764);
-        this.sculptureMat.emissiveIntensity = 0.22;
-        this.sculptureMat.metalness = 0.94;
-        this.sculptureMat.roughness = 0.05;
-        this.sculptureMat.iridescence = 0.96;
-        this.sculptureMat.envMapIntensity = 2.6;
+        this.sculptureMat.emissiveIntensity = 0.38;
+        this.sculptureMat.metalness = 0.96;
+        this.sculptureMat.roughness = 0.02;
+        this.sculptureMat.iridescence = 1.0;
+        this.sculptureMat.envMapIntensity = 3.2;
       }
       if (this.coreMat) {
         this.coreMat.color.setHex(0xffffff);
         this.coreMat.emissive.setHex(0x00F0FF);
-        this.coreMat.emissiveIntensity = 0.45;
+        this.coreMat.emissiveIntensity = 0.65;
         this.coreMat.attenuationColor.setHex(0x00F0FF);
+        this.coreMat.ior = 2.42;
       }
       if (this.singularityMat) {
         this.singularityMat.color.setHex(0x00F0FF);
       }
       if (this.coreInnerLight) {
         this.coreInnerLight.color.setHex(0x00F0FF);
-        this.coreInnerLight.intensity = 3.8;
+        this.coreInnerLight.intensity = 5.2;
       }
-      if (this.ambientLight) this.ambientLight.intensity = 1.6;
+      if (this.ambientLight) this.ambientLight.intensity = 1.8;
       if (this.dirLight1) {
         this.dirLight1.color.setHex(0xE02BFB);
-        this.dirLight1.intensity = 4.5;
+        this.dirLight1.intensity = 4.8;
       }
       if (this.dirLight2) {
         this.dirLight2.color.setHex(0x00F0FF);
-        this.dirLight2.intensity = 4.0;
+        this.dirLight2.intensity = 4.4;
       }
       if (this.dirLight3) {
         this.dirLight3.color.setHex(0x7C3AED);
-        this.dirLight3.intensity = 4.2;
+        this.dirLight3.intensity = 4.5;
       }
       if (this.specularLight) {
         this.specularLight.color.setHex(0xFFFFFF);
-        this.specularLight.intensity = 5.5;
+        this.specularLight.intensity = 5.8;
       }
     } else {
       // LIGHT MODE: High-Contrast Obsidian Violet & Rose Gold Chrome (Stands out crisp and bold on light background)
       if (this.sculptureMat) {
         this.sculptureMat.color.setHex(0x4C1D95); // Deep royal violet titanium (bold contrast on light background)
         this.sculptureMat.emissive.setHex(0x581C87);
-        this.sculptureMat.emissiveIntensity = 0.25;
-        this.sculptureMat.metalness = 0.92;
-        this.sculptureMat.roughness = 0.06;
-        this.sculptureMat.iridescence = 0.95;
-        this.sculptureMat.envMapIntensity = 2.6;
+        this.sculptureMat.emissiveIntensity = 0.30;
+        this.sculptureMat.metalness = 0.94;
+        this.sculptureMat.roughness = 0.04;
+        this.sculptureMat.iridescence = 0.98;
+        this.sculptureMat.envMapIntensity = 3.0;
       }
       if (this.coreMat) {
         this.coreMat.color.setHex(0xffffff);
         this.coreMat.emissive.setHex(0x9333EA);
-        this.coreMat.emissiveIntensity = 0.50;
+        this.coreMat.emissiveIntensity = 0.55;
         this.coreMat.attenuationColor.setHex(0x9333EA);
+        this.coreMat.ior = 2.42;
       }
       if (this.singularityMat) {
         this.singularityMat.color.setHex(0x9333EA);
       }
       if (this.coreInnerLight) {
         this.coreInnerLight.color.setHex(0x9333EA);
-        this.coreInnerLight.intensity = 3.5;
+        this.coreInnerLight.intensity = 4.8;
       }
-      if (this.ambientLight) this.ambientLight.intensity = 2.0;
+      if (this.ambientLight) this.ambientLight.intensity = 1.9;
       if (this.dirLight1) {
         this.dirLight1.color.setHex(0x7C3AED);
-        this.dirLight1.intensity = 4.2;
+        this.dirLight1.intensity = 4.5;
       }
       if (this.dirLight2) {
         this.dirLight2.color.setHex(0x0284C7);
-        this.dirLight2.intensity = 3.8;
+        this.dirLight2.intensity = 4.0;
       }
       if (this.dirLight3) {
         this.dirLight3.color.setHex(0xD946EF);
-        this.dirLight3.intensity = 3.2;
+        this.dirLight3.intensity = 3.8;
       }
       if (this.specularLight) {
         this.specularLight.color.setHex(0xFFFFFF);
-        this.specularLight.intensity = 6.0;
+        this.specularLight.intensity = 6.2;
       }
     }
   }
@@ -531,8 +560,8 @@ export class HeroScene {
       const deltaX = clientX - this.previousMousePosition.x;
       const deltaY = clientY - this.previousMousePosition.y;
 
-      this.rotationVelocity.y += deltaX * 0.005;
-      this.rotationVelocity.x += deltaY * 0.005;
+      this.rotationVelocity.y += deltaX * 0.0025;
+      this.rotationVelocity.x += deltaY * 0.0025;
 
       this.previousMousePosition = { x: clientX, y: clientY };
     };
@@ -572,7 +601,7 @@ export class HeroScene {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height, false);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.5));
   }
 
   animate() {
@@ -583,68 +612,75 @@ export class HeroScene {
     const delta = this.clock.getDelta();
     const time = this.clock.getElapsedTime();
 
-    // Mouse spring damping for cinematic parallax tilt
-    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.06;
-    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.06;
+    // Mouse spring damping with smoother interpolation
+    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.08;
+    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.08;
 
-    // Inertial velocity damping
-    this.rotationVelocity.x *= 0.94;
-    this.rotationVelocity.y *= 0.94;
+    // Inertial velocity damping for natural momentum
+    this.rotationVelocity.x *= 0.96;
+    this.rotationVelocity.y *= 0.96;
 
-    this.group.rotation.x += this.rotationVelocity.x;
-    this.group.rotation.y += this.rotationVelocity.y;
+    // Apply group rotation from drag momentum
+    this.group.rotation.x += this.rotationVelocity.x * 0.7;
+    this.group.rotation.y += this.rotationVelocity.y * 0.7;
 
-    // Smooth continuous liquid rotation with scroll unwinding
-    const scrollSpin = this.scrollProgress * 2.5;
-    this.sculpture.rotation.y = time * 0.30 + scrollSpin + this.mouse.x * 0.38;
-    this.sculpture.rotation.x = time * 0.16 + this.mouse.y * 0.32;
+    // Cinematic liquid-metal rotation with scroll unwinding
+    const scrollSpin = this.scrollProgress * 2.8;
+    this.sculpture.rotation.y = time * 0.28 + scrollSpin + this.mouse.x * 0.42;
+    this.sculpture.rotation.x = time * 0.14 + this.mouse.y * 0.36;
 
     // Refractive Inner Crystal Core: Counter-rotates with hypnotic breathing pulse
-    this.core.rotation.y = -time * 0.60;
-    this.core.rotation.z = time * 0.35;
-    const pulse = 1.0 + Math.sin(time * 2.8) * 0.05;
+    this.core.rotation.y = -time * 0.65;
+    this.core.rotation.z = time * 0.38;
+    const pulse = 1.0 + Math.sin(time * 3.2) * 0.045;
     this.core.scale.set(pulse, pulse, pulse);
 
-    // Singularity pulsating luminescence
+    // Singularity: Pulsing photonic core with chromatic shimmer
     if (this.singularityMat) {
-      this.singularityMat.opacity = 0.75 + Math.sin(time * 3.5) * 0.25;
+      this.singularityMat.opacity = 0.98 + Math.sin(time * 4.2) * 0.18;
     }
     if (this.coreInnerLight) {
-      this.coreInnerLight.intensity = 3.2 + Math.sin(time * 3.5) * 1.5;
+      this.coreInnerLight.intensity = 3.8 + Math.sin(time * 4.2) * 1.3;
     }
 
-    // Precision Gyroscope Gimbal Rings Rotation
+    // Kinetic Chrono-Gimbal Rings: Precision gyroscope rotation
     this.rings.forEach((ring, idx) => {
-      ring.rotation.z += (ring.userData.speed || 0.15) * delta;
-      ring.rotation.y += (0.08 - idx * 0.05) * delta;
+      ring.rotation.z += (ring.userData.speed || 0.15) * delta * 1.15;
+      ring.rotation.y += (0.085 - idx * 0.052) * delta;
+      ring.rotation.x += (ring.userData.speed || 0.15) * 0.08 * delta;
     });
 
-    // Orbiting Prismatic Satellite Micro-Gems
+    // Orbiting Prismatic Satellite Micro-Gems with tumbling physics
     this.satelliteMeshes.forEach((mesh) => {
       mesh.userData.angle += mesh.userData.speed * delta;
       const angle = mesh.userData.angle;
       const dist = mesh.userData.dist;
       mesh.position.x = Math.cos(angle) * dist;
       mesh.position.z = Math.sin(angle) * dist;
-      mesh.position.y = Math.sin(angle * 2 + time * 1.6) * 0.35;
-      mesh.rotation.x += mesh.userData.rotSpeed * delta;
-      mesh.rotation.y += mesh.userData.rotSpeed * delta;
+      mesh.position.y = Math.sin(angle * 2.1 + time * 1.8) * 0.42;
+      mesh.rotation.x += mesh.userData.rotSpeed * delta * 0.9;
+      mesh.rotation.y += mesh.userData.rotSpeed * delta * 0.7;
+      mesh.rotation.z += mesh.userData.rotSpeed * delta * 0.5;
     });
 
-    // Stardust subtle nebula drift
+    // Stardust nebula: subtle volumetric drift with parallax
     if (this.particles) {
-      this.particles.rotation.y = time * 0.05;
-      this.particles.rotation.x = Math.sin(time * 0.04) * 0.08;
+      this.particles.rotation.y = time * 0.065;
+      this.particles.rotation.x = Math.sin(time * 0.045) * 0.09;
+      this.particles.rotation.z = Math.cos(time * 0.038) * 0.06;
     }
 
-    // Organic levitation float
-    this.group.position.y = Math.sin(time * 1.6) * 0.12;
+    // Organic levitation float with cinematic sway
+    this.group.position.y = Math.sin(time * 1.35) * 0.08;
+    this.group.position.x = Math.sin(time * 0.92) * 0.03;
+    this.group.position.z = Math.cos(time * 0.78) * 0.02;
 
-    // Specular Key Light Orbiting for gleam sweeps across chrome curves
+    // Specular Key Light: Orbiting for cinematic gleam sweeps across chrome curves
     if (this.specularLight) {
-      this.specularLight.position.x = Math.sin(time * 1.4) * 3.8 + this.mouse.x * 2.0;
-      this.specularLight.position.y = Math.cos(time * 1.1) * 3.2 + this.mouse.y * 2.0;
-      this.specularLight.position.z = 4.0 + Math.sin(time * 0.6) * 1.2;
+      this.specularLight.position.x = Math.sin(time * 1.55) * 3.8 + this.mouse.x * 1.8;
+      this.specularLight.position.y = Math.cos(time * 1.28) * 3.2 + this.mouse.y * 1.6;
+      this.specularLight.position.z = 4.0 + Math.sin(time * 0.72) * 1.2;
+      this.specularLight.intensity = 5.8 + Math.sin(time * 2.1) * 0.7;
     }
 
     this.renderer.render(this.scene, this.camera);

@@ -35,6 +35,35 @@ export const PROJECTS_DATA = [
     isDemo: false
   },
   {
+    id: 'flowers',
+    title: {
+      ar: 'بوتيك جاردان فيفانت للزهور (تجريبي)',
+      en: 'Jardin Vivant Haute Floriculture (Demo)'
+    },
+    client: 'Jardin Vivant Paris (تجريبي)',
+    category: {
+      ar: 'متجر زهور فاخرة 3D · تجريبي',
+      en: 'Luxury Florals & 3D Storefront · Demo'
+    },
+    short: {
+      ar: 'متجر وتجربة رقمية فرنسية فاخرة لبوتيك زهور وتحف نباتية، بيشمل تجربة بتلات وزهور 3D تفاعلية، كتالوج بوكيهات كولومبية نادرة، شحن مبرد، وسلة شراء تفاعلية.',
+      en: 'Immersive French haute floristry boutique and digital sanctuary featuring interactive 3D WebGL flora, rare Colombian garden roses catalog, and climate-controlled courier delivery.'
+    },
+    tags: {
+      ar: ['زهور وبتلات 3D تفاعلية', 'سلة وبوكيهات مخصصة', 'شحن مبرد فاخر', 'كتالوج وبحث تفاعلي ⌘K'],
+      en: ['Interactive 3D Flora', 'Bespoke Bouquet Builder', 'Chilled Silk-Box Courier', 'Interactive ⌘K Catalog']
+    },
+    url: 'https://flowers-pi-two.vercel.app/',
+    previewImg: '/projects/flowers-preview.jpg',
+    accentColor: '#E11D48',
+    status: {
+      ar: 'نموذج تجريبي جاهز للعرض والتعديل',
+      en: 'Interactive Demo Showcase'
+    },
+    isLive: true,
+    isDemo: true
+  },
+  {
     id: 'festival',
     title: {
       ar: 'حلواني فيستيفال فايف ستار',
@@ -190,8 +219,8 @@ export const REAL_STATS = {
   liveClientProjects: PROJECTS_DATA.filter(p => !p.isDemo).length, // 3
   demoProjects: PROJECTS_DATA.filter(p => p.isDemo).length, // 4
   industriesCovered: {
-    ar: 'متاجر، مطاعم، مساحات، جيمينج، أزياء، و3D',
-    en: 'E-commerce, Food, Hubs, Gaming, Fashion & 3D'
+    ar: 'متاجر، زهور، مطاعم، مساحات، جيمينج، أزياء، و3D',
+    en: 'E-commerce, Florals, Food, Hubs, Gaming, Fashion & 3D'
   },
   deliveryWindow: {
     ar: '7 - 14 يوم عمل',
