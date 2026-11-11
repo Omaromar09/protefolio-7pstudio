@@ -1,6 +1,6 @@
 // ==========================================================================
 // 7P STUDIO — INTERACTIVE PINNED PROJECT SHOWCASE
-// Scroll-driven & interactive tabs showcasing live projects with 3D device mockup
+// Fast, preloaded, touch-swipe & responsive tabs showcasing 7 live & demo projects
 // ==========================================================================
 
 import gsap from 'gsap';
@@ -11,11 +11,28 @@ import { getLanguage } from '../utils/i18n.js';
 gsap.registerPlugin(ScrollTrigger);
 
 let activeIndex = 0;
+let currentSwitchToken = 0;
+const preloadedImages = new Set();
+
+/**
+ * Preload all project preview images immediately into memory cache
+ * Ensures 0ms instant tab switching with no lag or stale images
+ */
+export function preloadAllProjectImages() {
+  if (typeof window === 'undefined') return;
+  PROJECTS_DATA.forEach(p => {
+    if (!p.previewImg || preloadedImages.has(p.previewImg)) return;
+    const img = new Image();
+    img.onload = () => preloadedImages.add(p.previewImg);
+    img.src = p.previewImg;
+  });
+}
 
 export function initProjectShowcase() {
   const showcaseContainer = document.getElementById('project-showcase-mount');
   if (!showcaseContainer) return;
 
+  preloadAllProjectImages();
   renderShowcaseStructure(showcaseContainer);
   setupShowcaseInteractivity();
 }
@@ -62,7 +79,7 @@ function renderShowcaseStructure(container) {
                 <span class="laptop-url-text" id="laptop-url-text">${currentProject.url.replace('https://', '')}</span>
               </div>
             </div>
-            <div class="laptop-screen-inner">
+            <div class="laptop-screen-inner" id="laptop-screen-inner">
               <img src="${currentProject.previewImg}" 
                    alt="${currentProject.title[lang] || currentProject.title.ar}" 
                    class="mockup-img active" 
@@ -81,7 +98,7 @@ function renderShowcaseStructure(container) {
                    alt="${currentProject.title[lang] || currentProject.title.ar}" 
                    class="mockup-mobile-img" 
                    id="mockup-mobile-img" 
-                   loading="lazy" />
+                   loading="eager" />
             </div>
           </div>
         </div>
@@ -150,10 +167,10 @@ function renderShowcaseStructure(container) {
           <!-- Quick Navigation Arrows -->
           <div class="showcase-arrows-nav">
             <button type="button" class="arrow-btn" id="showcase-prev-btn" aria-label="${lang === 'ar' ? 'المشروع السابق' : 'Previous Project'}">
-              <i class="fa-solid fa-chevron-right"></i>
+              <i class="fa-solid ${lang === 'ar' ? 'fa-chevron-right' : 'fa-chevron-left'}"></i>
             </button>
             <button type="button" class="arrow-btn" id="showcase-next-btn" aria-label="${lang === 'ar' ? 'المشروع التالي' : 'Next Project'}">
-              <i class="fa-solid fa-chevron-left"></i>
+              <i class="fa-solid ${lang === 'ar' ? 'fa-chevron-left' : 'fa-chevron-right'}"></i>
             </button>
           </div>
         </div>
@@ -235,6 +252,45 @@ function setupShowcaseInteractivity() {
     });
   }
 
+  // Mobile Touch Swipe Support on Showcase Shell
+  const shell = document.getElementById('showcase-shell');
+  if (shell) {
+    let startX = 0;
+    let startY = 0;
+
+    shell.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length === 1) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    shell.addEventListener('touchend', (e) => {
+      if (e.changedTouches && e.changedTouches.length === 1) {
+        const diffX = e.changedTouches[0].clientX - startX;
+        const diffY = e.changedTouches[0].clientY - startY;
+
+        // If swipe was horizontal and significant (> 45px)
+        if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY) * 1.4) {
+          const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+          if (diffX < 0) {
+            // Swiped Left
+            const nextIdx = isRTL
+              ? (activeIndex - 1 + PROJECTS_DATA.length) % PROJECTS_DATA.length
+              : (activeIndex + 1) % PROJECTS_DATA.length;
+            switchProject(nextIdx);
+          } else {
+            // Swiped Right
+            const prevIdx = isRTL
+              ? (activeIndex + 1) % PROJECTS_DATA.length
+              : (activeIndex - 1 + PROJECTS_DATA.length) % PROJECTS_DATA.length;
+            switchProject(prevIdx);
+          }
+        }
+      }
+    }, { passive: true });
+  }
+
   // Listen for language switch
   window.addEventListener('languagechange', () => {
     const lang = getLanguage();
@@ -243,19 +299,24 @@ function setupShowcaseInteractivity() {
   });
 }
 
-function switchProject(newIdx) {
+export function switchProject(newIdx) {
   if (newIdx < 0 || newIdx >= PROJECTS_DATA.length) return;
   activeIndex = newIdx;
   const project = PROJECTS_DATA[activeIndex];
   const lang = getLanguage();
+  const token = ++currentSwitchToken;
 
-  // Update tabs active state
+  // 1. Update tabs active state immediately
   document.querySelectorAll('.showcase-tab-btn').forEach((btn, idx) => {
-    btn.classList.toggle('is-active', idx === activeIndex);
-    btn.setAttribute('aria-selected', idx === activeIndex);
+    const isActive = idx === activeIndex;
+    btn.classList.toggle('is-active', isActive);
+    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    if (isActive) {
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
   });
 
-  // Color Wipe Animation
+  // 2. Color Wipe Animation
   const ambientWipe = document.getElementById('showcase-ambient-wipe');
   if (ambientWipe) {
     gsap.fromTo(ambientWipe, 
@@ -265,23 +326,63 @@ function switchProject(newIdx) {
     ambientWipe.style.setProperty('--project-accent', project.accentColor);
   }
 
-  // Smooth Screen Crossfade
+  // 3. Guaranteed Image Switch (No Stale Bitmaps or Lag)
   const screenImg = document.getElementById('mockup-screen-img');
   const mobileImg = document.getElementById('mockup-mobile-img');
+
   if (screenImg) {
+    // Quick fade down
     gsap.to(screenImg, {
-      opacity: 0,
+      opacity: 0.2,
       scale: 0.98,
-      duration: 0.2,
+      duration: 0.15,
+      ease: 'power2.out',
       onComplete: () => {
-        screenImg.src = project.previewImg;
-        screenImg.alt = project.title[lang] || project.title.ar;
-        gsap.to(screenImg, { opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' });
+        const imgLoader = new Image();
+        imgLoader.src = project.previewImg;
+
+        const applyImage = () => {
+          if (token !== currentSwitchToken) return; // Stale click
+          screenImg.src = project.previewImg;
+          screenImg.alt = project.title[lang] || project.title.ar;
+          gsap.to(screenImg, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.25,
+            ease: 'power2.out'
+          });
+        };
+
+        if (imgLoader.complete) {
+          applyImage();
+        } else {
+          imgLoader.onload = applyImage;
+          imgLoader.onerror = () => {
+            if (token !== currentSwitchToken) return;
+            screenImg.src = project.previewImg;
+            gsap.to(screenImg, { opacity: 1, scale: 1, duration: 0.25 });
+          };
+        }
       }
     });
   }
+
   if (mobileImg) {
-    mobileImg.src = project.previewImg;
+    const mobileLoader = new Image();
+    mobileLoader.src = project.previewImg;
+
+    const applyMobile = () => {
+      if (token !== currentSwitchToken) return;
+      mobileImg.src = project.previewImg;
+      mobileImg.alt = project.title[lang] || project.title.ar;
+    };
+
+    if (mobileLoader.complete) {
+      applyMobile();
+    } else {
+      mobileLoader.onload = applyMobile;
+      mobileLoader.onerror = applyMobile;
+    }
   }
 
   updateProjectUI(project, lang);
@@ -325,9 +426,11 @@ function updateProjectUI(project, lang) {
   }
   if (prevBtn) {
     prevBtn.setAttribute('aria-label', lang === 'ar' ? 'المشروع السابق' : 'Previous Project');
+    prevBtn.innerHTML = `<i class="fa-solid ${lang === 'ar' ? 'fa-chevron-right' : 'fa-chevron-left'}"></i>`;
   }
   if (nextBtn) {
     nextBtn.setAttribute('aria-label', lang === 'ar' ? 'المشروع التالي' : 'Next Project');
+    nextBtn.innerHTML = `<i class="fa-solid ${lang === 'ar' ? 'fa-chevron-left' : 'fa-chevron-right'}"></i>`;
   }
 
   const partPill = document.getElementById('project-partnership-pill');
