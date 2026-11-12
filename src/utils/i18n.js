@@ -120,9 +120,9 @@ export const translations = {
     diagnosisSubtitle: 'جاوب 5 أسئلة سريعة وهنقولك بالظبط إيه اللي محتاجه بيزنسك لزيادة مبيعاته:',
 
     // Testimonials / Social Proof
-    testimonialsBadge: 'آراء العملاء',
-    testimonialsTitle: 'كلام من <span class="highlight">أصحاب المشاريع</span>',
-    testimonialsDesc: 'تجارب حقيقية لعملاء اشتغلنا سوا وطلعنا بمواقع لايف ناجحة:',
+    testimonialsBadge: 'آراء العملاء ومجتمع تيك توك',
+    testimonialsTitle: 'كلام من <span class="highlight">أصحاب المشاريع وفيديوهات تيك توك</span>',
+    testimonialsDesc: 'تجارب حقيقية لعملاء نفذنا مشاريعهم، وتعليقات المتابعين على فيديوهات عرض الشغل على تيك توك:',
 
     // Trust Section
     trustBadge: 'ثقة وأمان',
@@ -379,9 +379,9 @@ export const translations = {
     diagnosisSubtitle: 'Answer 5 quick questions to get an instant tailored recommendation to grow your business:',
 
     // Testimonials
-    testimonialsBadge: 'Client Reviews',
-    testimonialsTitle: 'Words from <span class="highlight">Business Owners</span>',
-    testimonialsDesc: 'Real feedback from partners we collaborated with to launch live digital experiences:',
+    testimonialsBadge: 'Client & TikTok Reviews',
+    testimonialsTitle: 'Words from <span class="highlight">Clients & TikTok Community</span>',
+    testimonialsDesc: 'Real feedback from partners we built websites for and authentic comments from our TikTok showcase videos:',
 
     // Trust Section
     trustBadge: 'Trust & Guarantees',
