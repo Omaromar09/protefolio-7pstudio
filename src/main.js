@@ -394,7 +394,7 @@ function setupInteractiveControls() {
         try {
           await navigator.clipboard.writeText(text);
           const msg = getLanguage() === 'ar' ? `تم نسخ "${text}" بنجاح!` : `Copied "${text}" to clipboard!`;
-          showToast(msg, '✓');
+          showToast(msg, 'check');
         } catch (err) {
           const temp = document.createElement('textarea');
           temp.value = text;
@@ -403,7 +403,7 @@ function setupInteractiveControls() {
           document.execCommand('copy');
           document.body.removeChild(temp);
           const msg = getLanguage() === 'ar' ? `تم نسخ "${text}" بنجاح!` : `Copied "${text}" to clipboard!`;
-          showToast(msg, '✓');
+          showToast(msg, 'check');
         }
       }
     });
@@ -434,23 +434,23 @@ function setupInteractiveControls() {
         const errorMsg = lang === 'ar'
           ? 'من فضلك املأ جميع الحقول المطلوبة (الاسم، وسيلة التواصل، والتفاصيل).'
           : 'Please fill in all required fields (Name, Contact info, and Details).';
-        showToast(errorMsg, '⚠️');
+        showToast(errorMsg, 'error');
         return;
       }
 
       fireSuccessConfetti();
 
       const whatsappText = lang === 'ar'
-        ? `👋 مساء الخير يا عمر ويا جاد، أنا *${name}*\n\n📱 وسيلة التواصل: ${contact}\n\n📝 تفاصيل مشروعي:\n${message}\n\n---\n🌐 مرسلة من موقع 7P Studio (7pstudio.tech)`
-        : `👋 Hi Omar & Gad, I am *${name}*\n\n📱 Contact: ${contact}\n\n📝 Project details:\n${message}\n\n---\n🌐 Sent from 7P Studio (7pstudio.tech)`;
+        ? `مساء الخير يا عمر ويا جاد، أنا *${name}*\n\nوسيلة التواصل: ${contact}\n\nتفاصيل مشروعي:\n${message}\n\n---\nمرسلة من موقع 7P Studio (7pstudio.tech)`
+        : `Hi Omar & Gad, I am *${name}*\n\nContact: ${contact}\n\nProject details:\n${message}\n\n---\nSent from 7P Studio (7pstudio.tech)`;
 
       const encodedMsg = encodeURIComponent(whatsappText);
       const whatsappUrl = `https://wa.me/201515047449?text=${encodedMsg}`;
 
       const successToast = lang === 'ar'
-        ? `شكراً ليك يا ${name}! بنحولك على واتساب الآن بالرسالة جاهزة...`
+        ? `شكراً ليك يا ${name}، بنحولك على واتساب الآن بالرسالة جاهزة...`
         : `Thank you, ${name}! Redirecting to WhatsApp with your details...`;
-      showToast(successToast, '🚀');
+      showToast(successToast);
 
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalBtnHTML = submitBtn.innerHTML;

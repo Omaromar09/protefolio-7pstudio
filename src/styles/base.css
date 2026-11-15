@@ -60,17 +60,17 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 61, 255, 0.35);
+  background: rgba(232, 163, 61, 0.35);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-magenta);
+  background: var(--accent-amber);
 }
 
 /* Text Selection */
 ::selection {
-  background: rgba(255, 61, 240, 0.35);
+  background: rgba(232, 163, 61, 0.35);
   color: #FFFFFF;
 }
 

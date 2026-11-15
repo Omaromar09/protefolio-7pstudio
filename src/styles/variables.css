@@ -1,11 +1,11 @@
 /* ==========================================================================
    7P STUDIO — COMPLETE DESIGN SYSTEM & TOKEN ARCHITECTURE
-   Brand: Neon Bolt in Violet (#8B3DFF), Magenta (#FF3DF0), and Cyan (#2EE6FF)
-   Dark Theme (Default & Primary): Deep Cosmic Obsidian (#07060C to #0A0B16)
-   Light Theme: Crisp Luxury Pearl & Lavender (#F4F2FA to #FFFFFF)
-   Typography: Alexandria (Display), IBM Plex Sans Arabic (Body),
+   Brand: Warm Luxury Obsidian & Amber (#E8A33D) with Terracotta (#C8431F)
+   Dark Theme (Default & Primary): Warm Deep Obsidian (#121110), Cards (#1C1A17), Borders (#2E2A25)
+   Light Theme: Warm Editorial Sand (#F5F2EC), Cards (#EBE6DC), Borders (#DDD6C8)
+   Typography: Alexandria (Display & Headings), IBM Plex Sans Arabic (Body),
                Unbounded (Numerals/Badges), JetBrains Mono (Tech Tags)
-   Liquid Glass System: Apple iOS 26 Inspired Translucent Layering
+   Visual Mood: High-End, Comfortable on the Eyes, Calming & Prestigious
    ========================================================================== */
 
 @import './fonts.css';
@@ -25,152 +25,160 @@
 }
 
 /* ==========================================================================
-   1. DARK THEME (DEFAULT & PRIMARY MODE)
+   1. DARK THEME (DEFAULT & PRIMARY MODE - WARM LUXURY EDITORIAL)
    ========================================================================== */
 :root,
 [data-theme="dark"] {
   --theme-mode: dark;
 
-  /* Surfaces & Canvas */
-  --bg-primary: #07060C;
-  --bg-secondary: #0A0B16;
-  --bg-surface: #100E1E;
-  --bg-surface-elevated: #16132A;
+  /* Surfaces & Canvas (From Warm Dark Palette: #121110 base, #1C1A17 cards, #2E2A25 borders) */
+  --bg-primary: #121110;
+  --bg-secondary: #171513;
+  --bg-surface: #1C1A17;
+  --bg-surface-elevated: #24211D;
   --bg-dark: var(--bg-primary);
   --bg-navy: var(--bg-secondary);
 
-  /* Typography & High-Contrast Tones (WCAG AA Compliant) */
-  --text-main: #FFFFFF;
-  --text-sub: #E2E8F0;
-  --text-muted: #94A3B8;
-  --text-dim: #64748B;
-  --text-hud: rgba(255, 255, 255, 0.94);
-  --text-soft: #CBD5E1;
+  /* Typography: High-Contrast Warm Ivory (#ECE7DD) & Muted Stone Sand (#A39B8E) */
+  --text-main: #ECE7DD;
+  --text-sub: #E2DDD3;
+  --text-muted: #A39B8E;
+  --text-dim: #7A7265;
+  --text-hud: #ECE7DD;
+  --text-soft: #C5BFB4;
 
   /* Accessibility & Focus Ring */
-  --focus-ring-color: #2EE6FF;
-  --focus-ring-shadow: 0 0 0 3px rgba(46, 230, 255, 0.35);
+  --focus-ring-color: #E8A33D;
+  --focus-ring-shadow: 0 0 0 3px rgba(232, 163, 61, 0.35);
 
   /* ------------------------------------------------------------------------
-     LIQUID GLASS SYSTEM TOKENS (DARK MODE)
+     LIQUID GLASS SYSTEM TOKENS (WARM DARK MODE)
      ------------------------------------------------------------------------ */
-  /* Layer 1: Base Translucent Fill with Glass Gleam Gradient */
-  --glass-fill: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.035) 45%, rgba(139, 61, 255, 0.065) 100%);
-  --glass-fill-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.055) 45%, rgba(139, 61, 255, 0.1) 100%);
-  --glass-fill-active: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 45%, rgba(139, 61, 255, 0.14) 100%);
-  --glass-fill-heavy: rgba(16, 14, 30, 0.72);
+  /* Layer 1: Base Warm Translucent Fill */
+  --glass-fill: linear-gradient(135deg, rgba(28, 26, 23, 0.90) 0%, rgba(20, 18, 16, 0.94) 100%);
+  --glass-fill-hover: linear-gradient(135deg, rgba(36, 33, 29, 0.94) 0%, rgba(24, 22, 19, 0.97) 100%);
+  --glass-fill-active: linear-gradient(135deg, rgba(46, 42, 37, 0.98) 0%, rgba(28, 26, 23, 0.99) 100%);
+  --glass-fill-heavy: rgba(28, 26, 23, 0.96);
   --glass-blur: 16px;
-  --glass-saturate: 160%;
-  --glass-brightness: 1.05;
+  --glass-saturate: 140%;
+  --glass-brightness: 1.02;
 
-  /* Layer 2: Rim Light (1px gradient mask) */
-  --glass-rim-bright: rgba(255, 255, 255, 0.75);
-  --glass-rim-mid: rgba(255, 255, 255, 0.35);
-  --glass-rim-faint: rgba(255, 255, 255, 0.1);
-  --glass-rim-bottom: rgba(255, 255, 255, 0.35);
-  --glass-rim-active: rgba(255, 255, 255, 0.95);
+  /* Layer 2: Rim Light (Warm amber / bronze glint) */
+  --glass-rim-bright: rgba(232, 163, 61, 0.55);
+  --glass-rim-mid: rgba(46, 42, 37, 0.95);
+  --glass-rim-faint: rgba(46, 42, 37, 0.6);
+  --glass-rim-bottom: rgba(46, 42, 37, 0.8);
+  --glass-rim-active: rgba(232, 163, 61, 0.95);
 
   /* Inset & Outer Shadows */
-  --glass-highlight-top: inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.45);
-  --glass-highlight-bottom: inset 0 -1px 1px 0 rgba(255, 255, 255, 0.1);
-  --glass-shadow-outer: 0 20px 48px -10px rgba(0, 0, 0, 0.75), 0 0 28px -4px rgba(139, 61, 255, 0.22), inset 0 0 20px 0 rgba(255, 255, 255, 0.02);
-  --glass-shadow-hover: 0 28px 56px -12px rgba(0, 0, 0, 0.85), 0 0 40px rgba(139, 61, 255, 0.35), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.65);
+  --glass-highlight-top: inset 0 1px 1px 0 rgba(236, 231, 221, 0.15);
+  --glass-highlight-bottom: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4);
+  --glass-shadow-outer: 0 16px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px -4px rgba(232, 163, 61, 0.08);
+  --glass-shadow-hover: 0 24px 52px -12px rgba(0, 0, 0, 0.85), 0 0 28px rgba(232, 163, 61, 0.18);
 
-  /* Legacy card aliases */
-  --bg-card: var(--glass-fill);
-  --bg-card-hover: var(--glass-fill-hover);
-  --bg-glass: var(--glass-fill);
-  --bg-glass-strong: rgba(10, 9, 20, 0.85);
-  --bg-glass-pill: rgba(255, 255, 255, 0.06);
-  --border-subtle: rgba(139, 61, 255, 0.22);
-  --border-glass: rgba(255, 255, 255, 0.1);
+  /* Card aliases */
+  --bg-card: #1C1A17;
+  --bg-card-hover: #24211D;
+  --bg-glass: #1C1A17;
+  --bg-glass-strong: #171513;
+  --bg-glass-pill: rgba(236, 231, 221, 0.06);
+  --border-subtle: #2E2A25;
+  --border-glass: #2E2A25;
   --shadow-card: var(--glass-shadow-outer);
   --shadow-elevated: var(--glass-shadow-hover);
 
   /* Layer 3: Specular Sheen */
-  --glass-sheen-color: rgba(255, 255, 255, 0.15);
-  --glass-sheen-opacity: 0.12;
-  --glass-sheen-hover-opacity: 0.25;
+  --glass-sheen-color: rgba(236, 231, 221, 0.12);
+  --glass-sheen-opacity: 0.10;
+  --glass-sheen-hover-opacity: 0.20;
 
   /* Layer 4: Recessed Input Wells */
-  --glass-input-bg: rgba(0, 0, 0, 0.45);
-  --glass-input-border: rgba(255, 255, 255, 0.14);
-  --glass-input-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.75), inset 0 1px 2px 0 rgba(0, 0, 0, 0.9), 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  --glass-input-text: #FFFFFF;
-  --glass-input-placeholder: #94A3B8;
-  --glass-input-focus-bg: rgba(10, 8, 22, 0.85);
-  --glass-input-focus-border: #2EE6FF;
-  --glass-input-focus-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.7), 0 0 0 3px rgba(46, 230, 255, 0.35), 0 0 20px rgba(46, 230, 255, 0.4);
+  --glass-input-bg: #141311;
+  --glass-input-border: #2E2A25;
+  --glass-input-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.6);
+  --glass-input-text: #ECE7DD;
+  --glass-input-placeholder: #A39B8E;
+  --glass-input-focus-bg: #181614;
+  --glass-input-focus-border: #E8A33D;
+  --glass-input-focus-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(232, 163, 61, 0.3);
 
   /* Layer 5: Buttons */
-  --glass-btn-primary-bg: linear-gradient(135deg, rgba(139, 61, 255, 0.88) 0%, rgba(255, 61, 240, 0.88) 100%);
-  --glass-btn-primary-rim: rgba(255, 255, 255, 0.55);
-  --glass-btn-primary-shadow: 0 8px 24px -4px rgba(224, 43, 251, 0.5), 0 2px 12px rgba(46, 230, 255, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.45);
-  --glass-btn-primary-hover-shadow: 0 12px 32px -4px rgba(224, 43, 251, 0.72), 0 0 24px rgba(46, 230, 255, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.65);
+  --glass-btn-primary-bg: linear-gradient(135deg, #E8A33D 0%, #C8431F 100%);
+  --glass-btn-primary-rim: rgba(255, 255, 255, 0.45);
+  --glass-btn-primary-shadow: 0 8px 24px -4px rgba(232, 163, 61, 0.35), 0 2px 10px rgba(200, 67, 31, 0.25);
+  --glass-btn-primary-hover-shadow: 0 12px 32px -4px rgba(232, 163, 61, 0.55), 0 0 20px rgba(200, 67, 31, 0.35);
 
-  --glass-btn-secondary-bg: rgba(255, 255, 255, 0.07);
-  --glass-btn-secondary-border: rgba(255, 255, 255, 0.12);
-  --glass-btn-secondary-text: #FFFFFF;
-  --glass-btn-secondary-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.18);
-  --glass-btn-secondary-hover-bg: rgba(255, 255, 255, 0.12);
-  --glass-btn-secondary-hover-border: rgba(46, 230, 255, 0.45);
+  --glass-btn-secondary-bg: #1C1A17;
+  --glass-btn-secondary-border: #2E2A25;
+  --glass-btn-secondary-text: #ECE7DD;
+  --glass-btn-secondary-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --glass-btn-secondary-hover-bg: #24211D;
+  --glass-btn-secondary-hover-border: #E8A33D;
 
   /* Glass Pills & Chips */
-  --glass-pill-bg: rgba(255, 255, 255, 0.06);
-  --glass-pill-border: rgba(255, 255, 255, 0.12);
-  --glass-pill-text: #FFFFFF;
+  --glass-pill-bg: #1C1A17;
+  --glass-pill-border: #2E2A25;
+  --glass-pill-text: #ECE7DD;
 
-  /* Flattened Nested Elements (Anti-mud) */
-  --glass-nested-fill: rgba(255, 255, 255, 0.04);
-  --glass-nested-border: rgba(255, 255, 255, 0.08);
+  /* Flattened Nested Elements */
+  --glass-nested-fill: rgba(236, 231, 221, 0.03);
+  --glass-nested-border: #2E2A25;
 
   /* Header Scrolled */
-  --glass-header-scrolled-fill: rgba(7, 6, 12, 0.85);
+  --glass-header-scrolled-fill: rgba(18, 17, 16, 0.94);
 
-  /* Background Drifting Orbs - High Luminosity for Visible Refraction */
-  --liquid-grid-dot: rgba(255, 255, 255, 0.06);
-  --orb-violet-color: rgba(139, 61, 255, 0.55);
-  --orb-magenta-color: rgba(255, 61, 240, 0.48);
-  --orb-cyan-color: rgba(46, 230, 255, 0.45);
-  --orb-ambient-color: rgba(124, 58, 237, 0.4);
+  /* Background Drifting Orbs - Warm Amber & Terracotta ambient glow */
+  --liquid-grid-dot: rgba(236, 231, 221, 0.05);
+  --orb-violet-color: rgba(232, 163, 61, 0.16);
+  --orb-magenta-color: rgba(200, 67, 31, 0.14);
+  --orb-cyan-color: rgba(245, 186, 91, 0.12);
+  --orb-ambient-color: rgba(232, 163, 61, 0.10);
 
-  /* Brand Accents */
-  --accent-violet: #8B3DFF;
-  --accent-violet-light: #A86BFF;
-  --accent-violet-deep: #6D25D9;
-  --accent-violet-glow: rgba(139, 61, 255, 0.35);
+  /* Brand Accents - Luxury Warm Amber & Terracotta (ZERO PURPLE) */
+  --accent-amber: #E8A33D;
+  --accent-amber-light: #F5BA5B;
+  --accent-amber-deep: #B87820;
+  --accent-amber-glow: rgba(232, 163, 61, 0.35);
 
-  --accent-magenta: #FF3DF0;
-  --accent-magenta-light: #FF70F4;
-  --accent-magenta-deep: #D916C8;
-  --accent-magenta-glow: rgba(255, 61, 240, 0.35);
+  --accent-terracotta: #C8431F;
+  --accent-terracotta-light: #DE5E39;
+  --accent-terracotta-deep: #9E3013;
+  --accent-terracotta-glow: rgba(200, 67, 31, 0.35);
 
-  --accent-cyan: #2EE6FF;
-  --accent-cyan-light: #6AEFFF;
-  --accent-cyan-bright: #00D5F0;
-  --accent-cyan-glow: rgba(46, 230, 255, 0.35);
+  /* Aliased cleanly to remove all purple/violet traces */
+  --accent-violet: var(--accent-amber);
+  --accent-violet-light: var(--accent-amber-light);
+  --accent-violet-deep: var(--accent-amber-deep);
+  --accent-violet-glow: var(--accent-amber-glow);
 
-  --accent-amber: #FFB800;
-  --accent-amber-light: #FFCA40;
-  --accent-emerald: #10B981;
-  --accent-emerald-light: #34D399;
-  --accent-emerald-glow: rgba(16, 185, 129, 0.35);
-  --accent-coral: #FF4757;
+  --accent-magenta: var(--accent-terracotta);
+  --accent-magenta-light: var(--accent-terracotta-light);
+  --accent-magenta-deep: var(--accent-terracotta-deep);
+  --accent-magenta-glow: var(--accent-terracotta-glow);
 
-  /* Aliases */
-  --accent-blue: var(--accent-violet);
-  --accent-blue-deep: var(--accent-violet-deep);
-  --accent-blue-light: var(--accent-violet-light);
-  --accent-blue-glow: var(--accent-violet-glow);
-  --accent-orange: var(--accent-magenta);
-  --accent-teal: var(--accent-cyan);
+  --accent-cyan: var(--accent-amber);
+  --accent-cyan-light: var(--accent-amber-light);
+  --accent-cyan-bright: #F5BA5B;
+  --accent-cyan-glow: var(--accent-amber-glow);
+
+  --accent-emerald: #2E9E66;
+  --accent-emerald-light: #44BF80;
+  --accent-emerald-glow: rgba(46, 158, 102, 0.3);
+  --accent-coral: #C8431F;
+
+  --accent-blue: var(--accent-amber);
+  --accent-blue-deep: var(--accent-amber-deep);
+  --accent-blue-light: var(--accent-amber-light);
+  --accent-blue-glow: var(--accent-amber-glow);
+  --accent-orange: var(--accent-amber);
+  --accent-teal: var(--accent-amber);
   --accent-gold: var(--accent-amber);
 
   /* Gradients */
-  --grad-bolt: linear-gradient(135deg, #8B3DFF 0%, #FF3DF0 50%, #2EE6FF 100%);
-  --grad-primary: linear-gradient(135deg, #8B3DFF 0%, #FF3DF0 100%);
-  --grad-cyan: linear-gradient(135deg, #8B3DFF 0%, #2EE6FF 100%);
-  --grad-magenta: linear-gradient(135deg, #FF3DF0 0%, #8B3DFF 100%);
+  --grad-bolt: linear-gradient(135deg, #E8A33D 0%, #DE5E39 50%, #C8431F 100%);
+  --grad-primary: linear-gradient(135deg, #E8A33D 0%, #C8431F 100%);
+  --grad-cyan: linear-gradient(135deg, #F5BA5B 0%, #E8A33D 100%);
+  --grad-magenta: linear-gradient(135deg, #C8431F 0%, #E8A33D 100%);
 
   /* Typography */
   --font-display: 'Alexandria', system-ui, -apple-system, sans-serif;
@@ -215,113 +223,102 @@
 }
 
 /* ==========================================================================
-   2. LIGHT THEME (CRISP LUXURY PEARL & HIGH CONTRAST)
+   2. LIGHT THEME (WARM EDITORIAL SAND - COMFORTABLE & PRESTIGIOUS)
    ========================================================================== */
 [data-theme="light"] {
   --theme-mode: light;
 
-  /* Canvas */
-  --bg-primary: #F4F2FA;
-  --bg-secondary: #EBE8F5;
-  --bg-surface: rgba(255, 255, 255, 0.72);
-  --bg-surface-elevated: rgba(255, 255, 255, 0.88);
+  /* Canvas (Warm Sand Palette: #F5F2EC base, #EBE6DC cards, #DDD6C8 borders) */
+  --bg-primary: #F5F2EC;
+  --bg-secondary: #EBE6DC;
+  --bg-surface: #EBE6DC;
+  --bg-surface-elevated: #FFFFFF;
   --bg-dark: var(--bg-primary);
   --bg-navy: var(--bg-secondary);
 
-  /* Typography: High-Contrast Deep Obsidian Slate (Strict WCAG AA > 7:1) */
-  --text-main: #0B0F19;
-  --text-sub: #1E293B;
-  --text-muted: #475569;
-  --text-dim: #64748B;
-  --text-hud: #0B0F19;
-  --text-soft: #334155;
+  /* Typography: High-Contrast Warm Charcoal (#1A1714) & Warm Muted Earth (#5E574F) */
+  --text-main: #1A1714;
+  --text-sub: #2E2924;
+  --text-muted: #5E574F;
+  --text-dim: #7A7265;
+  --text-hud: #1A1714;
+  --text-soft: #4A443D;
 
   /* Focus Ring */
-  --focus-ring-color: #8B3DFF;
-  --focus-ring-shadow: 0 0 0 3px rgba(139, 61, 255, 0.25);
+  --focus-ring-color: #E8A33D;
+  --focus-ring-shadow: 0 0 0 3px rgba(232, 163, 61, 0.25);
 
   /* ------------------------------------------------------------------------
      LIQUID GLASS SYSTEM TOKENS (LIGHT MODE)
      ------------------------------------------------------------------------ */
-  /* Layer 1: Base Translucent Fill */
-  --glass-fill: rgba(255, 255, 255, 0.55);
-  --glass-fill-hover: rgba(255, 255, 255, 0.78);
-  --glass-fill-active: rgba(255, 255, 255, 0.88);
-  --glass-fill-heavy: rgba(255, 255, 255, 0.82);
-  --glass-blur: 20px;
-  --glass-saturate: 180%;
-  --glass-brightness: 1.05;
+  --glass-fill: rgba(235, 230, 220, 0.90);
+  --glass-fill-hover: rgba(245, 242, 236, 0.95);
+  --glass-fill-active: #FFFFFF;
+  --glass-fill-heavy: rgba(235, 230, 220, 0.96);
+  --glass-blur: 16px;
+  --glass-saturate: 140%;
+  --glass-brightness: 1.02;
 
-  /* Layer 2: Rim Light (1px gradient mask) */
-  --glass-rim-bright: rgba(255, 255, 255, 0.96);
-  --glass-rim-mid: rgba(255, 255, 255, 0.68);
-  --glass-rim-faint: rgba(255, 255, 255, 0.25);
-  --glass-rim-bottom: rgba(255, 255, 255, 0.85);
-  --glass-rim-active: #FFFFFF;
+  --glass-rim-bright: rgba(255, 255, 255, 0.95);
+  --glass-rim-mid: rgba(221, 214, 200, 0.8);
+  --glass-rim-faint: rgba(221, 214, 200, 0.4);
+  --glass-rim-bottom: rgba(221, 214, 200, 0.6);
+  --glass-rim-active: #E8A33D;
 
-  /* Inset & Outer Shadows */
-  --glass-highlight-top: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
-  --glass-highlight-bottom: inset 0 -1px 1px 0 rgba(255, 255, 255, 0.45);
-  --glass-shadow-outer: 0 16px 36px -8px rgba(15, 23, 42, 0.07), 0 4px 14px -2px rgba(139, 61, 255, 0.05);
-  --glass-shadow-hover: 0 24px 48px -10px rgba(139, 61, 255, 0.12), 0 8px 20px -4px rgba(15, 23, 42, 0.06);
+  --glass-highlight-top: inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+  --glass-highlight-bottom: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  --glass-shadow-outer: 0 12px 30px -8px rgba(26, 23, 20, 0.08);
+  --glass-shadow-hover: 0 18px 40px -10px rgba(26, 23, 20, 0.14);
 
-  /* Legacy card aliases */
-  --bg-card: var(--glass-fill);
-  --bg-card-hover: var(--glass-fill-hover);
-  --bg-glass: var(--glass-fill);
-  --bg-glass-strong: rgba(255, 255, 255, 0.85);
-  --bg-glass-pill: rgba(255, 255, 255, 0.65);
-  --border-subtle: rgba(255, 255, 255, 0.85);
-  --border-glass: rgba(255, 255, 255, 0.9);
+  --bg-card: #EBE6DC;
+  --bg-card-hover: #F2EDE4;
+  --bg-glass: #EBE6DC;
+  --bg-glass-strong: #E4DEC F;
+  --bg-glass-pill: rgba(26, 23, 20, 0.05);
+  --border-subtle: #DDD6C8;
+  --border-glass: #DDD6C8;
   --shadow-card: var(--glass-shadow-outer);
   --shadow-elevated: var(--glass-shadow-hover);
 
-  /* Layer 3: Specular Sheen */
-  --glass-sheen-color: rgba(255, 255, 255, 0.45);
-  --glass-sheen-opacity: 0.18;
-  --glass-sheen-hover-opacity: 0.32;
+  --glass-sheen-color: rgba(255, 255, 255, 0.5);
+  --glass-sheen-opacity: 0.15;
+  --glass-sheen-hover-opacity: 0.28;
 
-  /* Layer 4: Recessed Input Wells */
-  --glass-input-bg: rgba(255, 255, 255, 0.72);
-  --glass-input-border: rgba(203, 213, 225, 0.85);
-  --glass-input-shadow: inset 0 2px 4px 0 rgba(15, 23, 42, 0.06), inset 0 1px 1px 0 rgba(15, 23, 42, 0.04);
-  --glass-input-text: #0B0F19;
-  --glass-input-placeholder: #64748B;
+  --glass-input-bg: #FFFFFF;
+  --glass-input-border: #DDD6C8;
+  --glass-input-shadow: inset 0 1px 2px 0 rgba(26, 23, 20, 0.05);
+  --glass-input-text: #1A1714;
+  --glass-input-placeholder: #5E574F;
   --glass-input-focus-bg: #FFFFFF;
-  --glass-input-focus-border: #8B3DFF;
-  --glass-input-focus-shadow: inset 0 1px 2px 0 rgba(15, 23, 42, 0.04), 0 0 0 3.5px rgba(139, 61, 255, 0.18), 0 2px 10px rgba(139, 61, 255, 0.12);
+  --glass-input-focus-border: #E8A33D;
+  --glass-input-focus-shadow: inset 0 1px 2px 0 rgba(26, 23, 20, 0.04), 0 0 0 3px rgba(232, 163, 61, 0.25);
 
-  /* Layer 5: Buttons */
-  --glass-btn-primary-bg: linear-gradient(135deg, rgba(139, 61, 255, 0.92) 0%, rgba(255, 61, 240, 0.92) 100%);
-  --glass-btn-primary-rim: rgba(255, 255, 255, 0.85);
-  --glass-btn-primary-shadow: 0 8px 24px -4px rgba(139, 61, 255, 0.42), 0 2px 10px rgba(255, 61, 240, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.8);
-  --glass-btn-primary-hover-shadow: 0 12px 32px -4px rgba(139, 61, 255, 0.58), 0 4px 16px rgba(255, 61, 240, 0.35), inset 0 1px 1px #ffffff;
+  --glass-btn-primary-bg: linear-gradient(135deg, #E8A33D 0%, #C8431F 100%);
+  --glass-btn-primary-rim: rgba(255, 255, 255, 0.8);
+  --glass-btn-primary-shadow: 0 8px 24px -4px rgba(232, 163, 61, 0.35);
+  --glass-btn-primary-hover-shadow: 0 12px 30px -4px rgba(232, 163, 61, 0.5);
 
-  --glass-btn-secondary-bg: rgba(255, 255, 255, 0.65);
-  --glass-btn-secondary-border: rgba(255, 255, 255, 0.92);
-  --glass-btn-secondary-text: #0B0F19;
-  --glass-btn-secondary-shadow: 0 4px 14px rgba(15, 23, 42, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.95);
-  --glass-btn-secondary-hover-bg: rgba(255, 255, 255, 0.92);
-  --glass-btn-secondary-hover-border: rgba(139, 61, 255, 0.4);
+  --glass-btn-secondary-bg: #EBE6DC;
+  --glass-btn-secondary-border: #DDD6C8;
+  --glass-btn-secondary-text: #1A1714;
+  --glass-btn-secondary-shadow: 0 4px 12px rgba(26, 23, 20, 0.06);
+  --glass-btn-secondary-hover-bg: #FFFFFF;
+  --glass-btn-secondary-hover-border: #E8A33D;
 
-  /* Glass Pills & Chips */
-  --glass-pill-bg: rgba(255, 255, 255, 0.65);
-  --glass-pill-border: rgba(255, 255, 255, 0.88);
-  --glass-pill-text: #0B0F19;
+  --glass-pill-bg: #EBE6DC;
+  --glass-pill-border: #DDD6C8;
+  --glass-pill-text: #1A1714;
 
-  /* Flattened Nested Elements (Anti-mud) */
-  --glass-nested-fill: rgba(255, 255, 255, 0.5);
-  --glass-nested-border: rgba(226, 232, 240, 0.85);
+  --glass-nested-fill: rgba(26, 23, 20, 0.03);
+  --glass-nested-border: #DDD6C8;
 
-  /* Header Scrolled */
-  --glass-header-scrolled-fill: rgba(255, 255, 255, 0.88);
+  --glass-header-scrolled-fill: rgba(245, 242, 236, 0.94);
 
-  /* Background Drifting Orbs (Soft Pastel) */
-  --liquid-grid-dot: rgba(139, 61, 255, 0.045);
-  --orb-violet-color: rgba(196, 181, 253, 0.38);
-  --orb-magenta-color: rgba(251, 207, 232, 0.32);
-  --orb-cyan-color: rgba(186, 230, 253, 0.38);
-  --orb-ambient-color: rgba(233, 213, 255, 0.28);
+  --liquid-grid-dot: rgba(26, 23, 20, 0.04);
+  --orb-violet-color: rgba(232, 163, 61, 0.08);
+  --orb-magenta-color: rgba(200, 67, 31, 0.07);
+  --orb-cyan-color: rgba(245, 186, 91, 0.07);
+  --orb-ambient-color: rgba(232, 163, 61, 0.06);
 }
 
 /* English LTR font family consistency */

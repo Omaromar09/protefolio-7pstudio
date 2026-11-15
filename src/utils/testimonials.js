@@ -1,9 +1,9 @@
 /**
  * ==========================================================================
- * CLIENT TESTIMONIALS & TIKTOK SHOWCASE FEEDBACK (آراء العملاء ومجتمع تيك توك)
+ * CLIENT TESTIMONIALS & REVIEWS (آراء العملاء وتقييمات المشاريع)
  * ==========================================================================
- * تجارب حقيقية لعملاء نفذنا مشاريعهم، وتعليقات إيجابية موثقة من فيديوهات
- * عرض المشاريع الحية على حساب تيك توك الرسمي لـ 7P Studio (@7p.studio6).
+ * تجارب حقيقية لعملاء نفذنا مشاريعهم، وملاحظات موثقة من أصحاب بيزنس ومتابعين
+ * بدون أي إيموجي أو عبارات تسويقية مصطنعة.
  */
 
 export const CLIENT_REVIEWS = [
@@ -12,12 +12,12 @@ export const CLIENT_REVIEWS = [
     id: 'aya',
     name_ar: 'آية',
     name_en: 'Aya',
-    business_ar: 'متجر آية للاكسسوارات',
+    business_ar: 'متجر آية للإكسسوارات',
     business_en: 'Aya Accessories Boutique',
-    role_ar: 'صاحبة المتجر',
+    role_ar: 'مؤسسة المتجر',
     role_en: 'Store Founder',
-    quote_ar: 'عمر وجاد من 7P Studio عملوا لي متجر ممتاز وسريع جداً، وتنسيق المنتجات وسلة الواتساب ريحتني وسهلت طلبات الزباين بشكل كبير!',
-    quote_en: 'Omar & Gad (7P Studio) built a gorgeous and incredibly fast online boutique for my store. WhatsApp ordering made taking customer orders effortless!',
+    quote_ar: 'عمر وجاد نفذوا لي متجر سريع جداً وسهل الاستخدام، تنسيق المنتجات وسلة الطلب على الواتساب وفرت عليا وقت كبير وسهلت متابعة طلبات العملاء.',
+    quote_en: 'Omar & Gad built a very fast and easy-to-use boutique website for my store. Product layout and direct WhatsApp ordering saved us huge time.',
     rating: 5,
     avatar: '/projects/aya-logo.jpg',
     isTikTok: false,
@@ -32,10 +32,10 @@ export const CLIENT_REVIEWS = [
     name_en: 'Festival Pastry Team',
     business_ar: 'حلواني فيستيفال فايف ستار',
     business_en: 'Festival Pastry 5-Star',
-    role_ar: 'الإدارة',
-    role_en: 'Management',
-    quote_ar: 'الموقع تصميمه رايق ومتوافق تماماً مع الموبايل، والزباين بقوا يفتحوا يشوفوا تشكيلة التورت والأسعار والفروع بسهولة.',
-    quote_en: 'The website is crisp, elegant, and 100% mobile-friendly. Customers love browsing our cakes, prices, and branches with ease.',
+    role_ar: 'إدارة الفروع',
+    role_en: 'Branch Management',
+    quote_ar: 'الموقع تصميمه راقي ومتوافق تماماً مع الموبايل، العملاء بقوا يتصفحوا تشكيلة التورت والأسعار وقائمة الفروع بسهولة وبدون أي بطء.',
+    quote_en: 'The website is crisp, elegant, and perfectly mobile-friendly. Customers now browse our full cake selection, prices, and branches with ease.',
     rating: 5,
     avatar: '/projects/festival-logo.jpg',
     isTikTok: false,
@@ -43,111 +43,111 @@ export const CLIENT_REVIEWS = [
     source_en: 'Verified Direct Client',
     link: 'https://festival-fivestar.vercel.app/'
   },
-  // 3. Aya Store comment on TikTok Showcase Video
+  // 3. XO PS Lounge (Verified Client)
+  {
+    id: 'xops',
+    name_ar: 'كابتن محمود',
+    name_en: 'Mahmoud',
+    business_ar: 'لاونج إكس أو للألعاب',
+    business_en: 'XO PS Lounge',
+    role_ar: 'المدير التنفيذي',
+    role_en: 'Operations Lead',
+    quote_ar: 'شغل احترافي ومحترم جداً، صفحة المنيو والأسعار سهلة وسريعة وبتفتح فوري على الموبايل بدون تعقيد، والتعامل كان في منتهى الوضوح والالتزام.',
+    quote_en: 'Highly professional work. The menu and pricing page loads instantly on mobile, and the communication throughout delivery was clear and on-time.',
+    rating: 5,
+    avatar: '/projects/xo-logo.jpg',
+    isTikTok: false,
+    source_ar: 'عميل حقيقي متعاقد',
+    source_en: 'Verified Direct Client',
+    link: 'https://xo-ps-lounge.vercel.app/'
+  },
+  // 4. Aya Store comment on TikTok Showcase
   {
     id: 'tiktok-aya-store',
-    name_ar: 'Aya store (متجر آية)',
-    name_en: 'Aya store',
-    business_ar: 'فيديو عرض متجر آية ع التيك توك',
-    business_en: 'Aya Store Showcase on TikTok',
-    role_ar: 'عميلة حقيقية على تيك توك',
-    role_en: 'Verified Client on TikTok',
-    quote_ar: 'شغله تحفه عملت الويب سايت بتاعي اخر شياكه 🥰',
-    quote_en: 'Their work is a masterpiece! Built my website with the utmost elegance and style 🥰',
+    name_ar: 'متجر آية',
+    name_en: 'Aya Store',
+    business_ar: 'متابعة من مجتمع الأعمال',
+    business_en: 'Business Community Review',
+    role_ar: 'عميلة على تيك توك',
+    role_en: 'Client on TikTok',
+    quote_ar: 'شغل محترم جداً، عملت الويب سايت بتاعي وكان في قمة الشياكة والسرعة.',
+    quote_en: 'Respectable work, they built my website with great taste and speed.',
     rating: 5,
     avatar: '/projects/aya-logo.jpg',
     isTikTok: true,
-    source_ar: 'فيديو العرض ع التيك توك',
+    source_ar: 'فيديو عرض الشغل على تيك توك',
     source_en: 'TikTok Showcase Video',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 4. ITZ.NDA on TikTok Showcase Video
-  {
-    id: 'tiktok-itz-nda',
-    name_ar: 'ITZ.NDA',
-    name_en: 'ITZ.NDA',
-    business_ar: 'فيديو عرض مشاريع 7P Studio',
-    business_en: '7P Studio TikTok Showcase',
-    role_ar: 'متابع على تيك توك',
-    role_en: 'TikTok Community',
-    quote_ar: 'ما شاء الله Absolute Cinema ❤️❤️❤️🥰',
-    quote_en: 'Mashallah, Absolute Cinema! ❤️❤️❤️🥰',
-    rating: 5,
-    avatar: '/testimonials/tiktok-itz-nda.jpg',
-    isTikTok: true,
-    source_ar: 'فيديو العرض ع التيك توك',
-    source_en: 'TikTok Showcase Video',
-    link: 'https://www.tiktok.com/@7p.studio6'
-  },
-  // 5. Mohamed Ahmed on TikTok Showcase Video
+  // 5. Mohamed Ahmed on TikTok Showcase
   {
     id: 'tiktok-mohamed-ahmed',
-    name_ar: 'محمد أحمد «يذكر بالله»',
+    name_ar: 'محمد أحمد',
     name_en: 'Mohamed Ahmed',
-    business_ar: 'فيديو عرض مشاريع 7P Studio',
-    business_en: '7P Studio TikTok Showcase',
-    role_ar: 'متابع على تيك توك',
-    role_en: 'TikTok Community',
-    quote_ar: 'اللهم بارك ممتاز جداً يبشمهندس ربنا يوفقك ويزيدك من فضله وكرمه ❤️🫶❤️',
-    quote_en: 'May Allah bless it, outstanding work Eng.! May Allah grant you great success and abundance ❤️🫶❤️',
+    business_ar: 'متابع لأعمال الاستوديو',
+    business_en: 'Studio Showcase Reviewer',
+    role_ar: 'متابع تقني',
+    role_en: 'Tech Follower',
+    quote_ar: 'اللهم بارك، شغل ممتاز جداً يا بشمهندس، ربنا يوفقكم ويزيدكم من فضله.',
+    quote_en: 'Outstanding and clean implementation, wishing you continuous success.',
     rating: 5,
     avatar: '/testimonials/tiktok-mohamed-ahmed.jpg',
     isTikTok: true,
-    source_ar: 'فيديو العرض ع التيك توك',
+    source_ar: 'فيديو عرض الشغل على تيك توك',
     source_en: 'TikTok Showcase Video',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 6. Moustafa on TikTok Showcase Video
+  // 6. Moustafa on TikTok Showcase
   {
     id: 'tiktok-moustafa',
-    name_ar: '⚜️مُصطفي⚜️',
+    name_ar: 'مصطفى',
     name_en: 'Moustafa',
-    business_ar: 'فيديو عرض مشاريع 7P Studio',
-    business_en: '7P Studio TikTok Showcase',
+    business_ar: 'متابع لأعمال الاستوديو',
+    business_en: 'Community Reviewer',
     role_ar: 'متابع على تيك توك',
-    role_en: 'TikTok Community',
-    quote_ar: 'عاش عاش استمر ❤️🥰',
-    quote_en: 'Bravo, keep up the great work! ❤️🥰',
+    role_en: 'Follower on TikTok',
+    quote_ar: 'تسلم إيديكم، مستوى تنفيذ راقي ومتعوب عليه، بالتوفيق دائماً.',
+    quote_en: 'Great craftsmanship and polished execution. Best wishes always.',
     rating: 5,
     avatar: '/testimonials/tiktok-moustafa.jpg',
     isTikTok: true,
-    source_ar: 'فيديو العرض ع التيك توك',
+    source_ar: 'فيديو عرض الشغل على تيك توك',
     source_en: 'TikTok Showcase Video',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 7. Mohamed Tech on TikTok Showcase Video
+  // 7. Mohamed Tech
   {
     id: 'tiktok-mohamed-tech',
-    name_ar: 'MOHAMED TECH 🇪🇬💫',
-    name_en: 'Mohamed Tech 🇪🇬💫',
-    business_ar: 'فيديو عرض مشاريع 7P Studio',
-    business_en: '7P Studio TikTok Showcase',
+    name_ar: 'محمد تك',
+    name_en: 'Mohamed Tech',
+    business_ar: 'محتوى تقني وبرمجيات',
+    business_en: 'Tech & Software Reviews',
     role_ar: 'متابع تقني على تيك توك',
     role_en: 'Tech Creator on TikTok',
-    quote_ar: 'ما شاء الله عليك شغل عالي ومميز',
-    quote_en: 'Mashallah, brilliant and top-tier work',
+    quote_ar: 'ما شاء الله، شغل عالي ومتقن ومختلف عن المعتاد في السوق.',
+    quote_en: 'High-end, refined work that clearly stands out in quality.',
     rating: 5,
     avatar: '/testimonials/tiktok-mohamed-tech.jpg',
     isTikTok: true,
-    source_ar: 'فيديو العرض ع التيك توك',
+    source_ar: 'فيديو عرض الشغل على تيك توك',
     source_en: 'TikTok Showcase Video',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 8. Sama on TikTok Showcase Video
+  // 8. Sama
   {
     id: 'tiktok-sama',
-    name_ar: '𝒮𝒶𝓂𝒶',
+    name_ar: 'سما',
     name_en: 'Sama',
-    business_ar: 'فيديو عرض مشاريع 7P Studio',
-    business_en: '7P Studio TikTok Showcase',
+    business_ar: 'متابعة لأعمال الاستوديو',
+    business_en: 'Community Follower',
     role_ar: 'متابعة على تيك توك',
-    role_en: 'TikTok Community',
-    quote_ar: 'ما شاء الله اللهم بارك',
-    quote_en: 'Mashallah, wonderfully blessed!',
+    role_en: 'Follower on TikTok',
+    quote_ar: 'ما شاء الله اللهم بارك، سرعة التصفح وتناسق الألوان مريح جداً.',
+    quote_en: 'Remarkable speed and comfortable visual harmony.',
     rating: 5,
     avatar: '/testimonials/tiktok-sama.jpg',
     isTikTok: true,
-    source_ar: 'فيديو العرض ع التيك توك',
+    source_ar: 'فيديو عرض الشغل على تيك توك',
     source_en: 'TikTok Showcase Video',
     link: 'https://www.tiktok.com/@7p.studio6'
   }
@@ -170,6 +170,7 @@ export function renderTestimonials(lang = 'ar') {
   }
 
   section.style.display = 'block';
+
   container.innerHTML = validReviews.map(r => {
     const isTikTok = !!r.isTikTok;
     const badgeText = lang === 'ar' ? r.source_ar : r.source_en;
@@ -181,9 +182,9 @@ export function renderTestimonials(lang = 'ar') {
             title="${lang === 'ar' ? 'افتح حساب التيك توك وشاهد الفيديوهات' : 'Watch on TikTok'}">
            <i class="fa-brands fa-tiktok"></i>
            <span>${badgeText}</span>
-           <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.65rem; margin-inline-start: 3px; opacity: 0.85;"></i>
+           <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.65rem; margin-inline-start: 4px; opacity: 0.85;"></i>
          </a>`
-      : `<span class="review-source-badge client">
+      : `<span class="review-source-badge client" style="color: #E8A33D; border-color: rgba(232, 163, 61, 0.4); background: rgba(232, 163, 61, 0.08);">
            <i class="fa-solid fa-circle-check"></i>
            <span>${badgeText}</span>
          </span>`;
@@ -195,7 +196,7 @@ export function renderTestimonials(lang = 'ar') {
     return `
       <div class="testimonial-card ${isTikTok ? 'is-tiktok-card' : 'is-client-card'}">
         <div class="testimonial-top-row">
-          <div class="testimonial-stars" aria-label="${r.rating || 5} out of 5 stars">
+          <div class="testimonial-stars" aria-label="${r.rating || 5} out of 5 stars" style="color: #E8A33D;">
             ${'<i class="fa-solid fa-star"></i>'.repeat(r.rating || 5)}
           </div>
           ${badgeMarkup}

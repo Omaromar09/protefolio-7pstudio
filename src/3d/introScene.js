@@ -38,15 +38,15 @@ export class IntroScene {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
     this.scene.add(ambientLight);
 
-    this.pointLightViolet = new THREE.PointLight(0x8b5cf6, 3, 20);
+    this.pointLightViolet = new THREE.PointLight(0xE8A33D, 3, 20);
     this.pointLightViolet.position.set(3, 3, 3);
     this.scene.add(this.pointLightViolet);
 
-    this.pointLightCyan = new THREE.PointLight(0x06b6d4, 3, 20);
+    this.pointLightCyan = new THREE.PointLight(0xF5BA5B, 3, 20);
     this.pointLightCyan.position.set(-3, -2, 2);
     this.scene.add(this.pointLightCyan);
 
-    this.pointLightPink = new THREE.PointLight(0xec4899, 2.5, 15);
+    this.pointLightPink = new THREE.PointLight(0xC8431F, 2.5, 15);
     this.pointLightPink.position.set(0, 4, -2);
     this.scene.add(this.pointLightPink);
 
@@ -72,9 +72,9 @@ export class IntroScene {
     // Outer faceted wireframe icosahedron
     const icoGeo = new THREE.IcosahedronGeometry(1.6, 2);
     const wireMat = new THREE.MeshStandardMaterial({
-      color: 0x8b5cf6,
+      color: 0xE8A33D,
       wireframe: true,
-      emissive: 0x3b0764,
+      emissive: 0x5C380A,
       emissiveIntensity: 0.6,
       transparent: true,
       opacity: 0.65
@@ -85,8 +85,8 @@ export class IntroScene {
     // Inner glowing sphere
     const sphereGeo = new THREE.SphereGeometry(1.1, 32, 32);
     const sphereMat = new THREE.MeshPhysicalMaterial({
-      color: 0x06b6d4,
-      emissive: 0x083344,
+      color: 0xF5BA5B,
+      emissive: 0x2E2A25,
       roughness: 0.2,
       metalness: 0.8,
       clearcoat: 1.0,
@@ -104,13 +104,13 @@ export class IntroScene {
     this.ringsGroup = new THREE.Group();
 
     const ringGeo1 = new THREE.TorusGeometry(2.3, 0.02, 16, 100);
-    const ringMat1 = new THREE.MeshBasicMaterial({ color: 0xec4899, transparent: true, opacity: 0.5 });
+    const ringMat1 = new THREE.MeshBasicMaterial({ color: 0xC8431F, transparent: true, opacity: 0.5 });
     this.ring1 = new THREE.Mesh(ringGeo1, ringMat1);
     this.ring1.rotation.x = Math.PI / 3;
     this.ringsGroup.add(this.ring1);
 
     const ringGeo2 = new THREE.TorusGeometry(2.6, 0.015, 16, 100);
-    const ringMat2 = new THREE.MeshBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.45 });
+    const ringMat2 = new THREE.MeshBasicMaterial({ color: 0xF5BA5B, transparent: true, opacity: 0.45 });
     this.ring2 = new THREE.Mesh(ringGeo2, ringMat2);
     this.ring2.rotation.y = Math.PI / 4;
     this.ringsGroup.add(this.ring2);
@@ -125,9 +125,9 @@ export class IntroScene {
     const colors = new Float32Array(particleCount * 3);
 
     const colorPalette = [
-      new THREE.Color(0x8b5cf6), // violet
-      new THREE.Color(0x06b6d4), // cyan
-      new THREE.Color(0xec4899), // pink
+      new THREE.Color(0xE8A33D), // violet
+      new THREE.Color(0xF5BA5B), // cyan
+      new THREE.Color(0xC8431F), // pink
       new THREE.Color(0xf97316), // warm orange
       new THREE.Color(0xffffff)  // crisp star
     ];

@@ -106,17 +106,17 @@ export class HeroScene {
     if (isDark) {
       // Cosmic Obsidian & Deep Violet Base
       const bgGrad = ctx.createLinearGradient(0, 0, 0, 512);
-      bgGrad.addColorStop(0, '#150d2e');
-      bgGrad.addColorStop(0.5, '#090514');
-      bgGrad.addColorStop(1, '#040208');
+      bgGrad.addColorStop(0, '#1c1a17');
+      bgGrad.addColorStop(0.5, '#121110');
+      bgGrad.addColorStop(1, '#0c0b0a');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, 1024, 512);
 
       // Softbox 1: Electric Magenta Key (Top-Left)
       const g1 = ctx.createRadialGradient(260, 150, 10, 260, 150, 250);
-      g1.addColorStop(0, 'rgba(255, 46, 230, 1.0)');
-      g1.addColorStop(0.35, 'rgba(224, 43, 251, 0.85)');
-      g1.addColorStop(0.70, 'rgba(124, 58, 237, 0.35)');
+      g1.addColorStop(0, 'rgba(232, 163, 61, 1.0)');
+      g1.addColorStop(0.35, 'rgba(245, 186, 91, 0.85)');
+      g1.addColorStop(0.70, 'rgba(200, 67, 31, 0.35)');
       g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = g1;
       ctx.beginPath();
@@ -125,9 +125,9 @@ export class HeroScene {
 
       // Softbox 2: Radiant Cyber Cyan Fill (Bottom-Right)
       const g2 = ctx.createRadialGradient(780, 320, 10, 780, 320, 260);
-      g2.addColorStop(0, 'rgba(0, 240, 255, 1.0)');
-      g2.addColorStop(0.35, 'rgba(14, 165, 233, 0.85)');
-      g2.addColorStop(0.70, 'rgba(30, 58, 138, 0.3)');
+      g2.addColorStop(0, 'rgba(236, 231, 221, 0.95)');
+      g2.addColorStop(0.35, 'rgba(232, 163, 61, 0.75)');
+      g2.addColorStop(0.70, 'rgba(46, 42, 37, 0.3)');
       g2.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = g2;
       ctx.beginPath();
@@ -144,7 +144,7 @@ export class HeroScene {
 
       // Softbox 4: Royal Purple Horizon Rim
       const g4 = ctx.createLinearGradient(0, 240, 140, 240);
-      g4.addColorStop(0, 'rgba(139, 92, 246, 0.9)');
+      g4.addColorStop(0, 'rgba(200, 67, 31, 0.85)');
       g4.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = g4;
       ctx.fillRect(0, 120, 140, 260);
@@ -159,8 +159,8 @@ export class HeroScene {
 
       // Vibrant Purple-Magenta Keylight
       const g1 = ctx.createRadialGradient(280, 160, 10, 280, 160, 240);
-      g1.addColorStop(0, 'rgba(168, 85, 247, 0.95)');
-      g1.addColorStop(0.45, 'rgba(217, 70, 239, 0.65)');
+      g1.addColorStop(0, 'rgba(232, 163, 61, 0.95)');
+      g1.addColorStop(0.45, 'rgba(200, 67, 31, 0.65)');
       g1.addColorStop(1, 'rgba(255, 255, 255, 0)');
       ctx.fillStyle = g1;
       ctx.beginPath();
@@ -169,8 +169,8 @@ export class HeroScene {
 
       // Deep Azure / Sky Cyan Softbox
       const g2 = ctx.createRadialGradient(760, 320, 10, 760, 320, 260);
-      g2.addColorStop(0, 'rgba(2, 132, 199, 0.90)');
-      g2.addColorStop(0.5, 'rgba(59, 130, 246, 0.50)');
+      g2.addColorStop(0, 'rgba(245, 186, 91, 0.90)');
+      g2.addColorStop(0.5, 'rgba(232, 163, 61, 0.50)');
       g2.addColorStop(1, 'rgba(255, 255, 255, 0)');
       ctx.fillStyle = g2;
       ctx.beginPath();
@@ -203,17 +203,17 @@ export class HeroScene {
     this.scene.add(this.ambientLight);
 
     // 2. Main Key Directional Light (Electric Magenta)
-    this.dirLight1 = new THREE.DirectionalLight(0xE02BFB, 4.6);
+    this.dirLight1 = new THREE.DirectionalLight(0xE8A33D, 4.6);
     this.dirLight1.position.set(5, 4.5, 4.5);
     this.scene.add(this.dirLight1);
 
     // 3. Secondary Fill Directional Light (Cyber Cyan)
-    this.dirLight2 = new THREE.DirectionalLight(0x00F0FF, 4.2);
+    this.dirLight2 = new THREE.DirectionalLight(0xF5E6D3, 4.2);
     this.dirLight2.position.set(-5, -3.5, 4);
     this.scene.add(this.dirLight2);
 
     // 4. Back Rim Directional Light (Royal Cosmic Violet)
-    this.dirLight3 = new THREE.DirectionalLight(0x7C3AED, 4.2);
+    this.dirLight3 = new THREE.DirectionalLight(0xC8431F, 4.2);
     this.dirLight3.position.set(0, 5, -4.5);
     this.scene.add(this.dirLight3);
 
@@ -234,8 +234,8 @@ export class HeroScene {
 
     // Award-Winning MeshPhysicalMaterial with Thin-Film Iridescence & Clearcoat
     this.sculptureMat = new THREE.MeshPhysicalMaterial({
-      color: 0x7C3AED, // Rich royal purple-amethyst base
-      emissive: 0x3B0764,
+      color: 0xC8431F, // Rich royal purple-amethyst base
+      emissive: 0x5C380A,
       emissiveIntensity: 0.35,
       metalness: 0.96,
       roughness: 0.02,
@@ -259,14 +259,14 @@ export class HeroScene {
     const diamondGeo = new THREE.IcosahedronGeometry(0.55, 2);
     this.coreMat = new THREE.MeshPhysicalMaterial({
       color: 0xffffff,
-      emissive: 0x00F0FF,
+      emissive: 0xF5E6D3,
       emissiveIntensity: 0.65,
       metalness: 0.02,
       roughness: 0.005,
       transmission: 0.98,
       ior: 2.42,
       thickness: 2.2,
-      attenuationColor: 0x00F0FF,
+      attenuationColor: 0xF5E6D3,
       attenuationDistance: 1.2,
       transparent: true,
       opacity: 0.99,
@@ -284,7 +284,7 @@ export class HeroScene {
     // 3. PHOTONIC SINGULARITY: High-Energy Pulsating Core Light
     const singularityGeo = new THREE.SphereGeometry(0.18, 32, 32);
     this.singularityMat = new THREE.MeshBasicMaterial({
-      color: 0x00F0FF,
+      color: 0xF5E6D3,
       transparent: true,
       opacity: 0.98,
       blending: THREE.AdditiveBlending
@@ -293,7 +293,7 @@ export class HeroScene {
     this.core.add(this.singularity);
 
     // Internal Point Light casting colored refraction through diamond facets
-    this.coreInnerLight = new THREE.PointLight(0x00F0FF, 5.2, 8);
+    this.coreInnerLight = new THREE.PointLight(0xF5E6D3, 5.2, 8);
     this.core.add(this.coreInnerLight);
 
     this.scene.add(this.group);
@@ -306,8 +306,8 @@ export class HeroScene {
     // Tilted elegantly at 28 degrees, positioned outside the 1.38 sculpture boundary (radius: 2.22)
     const ringGeo = new THREE.TorusGeometry(2.22, 0.016, 24, isMobile ? 80 : 160);
     this.ringMat1 = new THREE.MeshPhysicalMaterial({
-      color: 0x00F0FF,
-      emissive: 0x00F0FF,
+      color: 0xF5E6D3,
+      emissive: 0xF5E6D3,
       emissiveIntensity: 0.75,
       metalness: 0.97,
       roughness: 0.03,
@@ -330,8 +330,8 @@ export class HeroScene {
     // Secondary subtle concentric halo orbit - enhanced with chrome sheen
     const outerHaloGeo = new THREE.TorusGeometry(2.45, 0.007, 16, isMobile ? 64 : 128);
     this.ringMat2 = new THREE.MeshPhysicalMaterial({
-      color: 0xE02BFB,
-      emissive: 0xE02BFB,
+      color: 0xE8A33D,
+      emissive: 0xE8A33D,
       emissiveIntensity: 0.65,
       metalness: 0.98,
       roughness: 0.02,
@@ -354,7 +354,7 @@ export class HeroScene {
     this.satellites = new THREE.Group();
     const count = isMobile ? 3 : 5;
     this.satelliteMeshes = [];
-    const satColors = [0xE02BFB, 0x00F0FF, 0x7C3AED, 0x38BDF8, 0xF472B6];
+    const satColors = [0xE8A33D, 0xF5E6D3, 0xC8431F, 0xF5BA5B, 0xC8431F];
 
     for (let i = 0; i < count; i++) {
       const geo = (i % 2 === 0) ? new THREE.OctahedronGeometry(0.095, 1) : new THREE.TetrahedronGeometry(0.105, 1);
@@ -399,9 +399,9 @@ export class HeroScene {
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
 
-    const cMagenta = new THREE.Color(0xE02BFB);
-    const cViolet = new THREE.Color(0x7C3AED);
-    const cCyan = new THREE.Color(0x00F0FF);
+    const cMagenta = new THREE.Color(0xE8A33D);
+    const cViolet = new THREE.Color(0xC8431F);
+    const cCyan = new THREE.Color(0xF5E6D3);
     const cWhite = new THREE.Color(0xFFFFFF);
     const cSilver = new THREE.Color(0xC0C0C0);
 
@@ -453,8 +453,8 @@ export class HeroScene {
     if (isDark) {
       // DARK MODE: Ultra-Gloss Liquid Violet-Amethyst Chrome with Prismatic Sheen
       if (this.sculptureMat) {
-        this.sculptureMat.color.setHex(0x7E22CE); // Rich vibrant purple chrome
-        this.sculptureMat.emissive.setHex(0x3B0764);
+        this.sculptureMat.color.setHex(0xE8A33D); // Rich vibrant purple chrome
+        this.sculptureMat.emissive.setHex(0x5C380A);
         this.sculptureMat.emissiveIntensity = 0.38;
         this.sculptureMat.metalness = 0.96;
         this.sculptureMat.roughness = 0.02;
@@ -463,29 +463,29 @@ export class HeroScene {
       }
       if (this.coreMat) {
         this.coreMat.color.setHex(0xffffff);
-        this.coreMat.emissive.setHex(0x00F0FF);
+        this.coreMat.emissive.setHex(0xF5E6D3);
         this.coreMat.emissiveIntensity = 0.65;
-        this.coreMat.attenuationColor.setHex(0x00F0FF);
+        this.coreMat.attenuationColor.setHex(0xF5E6D3);
         this.coreMat.ior = 2.42;
       }
       if (this.singularityMat) {
-        this.singularityMat.color.setHex(0x00F0FF);
+        this.singularityMat.color.setHex(0xF5E6D3);
       }
       if (this.coreInnerLight) {
-        this.coreInnerLight.color.setHex(0x00F0FF);
+        this.coreInnerLight.color.setHex(0xF5E6D3);
         this.coreInnerLight.intensity = 5.2;
       }
       if (this.ambientLight) this.ambientLight.intensity = 1.8;
       if (this.dirLight1) {
-        this.dirLight1.color.setHex(0xE02BFB);
+        this.dirLight1.color.setHex(0xE8A33D);
         this.dirLight1.intensity = 4.8;
       }
       if (this.dirLight2) {
-        this.dirLight2.color.setHex(0x00F0FF);
+        this.dirLight2.color.setHex(0xF5E6D3);
         this.dirLight2.intensity = 4.4;
       }
       if (this.dirLight3) {
-        this.dirLight3.color.setHex(0x7C3AED);
+        this.dirLight3.color.setHex(0xC8431F);
         this.dirLight3.intensity = 4.5;
       }
       if (this.specularLight) {
@@ -519,7 +519,7 @@ export class HeroScene {
       }
       if (this.ambientLight) this.ambientLight.intensity = 1.9;
       if (this.dirLight1) {
-        this.dirLight1.color.setHex(0x7C3AED);
+        this.dirLight1.color.setHex(0xC8431F);
         this.dirLight1.intensity = 4.5;
       }
       if (this.dirLight2) {

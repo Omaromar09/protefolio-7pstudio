@@ -26,7 +26,7 @@ export const PROJECTS_DATA = [
     },
     url: 'https://aya-accessories.vercel.app/',
     previewImg: '/projects/aya-preview.jpg',
-    accentColor: '#FF3DF0',
+    accentColor: '#C8431F',
     status: {
       ar: 'مشروع حقيقي شغال لايف',
       en: 'Live Client Project'
@@ -113,7 +113,7 @@ export const PROJECTS_DATA = [
     },
     url: 'https://kayan-clothes.vercel.app/',
     previewImg: '/projects/kayan-preview.jpg',
-    accentColor: '#8B3DFF',
+    accentColor: '#E8A33D',
     status: {
       ar: 'نموذج تجريبي جاهز للعرض والتعديل',
       en: 'Interactive Demo Showcase'
@@ -166,8 +166,8 @@ export const PROJECTS_DATA = [
       en: 'Interactive 3D fragrance boutique with a rotatable WebGL bottle, mist animation, and seamless WhatsApp orders.'
     },
     tags: {
-      ar: ['نموذج تجريبي جاهز', 'زجاجة عطر 3D تفاعلية', 'سلة طلب واتساب', 'تأثيرات رش سينمائية'],
-      en: ['Interactive Demo', 'Interactive 3D Bottle', 'WhatsApp Checkout', 'Cinematic Spray VFX']
+      ar: ['نموذج تجريبي جاهز', 'زجاجة عطر 3D تفاعلية', 'سلة طلب واتساب', 'تأثيرات رش تفاعلية'],
+      en: ['Interactive Demo', 'Interactive 3D Bottle', 'WhatsApp Checkout', 'Interactive Spray Effects']
     },
     url: 'https://demo-perfume-sigma.vercel.app/',
     previewImg: '/projects/rawnaq-preview.jpg',

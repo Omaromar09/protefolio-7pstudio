@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="ltr" data-theme="dark">
+<html lang="ar" dir="rtl" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <script>
@@ -10,22 +10,22 @@
           document.documentElement.setAttribute('data-theme', theme);
           var metaTheme = document.querySelector('meta[name="theme-color"]');
           if (metaTheme) {
-            metaTheme.setAttribute('content', theme === 'dark' ? '#07060C' : '#F4F2FA');
+            metaTheme.setAttribute('content', theme === 'dark' ? '#121110' : '#F5F2EC');
           }
           var savedLang = localStorage.getItem('omar_portfolio_lang');
-          var lang = (savedLang === 'ar' || savedLang === 'en') ? savedLang : 'en';
+          var lang = (savedLang === 'ar' || savedLang === 'en') ? savedLang : 'ar';
           document.documentElement.setAttribute('lang', lang);
           document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'dark');
-          document.documentElement.setAttribute('lang', 'en');
-          document.documentElement.setAttribute('dir', 'ltr');
+          document.documentElement.setAttribute('lang', 'ar');
+          document.documentElement.setAttribute('dir', 'rtl');
         }
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7P Studio — Omar & Gad | Modern & Fast Interactive Websites - 7PSTUDIO</title>
-    <meta name="description" content="7P Studio (Omar & Gad) — Custom high-performance web development, 3D interactive experiences, direct WhatsApp integration, and dedicated ongoing support." />
+    <title>7P Studio — عمر وجاد | مواقع عصرية وتفاعلية وسريعة - 7PSTUDIO</title>
+    <meta name="description" content="7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية وسريعة وتفاعلية مع ربط واتساب مباشر ودعم فني مستمر." />
     <meta name="author" content="7P Studio (Omar & Gad)" />
 
     <!-- Canonical URL (Single Canonical, no fake hreflang) -->
@@ -52,16 +52,16 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="theme-color" content="#07060C" />
+    <meta name="theme-color" content="#121110" />
 
     <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="7P Studio" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="ar_EG" />
     <meta property="og:locale:alternate" content="ar_EG" />
     <meta property="og:url" content="https://7pstudio.tech/" />
-    <meta property="og:title" content="7P Studio — Omar & Gad | Modern & Fast Interactive Websites - 7PSTUDIO" />
-    <meta property="og:description" content="7P Studio (Omar & Gad) — Custom high-performance web development, 3D interactive experiences, direct WhatsApp integration, and dedicated ongoing support." />
+    <meta property="og:title" content="7P Studio — عمر وجاد | مواقع عصرية وتفاعلية وسريعة - 7PSTUDIO" />
+    <meta property="og:description" content="7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية وسريعة وتفاعلية مع ربط واتساب مباشر ودعم فني مستمر." />
     <meta property="og:image" content="https://7pstudio.tech/og-image.jpg?v=2" />
     <meta property="og:image:secure_url" content="https://7pstudio.tech/og-image.jpg?v=2" />
     <meta property="og:image:type" content="image/jpeg" />
@@ -74,7 +74,7 @@
     <meta name="twitter:site" content="@7p__studio" />
     <meta name="twitter:creator" content="@7p__studio" />
     <meta name="twitter:title" content="7P Studio — عمر وجاد | مواقع عصرية وتفاعلية وسريعة - 7PSTUDIO" />
-    <meta name="twitter:description" content="7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر." />
+    <meta name="twitter:description" content="7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية، سريعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر." />
     <meta name="twitter:image" content="https://7pstudio.tech/og-image.jpg?v=2" />
 
     <!-- Vercel Web Analytics (Production only) -->
@@ -109,7 +109,7 @@
           "url": "https://7pstudio.tech/",
           "logo": "https://7pstudio.tech/logo-7p.png",
           "image": "https://7pstudio.tech/og-image.jpg?v=2",
-          "description": "استوديو 7P Studio (7PSTUDIO) لتصميم وبرمجة مواقع ويب عصرية، فائقة السرعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك.",
+          "description": "استوديو 7P Studio (7PSTUDIO) لتصميم وبرمجة مواقع ويب عصرية، سريعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك.",
           "telephone": "+201515047449",
           "email": "contact@7pstudio.tech",
           "address": {
@@ -296,7 +296,7 @@
             <div class="hero-badge-wrap">
               <div class="badge-pill">
                 <span class="status-dot"></span>
-                <span data-i18n="heroBadge1">⚡ استوديو متخصص في بناء مواقع البيزنس الحديثة</span>
+                <span data-i18n="heroBadge1">استوديو متخصص في بناء مواقع البيزنس الحديثة</span>
               </div>
               <div class="badge-pill badge-pill-teal">
                 <i class="fa-solid fa-cube"></i>
@@ -309,7 +309,7 @@
             </h1>
 
             <p class="hero-subtitle" data-i18n="heroSubtitle">
-              أهلاً بيك! إحنا <strong>عمر</strong> و<strong>جاد</strong> في 7P Studio. بنبني مواقع استثنائية وسريعة تُحوّل زوارك لعملاء فعليين، بنحل المشاكل البرمجية، وبنظبط موقعك بأعلى كفاءة وبدون صداع.
+              أهلاً بيك! إحنا <strong>عمر</strong> و<strong>جاد</strong> في 7P Studio. بنبني مواقع عصرية وسريعة تُحوّل زوارك لعملاء فعليين، بنحل المشاكل البرمجية، وبنظبط موقعك بأعلى كفاءة وبدون صداع.
             </p>
 
             <div class="hero-cta-group">
@@ -441,7 +441,7 @@
           <div id="project-showcase-mount">
 <div class="showcase-shell" id="showcase-shell">
       <!-- Background Ambient Wipe -->
-      <div class="showcase-ambient-wipe" id="showcase-ambient-wipe" style="--project-accent: #FF3DF0"></div>
+      <div class="showcase-ambient-wipe" id="showcase-ambient-wipe" style="--project-accent: #C8431F"></div>
 
       <!-- Top Project Selector Tabs (Quick jump) -->
       <div class="showcase-tabs-nav" role="tablist" aria-label="Projects">
@@ -451,7 +451,7 @@
                   data-idx="0"
                   role="tab"
                   aria-selected="true">
-            <span class="tab-dot" style="background: #FF3DF0"></span>
+            <span class="tab-dot" style="background: #C8431F"></span>
             <span class="tab-title">Aya Accessories Boutique</span>
           </button>
         
@@ -479,7 +479,7 @@
                   data-idx="3"
                   role="tab"
                   aria-selected="false">
-            <span class="tab-dot" style="background: #8B3DFF"></span>
+            <span class="tab-dot" style="background: #E8A33D"></span>
             <span class="tab-title">Kayan Luxury Fashion (Demo)</span>
             <span class="tab-badge-demo">Demo</span>
           </button>
@@ -557,7 +557,7 @@
         <div class="showcase-info-panel chamfer-card" id="showcase-info-panel">
           <div class="panel-header">
             <div class="panel-header-tags" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-              <div class="project-category-pill" id="project-category-pill" style="color: #FF3DF0; border-color: #FF3DF033; background: #FF3DF012;">
+              <div class="project-category-pill" id="project-category-pill" style="color: #C8431F; border-color: rgba(200, 67, 31, 0.25); background: rgba(200, 67, 31, 0.08);">
                 <span class="category-icon"><i class="fa-solid fa-bolt"></i></span>
                 <span id="project-category-text">E-Commerce Boutique</span>
               </div>
@@ -601,7 +601,7 @@
                rel="noopener noreferrer" 
                class="btn btn-primary showcase-live-btn" 
                id="showcase-live-btn"
-               style="background: #FF3DF0">
+               style="background: #C8431F">
               <span id="showcase-live-text">Open Live Website</span>
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
@@ -855,7 +855,7 @@
                 </p>
                 <div class="service-expand-title" data-i18n="s4AudienceTitle">مناسب لمين:</div>
                 <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="s4Audience">
-                  البراندات التي تريد إبهار عملائها وتسهيل التواصل الفوري المباشر.
+                  البراندات التي تريد مظهراً فخماً وعملياً يشرفها أمام عملائها مع تواصل مباشر وسريع.
                 </p>
               </div>
             </div>
@@ -951,7 +951,7 @@
                     </div>
                     <div class="feature-toggle-card" data-feature-id="three3d" data-name-ar="لمسات 3D تفاعلية" data-name-en="3D WebGL Atmosphere">
                       <span class="feature-checkbox-icon"><i class="fa-solid fa-check"></i></span>
-                      <span class="feature-label-text" data-i18n="estFeat4">تأثيرات ولمسات 3D سينمائية</span>
+                      <span class="feature-label-text" data-i18n="estFeat4">تأثيرات ولمسات 3D تفاعلية</span>
                     </div>
                     <div class="feature-toggle-card" data-feature-id="domain" data-name-ar="دومين واستضافة جاهزة" data-name-en="Domain & Cloud Setup">
                       <span class="feature-checkbox-icon"><i class="fa-solid fa-check"></i></span>
@@ -979,7 +979,7 @@
                         <span class="speed-days" data-i18n="estSpeedStdDays">الميعاد الطبيعي بدون استعجال</span>
                       </div>
                     </button>
-                    <button type="button" class="speed-btn" data-speed="express" data-days-label-ar="48 - 72 ساعة فقط ⚡" data-days-label-en="48 - 72 Hours Rush ⚡">
+                    <button type="button" class="speed-btn" data-speed="express" data-days-label-ar="48 - 72 ساعة فقط" data-days-label-en="48 - 72 Hours Rush">
                       <div class="speed-btn-icon"><i class="fa-solid fa-bolt-lightning" style="color: var(--accent-magenta);"></i></div>
                       <div class="speed-info">
                         <span class="speed-title" data-i18n="estSpeedExpTitle">تنفيذ إكسبريس عاجل</span>
@@ -1149,7 +1149,7 @@
                 <div class="trust-live-info">
                   <span class="trust-live-dot" style="background: #C69255; box-shadow: 0 0 10px #C69255;"></span>
                   <div>
-                    <div class="trust-live-title">لاونج إكس أو بلايستيشن (XO PS Lounge) <span class="tab-badge-demo" style="margin-inline-start: 6px;">تجريبي</span> <span style="font-size: 0.75rem; color: #E0A96D; margin-inline-start: 6px; font-weight: 600;">🤝 بالشراكة مع بشمهندس ياسين</span></div>
+                    <div class="trust-live-title">لاونج إكس أو بلايستيشن (XO PS Lounge) <span class="tab-badge-demo" style="margin-inline-start: 6px;">تجريبي</span> <span style="font-size: 0.75rem; color: #E0A96D; margin-inline-start: 6px; font-weight: 600;">بالشراكة مع بشمهندس ياسين</span></div>
                     <div class="trust-live-url">demoplaystaion-plum.vercel.app · تجريبي (بالشراكة مع بشمهندس ياسين)</div>
                   </div>
                 </div>
@@ -1199,20 +1199,45 @@
         </div>
       </section>
 
-      <!-- 7.5 CLIENT TESTIMONIALS (RENDERED ONLY IF REAL REVIEWS EXIST) -->
-      <section id="testimonials" class="testimonials-section" style="display: none;">
+      <!-- 7.5 CLIENT TESTIMONIALS (PROMINENT & NOTICEABLE REVIEWS) -->
+      <section id="testimonials" class="testimonials-section">
         <div class="container">
           <div class="section-header text-center">
-            <div class="badge-pill badge-pill-blue" style="margin-inline: auto;">
+            <div class="badge-pill" style="margin-inline: auto; background: rgba(232, 163, 61, 0.1); border-color: rgba(232, 163, 61, 0.3); color: #E8A33D;">
               <i class="fa-solid fa-quote-left"></i>
-              <span data-i18n="testimonialsBadge">Client & TikTok Reviews</span>
+              <span data-i18n="testimonialsBadge">آراء العملاء وتقييماتهم</span>
             </div>
             <h2 class="section-title" data-i18n="testimonialsTitle">
-              Words from <span class="highlight">Clients & TikTok Community</span>
+              آراء وتجارب <span class="highlight">أصحاب المشاريع وعملاؤنا</span>
             </h2>
             <p class="section-desc" data-i18n="testimonialsDesc">
-              Real feedback from partners we built websites for and authentic comments from our TikTok showcase videos:
+              تجارب حقيقية لعملاء اشتغلنا معاهم ونفذنا مواقعهم، ورأيهم في جودة الشغل وسرعة التسليم:
             </p>
+          </div>
+
+          <!-- Trust & Rating Highlights Banner -->
+          <div class="testimonials-trust-bar" style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; padding: 1rem 1.5rem; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); text-align: center;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="font-weight: 700; font-size: 1.25rem; color: #E8A33D;">5.0</span>
+              <div style="color: #E8A33D; font-size: 0.9rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span style="color: var(--text-muted); font-size: 0.88rem; margin-inline-start: 4px;">تقييم كامل</span>
+            </div>
+            <div style="width: 1px; height: 24px; background: var(--border-subtle);"></div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-main); font-size: 0.9rem;">
+              <i class="fa-solid fa-circle-check" style="color: #E8A33D;"></i>
+              <span>مشاريع حقيقية معتمدة وموثقة</span>
+            </div>
+            <div style="width: 1px; height: 24px; background: var(--border-subtle);"></div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-main); font-size: 0.9rem;">
+              <i class="fa-solid fa-clock-rotate-left" style="color: #E8A33D;"></i>
+              <span>التزام كامل بمواعيد التسليم المتفق عليها</span>
+            </div>
           </div>
 
           <div class="testimonials-grid" id="testimonials-container">
@@ -1412,7 +1437,7 @@
                     <span class="wa-status-dot"></span>
                     <span data-i18n="waFastBadge">أسرع طريقة للتواصل</span>
                   </div>
-                  <div class="wa-card-title" data-i18n="waDirectBtn">شات مباشر على واتساب 🚀</div>
+                  <div class="wa-card-title" data-i18n="waDirectBtn">شات مباشر على واتساب</div>
                   <div class="wa-card-sub" data-i18n="waDirectSub">رد فوري لمناقشة فكرتك والبدء علطول</div>
                 </div>
                 <div class="wa-card-icon-wrap">
@@ -1597,7 +1622,7 @@
           <p data-i18n="privacyModalP1">في 7P Studio، خصوصيتك خط أحمر وبسيطة جداً وبدون أي تعقيد:</p>
           <ul class="privacy-modal-list">
             <li data-i18n="privacyModalItem1"><strong>لا يوجد سيرفر تخزين أو قاعدة بيانات:</strong> الموقع لا يحفظ أو يسجل أي بيانات تدخلها في نموذج التواصل.</li>
-            <li data-i18n="privacyModalItem2"><strong>تواصل مباشر عبر واتساب:</strong> عند إرسال النموذج، يتم تحويل بياناتك إلى رسالة مشفرة ومجهزة على تطبيق واتساب الخاص بك مباشرة دون المرور بأي طرف ثالث.</li>
+            <li data-i18n="privacyModalItem2"><strong>تواصل مباشر عبر واتساب:</strong> عند إرسال النموذج، يتم تجهيز بياناتك مباشرة داخل تطبيق واتساب الخاص بك للتواصل معنا، دون حفظها في قواعد بيانات خارجية أو مشاركتها مع أي طرف ثالث.</li>
             <li data-i18n="privacyModalItem3"><strong>خالٍ من أدوات التتبع:</strong> لا نستخدم أي ملفات كوكيز (Cookies) تتبعية أو إعلانية تتبع نشاطك.</li>
           </ul>
         </div>

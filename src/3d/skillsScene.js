@@ -17,14 +17,14 @@ export class SkillsScene {
     this.rotationVelocity = { x: 0, y: 0 };
 
     this.skills = [
-      { name: 'JavaScript', color: '#0284C7', emissive: 0x0369a1, icon: 'JS' },
-      { name: 'HTML5', color: '#2563EB', emissive: 0x1d4ed8, icon: '<>' },
-      { name: 'CSS3', color: '#0EA5E9', emissive: 0x0284c7, icon: '#' },
-      { name: 'GSAP', color: '#6366F1', emissive: 0x4f46e5, icon: '✦' },
-      { name: 'Three.js', color: '#06B6D4', emissive: 0x0891b2, icon: '3D' },
-      { name: 'Responsive', color: '#38BDF8', emissive: 0x0ea5e9, icon: '📱' },
-      { name: 'Bug Fixing', color: '#EF4444', emissive: 0xb91c1c, icon: '⚡' },
-      { name: 'Customization', color: '#3B82F6', emissive: 0x2563eb, icon: '⚙' }
+      { name: 'JavaScript', color: '#E8A33D', emissive: 0x9e6717, icon: 'JS' },
+      { name: 'HTML5', color: '#C8431F', emissive: 0x7c260f, icon: '</>' },
+      { name: 'CSS3', color: '#F5BA5B', emissive: 0x9e6717, icon: 'CSS' },
+      { name: 'Three.js', color: '#E8A33D', emissive: 0x9e6717, icon: '3D' },
+      { name: 'GSAP', color: '#DE5E39', emissive: 0x7c260f, icon: 'GSAP' },
+      { name: 'Responsive', color: '#ECE7DD', emissive: 0x3d3933, icon: 'UI' },
+      { name: 'Performance', color: '#2E9E66', emissive: 0x175c39, icon: 'PERF' },
+      { name: 'Custom Code', color: '#E8A33D', emissive: 0x9e6717, icon: 'DEV' }
     ];
 
     this.nodes = [];
@@ -57,7 +57,7 @@ export class SkillsScene {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
     this.scene.add(ambientLight);
 
-    this.light1 = new THREE.PointLight(0xE02BFB, 5.5, 25);
+    this.light1 = new THREE.PointLight(0xE8A33D, 5.5, 25);
     this.light1.position.set(3, 2, 3);
     this.scene.add(this.light1);
 
@@ -96,7 +96,7 @@ export class SkillsScene {
     const coreGeo = new THREE.SphereGeometry(0.72, 16, 16);
     const coreMat = new THREE.MeshStandardMaterial({
       color: 0x7C3AED,
-      emissive: 0xE02BFB,
+      emissive: 0xE8A33D,
       emissiveIntensity: 0.65,
       roughness: 0.2,
       metalness: 0.85

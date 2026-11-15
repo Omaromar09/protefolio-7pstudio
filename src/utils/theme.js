@@ -31,7 +31,7 @@ export function setTheme(theme, silent = false) {
   // Update meta theme-color per mode
   const metaThemeColor = document.querySelector('meta[name="theme-color"]');
   if (metaThemeColor) {
-    metaThemeColor.setAttribute('content', theme === 'dark' ? '#07060C' : '#F4F2FA');
+    metaThemeColor.setAttribute('content', theme === 'dark' ? '#121110' : '#F5F2EC');
   }
 
   updateThemeIcons(theme);
@@ -42,8 +42,8 @@ export function setTheme(theme, silent = false) {
   if (!silent) {
     const isAr = getLanguage() === 'ar';
     const message = theme === 'dark' 
-      ? (isAr ? 'تم تفعيل الوضع الليلي 🌙' : 'Dark Mode Enabled 🌙')
-      : (isAr ? 'تم تفعيل الوضع الفاتح ☀️' : 'Light Mode Enabled ☀️');
+      ? (isAr ? 'تم تفعيل الوضع الداكن' : 'Dark Mode Enabled')
+      : (isAr ? 'تم تفعيل الوضع الفاتح' : 'Light Mode Enabled');
     showToast(message);
   }
 }
@@ -63,10 +63,10 @@ function updateThemeIcons(theme) {
   icons.forEach((icon) => {
     if (theme === 'dark') {
       icon.className = 'fa-solid fa-sun';
-      icon.style.color = '#FBBF24'; // Luminous warm amber sun
+      icon.style.color = '#E8A33D'; // Warm amber sun
     } else {
       icon.className = 'fa-solid fa-moon';
-      icon.style.color = '#8B3DFF'; // Vivid royal violet moon
+      icon.style.color = '#C8431F'; // Warm terracotta moon
     }
   });
 

@@ -35,11 +35,11 @@ export function initProjectEstimator() {
 
   // Days mapping
   const baseDays = {
-    landing: { standard: '3 - 5 أيام عمل', standard_en: '3 - 5 business days', express: '48 ساعة فقط ⚡', express_en: '48 Hours Rush ⚡' },
-    ecommerce: { standard: '5 - 8 أيام عمل', standard_en: '5 - 8 business days', express: '72 ساعة فقط ⚡', express_en: '72 Hours Rush ⚡' },
-    corporate: { standard: '4 - 7 أيام عمل', standard_en: '4 - 7 business days', express: '48 - 72 ساعة ⚡', express_en: '48 - 72 Hours ⚡' },
-    menu: { standard: '3 - 5 أيام عمل', standard_en: '3 - 5 business days', express: '48 ساعة فقط ⚡', express_en: '48 Hours Rush ⚡' },
-    bugfix: { standard: '24 - 48 ساعة', standard_en: '24 - 48 hours', express: 'نفس اليوم فوري ⚡', express_en: 'Same Day Express ⚡' }
+    landing: { standard: '3 - 5 أيام عمل', standard_en: '3 - 5 business days', express: '48 ساعة فقط ', express_en: '48 Hours Rush ' },
+    ecommerce: { standard: '5 - 8 أيام عمل', standard_en: '5 - 8 business days', express: '72 ساعة فقط ', express_en: '72 Hours Rush ' },
+    corporate: { standard: '4 - 7 أيام عمل', standard_en: '4 - 7 business days', express: '48 - 72 ساعة ', express_en: '48 - 72 Hours ' },
+    menu: { standard: '3 - 5 أيام عمل', standard_en: '3 - 5 business days', express: '48 ساعة فقط ', express_en: '48 Hours Rush ' },
+    bugfix: { standard: '24 - 48 ساعة', standard_en: '24 - 48 hours', express: 'نفس اليوم فوري ', express_en: 'Same Day Express ' }
   };
 
   function updateHUD() {
@@ -104,20 +104,20 @@ export function initProjectEstimator() {
     let waMessage = '';
     if (isAr) {
       waMessage = `أهلاً يا عمر ويا جاد (7P Studio)! قمت بتحديد مواصفات مشروعي على موقعكم وعايز أعرف التكلفة ونبدأ:
-📌 كود الطلب: ${quoteId}
-🚀 نوع المشروع: ${typeName}
-✨ الميزات المطلوبة: ${featuresListStr}
-⏱️ ميعاد التسليم المفضل: ${deliveryText} (${speedStr})
-🛠️ حزمة التقنيات المقترحة: HTML5 / JavaScript / Three.js 3D
+- كود الطلب: ${quoteId}
+- نوع المشروع: ${typeName}
+- الميزات المطلوبة: ${featuresListStr}
+- ميعاد التسليم المفضل: ${deliveryText} (${speedStr})
+- حزمة التقنيات المقترحة: HTML5 / JavaScript / Three.js 3D
 
 ممكن نتفق على التكلفة والتفاصيل ونبدأ؟`;
     } else {
       waMessage = `Hello Omar & Gad (7P Studio)! I configured my project specifications on your website and would like to get a quote and start:
-📌 Quote ID: ${quoteId}
-🚀 Project Scope: ${typeName}
-✨ Selected Features: ${featuresListStr}
-⏱️ Preferred Turnaround: ${deliveryText} (${speedStr})
-🛠️ Tech Stack: HTML5 / JavaScript / Three.js 3D
+- Quote ID: ${quoteId}
+- Project Scope: ${typeName}
+- Selected Features: ${featuresListStr}
+- Preferred Turnaround: ${deliveryText} (${speedStr})
+- Tech Stack: HTML5 / JavaScript / Three.js 3D
 
 Can we discuss pricing and kickoff details?`;
     }
@@ -130,7 +130,7 @@ Can we discuss pricing and kickoff details?`;
         e.preventDefault();
         try {
           await navigator.clipboard.writeText(waMessage);
-          showToast(isAr ? 'تم نسخ مواصفات المشروع بنجاح! جاهز للمشاركة 📋' : 'Project specs copied to clipboard! 📋', 'success');
+          showToast(isAr ? 'تم نسخ مواصفات المشروع بنجاح! جاهز للمشاركة ' : 'Project specs copied to clipboard! ', 'success');
         } catch (err) {
           showToast(isAr ? 'تم نسخ المواصفات' : 'Specs copied', 'success');
         }
@@ -178,7 +178,7 @@ Can we discuss pricing and kickoff details?`;
   whatsappTrigger.addEventListener('click', () => {
     fireSuccessConfetti(0.5, 0.6);
     const isAr = getLanguage() === 'ar';
-    showToast(isAr ? 'تم تجهيز مواصفات مشروعك وتوجيهك لواتساب 🚀' : 'Project specifications prepared! Redirecting to WhatsApp 🚀', 'success');
+    showToast(isAr ? 'تم تجهيز مواصفات مشروعك وتوجيهك لواتساب ' : 'Project specifications prepared! Redirecting to WhatsApp ', 'success');
   });
 
   // Initial HUD calculation

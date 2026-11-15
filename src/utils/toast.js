@@ -1,4 +1,4 @@
-export function showToast(message, icon = '✓') {
+export function showToast(message, iconType = 'check') {
   let container = document.getElementById('toast-container');
   if (!container) {
     container = document.createElement('div');
@@ -8,7 +8,15 @@ export function showToast(message, icon = '✓') {
 
   const toast = document.createElement('div');
   toast.className = 'toast';
-  toast.innerHTML = `<span style="color: var(--accent-cyan); font-weight: bold;">${icon}</span> <span>${message}</span>`;
+  
+  let iconHtml = '<i class="fa-solid fa-check" style="color: var(--accent-amber);"></i>';
+  if (iconType === 'error' || iconType === 'warning') {
+    iconHtml = '<i class="fa-solid fa-circle-exclamation" style="color: #DE5E39;"></i>';
+  } else if (iconType === 'info') {
+    iconHtml = '<i class="fa-solid fa-circle-info" style="color: var(--accent-amber);"></i>';
+  }
+
+  toast.innerHTML = `<span class="toast-icon">${iconHtml}</span> <span>${message}</span>`;
   container.appendChild(toast);
 
   // Trigger reflow & show
