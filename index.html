@@ -178,9 +178,9 @@
         padding: 0;
         font-family: 'Alexandria', system-ui, -apple-system, sans-serif;
       }
-      #intro-screen, #orange-handoff-overlay {
-        display: none !important;
-      }
+      #intro-screen { position: fixed; inset: 0; width: 100vw; height: 100vh; background-color: #121110; z-index: 100000; }
+      #intro-screen.is-hidden { display: none !important; }
+      #orange-handoff-overlay { position: fixed; inset: 0; width: 100vw; height: 100vh; background-color: #E8A33D; z-index: 99990; }
       .brand-logo-img {
         width: 38px !important;
         height: 38px !important;

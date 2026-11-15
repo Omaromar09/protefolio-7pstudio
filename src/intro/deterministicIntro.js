@@ -35,12 +35,13 @@ export class DeterministicIntro {
 
   initCanvasSize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const rect = this.canvas.getBoundingClientRect();
-    const w = rect.width || window.innerWidth;
-    const h = rect.height || window.innerHeight;
+    const w = window.innerWidth || document.documentElement.clientWidth;
+    const h = window.innerHeight || document.documentElement.clientHeight;
 
     this.canvas.width = w * dpr;
     this.canvas.height = h * dpr;
+    this.canvas.style.width = w + 'px';
+    this.canvas.style.height = h + 'px';
     this.dpr = dpr;
     this.viewportWidth = w;
     this.viewportHeight = h;
@@ -49,12 +50,6 @@ export class DeterministicIntro {
   start() {
     if (this.rafId) cancelAnimationFrame(this.rafId);
     this.initCanvasSize();
-
-    // Honor prefers-reduced-motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      this.skip();
-      return;
-    }
 
     this.isRunning = true;
     this.startTime = performance.now();
