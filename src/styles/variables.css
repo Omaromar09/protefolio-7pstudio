@@ -46,6 +46,9 @@
   --text-dim: #7A7265;
   --text-hud: #ECE7DD;
   --text-soft: #C5BFB4;
+  --accent: #E8A33D;
+  --text: #ECE7DD;
+  --muted: #A39B8E;
 
   /* Accessibility & Focus Ring */
   --focus-ring-color: #E8A33D;

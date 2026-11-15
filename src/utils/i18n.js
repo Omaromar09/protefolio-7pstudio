@@ -57,6 +57,12 @@ export const translations = {
  heroCtaContact:'ابدأ مشروعك معانا',
  hero3dHint:'تفاعل مع المجسم 3D',
 
+ // 7P Logo step labels
+ step7pIdea:'فكرة',
+ step7pDesign:'تصميم',
+ step7pCode:'كود',
+ step7pDelivery:'تسليم',
+
  // Real Proof Row (Computed from data, no fake numbers)
  heroProofProjectsVal:'7 مشاريع',
  heroProofProjectsLabel:'شغالة لايف دلوقتي',
@@ -241,16 +247,16 @@ export const translations = {
  processTitle:'بنشتغل إزاي؟',
  processDesc:'أربع خطوات بسيطة بدون تضييع وقت وبدون تعقيد:',
  pr1Step:'الخطوة 01',
- pr1Title:'نتفق على المطلوب',
+ pr1Title:'فكرة',
  pr1Desc:'بنتكلم شات أو مكالمة سريعة، بنعرف منك محتاج إيه بالظبط وبنحدد الوقت والتكلفة بدقة.',
  pr2Step:'الخطوة 02',
- pr2Title:'التصميم والتوزيع',
+ pr2Title:'تصميم',
  pr2Desc:'بنستقر على التصميم والألوان وتقسيمة الصفحات المناسبة لفكرتك ولجمهورك المستهدف.',
  pr3Step:'الخطوة 03',
- pr3Title:'الكود والأداء',
+ pr3Title:'كود',
  pr3Desc:'بنبني الموقع بأحدث تقنيات الويب، وبنختبر السرعة والتجاوب على كل الموبايلات والشاشات.',
  pr4Step:'الخطوة 04',
- pr4Title:'التسليم والدعم',
+ pr4Title:'تسليم',
  pr4Desc:'بنرفع الموقع لايف ونربطه بالدومين، وبنفضل معاك بالدعم والتعديلات لضمان نجاحه.',
 
  // Contact Section
@@ -328,6 +334,12 @@ export const translations = {
  heroCtaEstimator:'Calculate Your Quote in 30s',
  heroCtaContact:'Start Your Project With Us',
  hero3dHint:'Drag or hover to rotate 3D',
+
+ // 7P Logo step labels
+ step7pIdea:'Idea',
+ step7pDesign:'Design',
+ step7pCode:'Code',
+ step7pDelivery:'Delivery',
 
  // Real Proof Row
  heroProofProjectsVal:'7 Projects',
@@ -500,16 +512,16 @@ export const translations = {
  processTitle:'How We Work',
  processDesc:'Four straightforward steps without wasting time or over-complicating:',
  pr1Step:'Step 01',
- pr1Title:'Align & Understand',
+ pr1Title:'Idea',
  pr1Desc:'A focused discussion to pinpoint your exact goals, requirements, timeline, and cost.',
  pr2Step:'Step 02',
- pr2Title:'Design & Structure',
+ pr2Title:'Design',
  pr2Desc:'We solidify the UI aesthetic, colors, and layout tailored for your target audience.',
  pr3Step:'Step 03',
- pr3Title:'Code & Performance',
+ pr3Title:'Code',
  pr3Desc:'We engineer the site with modern web standards and test speed across all screens.',
  pr4Step:'Step 04',
- pr4Title:'Launch & Support',
+ pr4Title:'Delivery',
  pr4Desc:'We deploy the site live, connect custom domains, and support you after launch.',
 
  // Contact

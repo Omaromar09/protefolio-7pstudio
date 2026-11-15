@@ -143,62 +143,81 @@
   }
 }
 
-/* 3D Centerpiece in Hero */
+/* 3D Centerpiece in Hero — 7P SVG/CSS 3D Logo Component */
 .hero-3d-wrap {
   width: 100%;
   max-width: 100%;
-  height: 310px;
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
 }
 
-@media (min-width: 768px) {
-  .hero-3d-wrap {
-    height: 460px;
-  }
+/* Stage: perspective container */
+.stage {
+  --size: min(78vw, 420px);
+  --step: calc(var(--size) * .0046);               /* سمك الطبقة الواحدة */
+  width: var(--size);
+  height: calc(var(--size) * .92);
+  perspective: 1900px;
 }
 
-@media (min-width: 992px) {
-  .hero-3d-wrap {
-    height: 520px;
-  }
+.logo3d {
+  --e: 0;      /* 1 = الطبقات مفرودة، 0 = متقفلة */
+  --k: 1;      /* معامل المسافة بين الطبقات */
+  --om: 1;     /* ظهور الطبقات الوسيطة */
+  --fo: 1;     /* تعبية الطبقات باللون */
+  --wo: 0;     /* ظهور خطوط الرسم */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(-10deg) rotateY(-24deg);
 }
 
-#hero-3d-canvas {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: 100% !important;
-  display: block;
-  cursor: grab;
-}
-
-#hero-3d-canvas:active {
-  cursor: grabbing;
-}
-
-.hero-3d-hint {
+.layer {
   position: absolute;
-  bottom: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--text-soft);
-  background: var(--bg-card);
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(14, 165, 233, 0.25);
-  pointer-events: none;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  inset: 0;
+  transform: translateZ(calc(var(--i) * var(--step) * var(--k)));
+}
+.layer.mid { opacity: var(--om); }
+.layer svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.layer .fillp { fill-opacity: var(--fo); stroke-opacity: var(--fo); }
+.layer.front .fillp { fill-opacity: 1; stroke-opacity: 1; }
+.layer .wire {
+  fill: none;
+  stroke: var(--accent, #E8A33D);
+  stroke-width: 1.6;
+  stroke-opacity: var(--wo);
+  vector-effect: non-scaling-stroke;
 }
 
-[data-theme="dark"] .hero-3d-hint {
-  background: rgba(19, 26, 51, 0.92);
-  color: #E2E8F0;
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+/* مراحل الشغل */
+.steps {
+  display: flex;
+  gap: 22px;
+  font-size: 16px;
+  color: var(--muted, #A39B8E);
+  justify-content: center;
+  flex-wrap: wrap;
 }
+.steps span {
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+  transition: color .3s, border-color .3s;
+  cursor: default;
+}
+.steps span.on {
+  color: var(--text, #ECE7DD);
+  border-color: var(--accent, #E8A33D);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .steps span { transition: none; }
+}
+
 
 /* --------------------------------------------------------------------------
    1.5 PARTNERS & CLIENT SHOWCASE (HOVER POPOVERS)
@@ -1287,122 +1306,43 @@
   z-index: 5;
 }
 
-.process-timeline {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-  align-items: stretch;
-  position: relative;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-@media (min-width: 640px) {
-  .process-timeline {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .process-timeline {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-  }
-}
-
-.process-step-card {
-  background: var(--bg-surface);
-  border: 1px solid rgba(14, 165, 233, 0.18);
-  border-radius: var(--radius-lg);
-  padding: 2.2rem 1.6rem;
-  position: relative;
-  box-shadow: var(--shadow-card);
-  box-sizing: border-box;
-  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+/* Short vertical list for 4 steps: فكرة، تصميم، كود، تسليم */
+.process-steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 2.5rem auto 0;
+  max-width: 680px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  height: 100%;
+  gap: 1.25rem;
 }
 
-@media (max-width: 640px) {
-  .process-step-card {
-    padding: 1.6rem 1.35rem;
-  }
-}
-
-.process-step-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 14px 30px -10px rgba(14, 165, 233, 0.2);
-}
-
-.process-step-icon {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  background: rgba(14, 165, 233, 0.08);
-  border: 1px solid rgba(14, 165, 233, 0.22);
+.process-step-item {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.35rem;
-  color: var(--accent-blue);
-  margin-bottom: 1.1rem;
-  transition: all var(--transition-fast);
-}
-
-.process-step-card:hover .process-step-icon {
-  transform: scale(1.1);
-  border-color: var(--accent-cyan);
-  background: rgba(14, 165, 233, 0.16);
-  color: var(--accent-cyan);
-}
-
-.process-step-badge {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #0284C7;
-  background: rgba(14, 165, 233, 0.1);
-  border: 1px solid rgba(14, 165, 233, 0.25);
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius-full);
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-
-[data-theme="dark"] .process-step-card {
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem 1.5rem;
   background: var(--bg-surface);
-  border-color: rgba(14, 165, 233, 0.2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast);
 }
 
-[data-theme="dark"] .process-step-icon {
-  background: rgba(30, 41, 59, 0.85);
-  border-color: rgba(56, 189, 248, 0.3);
-  color: #38BDF8;
+.process-step-item:hover {
+  border-color: #E8A33D;
 }
 
-[data-theme="dark"] .process-step-badge {
-  color: #38BDF8;
-  background: rgba(14, 165, 233, 0.18);
-  border-color: rgba(56, 189, 248, 0.35);
-}
-
-.process-step-title {
-  font-size: 1.25rem;
+.process-step-label {
+  font-size: 1.15rem;
   font-weight: 800;
-  margin-bottom: 0.65rem;
-  color: var(--text-main);
+  color: #ECE7DD;
 }
 
 .process-step-desc {
   font-size: 0.92rem;
-  color: var(--text-soft);
+  color: #A39B8E;
   line-height: 1.65;
-  flex-grow: 1;
+  margin: 0;
 }
 
 /* --------------------------------------------------------------------------
@@ -2459,17 +2399,19 @@ html[dir="ltr"] .fa-arrow-up-right-from-square {
   }
 }
 
-@media (max-width: 767px) {
-  .desktop-only-canvas,
-  .desktop-only-hint,
-  #hero-3d-canvas,
-  .hero-3d-hint {
-    display: none !important;
-  }
+/* On mobile: 7P logo fills 70-78% width, sits above headline (grid stacks with order: -1) */
+@media (max-width: 991px) {
   .hero-3d-wrap {
-    height: auto !important;
-    min-height: auto !important;
-    padding: 0.5rem 0 !important;
+    order: -1; /* placed above the headline */
+    padding: 0.5rem 0 1rem;
+    width: 100%;
+  }
+  .stage {
+    --size: min(76vw, 340px);
+  }
+  .steps {
+    gap: 16px;
+    font-size: 14px;
   }
 }
 

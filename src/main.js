@@ -107,61 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
-// 2. 3D SCENES SETUP (Deferred & Lazy Loaded for Zero TBT & 90+ PageSpeed)
+// 2. 3D SCENES SETUP (Skills Constellation only — Hero replaced by CSS/SVG 7P logo)
 // ==========================================================================
-let heroSceneInstance = null;
 let skillsSceneInstance = null;
-let heroLoaded = false;
 let skillsLoaded = false;
 
-export async function ensureHeroSceneLoaded() {
-  const isMobileOrTablet = window.innerWidth < 992 || window.matchMedia('(pointer: coarse)').matches;
-  if (isMobileOrTablet) return;
-  if (heroLoaded) return;
-  const heroCanvas = document.getElementById('hero-3d-canvas');
-  if (!heroCanvas) return;
-  heroLoaded = true;
-
-  try {
-    const { HeroScene } = await import('./3d/heroScene.js');
-    heroSceneInstance = new HeroScene(heroCanvas);
-
-    window.addEventListener('scroll', () => {
-      if (heroSceneInstance) {
-        const progress = Math.min(window.scrollY / window.innerHeight, 1.5);
-        heroSceneInstance.setScroll(progress);
-      }
-    }, { passive: true });
-  } catch (err) {
-    console.warn('Hero 3D lazy load skipped or failed:', err);
-  }
-}
-
 function setup3DScenes() {
-  const heroCanvas = document.getElementById('hero-3d-canvas');
-  if (heroCanvas) {
-    // 1. Initialize immediately upon first user interaction
-    const onUserInteraction = () => {
-      ensureHeroSceneLoaded();
-      ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'].forEach(evt => {
-        window.removeEventListener(evt, onUserInteraction);
-      });
-    };
-    ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'].forEach(evt => {
-      window.addEventListener(evt, onUserInteraction, { once: true, passive: true });
-    });
-
-    // 2. Idle fallback
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(() => {
-        setTimeout(ensureHeroSceneLoaded, 1800);
-      }, { timeout: 3500 });
-    } else {
-      setTimeout(ensureHeroSceneLoaded, 2200);
-    }
-  }
-
-  // Skills 3D Constellation
+  // Skills 3D Constellation (unchanged)
   const skillsCanvas = document.getElementById('skills-canvas');
   if (skillsCanvas) {
     const skillsObserver = new IntersectionObserver(async (entries) => {
@@ -211,7 +163,6 @@ async function setupIntroFlow() {
 }
 
 function triggerHeroReveal() {
-  ensureHeroSceneLoaded();
   const heroContent = document.querySelector('.hero-content');
   const hero3d = document.querySelector('.hero-3d-wrap');
 
