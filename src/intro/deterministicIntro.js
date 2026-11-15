@@ -1,6 +1,6 @@
 /**
  * 7P STUDIO — Deterministic Canvas 2D Intro Engine
- * Exact 3.2-second timeline faithful to the website brand identity:
+ * Exact 4.4-second timeline faithful to the website brand identity:
  * Palette: Obsidian Background #121110, Warm Amber #E8A33D, Cream Text #ECE7DD, Sand #A39B8E
  * Completely free of blue/cyan/purple.
  * Pure deterministic seek(t) architecture with zero lag and instant skip.
@@ -15,7 +15,7 @@ export class DeterministicIntro {
 
     this.rafId = null;
     this.startTime = null;
-    this.totalDuration = 3.2; // 3.2 seconds snappy deterministic timeline
+    this.totalDuration = 4.4; // 4.4s comfortable, readable deterministic timeline
     this.isRunning = false;
 
     // Virtual stage size
@@ -88,7 +88,7 @@ export class DeterministicIntro {
 
   /**
    * Deterministic Evaluation Function seek(t)
-   * Computes every element purely from t in seconds [0.0, 3.2]
+   * Computes every element purely from t in seconds [0.0, 4.4]
    */
   seek(t) {
     const ctx = this.ctx;
@@ -110,10 +110,12 @@ export class DeterministicIntro {
     const offsetX = (vw - this.stageWidth * scale) / 2;
     const offsetY = (vh - this.stageHeight * scale) / 2;
 
+    const isAr = this.getLang() !== 'en';
+
     // -------------------------------------------------------------
-    // PHASE 6: WARM AMBER FLOOD & HERO HANDOFF (2.65s to totalDuration)
+    // PHASE 6: WARM AMBER FLOOD & HERO HANDOFF (3.65s to totalDuration)
     // -------------------------------------------------------------
-    if (t >= 2.65) {
+    if (t >= 3.65) {
       ctx.fillStyle = '#E8A33D'; // Warm Amber Flood
       ctx.fillRect(0, 0, vw, vh);
 
@@ -121,7 +123,7 @@ export class DeterministicIntro {
       ctx.translate(offsetX, offsetY);
       ctx.scale(scale, scale);
 
-      const floodElapsed = t - 2.65;
+      const floodElapsed = t - 3.65;
       const leftVirtualX = -offsetX / scale;
       const virtualWidth = vw / scale;
       const targetX = isPortrait ? (leftVirtualX + 120) : 140;
@@ -132,13 +134,15 @@ export class DeterministicIntro {
       const barEase = 1 - Math.pow(1 - barProgress, 3);
       const barX = (targetX - 300) + barEase * 300;
       ctx.fillStyle = '#121110';
-      ctx.fillRect(barX, 420, 160, 10);
+      ctx.fillRect(barX, 420, 180, 12);
 
-      // Studio label
-      ctx.font = '700 14px "Space Mono", monospace';
-      ctx.fillStyle = 'rgba(18, 17, 16, 0.78)';
+      // Studio & Partners label (Enlarged and bold)
+      const studioLabelFont = isPortrait ? '800 36px "Plus Jakarta Sans", "Alexandria", sans-serif' : '800 24px "Plus Jakarta Sans", "Alexandria", sans-serif';
+      ctx.font = studioLabelFont;
+      ctx.fillStyle = 'rgba(18, 17, 16, 0.85)';
       ctx.textAlign = 'left';
-      ctx.fillText('7P STUDIO — OMAR & GAD', targetX, 480);
+      const labelText = isAr ? 'عمر وجاد — 7P STUDIO' : '7P STUDIO — OMAR & GAD';
+      ctx.fillText(labelText, targetX, 480);
 
       // Headline
       const slamProgress = Math.min(floodElapsed / 0.22, 1);
@@ -146,7 +150,7 @@ export class DeterministicIntro {
       const headlineX = (targetX - 350) + slamEase * 350;
       const headlineText = '7P STUDIO';
 
-      const fontSize = isPortrait ? Math.min(96, Math.floor((virtualWidth - 240) / 6.5)) : 100;
+      const fontSize = isPortrait ? Math.min(108, Math.floor((virtualWidth - 240) / 6.0)) : 108;
       ctx.font = `900 ${fontSize}px "Plus Jakarta Sans", system-ui, sans-serif`;
       ctx.fillStyle = '#121110';
       ctx.letterSpacing = '-0.03em';
@@ -171,7 +175,7 @@ export class DeterministicIntro {
     }
 
     // -------------------------------------------------------------
-    // BACKGROUND (0.00s to 2.65s) — Deep Obsidian #121110
+    // BACKGROUND (0.00s to 3.65s) — Deep Obsidian #121110
     // -------------------------------------------------------------
     ctx.fillStyle = '#121110';
     ctx.fillRect(0, 0, vw, vh);
@@ -185,59 +189,72 @@ export class DeterministicIntro {
     ctx.scale(scale, scale);
 
     // -------------------------------------------------------------
-    // PHASE 1: TITLE CARD (0.00s to 0.85s)
+    // PHASE 1: TITLE CARD (0.00s to 1.75s)
+    // Extended hold time (~1.35s solid read window) + Large Typography
     // -------------------------------------------------------------
-    if (t < 0.95) {
+    if (t < 1.75) {
       let titleOpacity = 1;
       let titleScale = 1;
       let titleScaleY = 1;
 
-      if (t < 0.12) {
-        const p = t / 0.12;
+      if (t < 0.20) {
+        const p = t / 0.20;
         titleOpacity = 1 - Math.pow(1 - p, 3);
-        titleScale = 0.98 + (1 - Math.pow(1 - p, 3)) * 0.02;
-      } else if (t > 0.72 && t < 0.85) {
-        titleOpacity = 1 - (t - 0.72) * 2;
-      } else if (t >= 0.85) {
-        const collapse = (t - 0.85) / 0.1;
+        titleScale = 0.97 + (1 - Math.pow(1 - p, 3)) * 0.03;
+      } else if (t >= 0.20 && t <= 1.55) {
+        // Steady, comfortable, crystal-clear hold
+        titleOpacity = 1;
+        titleScale = 1;
+        titleScaleY = 1;
+      } else if (t > 1.55 && t < 1.68) {
+        titleOpacity = 1 - (t - 1.55) / 0.13;
+      } else if (t >= 1.68) {
+        const collapse = (t - 1.68) / 0.07;
         titleScaleY = Math.max(0, 1 - Math.pow(collapse, 3));
-        titleOpacity = Math.max(0, 1 - collapse * 0.8);
+        titleOpacity = Math.max(0, 1 - collapse);
       }
 
       ctx.save();
       ctx.translate(960, 500);
       ctx.scale(titleScale, titleScale * titleScaleY);
 
-      ctx.font = '900 86px "Plus Jakarta Sans", system-ui, sans-serif';
+      // Headline "7P STUDIO"
+      const mainFont = isPortrait ? '900 108px "Plus Jakarta Sans", system-ui, sans-serif' : '900 96px "Plus Jakarta Sans", system-ui, sans-serif';
+      ctx.font = mainFont;
       ctx.fillStyle = `rgba(236, 231, 221, ${titleOpacity})`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.letterSpacing = '-0.02em';
-      ctx.fillText('7P STUDIO', 0, -15);
+      ctx.fillText('7P STUDIO', 0, -28);
 
-      // Subtitle
+      // Subtitle (Omar & Gad) — Large, bold & prominent as requested by user
       if (titleScaleY > 0.2) {
-        ctx.font = '700 22px "Space Mono", monospace';
-        ctx.fillStyle = `rgba(232, 163, 61, ${titleOpacity * 0.95})`;
-        ctx.letterSpacing = '0.22em';
-        ctx.fillText('OMAR & GAD — PARTNERS', 0, 50);
+        const partnerName = isAr ? 'عمر وجاد — OMAR & GAD' : 'OMAR & GAD — PARTNERS';
+        const partnerFont = isPortrait ? '800 52px "Plus Jakarta Sans", "Alexandria", "Cairo", system-ui, sans-serif' : '800 36px "Plus Jakarta Sans", "Alexandria", "Cairo", system-ui, sans-serif';
+        ctx.font = partnerFont;
+        ctx.fillStyle = `rgba(232, 163, 61, ${titleOpacity * 0.98})`;
+        ctx.letterSpacing = isAr ? '0.02em' : '0.18em';
+        ctx.fillText(partnerName, 0, 48);
 
-        ctx.font = '700 12px "Space Mono", monospace';
-        ctx.fillStyle = `rgba(163, 155, 142, ${titleOpacity * 0.85})`;
-        ctx.letterSpacing = '0.12em';
-        ctx.fillText('MODERN BUSINESS WEBSITES', 0, 95);
+        // Tagline — Enlarged for readability
+        const tagline = isAr ? 'تصميم وتطوير مواقع الشركات الحديثة' : 'MODERN BUSINESS WEBSITES';
+        const taglineFont = isPortrait ? '700 28px "Plus Jakarta Sans", "Alexandria", monospace' : '700 18px "Plus Jakarta Sans", "Alexandria", monospace';
+        ctx.font = taglineFont;
+        ctx.fillStyle = `rgba(163, 155, 142, ${titleOpacity * 0.9})`;
+        ctx.letterSpacing = isAr ? '0.04em' : '0.12em';
+        ctx.fillText(tagline, 0, 104);
       }
 
       ctx.restore();
     }
 
     // -------------------------------------------------------------
-    // PHASE 2 & 3: GROUND LINE & TICKS (0.85s to 2.65s)
+    // PHASE 2 & 3: GROUND LINE & TICKS (1.68s to 3.65s)
     // -------------------------------------------------------------
-    if (t >= 0.85 && t < 2.65) {
+    if (t >= 1.68 && t < 3.65) {
       let lineWidth = 1200;
-      if (t < 1.0) {
-        const p = (t - 0.85) / 0.15;
+      if (t < 1.85) {
+        const p = (t - 1.68) / 0.17;
         const ease = 1 - Math.pow(1 - p, 4);
         lineWidth = 40 + ease * 1160;
       }
@@ -266,8 +283,8 @@ export class DeterministicIntro {
       ctx.stroke();
 
       // Ground ticks underneath
-      if (t >= 0.95) {
-        const tickAlpha = Math.min((t - 0.95) / 0.1, 1);
+      if (t >= 1.78) {
+        const tickAlpha = Math.min((t - 1.78) / 0.12, 1);
         ctx.strokeStyle = `rgba(163, 155, 142, ${tickAlpha * 0.4})`;
         ctx.lineWidth = 1;
 
@@ -285,35 +302,35 @@ export class DeterministicIntro {
       }
 
       // Dotted trajectory guides (Warm Amber)
-      if (t >= 1.0) {
-        const guideAlpha = Math.min((t - 1.0) / 0.2, 1) * 0.6;
+      if (t >= 1.85) {
+        const guideAlpha = Math.min((t - 1.85) / 0.2, 1) * 0.6;
         this.renderTrajectoryGuides(ctx, guideAlpha);
       }
 
       // Landing markers (Warm Amber diamonds)
       this.renderDiamondMarkers(ctx, t);
 
-      // Annotation callout labels
-      this.renderCallouts(ctx, t);
+      // Annotation callout labels (Enlarged)
+      this.renderCallouts(ctx, t, isPortrait, isAr);
     }
 
     // -------------------------------------------------------------
     // PHASE 4: THE BOUNCING WARM AMBER BALL & GHOST TRAILS
     // -------------------------------------------------------------
-    if (t >= 1.05 && t < 2.65) {
+    if (t >= 1.95 && t < 3.65) {
       this.renderBall(ctx, t);
     }
 
     // -------------------------------------------------------------
-    // PHASE 5: PERSISTENT HUD (1.00s to 2.50s)
+    // PHASE 5: PERSISTENT HUD (1.78s to 3.55s)
     // -------------------------------------------------------------
-    if (t >= 0.95 && t < 2.55) {
-      const hudAlpha = t < 1.15
-        ? (t - 0.95) / 0.2
-        : t > 2.4
-          ? 1 - (t - 2.4) / 0.15
+    if (t >= 1.78 && t < 3.55) {
+      const hudAlpha = t < 1.95
+        ? (t - 1.78) / 0.17
+        : t > 3.40
+          ? 1 - (t - 3.40) / 0.15
           : 1;
-      this.renderHUD(ctx, t, hudAlpha);
+      this.renderHUD(ctx, t, hudAlpha, isPortrait, isAr);
     }
 
     ctx.restore();
@@ -323,24 +340,27 @@ export class DeterministicIntro {
   calculateGroundDent(t) {
     return (x) => {
       let totalDent = 0;
-      if (t >= 1.35 && t < 1.65) {
-        const dt = t - 1.35;
+      // Impact 1 at 2.25s
+      if (t >= 2.25 && t < 2.55) {
+        const dt = t - 2.25;
         const decay = Math.exp(-14 * dt);
         const osc = Math.cos(32 * dt);
         const dist = Math.abs(x - 620);
         const spread = Math.max(0, 1 - dist / 90);
         totalDent += 18 * decay * osc * spread;
       }
-      if (t >= 1.75 && t < 2.05) {
-        const dt = t - 1.75;
+      // Impact 2 at 2.65s
+      if (t >= 2.65 && t < 2.95) {
+        const dt = t - 2.65;
         const decay = Math.exp(-14 * dt);
         const osc = Math.cos(32 * dt);
         const dist = Math.abs(x - 960);
         const spread = Math.max(0, 1 - dist / 90);
         totalDent += 16 * decay * osc * spread;
       }
-      if (t >= 2.15 && t < 2.50) {
-        const dt = t - 2.15;
+      // Impact 3 at 3.05s
+      if (t >= 3.05 && t < 3.40) {
+        const dt = t - 3.05;
         const decay = Math.exp(-12 * dt);
         const osc = Math.cos(28 * dt);
         const dist = Math.abs(x - 1280);
@@ -383,23 +403,26 @@ export class DeterministicIntro {
     let angle = 0;
     let scale = 1;
 
-    if (t < 1.35) {
-      const p = (t - 1.05) / (1.35 - 1.05);
+    // Drop from top right: 1.95s to 2.25s
+    if (t < 2.25) {
+      const p = (t - 1.95) / (2.25 - 1.95);
       const ease = p * p;
       x = 480 + (620 - 480) * p;
       y = -50 + (702 - (-50)) * ease;
       radiusX = 44;
       radiusY = 70;
       angle = Math.atan2(752 * 2 * p, 140) - Math.PI / 2;
-    } else if (t >= 1.35 && t < 1.40) {
+    } else if (t >= 2.25 && t < 2.30) {
+      // Impact 1 squash
       x = 620;
-      const dt = (t - 1.35) / 0.05;
+      const dt = (t - 2.25) / 0.05;
       radiusX = 64 - Math.sin(dt * Math.PI) * 5;
       radiusY = 28 + Math.sin(dt * Math.PI) * 10;
       y = 702 - radiusY + 5;
       angle = 0;
-    } else if (t < 1.75) {
-      const p = (t - 1.40) / (1.75 - 1.40);
+    } else if (t < 2.65) {
+      // Arc 1: 2.30s to 2.65s (Impact 2 at 2.65s)
+      const p = (t - 2.30) / (2.65 - 2.30);
       x = 620 + (960 - 620) * p;
       const height = 222;
       y = 702 - 4 * height * p * (1 - p);
@@ -410,14 +433,16 @@ export class DeterministicIntro {
       radiusX = 48 / (1 + stretch);
       radiusY = 48 * (1 + stretch);
       angle = Math.atan2(vy, vx) - Math.PI / 2;
-    } else if (t < 1.80) {
+    } else if (t < 2.70) {
+      // Impact 2 squash
       x = 960;
       radiusX = 62;
       radiusY = 30;
       y = 702 - radiusY + 4;
       angle = 0;
-    } else if (t < 2.15) {
-      const p = (t - 1.80) / (2.15 - 1.80);
+    } else if (t < 3.05) {
+      // Arc 2: 2.70s to 3.05s (Impact 3 at 3.05s)
+      const p = (t - 2.70) / (3.05 - 2.70);
       x = 960 + (1280 - 960) * p;
       const height = 142;
       y = 702 - 4 * height * p * (1 - p);
@@ -428,25 +453,28 @@ export class DeterministicIntro {
       radiusX = 48 / (1 + stretch);
       radiusY = 48 * (1 + stretch);
       angle = Math.atan2(vy, vx) - Math.PI / 2;
-    } else if (t < 2.22) {
+    } else if (t < 3.12) {
+      // Impact 3 squash
       x = 1280;
       radiusX = 68;
       radiusY = 22;
       y = 702 - radiusY + 2;
       angle = 0;
-    } else if (t < 2.35) {
-      const p = (t - 2.22) / 0.13;
+    } else if (t < 3.25) {
+      // Anticipation tilt & settle
+      const p = (t - 3.12) / 0.13;
       x = 1280;
       y = 702 - 45;
       radiusX = 50;
       radiusY = 48;
       angle = -0.4 * Math.sin(p * Math.PI);
     } else {
-      const p = (t - 2.35) / (2.65 - 2.35);
+      // Exponential zoom / scale up: 3.25s to 3.65s
+      const p = (t - 3.25) / (3.65 - 3.25);
       const expoScale = Math.pow(p, 4);
       x = 1280 - p * 320;
       y = (702 - 45) - p * 200;
-      scale = 1 + expoScale * 42;
+      scale = 1 + expoScale * 45;
       radiusX = 48;
       radiusY = 48;
       angle = 0;
@@ -459,10 +487,10 @@ export class DeterministicIntro {
     const ball = this.getBallStateAt(t);
 
     // Ghost trails
-    if (t > 1.1 && t < 2.35) {
+    if (t > 2.00 && t < 3.25) {
       for (let i = 4; i >= 1; i--) {
         const pastT = t - i * 0.024;
-        if (pastT >= 1.05) {
+        if (pastT >= 1.95) {
           const past = this.getBallStateAt(pastT);
           const ghostAlpha = 0.3 * (1 - i / 5);
 
@@ -499,9 +527,9 @@ export class DeterministicIntro {
 
   renderRipples(ctx, t) {
     const impacts = [
-      { t0: 1.35, x: 620 },
-      { t0: 1.75, x: 960 },
-      { t0: 2.15, x: 1280 }
+      { t0: 2.25, x: 620 },
+      { t0: 2.65, x: 960 },
+      { t0: 3.05, x: 1280 }
     ];
 
     impacts.forEach((imp) => {
@@ -523,9 +551,9 @@ export class DeterministicIntro {
 
   renderDiamondMarkers(ctx, t) {
     const markers = [
-      { t0: 1.35, x: 620 },
-      { t0: 1.75, x: 960 },
-      { t0: 2.15, x: 1280 }
+      { t0: 2.25, x: 620 },
+      { t0: 2.65, x: 960 },
+      { t0: 3.05, x: 1280 }
     ];
 
     markers.forEach((m) => {
@@ -545,69 +573,75 @@ export class DeterministicIntro {
     });
   }
 
-  renderCallouts(ctx, t) {
+  renderCallouts(ctx, t, isPortrait, isAr) {
     ctx.save();
-    ctx.font = '700 11px "Space Mono", monospace';
-    ctx.letterSpacing = '0.08em';
+    const calloutFont = isPortrait ? '700 24px "Space Mono", "Cairo", monospace' : '700 14px "Space Mono", "Cairo", monospace';
+    ctx.font = calloutFont;
+    ctx.letterSpacing = isAr ? '0.02em' : '0.08em';
 
-    if (t >= 1.35 && t < 1.75) {
-      const dt = t - 1.35;
-      const alpha = Math.min(dt / 0.1, 1) * (t > 1.65 ? (1.75 - t) / 0.1 : 1);
+    // Step 1 Callout
+    if (t >= 2.25 && t < 2.65) {
+      const dt = t - 2.25;
+      const alpha = Math.min(dt / 0.1, 1) * (t > 2.55 ? (2.65 - t) / 0.1 : 1);
       ctx.strokeStyle = `rgba(232, 163, 61, ${alpha * 0.85})`;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(620, 702 - 10);
       ctx.lineTo(620 + 35, 702 - 55);
-      ctx.lineTo(620 + 130, 702 - 55);
+      ctx.lineTo(620 + 150, 702 - 55);
       ctx.stroke();
 
       ctx.fillStyle = `rgba(236, 231, 221, ${alpha})`;
-      ctx.fillText('HIGH IMPACT', 620 + 40, 702 - 62);
+      const text1 = isAr ? 'سرعة وأداء فائق' : 'HIGH IMPACT';
+      ctx.fillText(text1, 620 + 40, 702 - 62);
     }
 
-    if (t >= 1.75 && t < 2.15) {
-      const dt = t - 1.75;
-      const alpha = Math.min(dt / 0.1, 1) * (t > 2.05 ? (2.15 - t) / 0.1 : 1);
+    // Step 2 Callout
+    if (t >= 2.65 && t < 3.05) {
+      const dt = t - 2.65;
+      const alpha = Math.min(dt / 0.1, 1) * (t > 2.95 ? (3.05 - t) / 0.1 : 1);
       ctx.strokeStyle = `rgba(232, 163, 61, ${alpha * 0.85})`;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(960, 702 - 10);
       ctx.lineTo(960 + 35, 702 - 55);
-      ctx.lineTo(960 + 120, 702 - 55);
+      ctx.lineTo(960 + 150, 702 - 55);
       ctx.stroke();
 
       ctx.fillStyle = `rgba(236, 231, 221, ${alpha})`;
-      ctx.fillText('SMOOTH MOTION', 960 + 40, 702 - 62);
+      const text2 = isAr ? 'حركة وتفاعل سلس' : 'SMOOTH MOTION';
+      ctx.fillText(text2, 960 + 40, 702 - 62);
     }
 
-    if (t >= 2.15 && t < 2.45) {
-      const dt = t - 2.15;
+    // Step 3 Callout
+    if (t >= 3.05 && t < 3.35) {
+      const dt = t - 3.05;
       const alpha = Math.min(dt / 0.08, 1);
       ctx.strokeStyle = `rgba(232, 163, 61, ${alpha * 0.85})`;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(1280, 702 - 10);
       ctx.lineTo(1280 + 35, 702 - 55);
-      ctx.lineTo(1280 + 95, 702 - 55);
+      ctx.lineTo(1280 + 140, 702 - 55);
       ctx.stroke();
 
       ctx.fillStyle = `rgba(236, 231, 221, ${alpha})`;
-      ctx.fillText('7P DELIVERY', 1280 + 40, 702 - 62);
+      const text3 = isAr ? 'تسليم 7P المعتمد' : '7P DELIVERY';
+      ctx.fillText(text3, 1280 + 40, 702 - 62);
     }
 
     ctx.restore();
   }
 
-  renderHUD(ctx, t, alpha) {
+  renderHUD(ctx, t, alpha, isPortrait, isAr) {
     ctx.save();
     ctx.strokeStyle = `rgba(232, 163, 61, ${alpha * 0.75})`;
     ctx.lineWidth = 1.5;
     ctx.setLineDash([]);
 
     const pad = 42;
-    const len = 26;
+    const len = 28;
 
-    const isPortrait = this.viewportHeight > this.viewportWidth;
     let scale = Math.min(this.viewportWidth / this.stageWidth, this.viewportHeight / this.stageHeight);
     if (isPortrait) {
       scale = (this.viewportWidth / this.stageWidth) * 1.35;
@@ -649,19 +683,21 @@ export class DeterministicIntro {
     ctx.lineTo(hudRight, hudBottom - len);
     ctx.stroke();
 
-    // Typography
-    ctx.font = '700 11px "Space Mono", monospace';
-    ctx.letterSpacing = '0.08em';
+    // Typography (Enlarged)
+    const hudFont = isPortrait ? '700 22px "Space Mono", "Cairo", monospace' : '700 14px "Space Mono", "Cairo", monospace';
+    ctx.font = hudFont;
+    ctx.letterSpacing = isAr ? '0.02em' : '0.08em';
 
     // Top-Left
     ctx.fillStyle = `rgba(236, 231, 221, ${alpha * 0.85})`;
     ctx.textAlign = 'left';
-    ctx.fillText('7P STUDIO   WEB ARCHITECTURE', hudLeft + 15, hudTop + 18);
+    const topBrandText = isAr ? '7P STUDIO   مواقع وتطبيقات الويب' : '7P STUDIO   WEB ARCHITECTURE';
+    ctx.fillText(topBrandText, hudLeft + 15, hudTop + 22);
 
     // Top-Right
     ctx.fillStyle = `rgba(232, 163, 61, ${alpha * 0.85})`;
     ctx.textAlign = 'right';
-    ctx.fillText('128 BPM   60 FPS', hudRight - 15, hudTop + 18);
+    ctx.fillText('128 BPM   60 FPS', hudRight - 15, hudTop + 22);
 
     // Bottom-Left
     const frames = Math.floor((t * 60) % 60);
@@ -672,36 +708,36 @@ export class DeterministicIntro {
 
     ctx.textAlign = 'left';
     ctx.fillStyle = `rgba(163, 155, 142, ${alpha * 0.9})`;
-    ctx.fillText(timecode, hudLeft + 15, hudBottom - 12);
+    ctx.fillText(timecode, hudLeft + 15, hudBottom - 14);
 
     // Progress dots
-    const sqX = hudLeft + 140;
-    const sqY = hudBottom - 20;
+    const sqX = hudLeft + (isPortrait ? 200 : 160);
+    const sqY = hudBottom - 24;
     for (let i = 0; i < 4; i++) {
       if (i === 0) {
         ctx.fillStyle = '#E8A33D';
-        ctx.fillRect(sqX + i * 14, sqY, 8, 8);
+        ctx.fillRect(sqX + i * 16, sqY, 10, 10);
       } else {
         ctx.strokeStyle = `rgba(232, 163, 61, ${alpha * 0.4})`;
-        ctx.strokeRect(sqX + i * 14, sqY, 8, 8);
+        ctx.strokeRect(sqX + i * 16, sqY, 10, 10);
       }
     }
 
-    const barW = isPortrait ? 50 : 80;
-    const pW = (t / 3.2) * barW;
+    const barW = isPortrait ? 60 : 90;
+    const pW = (t / 4.4) * barW;
     ctx.fillStyle = `rgba(232, 163, 61, ${alpha * 0.25})`;
-    ctx.fillRect(sqX + 68, sqY + 3, barW, 2);
+    ctx.fillRect(sqX + 80, sqY + 4, barW, 2);
     ctx.fillStyle = '#E8A33D';
-    ctx.fillRect(sqX + 68, sqY + 3, pW, 2);
+    ctx.fillRect(sqX + 80, sqY + 4, pW, 2);
 
     // Bottom-Right: dynamic step label
-    let sectionName = '01 — IDEA & SCOPE';
-    if (t >= 1.75 && t < 2.15) sectionName = '02 — DESIGN & CODE';
-    else if (t >= 2.15) sectionName = '03 — FAST DELIVERY';
+    let sectionName = isAr ? '01 — فكرة وتخطيط' : '01 — IDEA & SCOPE';
+    if (t >= 2.65 && t < 3.05) sectionName = isAr ? '02 — تصميم وكود' : '02 — DESIGN & CODE';
+    else if (t >= 3.05) sectionName = isAr ? '03 — تسليم 7P' : '03 — 7P DELIVERY';
 
     ctx.textAlign = 'right';
     ctx.fillStyle = `rgba(232, 163, 61, ${alpha * 0.85})`;
-    ctx.fillText(sectionName, hudRight - 15, hudBottom - 12);
+    ctx.fillText(sectionName, hudRight - 15, hudBottom - 14);
 
     ctx.restore();
     ctx.restore();

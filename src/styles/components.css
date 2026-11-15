@@ -842,27 +842,27 @@
 
 .intro-hud-btn {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #ECE7DD;
   background: rgba(28, 26, 23, 0.88);
   border: 1px solid rgba(232, 163, 61, 0.35);
-  padding: 0.4rem 0.95rem;
+  padding: 0.5rem 1.15rem;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all var(--transition-fast);
   backdrop-filter: blur(8px);
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 640px) {
   .intro-hud-btn {
-    padding: 0.35rem 0.75rem;
-    font-size: 0.72rem;
+    padding: 0.42rem 0.9rem;
+    font-size: 0.8rem;
   }
 }
 
