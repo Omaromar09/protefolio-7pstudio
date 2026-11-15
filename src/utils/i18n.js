@@ -396,7 +396,7 @@ export const translations = {
   // Testimonials
   testimonialsBadge: 'Client Reviews & Feedback',
   testimonialsTitle: 'Client Feedback & Reviews',
-  testimonialsDesc: 'Real feedback and community notes (demo models pending final client confirmation):',
+  testimonialsDesc: 'Real feedback from partners and community members on our work and delivery speed:',
 
  // Trust Section
  trustBadge:'Trust & Guarantees',

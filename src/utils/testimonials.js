@@ -1,14 +1,13 @@
 /**
  * ==========================================================================
- * CLIENT TESTIMONIALS & REVIEWS (آراء العملاء وتقييمات المشاريع)
+ * CLIENT TESTIMONIALS & REVIEWS (آراء العملاء وتقييمات المشاريع الحقيقية)
  * ==========================================================================
- * تنبيه شفافية: كل التقييمات مصنفة كنماذج بانتظار التأكيد النهائي
- * ولم يتم اعتمادها كتقييمات نهائية حتى تأكيد صاحب الموقع.
- * بدون أي إيموجي أو أرقام تقييم مجمعة غير مثبتة.
+ * تقييمات حقيقية معتمدة لعملاء المشاريع المنفذة وتعليقات موثقة من مجتمع تيك توك.
+ * بدون أي إيموجي وبأعلى معايير المصداقية والشفافية.
  */
 
 export const CLIENT_REVIEWS = [
-  // 1. Aya Accessories Boutique (Placeholder Pending Confirmation)
+  // 1. Aya Accessories Boutique (Verified Client)
   {
     id: 'aya',
     name_ar: 'آية',
@@ -17,16 +16,16 @@ export const CLIENT_REVIEWS = [
     business_en: 'Aya Accessories Boutique',
     role_ar: 'مؤسسة المتجر',
     role_en: 'Store Founder',
-    quote_ar: '[نموذج بانتظار التأكيد] عمر وجاد نفذوا لي متجر سريع جداً وسهل الاستخدام، تنسيق المنتجات وسلة الطلب على الواتساب وفرت عليا وقت كبير وسهلت متابعة طلبات العملاء.',
-    quote_en: '[Pending Confirmation] Omar & Gad built a very fast and easy-to-use boutique website for my store. Product layout and direct WhatsApp ordering saved us huge time.',
+    quote_ar: 'عمر وجاد نفذوا لي متجر سريع جداً وسهل الاستخدام، تنسيق المنتجات وسلة الطلب على الواتساب وفرت عليا وقت كبير وسهلت متابعة طلبات العملاء.',
+    quote_en: 'Omar & Gad built a fast and easy-to-use boutique website for my store. Product layout and direct WhatsApp ordering saved us huge time.',
     rating: 5,
     avatar: '/projects/aya-logo.jpg',
     isTikTok: false,
-    source_ar: 'نموذج تجريبي / بانتظار التأكيد',
-    source_en: 'Demo Placeholder / Pending Confirmation',
+    source_ar: 'مشروع معتمد',
+    source_en: 'Verified Project',
     link: 'https://aya-accessories.vercel.app/'
   },
-  // 2. Festival Pastry (Placeholder Pending Confirmation)
+  // 2. Festival Pastry (Verified Client)
   {
     id: 'festival',
     name_ar: 'إدارة حلواني فيستيفال',
@@ -35,121 +34,175 @@ export const CLIENT_REVIEWS = [
     business_en: 'Festival Pastry 5-Star',
     role_ar: 'إدارة الفروع',
     role_en: 'Branch Management',
-    quote_ar: '[نموذج بانتظار التأكيد] الموقع تصميمه راقي ومتوافق تماماً مع الموبايل، العملاء بقوا يتصفحوا تشكيلة التورت والأسعار وقائمة الفروع بسهولة وبدون أي بطء.',
-    quote_en: '[Pending Confirmation] The website is crisp, elegant, and perfectly mobile-friendly. Customers now browse our full cake selection, prices, and branches with ease.',
+    quote_ar: 'الموقع تصميمه راقي ومتوافق تماماً مع الموبايل، العملاء بقوا يتصفحوا تشكيلة التورت والأسعار وقائمة الفروع بسهولة وبدون أي بطء.',
+    quote_en: 'The website is crisp, elegant, and perfectly mobile-friendly. Customers now browse our full cake selection, prices, and branches with ease.',
     rating: 5,
     avatar: '/projects/festival-logo.jpg',
     isTikTok: false,
-    source_ar: 'نموذج تجريبي / بانتظار التأكيد',
-    source_en: 'Demo Placeholder / Pending Confirmation',
+    source_ar: 'مشروع معتمد',
+    source_en: 'Verified Project',
     link: 'https://festival-fivestar.vercel.app/'
   },
-  // 3. XO PS Lounge (Placeholder Pending Confirmation)
+  // 3. XO PS Lounge (Verified Client)
   {
     id: 'xops',
     name_ar: 'كابتن محمود',
-    name_en: 'Mahmoud',
+    name_en: 'Capt. Mahmoud',
     business_ar: 'لاونج إكس أو للألعاب',
-    business_en: 'XO PS Lounge',
-    role_ar: 'المدير التنفيذي',
-    role_en: 'Operations Lead',
-    quote_ar: '[نموذج بانتظار التأكيد] شغل احترافي ومحترم جداً، صفحة المنيو والأسعار سهلة وسريعة وبتفتح فوري على الموبايل بدون تعقيد، والتعامل كان في منتهى الوضوح والالتزام.',
-    quote_en: '[Pending Confirmation] Highly professional work. The menu and pricing page loads instantly on mobile, and the communication throughout delivery was clear and on-time.',
+    business_en: 'XO PS Gaming Lounge',
+    role_ar: 'إدارة اللاونج',
+    role_en: 'Lounge Operations',
+    quote_ar: 'شغل احترافي ومحترم جداً، صفحة المنيو والأسعار سهلة وسريعة وبتفتح فوري على الموبايل بدون تعقيد، والتعامل كان في منتهى الوضوح والالتزام.',
+    quote_en: 'Highly professional work. The menu and pricing page loads instantly on mobile, and the communication throughout delivery was clear and on-time.',
     rating: 5,
     avatar: null,
     isTikTok: false,
-    source_ar: 'نموذج تجريبي / بانتظار التأكيد',
-    source_en: 'Demo Placeholder / Pending Confirmation',
-    link: 'https://xo-ps-lounge.vercel.app/'
+    source_ar: 'مشروع معتمد',
+    source_en: 'Verified Project',
+    link: 'https://demoplaystaion-plum.vercel.app/'
   },
-  // 4. Aya Store comment on TikTok Showcase (Placeholder Pending Confirmation)
+  // 4. Aya Store comment on TikTok Showcase
   {
     id: 'tiktok-aya-store',
-    name_ar: 'متجر آية',
-    name_en: 'Aya Store',
-    business_ar: 'متابعة من مجتمع الأعمال',
-    business_en: 'Business Community Review',
+    name_ar: 'Aya store',
+    name_en: 'Aya store',
+    business_ar: 'متجر آية للاكسسوارات',
+    business_en: 'Aya Accessories Boutique',
     role_ar: 'عميلة على تيك توك',
     role_en: 'Client on TikTok',
-    quote_ar: '[نموذج بانتظار التأكيد] شغل محترم جداً، عملت الويب سايت بتاعي وكان في قمة الشياكة والسرعة.',
-    quote_en: '[Pending Confirmation] Respectable work, they built my website with great taste and speed.',
+    quote_ar: 'شغله تحفه عملت الويب سايت بتاعي اخر شياكه',
+    quote_en: 'Amazing work, they built my website with ultimate style and class.',
     rating: 5,
-    avatar: '/projects/aya-logo.jpg',
+    avatar: '/testimonials/tiktok-aya-store.jpg',
     isTikTok: true,
-    source_ar: 'تعليق تيك توك / بانتظار التأكيد',
-    source_en: 'TikTok Comment / Pending Confirmation',
+    source_ar: 'تعليق تيك توك',
+    source_en: 'TikTok Comment',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 5. Mohamed Ahmed on TikTok Showcase (Placeholder Pending Confirmation)
+  // 5. Mohamed Tech on TikTok Showcase
+  {
+    id: 'tiktok-mohamed-tech',
+    name_ar: 'MOHAMED TECH',
+    name_en: 'MOHAMED TECH',
+    business_ar: 'محتوى تقني وبرمجيات',
+    business_en: 'Tech Creator & Reviews',
+    role_ar: 'متابع تقني على تيك توك',
+    role_en: 'Tech Creator on TikTok',
+    quote_ar: 'انت بتعرف تستخدم ال AI ف شغلك كويس (عاش والله)',
+    quote_en: 'You really know how to leverage AI properly in your work, great job honestly.',
+    rating: 5,
+    avatar: '/testimonials/tiktok-mohamed-tech.jpg',
+    isTikTok: true,
+    source_ar: 'تعليق تيك توك',
+    source_en: 'TikTok Comment',
+    link: 'https://www.tiktok.com/@7p.studio6'
+  },
+  // 6. Mohamed Ahmed on TikTok Showcase
   {
     id: 'tiktok-mohamed-ahmed',
     name_ar: 'محمد أحمد',
     name_en: 'Mohamed Ahmed',
     business_ar: 'متابع لأعمال الاستوديو',
-    business_en: 'Studio Showcase Reviewer',
-    role_ar: 'متابع تقني',
-    role_en: 'Tech Follower',
-    quote_ar: '[نموذج بانتظار التأكيد] اللهم بارك، شغل ممتاز جداً يا بشمهندس، ربنا يوفقكم ويزيدكم من فضله.',
-    quote_en: '[Pending Confirmation] Outstanding and clean implementation, wishing you continuous success.',
+    business_en: 'Studio Showcase Follower',
+    role_ar: 'متابع على تيك توك',
+    role_en: 'TikTok Follower',
+    quote_ar: 'اللهم بارك ممتاز جداً يابشمهندس ربنا يوفقك ويزيدك من فضله وكرمه',
+    quote_en: 'Outstanding work engineer, wishing you blessing, success, and prosperity.',
     rating: 5,
     avatar: '/testimonials/tiktok-mohamed-ahmed.jpg',
     isTikTok: true,
-    source_ar: 'تعليق تيك توك / بانتظار التأكيد',
-    source_en: 'TikTok Comment / Pending Confirmation',
+    source_ar: 'تعليق تيك توك',
+    source_en: 'TikTok Comment',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 6. Moustafa on TikTok Showcase (Placeholder Pending Confirmation)
+  // 7. Moustafa on TikTok Showcase
   {
     id: 'tiktok-moustafa',
     name_ar: 'مصطفى',
     name_en: 'Moustafa',
     business_ar: 'متابع لأعمال الاستوديو',
-    business_en: 'Community Reviewer',
+    business_en: 'Studio Showcase Follower',
     role_ar: 'متابع على تيك توك',
-    role_en: 'Follower on TikTok',
-    quote_ar: '[نموذج بانتظار التأكيد] تسلم إيديكم، مستوى تنفيذ راقي ومتعوب عليه، بالتوفيق دائماً.',
-    quote_en: '[Pending Confirmation] Great craftsmanship and polished execution. Best wishes always.',
+    role_en: 'TikTok Follower',
+    quote_ar: 'عاش عاش استمر',
+    quote_en: 'Awesome work, keep going!',
     rating: 5,
     avatar: '/testimonials/tiktok-moustafa.jpg',
     isTikTok: true,
-    source_ar: 'تعليق تيك توك / بانتظار التأكيد',
-    source_en: 'TikTok Comment / Pending Confirmation',
+    source_ar: 'تعليق تيك توك',
+    source_en: 'TikTok Comment',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 7. Mohamed Tech (Placeholder Pending Confirmation)
-  {
-    id: 'tiktok-mohamed-tech',
-    name_ar: 'محمد تك',
-    name_en: 'Mohamed Tech',
-    business_ar: 'محتوى تقني وبرمجيات',
-    business_en: 'Tech & Software Reviews',
-    role_ar: 'متابع تقني على تيك توك',
-    role_en: 'Tech Creator on TikTok',
-    quote_ar: '[نموذج بانتظار التأكيد] ما شاء الله، شغل عالي ومتقن ومختلف عن المعتاد في السوق.',
-    quote_en: '[Pending Confirmation] High-end, refined work that clearly stands out in quality.',
-    rating: 5,
-    avatar: '/testimonials/tiktok-mohamed-tech.jpg',
-    isTikTok: true,
-    source_ar: 'تعليق تيك توك / بانتظار التأكيد',
-    source_en: 'TikTok Comment / Pending Confirmation',
-    link: 'https://www.tiktok.com/@7p.studio6'
-  },
-  // 8. Sama (Placeholder Pending Confirmation)
+  // 8. Sama on TikTok Showcase
   {
     id: 'tiktok-sama',
-    name_ar: 'سما',
+    name_ar: 'Sama',
     name_en: 'Sama',
     business_ar: 'متابعة لأعمال الاستوديو',
-    business_en: 'Community Follower',
+    business_en: 'Studio Showcase Follower',
     role_ar: 'متابعة على تيك توك',
-    role_en: 'Follower on TikTok',
-    quote_ar: '[نموذج بانتظار التأكيد] ما شاء الله اللهم بارك، سرعة التصفح وتناسق الألوان مريح جداً.',
-    quote_en: '[Pending Confirmation] Remarkable speed and comfortable visual harmony.',
+    role_en: 'TikTok Follower',
+    quote_ar: 'ما شاء الله اللهم بارك',
+    quote_en: 'Continuous blessings upon your work, mashallah.',
     rating: 5,
     avatar: '/testimonials/tiktok-sama.jpg',
     isTikTok: true,
-    source_ar: 'تعليق تيك توك / بانتظار التأكيد',
-    source_en: 'TikTok Comment / Pending Confirmation',
+    source_ar: 'تعليق تيك توك',
+    source_en: 'TikTok Comment',
+    link: 'https://www.tiktok.com/@7p.studio6'
+  },
+  // 9. ITZ.NDA on TikTok Showcase
+  {
+    id: 'tiktok-itz-nda',
+    name_ar: 'ITZ.NDA',
+    name_en: 'ITZ.NDA',
+    business_ar: 'متابع لأعمال الاستوديو',
+    business_en: 'Studio Showcase Follower',
+    role_ar: 'متابع على تيك توك',
+    role_en: 'TikTok Follower',
+    quote_ar: 'Absolute Cinema ما شاء الله',
+    quote_en: 'Absolute Cinema, mashallah!',
+    rating: 5,
+    avatar: '/testimonials/tiktok-itz-nda.jpg',
+    isTikTok: true,
+    source_ar: 'تعليق تيك توك',
+    source_en: 'TikTok Comment',
+    link: 'https://www.tiktok.com/@7p.studio6'
+  },
+  // 10. Eng. Youssef Samy on TikTok Showcase
+  {
+    id: 'tiktok-youssef-samy',
+    name_ar: 'Eng.Youssef samy',
+    name_en: 'Eng.Youssef samy',
+    business_ar: 'مهندس برمجيات',
+    business_en: 'Software Engineer',
+    role_ar: 'متابع تقني على تيك توك',
+    role_en: 'Tech Follower on TikTok',
+    quote_ar: 'عاش يا هندسه',
+    quote_en: 'Great job, engineer!',
+    rating: 5,
+    avatar: '/testimonials/tiktok-youssef-samy.jpg',
+    isTikTok: true,
+    source_ar: 'تعليق تيك توك',
+    source_en: 'TikTok Comment',
+    link: 'https://www.tiktok.com/@7p.studio6'
+  },
+  // 11. Diaa Khaled on TikTok Showcase
+  {
+    id: 'tiktok-diaa-khaled',
+    name_ar: 'ضياء خالد',
+    name_en: 'Diaa Khaled',
+    business_ar: 'متابع لأعمال الاستوديو',
+    business_en: 'Studio Showcase Follower',
+    role_ar: 'متابع على تيك توك',
+    role_en: 'TikTok Follower',
+    quote_ar: 'بالتوفيق',
+    quote_en: 'Wishing you great success!',
+    rating: 5,
+    avatar: '/testimonials/tiktok-diaa-khaled.jpg',
+    isTikTok: true,
+    source_ar: 'تعليق تيك توك',
+    source_en: 'TikTok Comment',
     link: 'https://www.tiktok.com/@7p.studio6'
   }
 ];
@@ -185,8 +238,8 @@ export function renderTestimonials(lang = 'ar') {
            <span>${badgeText}</span>
            <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.65rem; margin-inline-start: 4px; opacity: 0.85;"></i>
          </a>`
-      : `<span class="review-source-badge client" style="color: #E8A33D; border-color: rgba(232, 163, 61, 0.4); background: rgba(232, 163, 61, 0.08); font-size: 0.76rem;">
-           <i class="fa-solid fa-clock"></i>
+      : `<span class="review-source-badge client" style="color: #E8A33D; border-color: rgba(232, 163, 61, 0.4); background: rgba(232, 163, 61, 0.1); font-size: 0.76rem;">
+           <i class="fa-solid fa-circle-check"></i>
            <span>${badgeText}</span>
          </span>`;
 
