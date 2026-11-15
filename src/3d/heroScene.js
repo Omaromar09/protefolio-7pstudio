@@ -493,10 +493,10 @@ export class HeroScene {
         this.specularLight.intensity = 5.8;
       }
     } else {
-      // LIGHT MODE: High-Contrast Obsidian Violet & Rose Gold Chrome (Stands out crisp and bold on light background)
+      // LIGHT MODE: High-Contrast Warm Terracotta & Amber Bronze
       if (this.sculptureMat) {
-        this.sculptureMat.color.setHex(0x4C1D95); // Deep royal violet titanium (bold contrast on light background)
-        this.sculptureMat.emissive.setHex(0x581C87);
+        this.sculptureMat.color.setHex(0xC8431F); // Warm terracotta bronze
+        this.sculptureMat.emissive.setHex(0x5E220D);
         this.sculptureMat.emissiveIntensity = 0.30;
         this.sculptureMat.metalness = 0.94;
         this.sculptureMat.roughness = 0.04;
@@ -505,16 +505,16 @@ export class HeroScene {
       }
       if (this.coreMat) {
         this.coreMat.color.setHex(0xffffff);
-        this.coreMat.emissive.setHex(0x9333EA);
+        this.coreMat.emissive.setHex(0xE8A33D);
         this.coreMat.emissiveIntensity = 0.55;
-        this.coreMat.attenuationColor.setHex(0x9333EA);
+        this.coreMat.attenuationColor.setHex(0xE8A33D);
         this.coreMat.ior = 2.42;
       }
       if (this.singularityMat) {
-        this.singularityMat.color.setHex(0x9333EA);
+        this.singularityMat.color.setHex(0xE8A33D);
       }
       if (this.coreInnerLight) {
-        this.coreInnerLight.color.setHex(0x9333EA);
+        this.coreInnerLight.color.setHex(0xE8A33D);
         this.coreInnerLight.intensity = 4.8;
       }
       if (this.ambientLight) this.ambientLight.intensity = 1.9;
@@ -523,11 +523,11 @@ export class HeroScene {
         this.dirLight1.intensity = 4.5;
       }
       if (this.dirLight2) {
-        this.dirLight2.color.setHex(0x0284C7);
+        this.dirLight2.color.setHex(0xE8A33D);
         this.dirLight2.intensity = 4.0;
       }
       if (this.dirLight3) {
-        this.dirLight3.color.setHex(0xD946EF);
+        this.dirLight3.color.setHex(0xF5BA5B);
         this.dirLight3.intensity = 3.8;
       }
       if (this.specularLight) {

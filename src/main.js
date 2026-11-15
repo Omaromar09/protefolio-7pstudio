@@ -197,106 +197,16 @@ function setup3DScenes() {
 // ==========================================================================
 // 4. DETERMINISTIC 3-SECOND INTRO & ORANGE HAND-OFF
 // ==========================================================================
-let introInstance = null;
-
 async function setupIntroFlow() {
   const introScreen = document.getElementById('intro-screen');
-  const introCanvas = document.getElementById('intro-canvas');
-  const skipBtn = document.getElementById('intro-skip');
-  const replayBtn = document.getElementById('replay-intro-btn');
+  if (introScreen) {
+    introScreen.classList.add('is-hidden');
+    introScreen.style.display = 'none';
+  }
   const orangeHandoff = document.getElementById('orange-handoff-overlay');
-
-  if (!introScreen || !introCanvas) return;
-
-  let hasSeenIntro = false;
-  try {
-    hasSeenIntro = sessionStorage.getItem('omar_intro_seen') === 'true';
-  } catch (e) {
-    hasSeenIntro = false;
-  }
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isBotOrAudit = /Googlebot|Lighthouse|bingbot|Baiduspider/i.test(navigator.userAgent);
-
-  const isMobile = window.innerWidth < 768;
-  if (hasSeenIntro || prefersReducedMotion || isBotOrAudit || isMobile) {
-    introScreen.classList.add('is-hidden');
-    triggerHeroReveal();
-    return;
-  }
-
-  // Lazy-load DeterministicIntro only when needed to protect Core Web Vitals
-  const { DeterministicIntro } = await import('./intro/deterministicIntro.js');
-
-  introInstance = new DeterministicIntro(introCanvas, {
-    getLang: () => getLanguage(),
-    onComplete: () => {
-      executeOrangeHandoff(introScreen, orangeHandoff);
-    }
-  });
-
-  if (skipBtn) {
-    skipBtn.addEventListener('click', () => {
-      if (introInstance) {
-        introInstance.skip();
-      }
-    });
-  }
-
-  if (replayBtn) {
-    replayBtn.addEventListener('click', async () => {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-      try {
-        sessionStorage.removeItem('omar_intro_seen');
-      } catch (e) {}
-
-      if (orangeHandoff) {
-        orangeHandoff.classList.remove('active');
-        orangeHandoff.style.clipPath = '';
-        orangeHandoff.style.transform = '';
-      }
-
-      introScreen.style.opacity = '1';
-      introScreen.classList.remove('is-hidden');
-      if (!introInstance) {
-        const mod = await import('./intro/deterministicIntro.js');
-        introInstance = new mod.DeterministicIntro(introCanvas, {
-          getLang: () => getLanguage(),
-          onComplete: () => {
-            executeOrangeHandoff(introScreen, orangeHandoff);
-          }
-        });
-      }
-      introInstance.start();
-    });
-  }
-
-  introInstance.start();
-}
-
-function executeOrangeHandoff(introScreen, orangeHandoff) {
-  try {
-    sessionStorage.setItem('omar_intro_seen', 'true');
-  } catch (e) {}
-
   if (orangeHandoff) {
-    orangeHandoff.classList.add('active');
-    orangeHandoff.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
-    orangeHandoff.style.transform = 'translateY(0%)';
-
-    introScreen.classList.add('is-hidden');
-
-    gsap.to(orangeHandoff, {
-      clipPath: 'polygon(0 0, 100% 0, 100% 0%, 0 0%)',
-      duration: 0.75,
-      ease: 'power3.inOut',
-      onComplete: () => {
-        orangeHandoff.classList.remove('active');
-      }
-    });
-  } else {
-    introScreen.classList.add('is-hidden');
+    orangeHandoff.style.display = 'none';
   }
-
   triggerHeroReveal();
 }
 

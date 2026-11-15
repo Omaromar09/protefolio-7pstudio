@@ -262,11 +262,11 @@
 
 .showcase-tab-btn:hover {
   color: var(--text-main);
-  border-color: rgba(139, 61, 255, 0.4);
+  border-color: rgba(232, 163, 61, 0.4);
 }
 
 .showcase-tab-btn.is-active {
-  background: rgba(139, 61, 255, 0.15);
+  background: rgba(232, 163, 61, 0.15);
   border-color: var(--accent-magenta);
   color: var(--text-main);
   box-shadow: 0 0 15px rgba(255, 61, 240, 0.2);
@@ -315,7 +315,7 @@
 .device-laptop-frame {
   width: 100%;
   max-width: 640px;
-  background: #141226;
+  background: #1C1A17;
   border: 2px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px 14px 0 0;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
@@ -328,7 +328,7 @@
   align-items: center;
   gap: 6px;
   padding: 0.6rem 0.85rem;
-  background: #0E0C1C;
+  background: #141311;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -378,7 +378,7 @@
 .laptop-base {
   width: calc(100% + 40px);
   height: 14px;
-  background: #25223D;
+  background: #2E2A25;
   border-radius: 0 0 16px 16px;
   margin-inline-start: -20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
@@ -390,7 +390,7 @@
   inset-inline-end: -10px;
   width: 130px;
   aspect-ratio: 9 / 19;
-  background: #0E0C1C;
+  background: #141311;
   border: 3px solid rgba(255, 255, 255, 0.16);
   border-radius: 20px;
   overflow: hidden;
@@ -496,8 +496,8 @@
 }
 
 [data-theme="light"] .feature-chip {
-  background: rgba(139, 61, 255, 0.06);
-  border-color: rgba(139, 61, 255, 0.15);
+  background: rgba(232, 163, 61, 0.06);
+  border-color: rgba(232, 163, 61, 0.15);
 }
 
 .feature-chip i {
@@ -644,14 +644,14 @@ html[dir="ltr"] .ba-panel {
 }
 
 .ba-panel-after {
-  background: radial-gradient(circle at 70% 30%, rgba(139, 61, 255, 0.15) 0%, #07060C 70%);
-  color: #FFFFFF;
+  background: radial-gradient(circle at 70% 30%, rgba(232, 163, 61, 0.15) 0%, #121110 70%);
+  color: #ECE7DD;
   z-index: 1;
 }
 
 [data-theme="light"] .ba-panel-after {
-  background: radial-gradient(circle at 70% 30%, rgba(139, 61, 255, 0.08) 0%, #FFFFFF 70%);
-  color: #0B0E24;
+  background: radial-gradient(circle at 70% 30%, rgba(232, 163, 61, 0.08) 0%, #F5F2EC 70%);
+  color: #1A1714;
 }
 
 .ba-badge {
@@ -709,7 +709,7 @@ html[dir="ltr"] .ba-panel {
 
 [data-theme="light"] .ba-stat-box {
   background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(139, 61, 255, 0.15);
+  border-color: rgba(232, 163, 61, 0.15);
 }
 
 .ba-stat-box.danger {
@@ -813,7 +813,7 @@ html[dir="ltr"] .ba-panel {
 }
 
 [data-theme="light"] .diagnosis-progress-bar {
-  background: rgba(139, 61, 255, 0.12);
+  background: rgba(232, 163, 61, 0.12);
 }
 
 .diagnosis-progress-fill {
@@ -866,17 +866,17 @@ html[dir="ltr"] .ba-panel {
 }
 
 .diagnosis-opt-btn:hover {
-  background: rgba(139, 61, 255, 0.08);
-  border-color: rgba(139, 61, 255, 0.35);
+  background: rgba(232, 163, 61, 0.08);
+  border-color: rgba(232, 163, 61, 0.35);
   color: var(--text-main);
   transform: translateX(-4px);
 }
 
 .diagnosis-opt-btn.is-selected {
-  background: rgba(139, 61, 255, 0.16);
+  background: rgba(232, 163, 61, 0.16);
   border-color: var(--accent-violet);
   color: var(--text-main);
-  box-shadow: 0 0 20px rgba(139, 61, 255, 0.25);
+  box-shadow: 0 0 20px rgba(232, 163, 61, 0.25);
 }
 
 .opt-indicator {
@@ -1052,7 +1052,7 @@ html[dir="ltr"] .ba-panel {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(139, 61, 255, 0.12);
+  background: rgba(232, 163, 61, 0.12);
   color: var(--accent-violet);
   display: flex;
   align-items: center;

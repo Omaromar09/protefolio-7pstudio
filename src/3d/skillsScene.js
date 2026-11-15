@@ -95,8 +95,8 @@ export class SkillsScene {
   createCore() {
     const coreGeo = new THREE.SphereGeometry(0.72, 16, 16);
     const coreMat = new THREE.MeshStandardMaterial({
-      color: 0x7C3AED,
-      emissive: 0xE8A33D,
+      color: 0xE8A33D,
+      emissive: 0x5C380A,
       emissiveIntensity: 0.65,
       roughness: 0.2,
       metalness: 0.85
