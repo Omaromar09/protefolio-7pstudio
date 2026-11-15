@@ -309,9 +309,20 @@ export function switchProject(newIdx) {
     btn.classList.toggle('is-active', isActive);
     btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
     if (isActive) {
-      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      const tabsNav = btn.closest('.showcase-tabs-nav');
+      if (tabsNav) {
+        const navRect = tabsNav.getBoundingClientRect();
+        const btnRect = btn.getBoundingClientRect();
+        const diff = (btnRect.left + btnRect.width / 2) - (navRect.left + navRect.width / 2);
+        tabsNav.scrollBy({ left: diff, behavior: 'smooth' });
+      }
     }
   });
+
+  // Guarantee zero horizontal page displacement in RTL
+  if (window.scrollX !== 0) {
+    window.scrollTo({ left: 0, top: window.scrollY });
+  }
 
   // 2. Color Wipe Animation
   const ambientWipe = document.getElementById('showcase-ambient-wipe');

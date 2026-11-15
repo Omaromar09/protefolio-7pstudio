@@ -1,9 +1,9 @@
-
 /**
- * Deterministic Canvas 2D Intro Engine
- * Exact 3.0-second timeline faithful to reference clip:
- * 128 BPM grid (beats: 0, 0.469, 0.938, 1.406, 1.875, 2.344, 2.813)
- * Full seek(t) architecture where every element is computed purely from elapsed time t.
+ * 7P STUDIO — Deterministic Canvas 2D Intro Engine
+ * Exact 3.2-second timeline faithful to the website brand identity:
+ * Palette: Obsidian Background #121110, Warm Amber #E8A33D, Cream Text #ECE7DD, Sand #A39B8E
+ * Completely free of blue/cyan/purple.
+ * Pure deterministic seek(t) architecture with zero lag and instant skip.
  */
 
 export class DeterministicIntro {
@@ -11,34 +11,26 @@ export class DeterministicIntro {
     this.canvas = canvasElement;
     this.ctx = canvasElement.getContext('2d');
     this.onComplete = options.onComplete || (() => {});
-    this.getLang = options.getLang || (() => 'en');
+    this.getLang = options.getLang || (() => 'ar');
 
     this.rafId = null;
     this.startTime = null;
-    this.totalDuration = 3.8; // Extended hold on OMAR headline before smooth handoff wipe
+    this.totalDuration = 3.2; // 3.2 seconds snappy deterministic timeline
     this.isRunning = false;
-
-    // Track triggered beats so audio only fires once per beat
-    this.triggeredBeats = {
-      beat3: false, // 1.406s
-      beat4: false, // 1.875s
-      beat5: false, // 2.344s
-      beat6: false  // 2.813s
-    };
 
     // Virtual stage size
     this.stageWidth = 1920;
     this.stageHeight = 1080;
 
-    // Trajectory coordinates
-    // Impact 1: (620, 702), Impact 2: (960, 702), Impact 3: (1280, 702)
+    // Ground & trajectory coordinates
     this.groundY = 702; // 65% of 1080
     this.p1 = { x: 620, y: 702 };
     this.p2 = { x: 960, y: 702 };
     this.p3 = { x: 1280, y: 702 };
 
     this.initCanvasSize();
-    window.addEventListener('resize', () => this.initCanvasSize());
+    this.handleResize = () => this.initCanvasSize();
+    window.addEventListener('resize', this.handleResize);
   }
 
   initCanvasSize() {
@@ -57,9 +49,15 @@ export class DeterministicIntro {
   start() {
     if (this.rafId) cancelAnimationFrame(this.rafId);
     this.initCanvasSize();
+
+    // Honor prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.skip();
+      return;
+    }
+
     this.isRunning = true;
     this.startTime = performance.now();
-    this.triggeredBeats = { beat3: false, beat4: false, beat5: false, beat6: false };
 
     const loop = (now) => {
       if (!this.isRunning) return;
@@ -87,9 +85,15 @@ export class DeterministicIntro {
     this.onComplete();
   }
 
+  destroy() {
+    this.isRunning = false;
+    if (this.rafId) cancelAnimationFrame(this.rafId);
+    window.removeEventListener('resize', this.handleResize);
+  }
+
   /**
    * Deterministic Evaluation Function seek(t)
-   * Computes every element purely from t in seconds [0.0, 3.0]
+   * Computes every element purely from t in seconds [0.0, 3.2]
    */
   seek(t) {
     const ctx = this.ctx;
@@ -105,86 +109,79 @@ export class DeterministicIntro {
     const isPortrait = vh > vw;
     let scale = Math.min(vw / this.stageWidth, vh / this.stageHeight);
     if (isPortrait) {
-      scale = vw / this.stageWidth * 1.35;
+      scale = (vw / this.stageWidth) * 1.35;
     }
 
     const offsetX = (vw - this.stageWidth * scale) / 2;
     const offsetY = (vh - this.stageHeight * scale) / 2;
 
     // -------------------------------------------------------------
-    // PHASE 6: SKY BLUE / LABANY FLOOD & HANDOFF (2.813s to totalDuration)
+    // PHASE 6: WARM AMBER FLOOD & HERO HANDOFF (2.65s to totalDuration)
     // -------------------------------------------------------------
-    if (t >= 2.813) {
-      ctx.fillStyle = '#0EA5E9'; // Vivid Sky Blue / Labany Flood
+    if (t >= 2.65) {
+      ctx.fillStyle = '#E8A33D'; // Warm Amber Flood
       ctx.fillRect(0, 0, vw, vh);
 
       ctx.save();
       ctx.translate(offsetX, offsetY);
       ctx.scale(scale, scale);
 
-      const floodElapsed = t - 2.813;
+      const floodElapsed = t - 2.65;
       const leftVirtualX = -offsetX / scale;
       const virtualWidth = vw / scale;
       const targetX = isPortrait ? (leftVirtualX + 120) : 140;
       const maxLineWidth = isPortrait ? Math.min(1250, virtualWidth - 240) : 1250;
 
-      // Deep Navy accent bar slides in from left in 0.22s
-      const barProgress = Math.min(floodElapsed / 0.22, 1);
+      // Dark accent bar slides in from left
+      const barProgress = Math.min(floodElapsed / 0.18, 1);
       const barEase = 1 - Math.pow(1 - barProgress, 3);
-      const barX = (targetX - 340) + barEase * 340; // settles at targetX
-      ctx.fillStyle = '#0F172A';
-      ctx.fillRect(barX, 420, 160, 12);
+      const barX = (targetX - 300) + barEase * 300;
+      ctx.fillStyle = '#121110';
+      ctx.fillRect(barX, 420, 160, 10);
 
-      // Hero index HUD label above headline
-      ctx.font = '700 13px "Space Mono", monospace';
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.75)';
+      // Studio label
+      ctx.font = '700 14px "Space Mono", monospace';
+      ctx.fillStyle = 'rgba(18, 17, 16, 0.78)';
       ctx.textAlign = 'left';
-      ctx.fillText('01 — PORTFOLIO 2026', targetX, 480);
+      ctx.fillText('7P STUDIO — OMAR & GAD', targetX, 480);
 
-      // Giant black/navy headline word slams in with horizontal motion blur in 0.26s
-      const slamProgress = Math.min(floodElapsed / 0.26, 1);
+      // Headline
+      const slamProgress = Math.min(floodElapsed / 0.22, 1);
       const slamEase = 1 - Math.pow(1 - slamProgress, 3);
-      const headlineX = (targetX - 440) + slamEase * 440; // settles at targetX
-      const headlineText = 'OMAR & GAD';
+      const headlineX = (targetX - 350) + slamEase * 350;
+      const headlineText = '7P STUDIO';
 
-      // Responsive font size so it fits comfortably on any screen width
-      const fontSize = isPortrait ? Math.min(96, Math.floor((virtualWidth - 240) / 6.5)) : 96;
+      const fontSize = isPortrait ? Math.min(96, Math.floor((virtualWidth - 240) / 6.5)) : 100;
       ctx.font = `900 ${fontSize}px "Plus Jakarta Sans", system-ui, sans-serif`;
-      ctx.fillStyle = '#0F172A';
+      ctx.fillStyle = '#121110';
       ctx.letterSpacing = '-0.03em';
 
-      // Horizontal blur sub-frames only during rapid sliding
       if (slamProgress < 0.65) {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-        ctx.fillText(headlineText, headlineX - 25, 620);
-        ctx.fillText(headlineText, headlineX - 12, 620);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+        ctx.fillText(headlineText, headlineX - 18, 620);
       }
 
-      ctx.fillStyle = '#0F172A';
+      ctx.fillStyle = '#121110';
       ctx.fillText(headlineText, headlineX, 620);
 
-      // Thin navy underline grows in 0.3s
-      const lineProgress = Math.min(floodElapsed / 0.3, 1);
+      // Underline
+      const lineProgress = Math.min(floodElapsed / 0.25, 1);
       const lineEase = 1 - Math.pow(1 - lineProgress, 3);
-      ctx.fillStyle = '#0F172A';
+      ctx.fillStyle = '#121110';
       ctx.fillRect(targetX, 650, lineEase * maxLineWidth, 4);
 
-      ctx.restore(); // restores virtual stage
-      ctx.restore(); // restores DPR scale
+      ctx.restore();
+      ctx.restore();
       return;
     }
 
     // -------------------------------------------------------------
-    // BACKGROUND (0.00s to 2.813s) — Soft Light Ice Blue / Slate
+    // BACKGROUND (0.00s to 2.65s) — Deep Obsidian #121110
     // -------------------------------------------------------------
-    const bgT = Math.min(t / 0.1, 1);
-    const bgR = Math.round(255 - 15 * bgT); // 255 -> 240
-    const bgG = Math.round(255 - 9 * bgT);  // 255 -> 246
-    const bgB = Math.round(255);            // 255 -> 255 (#F0F6FF)
-    ctx.fillStyle = `rgb(${bgR}, ${bgG}, ${bgB})`;
+    ctx.fillStyle = '#121110';
     ctx.fillRect(0, 0, vw, vh);
 
-    // Subtle grain dots (Sky blue tint)
+    // Subtle warm amber grain dots
     this.renderGrain(ctx, vw, vh);
 
     // Transform into virtual 1920x1080 stage
@@ -200,57 +197,52 @@ export class DeterministicIntro {
       let titleScale = 1;
       let titleScaleY = 1;
 
-      // 0.00 to 0.12s: fade in & slight scale (0.98 to 1, expo-out)
       if (t < 0.12) {
         const p = t / 0.12;
         titleOpacity = 1 - Math.pow(1 - p, 3);
         titleScale = 0.98 + (1 - Math.pow(1 - p, 3)) * 0.02;
-      } else if (t > 0.75 && t < 0.85) {
-        // Dims slightly around 0.75s
-        titleOpacity = 1 - (t - 0.75) * 1.5;
+      } else if (t > 0.72 && t < 0.85) {
+        titleOpacity = 1 - (t - 0.72) * 2;
       } else if (t >= 0.85) {
-        // 0.85 to 0.95s: collapse vertically into hairline
         const collapse = (t - 0.85) / 0.1;
         titleScaleY = Math.max(0, 1 - Math.pow(collapse, 3));
-        titleOpacity = Math.max(0, 1 - collapse * 0.7);
+        titleOpacity = Math.max(0, 1 - collapse * 0.8);
       }
 
       ctx.save();
       ctx.translate(960, 500);
       ctx.scale(titleScale, titleScale * titleScaleY);
 
-      ctx.font = '900 82px "Plus Jakarta Sans", system-ui, sans-serif';
-      ctx.fillStyle = `rgba(15, 23, 42, ${titleOpacity})`;
+      ctx.font = '900 86px "Plus Jakarta Sans", system-ui, sans-serif';
+      ctx.fillStyle = `rgba(236, 231, 221, ${titleOpacity})`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.letterSpacing = '-0.02em';
-      ctx.fillText('OMAR & GAD', 0, -10);
+      ctx.fillText('7P STUDIO', 0, -15);
 
-      // Subtitle "PARTNERS — 7P STUDIO"
+      // Subtitle
       if (titleScaleY > 0.2) {
         ctx.font = '700 22px "Space Mono", monospace';
-        ctx.fillStyle = `rgba(14, 165, 233, ${titleOpacity * 0.9})`;
-        ctx.letterSpacing = '0.18em';
-        ctx.fillText('PARTNERS — 7P STUDIO', 0, 50);
+        ctx.fillStyle = `rgba(232, 163, 61, ${titleOpacity * 0.95})`;
+        ctx.letterSpacing = '0.22em';
+        ctx.fillText('OMAR & GAD — PARTNERS', 0, 50);
 
-        // Label "01 / 02" under title
         ctx.font = '700 12px "Space Mono", monospace';
-        ctx.fillStyle = `rgba(14, 165, 233, ${titleOpacity * 0.85})`;
+        ctx.fillStyle = `rgba(163, 155, 142, ${titleOpacity * 0.85})`;
         ctx.letterSpacing = '0.12em';
-        ctx.fillText('01 / 02', 0, 95);
+        ctx.fillText('MODERN BUSINESS WEBSITES', 0, 95);
       }
 
       ctx.restore();
     }
 
     // -------------------------------------------------------------
-    // PHASE 2 & 3: GROUND LINE & TICKS (0.85s to 2.813s)
+    // PHASE 2 & 3: GROUND LINE & TICKS (0.85s to 2.65s)
     // -------------------------------------------------------------
-    if (t >= 0.85 && t < 2.813) {
+    if (t >= 0.85 && t < 2.65) {
       let lineWidth = 1200;
       if (t < 1.0) {
         const p = (t - 0.85) / 0.15;
-        // Expo out growth from 40px to 1200px
         const ease = 1 - Math.pow(1 - p, 4);
         lineWidth = 40 + ease * 1160;
       }
@@ -259,12 +251,11 @@ export class DeterministicIntro {
       const startX = 960 - halfW;
       const endX = 960 + halfW;
 
-      // Calculate ground dent spring deflection
       const groundDent = this.calculateGroundDent(t);
 
-      // Draw ground line with spring dent
+      // Draw ground line with spring dent (Warm Amber)
       ctx.beginPath();
-      ctx.strokeStyle = '#0284C7';
+      ctx.strokeStyle = '#E8A33D';
       ctx.lineWidth = 2.5;
       ctx.setLineDash([]);
 
@@ -279,10 +270,10 @@ export class DeterministicIntro {
       }
       ctx.stroke();
 
-      // Ground ticks underneath (every 40px, taller every 200px)
+      // Ground ticks underneath
       if (t >= 0.95) {
         const tickAlpha = Math.min((t - 0.95) / 0.1, 1);
-        ctx.strokeStyle = `rgba(15, 23, 42, ${tickAlpha * 0.35})`;
+        ctx.strokeStyle = `rgba(163, 155, 142, ${tickAlpha * 0.4})`;
         ctx.lineWidth = 1;
 
         for (let x = 360; x <= 1560; x += 40) {
@@ -298,34 +289,34 @@ export class DeterministicIntro {
         }
       }
 
-      // Dotted trajectory guides (drawn in sky blue)
+      // Dotted trajectory guides (Warm Amber)
       if (t >= 1.0) {
-        const guideAlpha = Math.min((t - 1.0) / 0.2, 1) * 0.55;
+        const guideAlpha = Math.min((t - 1.0) / 0.2, 1) * 0.6;
         this.renderTrajectoryGuides(ctx, guideAlpha);
       }
 
-      // Landing markers (diamonds at impact points)
+      // Landing markers (Warm Amber diamonds)
       this.renderDiamondMarkers(ctx, t);
 
-      // Annotation callout labels & leader lines
+      // Annotation callout labels
       this.renderCallouts(ctx, t);
     }
 
     // -------------------------------------------------------------
-    // PHASE 4: THE BOUNCING SKY BLUE / LABANY BALL & GHOST TRAILS
+    // PHASE 4: THE BOUNCING WARM AMBER BALL & GHOST TRAILS
     // -------------------------------------------------------------
-    if (t >= 1.05 && t < 2.813) {
+    if (t >= 1.05 && t < 2.65) {
       this.renderBall(ctx, t);
     }
 
     // -------------------------------------------------------------
-    // PHASE 5: PERSISTENT HUD (1.00s to 2.60s)
+    // PHASE 5: PERSISTENT HUD (1.00s to 2.50s)
     // -------------------------------------------------------------
-    if (t >= 0.95 && t < 2.65) {
+    if (t >= 0.95 && t < 2.55) {
       const hudAlpha = t < 1.15
         ? (t - 0.95) / 0.2
-        : t > 2.5
-          ? 1 - (t - 2.5) / 0.15
+        : t > 2.4
+          ? 1 - (t - 2.4) / 0.15
           : 1;
       this.renderHUD(ctx, t, hudAlpha);
     }
@@ -335,63 +326,52 @@ export class DeterministicIntro {
   }
 
   calculateGroundDent(t) {
-    // Check impacts at 1.406s, 1.875s, 2.344s
     return (x) => {
       let totalDent = 0;
-
-      // Impact 1: x = 620, start = 1.406
-      if (t >= 1.406 && t < 1.7) {
-        const dt = t - 1.406;
+      if (t >= 1.35 && t < 1.65) {
+        const dt = t - 1.35;
         const decay = Math.exp(-14 * dt);
         const osc = Math.cos(32 * dt);
         const dist = Math.abs(x - 620);
         const spread = Math.max(0, 1 - dist / 90);
         totalDent += 18 * decay * osc * spread;
       }
-
-      // Impact 2: x = 960, start = 1.875
-      if (t >= 1.875 && t < 2.15) {
-        const dt = t - 1.875;
+      if (t >= 1.75 && t < 2.05) {
+        const dt = t - 1.75;
         const decay = Math.exp(-14 * dt);
         const osc = Math.cos(32 * dt);
         const dist = Math.abs(x - 960);
         const spread = Math.max(0, 1 - dist / 90);
         totalDent += 16 * decay * osc * spread;
       }
-
-      // Impact 3: x = 1280, start = 2.344 (deepest impact)
-      if (t >= 2.344 && t < 2.65) {
-        const dt = t - 2.344;
+      if (t >= 2.15 && t < 2.50) {
+        const dt = t - 2.15;
         const decay = Math.exp(-12 * dt);
         const osc = Math.cos(28 * dt);
         const dist = Math.abs(x - 1280);
         const spread = Math.max(0, 1 - dist / 110);
         totalDent += 26 * decay * osc * spread;
       }
-
       return totalDent;
     };
   }
 
   renderTrajectoryGuides(ctx, alpha) {
     ctx.save();
-    ctx.strokeStyle = `rgba(14, 165, 233, ${alpha})`;
+    ctx.strokeStyle = `rgba(232, 163, 61, ${alpha})`;
     ctx.lineWidth = 1.5;
     ctx.setLineDash([4, 6]);
 
-    // Incoming steep line: (480, -30) to (620, 702)
     ctx.beginPath();
     ctx.moveTo(480, -30);
     ctx.lineTo(620, 702);
     ctx.stroke();
 
-    // Parabolic arc 1: (620, 702) to (960, 702), peak at (790, 480)
     ctx.beginPath();
     ctx.moveTo(620, 702);
     ctx.quadraticCurveTo(790, 258, 960, 702);
     ctx.stroke();
 
-    // Parabolic arc 2: (960, 702) to (1280, 702), peak at (1120, 560)
     ctx.beginPath();
     ctx.moveTo(960, 702);
     ctx.quadraticCurveTo(1120, 418, 1280, 702);
@@ -403,129 +383,100 @@ export class DeterministicIntro {
   getBallStateAt(t) {
     let x = 620;
     let y = 702;
-    let radiusX = 50;
-    let radiusY = 50;
+    let radiusX = 48;
+    let radiusY = 48;
     let angle = 0;
-    let vx = 0;
-    let vy = 0;
     let scale = 1;
 
-    // Segment 0: Falling in from top left (1.05s to 1.406s)
-    if (t < 1.406) {
-      const p = (t - 1.05) / (1.406 - 1.05); // 0 to 1
-      const ease = p * p; // accelerating drop
+    if (t < 1.35) {
+      const p = (t - 1.05) / (1.35 - 1.05);
+      const ease = p * p;
       x = 480 + (620 - 480) * p;
       y = -50 + (702 - (-50)) * ease;
-
-      vx = 140;
-      vy = 752 * 2 * p;
-
-      // Vertical stretch
-      radiusX = 45;
-      radiusY = 75;
-      angle = Math.atan2(vy, vx) - Math.PI / 2;
-    }
-    // Impact 1 Squash (1.406s to 1.45s)
-    else if (t >= 1.406 && t < 1.45) {
+      radiusX = 44;
+      radiusY = 70;
+      angle = Math.atan2(752 * 2 * p, 140) - Math.PI / 2;
+    } else if (t >= 1.35 && t < 1.40) {
       x = 620;
-      const dt = (t - 1.406) / 0.044;
-      radiusX = 65 - Math.sin(dt * Math.PI) * 5;
-      radiusY = 30 + Math.sin(dt * Math.PI) * 10;
+      const dt = (t - 1.35) / 0.05;
+      radiusX = 64 - Math.sin(dt * Math.PI) * 5;
+      radiusY = 28 + Math.sin(dt * Math.PI) * 10;
       y = 702 - radiusY + 5;
       angle = 0;
-    }
-    // Arc 1 (1.45s to 1.875s)
-    else if (t < 1.875) {
-      const p = (t - 1.45) / (1.875 - 1.45); // 0 to 1
+    } else if (t < 1.75) {
+      const p = (t - 1.40) / (1.75 - 1.40);
       x = 620 + (960 - 620) * p;
-      // Parabolic Y: peak at p = 0.5
       const height = 222;
       y = 702 - 4 * height * p * (1 - p);
-
-      vx = 340;
-      vy = -4 * height * (1 - 2 * p);
-
+      const vx = 340;
+      const vy = -4 * height * (1 - 2 * p);
       const speed = Math.hypot(vx, vy);
       const stretch = (speed / 340) * 0.35;
-      radiusX = 50 / (1 + stretch);
-      radiusY = 50 * (1 + stretch);
+      radiusX = 48 / (1 + stretch);
+      radiusY = 48 * (1 + stretch);
       angle = Math.atan2(vy, vx) - Math.PI / 2;
-    }
-    // Impact 2 Squash (1.875s to 1.92s)
-    else if (t < 1.92) {
+    } else if (t < 1.80) {
       x = 960;
-      const dt = (t - 1.875) / 0.045;
       radiusX = 62;
-      radiusY = 32;
+      radiusY = 30;
       y = 702 - radiusY + 4;
       angle = 0;
-    }
-    // Arc 2 (1.92s to 2.344s)
-    else if (t < 2.344) {
-      const p = (t - 1.92) / (2.344 - 1.92);
+    } else if (t < 2.15) {
+      const p = (t - 1.80) / (2.15 - 1.80);
       x = 960 + (1280 - 960) * p;
       const height = 142;
       y = 702 - 4 * height * p * (1 - p);
-
-      vx = 320;
-      vy = -4 * height * (1 - 2 * p);
-
+      const vx = 320;
+      const vy = -4 * height * (1 - 2 * p);
       const speed = Math.hypot(vx, vy);
       const stretch = (speed / 320) * 0.3;
-      radiusX = 50 / (1 + stretch);
-      radiusY = 50 * (1 + stretch);
+      radiusX = 48 / (1 + stretch);
+      radiusY = 48 * (1 + stretch);
       angle = Math.atan2(vy, vx) - Math.PI / 2;
-    }
-    // Impact 3 Deep Squash (2.344s to 2.40s)
-    else if (t < 2.40) {
+    } else if (t < 2.22) {
       x = 1280;
-      radiusX = 70;
-      radiusY = 20;
+      radiusX = 68;
+      radiusY = 22;
       y = 702 - radiusY + 2;
       angle = 0;
-    }
-    // Anticipation Tilt (2.40s to 2.50s)
-    else if (t < 2.50) {
-      const p = (t - 2.40) / 0.1;
+    } else if (t < 2.35) {
+      const p = (t - 2.22) / 0.13;
       x = 1280;
       y = 702 - 45;
-      radiusX = 52;
+      radiusX = 50;
       radiusY = 48;
-      // Lean backward 25 degrees
-      angle = -0.44 * Math.sin(p * Math.PI);
-    }
-    // Scale Up to Cover Screen (2.50s to 2.813s)
-    else {
-      const p = (t - 2.50) / (2.813 - 2.50);
-      const expoScale = Math.pow(p, 4.2);
+      angle = -0.4 * Math.sin(p * Math.PI);
+    } else {
+      const p = (t - 2.35) / (2.65 - 2.35);
+      const expoScale = Math.pow(p, 4);
       x = 1280 - p * 320;
       y = (702 - 45) - p * 200;
-      scale = 1 + expoScale * 40;
-      radiusX = 50;
-      radiusY = 50;
+      scale = 1 + expoScale * 42;
+      radiusX = 48;
+      radiusY = 48;
       angle = 0;
     }
 
-    return { x, y, radiusX, radiusY, angle, vx, vy, scale };
+    return { x, y, radiusX, radiusY, angle, scale };
   }
 
   renderBall(ctx, t) {
     const ball = this.getBallStateAt(t);
 
-    // Render onion-skin ghost trails (5 ghost frames behind)
-    if (t > 1.1 && t < 2.48) {
-      for (let i = 5; i >= 1; i--) {
+    // Ghost trails
+    if (t > 1.1 && t < 2.35) {
+      for (let i = 4; i >= 1; i--) {
         const pastT = t - i * 0.024;
         if (pastT >= 1.05) {
           const past = this.getBallStateAt(pastT);
-          const ghostAlpha = (0.35 * (1 - i / 6));
+          const ghostAlpha = 0.3 * (1 - i / 5);
 
           ctx.save();
           ctx.translate(past.x, past.y);
           ctx.rotate(past.angle);
           ctx.beginPath();
           ctx.ellipse(0, 0, past.radiusX, past.radiusY, 0, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(14, 165, 233, ${ghostAlpha})`;
+          ctx.strokeStyle = `rgba(232, 163, 61, ${ghostAlpha})`;
           ctx.lineWidth = 1.5;
           ctx.stroke();
           ctx.restore();
@@ -533,10 +484,9 @@ export class DeterministicIntro {
       }
     }
 
-    // Render Ripple Rings at impacts
     this.renderRipples(ctx, t);
 
-    // Render the Main Sky Blue / Labany Ball
+    // Main Amber Ball with subtle radial glow
     ctx.save();
     ctx.translate(ball.x, ball.y);
     ctx.rotate(ball.angle);
@@ -544,7 +494,9 @@ export class DeterministicIntro {
 
     ctx.beginPath();
     ctx.ellipse(0, 0, ball.radiusX, ball.radiusY, 0, 0, Math.PI * 2);
-    ctx.fillStyle = '#0EA5E9';
+    ctx.fillStyle = '#E8A33D';
+    ctx.shadowColor = 'rgba(232, 163, 61, 0.45)';
+    ctx.shadowBlur = 18;
     ctx.fill();
 
     ctx.restore();
@@ -552,9 +504,9 @@ export class DeterministicIntro {
 
   renderRipples(ctx, t) {
     const impacts = [
-      { t0: 1.406, x: 620 },
-      { t0: 1.875, x: 960 },
-      { t0: 2.344, x: 1280 }
+      { t0: 1.35, x: 620 },
+      { t0: 1.75, x: 960 },
+      { t0: 2.15, x: 1280 }
     ];
 
     impacts.forEach((imp) => {
@@ -566,7 +518,7 @@ export class DeterministicIntro {
         ctx.save();
         ctx.beginPath();
         ctx.ellipse(imp.x, this.groundY, radius, radius * 0.35, 0, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(14, 165, 233, ${alpha})`;
+        ctx.strokeStyle = `rgba(232, 163, 61, ${alpha})`;
         ctx.lineWidth = 1.5;
         ctx.stroke();
         ctx.restore();
@@ -576,15 +528,15 @@ export class DeterministicIntro {
 
   renderDiamondMarkers(ctx, t) {
     const markers = [
-      { t0: 1.406, x: 620 },
-      { t0: 1.875, x: 960 },
-      { t0: 2.344, x: 1280 }
+      { t0: 1.35, x: 620 },
+      { t0: 1.75, x: 960 },
+      { t0: 2.15, x: 1280 }
     ];
 
     markers.forEach((m) => {
       if (t >= m.t0) {
         ctx.save();
-        ctx.fillStyle = '#0284C7';
+        ctx.fillStyle = '#E8A33D';
         ctx.beginPath();
         const size = 5;
         ctx.moveTo(m.x, this.groundY - size);
@@ -603,13 +555,10 @@ export class DeterministicIntro {
     ctx.font = '700 11px "Space Mono", monospace';
     ctx.letterSpacing = '0.08em';
 
-    // Callout 1: 1.406s to 1.85s "SQUASH & STRETCH"
-    if (t >= 1.406 && t < 1.85) {
-      const dt = t - 1.406;
-      const alpha = Math.min(dt / 0.1, 1) * (t > 1.75 ? (1.85 - t) / 0.1 : 1);
-      const text = this.getScrambledText('SQUASH & STRETCH', dt);
-
-      ctx.strokeStyle = `rgba(14, 165, 233, ${alpha * 0.8})`;
+    if (t >= 1.35 && t < 1.75) {
+      const dt = t - 1.35;
+      const alpha = Math.min(dt / 0.1, 1) * (t > 1.65 ? (1.75 - t) / 0.1 : 1);
+      ctx.strokeStyle = `rgba(232, 163, 61, ${alpha * 0.85})`;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(620, 702 - 10);
@@ -617,17 +566,14 @@ export class DeterministicIntro {
       ctx.lineTo(620 + 130, 702 - 55);
       ctx.stroke();
 
-      ctx.fillStyle = `rgba(15, 23, 42, ${alpha})`;
-      ctx.fillText(text, 620 + 40, 702 - 62);
+      ctx.fillStyle = `rgba(236, 231, 221, ${alpha})`;
+      ctx.fillText('HIGH IMPACT', 620 + 40, 702 - 62);
     }
 
-    // Callout 2: 1.875s to 2.30s "ARCS + TIMING"
-    if (t >= 1.875 && t < 2.30) {
-      const dt = t - 1.875;
-      const alpha = Math.min(dt / 0.1, 1) * (t > 2.2 ? (2.30 - t) / 0.1 : 1);
-      const text = this.getScrambledText('ARCS + TIMING', dt);
-
-      ctx.strokeStyle = `rgba(14, 165, 233, ${alpha * 0.8})`;
+    if (t >= 1.75 && t < 2.15) {
+      const dt = t - 1.75;
+      const alpha = Math.min(dt / 0.1, 1) * (t > 2.05 ? (2.15 - t) / 0.1 : 1);
+      ctx.strokeStyle = `rgba(232, 163, 61, ${alpha * 0.85})`;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(960, 702 - 10);
@@ -635,17 +581,14 @@ export class DeterministicIntro {
       ctx.lineTo(960 + 120, 702 - 55);
       ctx.stroke();
 
-      ctx.fillStyle = `rgba(15, 23, 42, ${alpha})`;
-      ctx.fillText(text, 960 + 40, 702 - 62);
+      ctx.fillStyle = `rgba(236, 231, 221, ${alpha})`;
+      ctx.fillText('SMOOTH MOTION', 960 + 40, 702 - 62);
     }
 
-    // Callout 3: 2.344s to 2.50s "ARRIVAL"
-    if (t >= 2.344 && t < 2.52) {
-      const dt = t - 2.344;
+    if (t >= 2.15 && t < 2.45) {
+      const dt = t - 2.15;
       const alpha = Math.min(dt / 0.08, 1);
-      const text = this.getScrambledText('ARRIVAL', dt);
-
-      ctx.strokeStyle = `rgba(14, 165, 233, ${alpha * 0.8})`;
+      ctx.strokeStyle = `rgba(232, 163, 61, ${alpha * 0.85})`;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(1280, 702 - 10);
@@ -653,27 +596,16 @@ export class DeterministicIntro {
       ctx.lineTo(1280 + 95, 702 - 55);
       ctx.stroke();
 
-      ctx.fillStyle = `rgba(15, 23, 42, ${alpha})`;
-      ctx.fillText(text, 1280 + 40, 702 - 62);
+      ctx.fillStyle = `rgba(236, 231, 221, ${alpha})`;
+      ctx.fillText('7P DELIVERY', 1280 + 40, 702 - 62);
     }
 
     ctx.restore();
   }
 
-  getScrambledText(target, elapsed) {
-    if (elapsed > 0.22) return target;
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#%*+';
-    const resolvedCount = Math.floor((elapsed / 0.22) * target.length);
-    let result = target.slice(0, resolvedCount);
-    for (let i = resolvedCount; i < target.length; i++) {
-      result += chars[Math.floor(Math.random() * chars.length)];
-    }
-    return result;
-  }
-
   renderHUD(ctx, t, alpha) {
     ctx.save();
-    ctx.strokeStyle = `rgba(14, 165, 233, ${alpha * 0.75})`;
+    ctx.strokeStyle = `rgba(232, 163, 61, ${alpha * 0.75})`;
     ctx.lineWidth = 1.5;
     ctx.setLineDash([]);
 
@@ -698,28 +630,24 @@ export class DeterministicIntro {
     const hudBottom = isPortrait ? (bottomVirtualY - 50) : (1080 - pad);
 
     // Corner brackets
-    // Top-Left
     ctx.beginPath();
     ctx.moveTo(hudLeft, hudTop + len);
     ctx.lineTo(hudLeft, hudTop);
     ctx.lineTo(hudLeft + len, hudTop);
     ctx.stroke();
 
-    // Top-Right
     ctx.beginPath();
     ctx.moveTo(hudRight - len, hudTop);
     ctx.lineTo(hudRight, hudTop);
     ctx.lineTo(hudRight, hudTop + len);
     ctx.stroke();
 
-    // Bottom-Left
     ctx.beginPath();
     ctx.moveTo(hudLeft, hudBottom - len);
     ctx.lineTo(hudLeft, hudBottom);
     ctx.lineTo(hudLeft + len, hudBottom);
     ctx.stroke();
 
-    // Bottom-Right
     ctx.beginPath();
     ctx.moveTo(hudRight - len, hudBottom);
     ctx.lineTo(hudRight, hudBottom);
@@ -730,17 +658,17 @@ export class DeterministicIntro {
     ctx.font = '700 11px "Space Mono", monospace';
     ctx.letterSpacing = '0.08em';
 
-    // Top-Left: "OMAR & GAD   PORTFOLIO 2026"
-    ctx.fillStyle = `rgba(15, 23, 42, ${alpha * 0.85})`;
+    // Top-Left
+    ctx.fillStyle = `rgba(236, 231, 221, ${alpha * 0.85})`;
     ctx.textAlign = 'left';
-    ctx.fillText('OMAR & GAD   PORTFOLIO 2026', hudLeft + 15, hudTop + 18);
+    ctx.fillText('7P STUDIO   WEB ARCHITECTURE', hudLeft + 15, hudTop + 18);
 
-    // Top-Right: "128 BPM   60 FPS"
-    ctx.fillStyle = `rgba(14, 165, 233, ${alpha * 0.75})`;
+    // Top-Right
+    ctx.fillStyle = `rgba(232, 163, 61, ${alpha * 0.85})`;
     ctx.textAlign = 'right';
     ctx.fillText('128 BPM   60 FPS', hudRight - 15, hudTop + 18);
 
-    // Bottom-Left: Running timecode "00:00:00:FF"
+    // Bottom-Left
     const frames = Math.floor((t * 60) % 60);
     const secs = Math.floor(t % 60);
     const frameStr = String(frames).padStart(2, '0');
@@ -748,47 +676,45 @@ export class DeterministicIntro {
     const timecode = `00:00:${secStr}:${frameStr}`;
 
     ctx.textAlign = 'left';
-    ctx.fillStyle = `rgba(15, 23, 42, ${alpha * 0.9})`;
+    ctx.fillStyle = `rgba(163, 155, 142, ${alpha * 0.9})`;
     ctx.fillText(timecode, hudLeft + 15, hudBottom - 12);
 
-    // 4 step squares (first one filled sky blue)
+    // Progress dots
     const sqX = hudLeft + 140;
     const sqY = hudBottom - 20;
     for (let i = 0; i < 4; i++) {
       if (i === 0) {
-        ctx.fillStyle = '#0EA5E9';
+        ctx.fillStyle = '#E8A33D';
         ctx.fillRect(sqX + i * 14, sqY, 8, 8);
       } else {
-        ctx.strokeStyle = `rgba(14, 165, 233, ${alpha * 0.4})`;
+        ctx.strokeStyle = `rgba(232, 163, 61, ${alpha * 0.4})`;
         ctx.strokeRect(sqX + i * 14, sqY, 8, 8);
       }
     }
 
-    // Hairline progress bar
     const barW = isPortrait ? 50 : 80;
-    const pW = (t / 3.0) * barW;
-    ctx.fillStyle = `rgba(14, 165, 233, ${alpha * 0.2})`;
+    const pW = (t / 3.2) * barW;
+    ctx.fillStyle = `rgba(232, 163, 61, ${alpha * 0.25})`;
     ctx.fillRect(sqX + 68, sqY + 3, barW, 2);
-    ctx.fillStyle = '#0EA5E9';
+    ctx.fillStyle = '#E8A33D';
     ctx.fillRect(sqX + 68, sqY + 3, pW, 2);
 
     // Bottom-Right: dynamic step label
-    let sectionName = '01 — SQUASH & STRETCH';
-    if (t >= 1.875 && t < 2.344) sectionName = '02 — ARCS + TIMING';
-    else if (t >= 2.344) sectionName = '03 — ARRIVAL';
+    let sectionName = '01 — IDEA & SCOPE';
+    if (t >= 1.75 && t < 2.15) sectionName = '02 — DESIGN & CODE';
+    else if (t >= 2.15) sectionName = '03 — FAST DELIVERY';
 
     ctx.textAlign = 'right';
-    ctx.fillStyle = `rgba(15, 23, 42, ${alpha * 0.85})`;
+    ctx.fillStyle = `rgba(232, 163, 61, ${alpha * 0.85})`;
     ctx.fillText(sectionName, hudRight - 15, hudBottom - 12);
 
-    ctx.restore(); // restores virtual stage
-    ctx.restore(); // restores DPR scale
+    ctx.restore();
+    ctx.restore();
   }
 
   renderGrain(ctx, w, h) {
-    // Deterministic faint dotted background grain (Sky blue tint)
     ctx.save();
-    ctx.fillStyle = 'rgba(14, 165, 233, 0.08)';
+    ctx.fillStyle = 'rgba(232, 163, 61, 0.04)';
     const step = 48;
     for (let x = 12; x < w; x += step) {
       for (let y = 12; y < h; y += step) {

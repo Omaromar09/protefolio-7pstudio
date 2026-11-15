@@ -792,7 +792,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   8. DETERMINISTIC INTRO STAGE (CANVAS 2D) & BLUE/LABANY HANDOFF
+   8. DETERMINISTIC INTRO STAGE (CANVAS 2D) & WARM AMBER HANDOFF
    -------------------------------------------------------------------------- */
 #intro-screen {
   position: fixed;
@@ -800,7 +800,7 @@
   width: 100%;
   max-width: 100%;
   height: 100vh;
-  background-color: #070913;
+  background-color: #121110;
   z-index: 100000;
   overflow: hidden;
   display: block;
@@ -845,9 +845,9 @@
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #0F172A;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(14, 165, 233, 0.3);
+  color: #ECE7DD;
+  background: rgba(28, 26, 23, 0.88);
+  border: 1px solid rgba(232, 163, 61, 0.35);
   padding: 0.4rem 0.95rem;
   border-radius: var(--radius-full);
   cursor: pointer;
@@ -856,7 +856,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 640px) {
@@ -867,31 +867,31 @@
 }
 
 .intro-hud-btn:hover {
-  color: #2563EB;
-  border-color: #2563EB;
-  background: rgba(14, 165, 233, 0.15);
+  color: #E8A33D;
+  border-color: #E8A33D;
+  background: rgba(232, 163, 61, 0.15);
 }
 
 [data-theme="dark"] .intro-hud-btn {
-  color: #F8FAFC;
-  background: rgba(19, 26, 51, 0.85);
-  border-color: rgba(56, 189, 248, 0.4);
+  color: #ECE7DD;
+  background: rgba(28, 26, 23, 0.88);
+  border-color: rgba(232, 163, 61, 0.35);
 }
 
 [data-theme="dark"] .intro-hud-btn:hover {
-  color: #38BDF8;
-  border-color: #38BDF8;
-  background: rgba(14, 165, 233, 0.25);
+  color: #E8A33D;
+  border-color: #E8A33D;
+  background: rgba(232, 163, 61, 0.2);
 }
 
-/* Sky Blue / Labany Handoff Overlay Shape Wipe */
+/* Warm Amber Handoff Overlay Shape Wipe */
 #orange-handoff-overlay {
   position: fixed;
   inset: 0;
   width: 100%;
   max-width: 100%;
   height: 100vh;
-  background: var(--grad-primary);
+  background: #E8A33D;
   z-index: 99990;
   pointer-events: none;
   opacity: 0;

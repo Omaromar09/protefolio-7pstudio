@@ -1,4 +1,5 @@
 import './style.css';
+import { DeterministicIntro } from './intro/deterministicIntro.js';
 import { initLanguage, getLanguage, setLanguage } from './utils/i18n.js';
 import { initTheme } from './utils/theme.js';
 import { initSmoothScroll } from './motion/scroll.js';
@@ -139,18 +140,61 @@ function setup3DScenes() {
 
 
 // ==========================================================================
-// 4. DETERMINISTIC 3-SECOND INTRO & ORANGE HAND-OFF
+// 4. DETERMINISTIC INTRO & WARM AMBER HAND-OFF
 // ==========================================================================
-async function setupIntroFlow() {
+let introInstance = null;
+
+function setupIntroFlow() {
   const introScreen = document.getElementById('intro-screen');
-  if (introScreen) {
-    introScreen.classList.add('is-hidden');
-    introScreen.style.display = 'none';
-  }
+  const introCanvas = document.getElementById('intro-canvas');
+  const skipBtn = document.getElementById('intro-skip');
   const orangeHandoff = document.getElementById('orange-handoff-overlay');
-  if (orangeHandoff) {
-    orangeHandoff.style.display = 'none';
+
+  if (!introScreen || !introCanvas) {
+    triggerHeroReveal();
+    return;
   }
+
+  introInstance = new DeterministicIntro(introCanvas, {
+    getLang: () => getLanguage(),
+    onComplete: () => {
+      executeOrangeHandoff(introScreen, orangeHandoff);
+    }
+  });
+
+  if (skipBtn) {
+    skipBtn.addEventListener('click', () => {
+      if (introInstance) {
+        introInstance.skip();
+      }
+    });
+  }
+
+  introInstance.start();
+}
+
+function executeOrangeHandoff(introScreen, orangeHandoff) {
+  if (orangeHandoff) {
+    orangeHandoff.classList.add('active');
+    orangeHandoff.style.display = 'block';
+    orangeHandoff.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+    orangeHandoff.style.transform = 'translateY(0%)';
+
+    introScreen.classList.add('is-hidden');
+
+    gsap.to(orangeHandoff, {
+      clipPath: 'polygon(0 0, 100% 0, 100% 0%, 0 0%)',
+      duration: 0.65,
+      ease: 'power3.inOut',
+      onComplete: () => {
+        orangeHandoff.classList.remove('active');
+        orangeHandoff.style.display = 'none';
+      }
+    });
+  } else {
+    introScreen.classList.add('is-hidden');
+  }
+
   triggerHeroReveal();
 }
 
