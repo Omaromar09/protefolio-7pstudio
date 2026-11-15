@@ -5,8 +5,6 @@ import { initSmoothScroll } from './motion/scroll.js';
 import { initCustomCursor } from './motion/cursor.js';
 import { initScrollAnimations } from './motion/animations.js';
 import { initProjectShowcase } from './motion/projectShowcase.js';
-import { initBeforeAfterSlider } from './motion/beforeAfter.js';
-import { initQuickDiagnosis } from './motion/diagnosis.js';
 import { initProjectEstimator } from './motion/estimator.js';
 import { renderTestimonials } from './utils/testimonials.js';
 import { showToast } from './utils/toast.js';
@@ -71,12 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Pinned Projects Showcase
   initProjectShowcase();
-
-  // Initialize Before / After Comparison Slider
-  initBeforeAfterSlider();
-
-  // Initialize Quick Diagnosis Lead-Gen Quiz
-  initQuickDiagnosis();
 
   // Initialize 7P Studio Interactive Project Estimator & WhatsApp Quote Engine
   initProjectEstimator();

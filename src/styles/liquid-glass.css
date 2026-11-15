@@ -133,20 +133,22 @@
   background: radial-gradient(circle, var(--orb-violet-color) 0%, rgba(232, 163, 61, 0.14) 35%, transparent 70%);
 }
 
-.contact-section::before {
+.contact-section::before,
+.combined-estimator-contact::before {
   top: 20%;
   inset-inline-start: 3%;
   width: min(560px, 65vw);
   height: min(560px, 65vw);
-  background: radial-gradient(circle, var(--orb-magenta-color) 0%, rgba(232, 163, 61, 0.16) 40%, transparent 75%);
+  background: radial-gradient(circle, rgba(232, 163, 61, 0.15) 0%, rgba(232, 163, 61, 0.04) 45%, transparent 75%);
 }
 
-.contact-section::after {
+.contact-section::after,
+.combined-estimator-contact::after {
   bottom: 12%;
   inset-inline-end: 5%;
   width: min(520px, 60vw);
   height: min(520px, 60vw);
-  background: radial-gradient(circle, var(--orb-cyan-color) 0%, rgba(37, 211, 102, 0.2) 40%, transparent 75%);
+  background: radial-gradient(circle, rgba(200, 67, 31, 0.12) 0%, rgba(232, 163, 61, 0.03) 45%, transparent 75%);
 }
 
 /* --------------------------------------------------------------------------

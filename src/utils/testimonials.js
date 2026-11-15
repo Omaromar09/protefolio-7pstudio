@@ -2,12 +2,13 @@
  * ==========================================================================
  * CLIENT TESTIMONIALS & REVIEWS (آراء العملاء وتقييمات المشاريع)
  * ==========================================================================
- * تجارب حقيقية لعملاء نفذنا مشاريعهم، وملاحظات موثقة من أصحاب بيزنس ومتابعين
- * بدون أي إيموجي أو عبارات تسويقية مصطنعة.
+ * تنبيه شفافية: كل التقييمات مصنفة كنماذج بانتظار التأكيد النهائي
+ * ولم يتم اعتمادها كتقييمات نهائية حتى تأكيد صاحب الموقع.
+ * بدون أي إيموجي أو أرقام تقييم مجمعة غير مثبتة.
  */
 
 export const CLIENT_REVIEWS = [
-  // 1. Aya Accessories Boutique (Verified Client)
+  // 1. Aya Accessories Boutique (Placeholder Pending Confirmation)
   {
     id: 'aya',
     name_ar: 'آية',
@@ -16,16 +17,16 @@ export const CLIENT_REVIEWS = [
     business_en: 'Aya Accessories Boutique',
     role_ar: 'مؤسسة المتجر',
     role_en: 'Store Founder',
-    quote_ar: 'عمر وجاد نفذوا لي متجر سريع جداً وسهل الاستخدام، تنسيق المنتجات وسلة الطلب على الواتساب وفرت عليا وقت كبير وسهلت متابعة طلبات العملاء.',
-    quote_en: 'Omar & Gad built a very fast and easy-to-use boutique website for my store. Product layout and direct WhatsApp ordering saved us huge time.',
+    quote_ar: '[نموذج بانتظار التأكيد] عمر وجاد نفذوا لي متجر سريع جداً وسهل الاستخدام، تنسيق المنتجات وسلة الطلب على الواتساب وفرت عليا وقت كبير وسهلت متابعة طلبات العملاء.',
+    quote_en: '[Pending Confirmation] Omar & Gad built a very fast and easy-to-use boutique website for my store. Product layout and direct WhatsApp ordering saved us huge time.',
     rating: 5,
     avatar: '/projects/aya-logo.jpg',
     isTikTok: false,
-    source_ar: 'عميل حقيقي متعاقد',
-    source_en: 'Verified Direct Client',
+    source_ar: 'نموذج تجريبي / بانتظار التأكيد',
+    source_en: 'Demo Placeholder / Pending Confirmation',
     link: 'https://aya-accessories.vercel.app/'
   },
-  // 2. Festival Pastry (Verified Client)
+  // 2. Festival Pastry (Placeholder Pending Confirmation)
   {
     id: 'festival',
     name_ar: 'إدارة حلواني فيستيفال',
@@ -34,16 +35,16 @@ export const CLIENT_REVIEWS = [
     business_en: 'Festival Pastry 5-Star',
     role_ar: 'إدارة الفروع',
     role_en: 'Branch Management',
-    quote_ar: 'الموقع تصميمه راقي ومتوافق تماماً مع الموبايل، العملاء بقوا يتصفحوا تشكيلة التورت والأسعار وقائمة الفروع بسهولة وبدون أي بطء.',
-    quote_en: 'The website is crisp, elegant, and perfectly mobile-friendly. Customers now browse our full cake selection, prices, and branches with ease.',
+    quote_ar: '[نموذج بانتظار التأكيد] الموقع تصميمه راقي ومتوافق تماماً مع الموبايل، العملاء بقوا يتصفحوا تشكيلة التورت والأسعار وقائمة الفروع بسهولة وبدون أي بطء.',
+    quote_en: '[Pending Confirmation] The website is crisp, elegant, and perfectly mobile-friendly. Customers now browse our full cake selection, prices, and branches with ease.',
     rating: 5,
     avatar: '/projects/festival-logo.jpg',
     isTikTok: false,
-    source_ar: 'عميل حقيقي متعاقد',
-    source_en: 'Verified Direct Client',
+    source_ar: 'نموذج تجريبي / بانتظار التأكيد',
+    source_en: 'Demo Placeholder / Pending Confirmation',
     link: 'https://festival-fivestar.vercel.app/'
   },
-  // 3. XO PS Lounge (Verified Client)
+  // 3. XO PS Lounge (Placeholder Pending Confirmation)
   {
     id: 'xops',
     name_ar: 'كابتن محمود',
@@ -52,16 +53,16 @@ export const CLIENT_REVIEWS = [
     business_en: 'XO PS Lounge',
     role_ar: 'المدير التنفيذي',
     role_en: 'Operations Lead',
-    quote_ar: 'شغل احترافي ومحترم جداً، صفحة المنيو والأسعار سهلة وسريعة وبتفتح فوري على الموبايل بدون تعقيد، والتعامل كان في منتهى الوضوح والالتزام.',
-    quote_en: 'Highly professional work. The menu and pricing page loads instantly on mobile, and the communication throughout delivery was clear and on-time.',
+    quote_ar: '[نموذج بانتظار التأكيد] شغل احترافي ومحترم جداً، صفحة المنيو والأسعار سهلة وسريعة وبتفتح فوري على الموبايل بدون تعقيد، والتعامل كان في منتهى الوضوح والالتزام.',
+    quote_en: '[Pending Confirmation] Highly professional work. The menu and pricing page loads instantly on mobile, and the communication throughout delivery was clear and on-time.',
     rating: 5,
-    avatar: '/projects/xo-logo.jpg',
+    avatar: null,
     isTikTok: false,
-    source_ar: 'عميل حقيقي متعاقد',
-    source_en: 'Verified Direct Client',
+    source_ar: 'نموذج تجريبي / بانتظار التأكيد',
+    source_en: 'Demo Placeholder / Pending Confirmation',
     link: 'https://xo-ps-lounge.vercel.app/'
   },
-  // 4. Aya Store comment on TikTok Showcase
+  // 4. Aya Store comment on TikTok Showcase (Placeholder Pending Confirmation)
   {
     id: 'tiktok-aya-store',
     name_ar: 'متجر آية',
@@ -70,16 +71,16 @@ export const CLIENT_REVIEWS = [
     business_en: 'Business Community Review',
     role_ar: 'عميلة على تيك توك',
     role_en: 'Client on TikTok',
-    quote_ar: 'شغل محترم جداً، عملت الويب سايت بتاعي وكان في قمة الشياكة والسرعة.',
-    quote_en: 'Respectable work, they built my website with great taste and speed.',
+    quote_ar: '[نموذج بانتظار التأكيد] شغل محترم جداً، عملت الويب سايت بتاعي وكان في قمة الشياكة والسرعة.',
+    quote_en: '[Pending Confirmation] Respectable work, they built my website with great taste and speed.',
     rating: 5,
     avatar: '/projects/aya-logo.jpg',
     isTikTok: true,
-    source_ar: 'فيديو عرض الشغل على تيك توك',
-    source_en: 'TikTok Showcase Video',
+    source_ar: 'تعليق تيك توك / بانتظار التأكيد',
+    source_en: 'TikTok Comment / Pending Confirmation',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 5. Mohamed Ahmed on TikTok Showcase
+  // 5. Mohamed Ahmed on TikTok Showcase (Placeholder Pending Confirmation)
   {
     id: 'tiktok-mohamed-ahmed',
     name_ar: 'محمد أحمد',
@@ -88,16 +89,16 @@ export const CLIENT_REVIEWS = [
     business_en: 'Studio Showcase Reviewer',
     role_ar: 'متابع تقني',
     role_en: 'Tech Follower',
-    quote_ar: 'اللهم بارك، شغل ممتاز جداً يا بشمهندس، ربنا يوفقكم ويزيدكم من فضله.',
-    quote_en: 'Outstanding and clean implementation, wishing you continuous success.',
+    quote_ar: '[نموذج بانتظار التأكيد] اللهم بارك، شغل ممتاز جداً يا بشمهندس، ربنا يوفقكم ويزيدكم من فضله.',
+    quote_en: '[Pending Confirmation] Outstanding and clean implementation, wishing you continuous success.',
     rating: 5,
     avatar: '/testimonials/tiktok-mohamed-ahmed.jpg',
     isTikTok: true,
-    source_ar: 'فيديو عرض الشغل على تيك توك',
-    source_en: 'TikTok Showcase Video',
+    source_ar: 'تعليق تيك توك / بانتظار التأكيد',
+    source_en: 'TikTok Comment / Pending Confirmation',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 6. Moustafa on TikTok Showcase
+  // 6. Moustafa on TikTok Showcase (Placeholder Pending Confirmation)
   {
     id: 'tiktok-moustafa',
     name_ar: 'مصطفى',
@@ -106,16 +107,16 @@ export const CLIENT_REVIEWS = [
     business_en: 'Community Reviewer',
     role_ar: 'متابع على تيك توك',
     role_en: 'Follower on TikTok',
-    quote_ar: 'تسلم إيديكم، مستوى تنفيذ راقي ومتعوب عليه، بالتوفيق دائماً.',
-    quote_en: 'Great craftsmanship and polished execution. Best wishes always.',
+    quote_ar: '[نموذج بانتظار التأكيد] تسلم إيديكم، مستوى تنفيذ راقي ومتعوب عليه، بالتوفيق دائماً.',
+    quote_en: '[Pending Confirmation] Great craftsmanship and polished execution. Best wishes always.',
     rating: 5,
     avatar: '/testimonials/tiktok-moustafa.jpg',
     isTikTok: true,
-    source_ar: 'فيديو عرض الشغل على تيك توك',
-    source_en: 'TikTok Showcase Video',
+    source_ar: 'تعليق تيك توك / بانتظار التأكيد',
+    source_en: 'TikTok Comment / Pending Confirmation',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 7. Mohamed Tech
+  // 7. Mohamed Tech (Placeholder Pending Confirmation)
   {
     id: 'tiktok-mohamed-tech',
     name_ar: 'محمد تك',
@@ -124,16 +125,16 @@ export const CLIENT_REVIEWS = [
     business_en: 'Tech & Software Reviews',
     role_ar: 'متابع تقني على تيك توك',
     role_en: 'Tech Creator on TikTok',
-    quote_ar: 'ما شاء الله، شغل عالي ومتقن ومختلف عن المعتاد في السوق.',
-    quote_en: 'High-end, refined work that clearly stands out in quality.',
+    quote_ar: '[نموذج بانتظار التأكيد] ما شاء الله، شغل عالي ومتقن ومختلف عن المعتاد في السوق.',
+    quote_en: '[Pending Confirmation] High-end, refined work that clearly stands out in quality.',
     rating: 5,
     avatar: '/testimonials/tiktok-mohamed-tech.jpg',
     isTikTok: true,
-    source_ar: 'فيديو عرض الشغل على تيك توك',
-    source_en: 'TikTok Showcase Video',
+    source_ar: 'تعليق تيك توك / بانتظار التأكيد',
+    source_en: 'TikTok Comment / Pending Confirmation',
     link: 'https://www.tiktok.com/@7p.studio6'
   },
-  // 8. Sama
+  // 8. Sama (Placeholder Pending Confirmation)
   {
     id: 'tiktok-sama',
     name_ar: 'سما',
@@ -142,13 +143,13 @@ export const CLIENT_REVIEWS = [
     business_en: 'Community Follower',
     role_ar: 'متابعة على تيك توك',
     role_en: 'Follower on TikTok',
-    quote_ar: 'ما شاء الله اللهم بارك، سرعة التصفح وتناسق الألوان مريح جداً.',
-    quote_en: 'Remarkable speed and comfortable visual harmony.',
+    quote_ar: '[نموذج بانتظار التأكيد] ما شاء الله اللهم بارك، سرعة التصفح وتناسق الألوان مريح جداً.',
+    quote_en: '[Pending Confirmation] Remarkable speed and comfortable visual harmony.',
     rating: 5,
     avatar: '/testimonials/tiktok-sama.jpg',
     isTikTok: true,
-    source_ar: 'فيديو عرض الشغل على تيك توك',
-    source_en: 'TikTok Showcase Video',
+    source_ar: 'تعليق تيك توك / بانتظار التأكيد',
+    source_en: 'TikTok Comment / Pending Confirmation',
     link: 'https://www.tiktok.com/@7p.studio6'
   }
 ];
@@ -184,8 +185,8 @@ export function renderTestimonials(lang = 'ar') {
            <span>${badgeText}</span>
            <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.65rem; margin-inline-start: 4px; opacity: 0.85;"></i>
          </a>`
-      : `<span class="review-source-badge client" style="color: #E8A33D; border-color: rgba(232, 163, 61, 0.4); background: rgba(232, 163, 61, 0.08);">
-           <i class="fa-solid fa-circle-check"></i>
+      : `<span class="review-source-badge client" style="color: #E8A33D; border-color: rgba(232, 163, 61, 0.4); background: rgba(232, 163, 61, 0.08); font-size: 0.76rem;">
+           <i class="fa-solid fa-clock"></i>
            <span>${badgeText}</span>
          </span>`;
 

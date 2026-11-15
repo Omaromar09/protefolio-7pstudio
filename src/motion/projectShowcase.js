@@ -116,9 +116,6 @@ function renderShowcaseStructure(container) {
                 <span id="project-partnership-text">${currentProject.partnership ? (currentProject.partnership[lang] || currentProject.partnership.ar) : ''}</span>
               </div>
             </div>
-            <span class="project-count-badge numeral">
-              <span id="project-curr-num">${(activeIndex + 1).toString().padStart(2, '0')}</span> / ${(PROJECTS_DATA.length).toString().padStart(2, '0')}
-            </span>
           </div>
 
           <h3 class="project-hero-title" id="project-hero-title">

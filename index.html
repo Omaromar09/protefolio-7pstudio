@@ -245,8 +245,8 @@
         <div class="nav-actions">
           <!-- Language Toggle Segmented Pill -->
           <div class="lang-toggle" role="group" aria-label="Language Toggle">
-            <button class="lang-btn" data-lang="ar" aria-pressed="false">عربي</button>
-            <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+            <button class="lang-btn active" data-lang="ar" aria-pressed="true">عربي</button>
+            <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
           </div>
 
           <!-- Theme Toggle Button -->
@@ -272,22 +272,16 @@
     <!-- Mobile Navigation Drawer Overlay -->
     <div class="mobile-nav-overlay" id="mobile-nav">
       <ul class="mobile-nav-links">
-        <li><a href="#hero" class="mobile-nav-link" data-i18n="navHome">الرئيسية</a></li>
-        <li><a href="#about" class="mobile-nav-link" data-i18n="navAbout">عنّا</a></li>
         <li><a href="#projects" class="mobile-nav-link" data-i18n="navWork">أعمالنا</a></li>
-        <li><a href="#comparison" class="mobile-nav-link" data-i18n="navComparison">الفرق مع 7P</a></li>
-        <li><a href="#diagnosis" class="mobile-nav-link" data-i18n="navDiagnosis">شخّص موقعك</a></li>
         <li><a href="#services" class="mobile-nav-link" data-i18n="navServices">خدماتنا</a></li>
         <li><a href="#estimator" class="mobile-nav-link" data-i18n="navEstimator">احسب مشروعك</a></li>
-        <li><a href="#trust" class="mobile-nav-link" data-i18n="navTrust">ليه 7P</a></li>
-        <li><a href="#process" class="mobile-nav-link" data-i18n="navProcess">طريقة شغلنا</a></li>
         <li><a href="#contact" class="mobile-nav-link" data-i18n="navContact">تواصل معانا</a></li>
       </ul>
 
       <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 2rem;">
         <div class="lang-toggle" role="group" aria-label="Mobile Language Toggle">
-          <button class="lang-btn" data-lang="ar">عربي</button>
-          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn active" data-lang="ar">عربي</button>
+          <button class="lang-btn" data-lang="en">EN</button>
         </div>
 
         <button class="theme-toggle-btn" id="mobile-theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
@@ -314,7 +308,7 @@
                 <span class="status-dot"></span>
                 <span data-i18n="heroBadge1">استوديو متخصص في بناء مواقع البيزنس الحديثة</span>
               </div>
-              <div class="badge-pill badge-pill-teal">
+              <div class="badge-pill">
                 <i class="fa-solid fa-cube"></i>
                 <span data-i18n="heroBadge2">أبعاد ثلاثية 3D وتجاوب صاروخي على الموبايل</span>
               </div>
@@ -338,41 +332,6 @@
                 <i class="fa-solid fa-calculator"></i>
               </a>
             </div>
-
-            <!-- Real Proof Row Computed from Projects Data (No fake numbers!) -->
-            <div class="hero-proof-row">
-              <div class="hero-proof-card">
-                <div class="hero-proof-val">
-                  <span class="live-dot"></span>
-                  <span data-i18n="heroProofProjectsVal">7 Projects</span>
-                </div>
-                <span class="hero-proof-label" data-i18n="heroProofProjectsLabel">شغالة لايف دلوقتي</span>
-              </div>
-
-              <div class="hero-proof-card">
-                <div class="hero-proof-val" style="color: var(--accent-magenta);">
-                  <i class="fa-solid fa-layer-group" style="font-size: 0.85rem;"></i>
-                  <span data-i18n="heroProofIndustriesVal">7 مجالات</span>
-                </div>
-                <span class="hero-proof-label" data-i18n="heroProofIndustriesLabel">متاجر، زهور، مطاعم، مساحات، جيمينج، 3D</span>
-              </div>
-
-              <div class="hero-proof-card">
-                <div class="hero-proof-val" style="color: var(--accent-cyan);">
-                  <i class="fa-solid fa-calendar-check" style="font-size: 0.85rem;"></i>
-                  <span data-i18n="heroProofDeliveryVal">7 - 14 يوم</span>
-                </div>
-                <span class="hero-proof-label" data-i18n="heroProofDeliveryLabel">تسليم قياسي متفق عليه</span>
-              </div>
-
-              <div class="hero-proof-card">
-                <div class="hero-proof-val" style="color: #25D366;">
-                  <i class="fa-brands fa-whatsapp" style="font-size: 0.95rem;"></i>
-                  <span data-i18n="heroProofSupportVal">طوال الأسبوع</span>
-                </div>
-                <span class="hero-proof-label" data-i18n="heroProofSupportLabel">رد ومتابعة على واتساب</span>
-              </div>
-            </div>
           </div>
 
           <!-- Hero 7P Animated Logo (Replaces old Three.js 3D object) -->
@@ -392,10 +351,6 @@
       <section id="projects" class="showcase-section" style="padding: 5rem 0;">
         <div class="container">
           <div class="section-header text-center" style="margin-bottom: 2.5rem;">
-            <div class="badge-pill badge-pill-magenta" style="margin-inline: auto;">
-              <i class="fa-solid fa-briefcase"></i>
-              <span data-i18n="showcaseBadge">معرض الأعمال التفاعلي</span>
-            </div>
             <h2 class="section-title" data-i18n="showcaseTitle">
               أعمالنا <span class="highlight">ومشاريع نفذناها</span>
             </h2>
@@ -533,11 +488,7 @@
                 <span id="project-partnership-text"></span>
               </div>
             </div>
-            <span class="project-count-badge numeral">
-              <span id="project-curr-num">01</span> / 07
-            </span>
-          </div>
-
+            </div>
           <h3 class="project-hero-title" id="project-hero-title">Aya Accessories Boutique</h3>
 
           <p class="project-desc" id="project-desc">Handmade accessories boutique featuring dynamic product filters and instant WhatsApp cart ordering.</p>
@@ -599,247 +550,69 @@
         </div>
       </section>
 
-      <!-- 3. BEFORE / AFTER COMPARISON SLIDER -->
-      <section id="comparison" class="comparison-section">
-        <div class="container">
-          <div class="section-header text-center" style="margin-bottom: 2.5rem;">
-            <div class="badge-pill badge-pill-teal" style="margin-inline: auto;">
-              <i class="fa-solid fa-code-compare"></i>
-              <span data-i18n="comparisonBadge">ليه تختار 7P؟</span>
-            </div>
-            <h2 class="section-title" data-i18n="comparisonTitle">
-              شوف الفرق بنفسك: <span class="highlight">موقع عادي vs موقع من 7P</span>
-            </h2>
-            <p class="section-desc" data-i18n="comparisonSubtitle">
-              اسحب الخط الفاصل وشوف الفرق بين موقع بطيء بيضيع زباين، وموقع من 7P فائق السرعة وجذاب
-            </p>
-          </div>
-
-          <div class="ba-slider-container chamfer-card" id="before-after-slider">
-            <!-- After: 7P Studio Website -->
-            <div class="ba-panel ba-panel-after">
-              <div class="ba-panel-inner">
-                <div class="ba-panel-col-text">
-                  <div class="ba-badge ba-badge-after">
-                    <i class="fa-solid fa-bolt"></i>
-                    <span data-i18n="compAfterBadge">موقع من 7P Studio</span>
-                  </div>
-                  <h3 class="ba-title" data-i18n="compAfterTitle">سريع، تفاعلي 3D، ومربوط بسلة واتساب</h3>
-                  <p class="ba-desc" data-i18n="compAfterDesc">كود مخصص وخفيف بأحدث المعايير، بيفتح في لمح البصر مع سلة واتساب مباشرة بتضاعف طلباتك.</p>
-                </div>
-                <div class="ba-panel-col-stats">
-                  <div class="ba-mock-ui">
-                    <div class="ba-stat-box success">
-                      <div class="ba-stat-box-val" style="color: var(--accent-cyan);">98 / 100</div>
-                      <div class="ba-stat-box-label" data-i18n="compAfterSpeed">سرعة قياسية وأداء خفيف</div>
-                    </div>
-                    <div class="ba-stat-box success">
-                      <div class="ba-stat-box-val" style="color: #10B981;" data-i18n="compAfterLoadVal">1.1s</div>
-                      <div class="ba-stat-box-label" data-i18n="compAfterLoad">تحميل فوري وتصفح سلس</div>
-                    </div>
-                    <div class="ba-stat-box success">
-                      <div class="ba-stat-box-val" style="color: var(--accent-magenta);" data-i18n="compAfterMobileVal">100% Mobile</div>
-                      <div class="ba-stat-box-label" data-i18n="compAfterMobile">متجاوب مع كل الموبايلات</div>
-                    </div>
-                    <div class="ba-stat-box success">
-                      <div class="ba-stat-box-val" style="color: #25D366;" data-i18n="compAfterSalesVal">WhatsApp Cart</div>
-                      <div class="ba-stat-box-label" data-i18n="compAfterSales">طلبات وفواتير مباشرة للعملاء</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Before: Generic Website (Clipped) -->
-            <div class="ba-panel ba-panel-before">
-              <div class="ba-panel-inner">
-                <div class="ba-panel-col-text">
-                  <div class="ba-badge ba-badge-before">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    <span data-i18n="compBeforeBadge">موقع عادي تقليدي</span>
-                  </div>
-                  <h3 class="ba-title" data-i18n="compBeforeTitle">بطيء، تصميمه قديم، وبيخسر عملاء</h3>
-                  <p class="ba-desc" data-i18n="compBeforeDesc">قوالب جاهزة مكررة بتزهق الزبون من بطء التحميل وتضيّع أكتر من 60% من المبيعات قبل ما يتواصل معاك.</p>
-                </div>
-                <div class="ba-panel-col-stats">
-                  <div class="ba-mock-ui">
-                    <div class="ba-stat-box danger">
-                      <div class="ba-stat-box-val" style="color: #EF4444;">34 / 100</div>
-                      <div class="ba-stat-box-label" data-i18n="compBeforeSpeed">سرعة ضعيفة وثقيل</div>
-                    </div>
-                    <div class="ba-stat-box danger">
-                      <div class="ba-stat-box-val" style="color: #EF4444;" data-i18n="compBeforeLoadVal">4.8s</div>
-                      <div class="ba-stat-box-label" data-i18n="compBeforeLoad">الزبون بيزهق ويمشي</div>
-                    </div>
-                    <div class="ba-stat-box danger">
-                      <div class="ba-stat-box-val" style="color: #EF4444;" data-i18n="compBeforeMobileVal">Broken UI</div>
-                      <div class="ba-stat-box-label" data-i18n="compBeforeMobile">مش مظبوط على الموبايل</div>
-                    </div>
-                    <div class="ba-stat-box danger">
-                      <div class="ba-stat-box-val" style="color: #EF4444;" data-i18n="compBeforeSalesVal">No Cart</div>
-                      <div class="ba-stat-box-label" data-i18n="compBeforeSales">صعوبة في التواصل والطلب</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Draggable Center Split Handle -->
-            <div class="ba-slider-handle">
-              <div class="ba-handle-knob">
-                <i class="fa-solid fa-chevron-right"></i>
-                <i class="fa-solid fa-chevron-left"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. QUICK DIAGNOSIS SECTION ("شخّص موقعك في دقيقة") -->
-      <section id="diagnosis" class="diagnosis-section" style="padding: 5rem 0;">
-        <div class="container">
-          <div class="section-header text-center" style="margin-bottom: 2.5rem;">
-            <div class="badge-pill" style="margin-inline: auto;">
-              <i class="fa-solid fa-stethoscope" style="color: var(--accent-violet);"></i>
-              <span data-i18n="diagnosisBadge">شخّص موقعك في دقيقة</span>
-            </div>
-            <h2 class="section-title" data-i18n="diagnosisTitle">
-              مش متأكد موقعك محتاج إيه؟ <span class="highlight">شخّصه في دقيقة</span>
-            </h2>
-            <p class="section-desc" data-i18n="diagnosisSubtitle">
-              جاوب 5 أسئلة سريعة وهنقولك بالظبط إيه اللي محتاجه بيزنسك لزيادة مبيعاته:
-            </p>
-          </div>
-
-          <!-- Dynamic Quiz Mount -->
-          <div id="diagnosis-mount"></div>
-        </div>
-      </section>
-
-      <!-- 5. SERVICES SECTION (EXPANDABLE BENTO TILES) -->
+      <!-- 3. SERVICES SECTION -->
       <section id="services" class="services-section" style="padding: 5rem 0;">
         <div class="container">
           <div class="section-header">
-            <div class="badge-pill badge-pill-teal">
-              <i class="fa-solid fa-screwdriver-wrench"></i>
-              <span data-i18n="servicesBadge">خدماتنا</span>
-            </div>
-            <h2 class="section-title" data-i18n="servicesTitle">إيه اللي نقدر نساعدك فيه؟</h2>
-            <p class="section-desc" data-i18n="servicesDesc">
-              اضغط على أي خدمة لترى التفاصيل الكاملة وما يتضمنه التنفيذ:
+            <h2 class="section-title" data-i18n="servicesTitle">خدماتنا</h2>
+            <p class="section-desc" data-i18n="servicesIntro">
+              إحنا عمر وجاد، بنصمم ونبرمج مواقع ويب عصرية وسريعة تركز على مبيعات بيزنسك وراحة العميل. بنبني مواقع جديدة من الصفر أو بنطور موقعك القديم ونحل أي مشكلة برمجية بكفاءة وبدون تعقيد.
             </p>
           </div>
 
-          <div class="services-bento-grid">
-            <!-- Service 1 -->
-            <div class="service-bento-tile spotlight-card chamfer-card">
-              <div class="service-bento-top">
-                <span class="service-bento-num">01</span>
-                <div class="service-icon-box" style="color: var(--accent-magenta); background: rgba(255, 61, 240, 0.12);">
-                  <i class="fa-solid fa-laptop-code"></i>
-                </div>
-              </div>
-              <h3 class="service-title" data-i18n="s1Title">تطوير موقع كامل (Landing Page / E-commerce)</h3>
-              <p class="service-desc" data-i18n="s1Desc">
-                من الفكرة والتصميم لحد كود شغال وسريع، متوافق مع الموبايل ومربوط بسلة شراء ودومين واستضافة جاهزة.
-              </p>
-              <div class="service-expand-body">
-                <div class="service-expand-title" data-i18n="s1DeliverablesTitle">ما يتضمنه العمل:</div>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;" data-i18n="s1Deliverables">
-                  تصميم واجهة متجاوبة، سلة شراء وفاتورة، لوحة تحكم سهلة، ربط دومين واستضافة.
-                </p>
-                <div class="service-expand-title" data-i18n="s1AudienceTitle">مناسب لمين:</div>
-                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="s1Audience">
-                  المتاجر والمطاعم، البراندات، والأنشطة التجارية الراغبة في مبيعات رقمية.
-                </p>
-              </div>
+          <div class="services-rows-list">
+            <div class="service-row-item">
+              <h3 class="service-row-title" data-i18n="s1Title">تصميم وتطوير مواقع كاملة ومتاجر إلكترونية متوافقة مع الموبايل</h3>
+              <p class="service-row-desc" data-i18n="s1Desc">من الفكرة والتصميم حتى كود شغال وسريع، متوافق مع الموبايل ومربوط بسلة شراء ودومين واستضافة جاهزة.</p>
             </div>
+            <div class="service-row-item">
+              <h3 class="service-row-title" data-i18n="s2Title">حل المشاكل البرمجية والباجات وتسريع تحميل الموقع</h3>
+              <p class="service-row-desc" data-i18n="s2Desc">فحص شامل للأخطاء في الأكواد أو التصميم، تسريع التصفح، وضبط تجاوب الشاشات لضمان عدم ضياع أي زبون.</p>
+            </div>
+            <div class="service-row-item">
+              <h3 class="service-row-title" data-i18n="s3Title">تطوير وتحديث واجهات المستخدم (UI/UX)</h3>
+              <p class="service-row-desc" data-i18n="s3Desc">تجديد شكل موقعك الحالي بتصميم عصري وألوان متناسقة تريح الزائر وتزيد من ثقته في البراند الخاص بك.</p>
+            </div>
+            <div class="service-row-item">
+              <h3 class="service-row-title" data-i18n="s4Title">ربط سلة طلبات الواتساب ونماذج التواصل السريعة</h3>
+              <p class="service-row-desc" data-i18n="s4Desc">تحويل الزوار لعملاء فعليين بربط الطلبات المباشرة وفواتير المنتجات على الواتساب فوراً وبدون تعقيد.</p>
+            </div>
+          </div>
 
-            <!-- Service 2 -->
-            <div class="service-bento-tile spotlight-card chamfer-card">
-              <div class="service-bento-top">
-                <span class="service-bento-num">02</span>
-                <div class="service-icon-box" style="color: #EF4444; background: rgba(239, 68, 68, 0.12);">
-                  <i class="fa-solid fa-bug-slash"></i>
-                </div>
-              </div>
-              <h3 class="service-title" data-i18n="s2Title">حل الباجات والصيانة السريعة</h3>
-              <p class="service-desc" data-i18n="s2Desc">
-                لو موقعك فيه مشكلة، بطيء، أزرار مش شغالة، أو شكله متلخبط على التليفون، بنصلحهولك فوري وبدون صداع.
-              </p>
-              <div class="service-expand-body">
-                <div class="service-expand-title" data-i18n="s2DeliverablesTitle">ما يتضمنه العمل:</div>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;" data-i18n="s2Deliverables">
-                  فحص الأخطاء البرمجية، تسريع الصور والأكواد، وضبط العرض على كل شاشات الموبايل.
-                </p>
-                <div class="service-expand-title" data-i18n="s2AudienceTitle">مناسب لمين:</div>
-                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="s2Audience">
-                  أصحاب المواقع التي تعاني من بطء في التحميل أو أخطاء تمنع إتمام الطلبات.
-                </p>
-              </div>
-            </div>
-
-            <!-- Service 3 -->
-            <div class="service-bento-tile spotlight-card chamfer-card">
-              <div class="service-bento-top">
-                <span class="service-bento-num">03</span>
-                <div class="service-icon-box" style="color: var(--accent-cyan); background: rgba(46, 230, 255, 0.12);">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-              </div>
-              <h3 class="service-title" data-i18n="s3Title">تعديل وتطوير الـ UI/UX</h3>
-              <p class="service-desc" data-i18n="s3Desc">
-                تظبيط وتحديث شكل موقعك الحالي وتحويله لتصميم عصري جذاب يريح الزبون ويزود ثقته في بيزنسك.
-              </p>
-              <div class="service-expand-body">
-                <div class="service-expand-title" data-i18n="s3DeliverablesTitle">ما يتضمنه العمل:</div>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;" data-i18n="s3Deliverables">
-                  إعادة هيكلة الصفحات، ألوان متناسقة، أيقونات وفونتات مميزة، وتحسين رحلة المستخدم.
-                </p>
-                <div class="service-expand-title" data-i18n="s3AudienceTitle">مناسب لمين:</div>
-                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="s3Audience">
-                  المواقع القديمة التي تحتاج مظهر عصري ينافس في السوق الحالي.
-                </p>
-              </div>
-            </div>
-
-            <!-- Service 4 -->
-            <div class="service-bento-tile spotlight-card chamfer-card">
-              <div class="service-bento-top">
-                <span class="service-bento-num">04</span>
-                <div class="service-icon-box" style="color: #25D366; background: rgba(37, 211, 102, 0.12);">
-                  <i class="fa-brands fa-whatsapp"></i>
-                </div>
-              </div>
-              <h3 class="service-title" data-i18n="s4Title">ربط واتساب وسلة طلبات فورية</h3>
-              <p class="service-desc" data-i18n="s4Desc">
-                ربط مباشر لطلبات الشراء على الواتساب، فورمات تواصل وحجز سريعة، ولمسات تفاعلية 3D تميزك عن غيرك.
-              </p>
-              <div class="service-expand-body">
-                <div class="service-expand-title" data-i18n="s4DeliverablesTitle">ما يتضمنه العمل:</div>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;" data-i18n="s4Deliverables">
-                  ربط سلة الواتساب التلقائية، مجسمات 3D تفاعلية بـ Three.js، وأنيميشن ناعم بـ GSAP.
-                </p>
-                <div class="service-expand-title" data-i18n="s4AudienceTitle">مناسب لمين:</div>
-                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="s4Audience">
-                  البراندات التي تريد مظهراً فخماً وعملياً يشرفها أمام عملائها مع تواصل مباشر وسريع.
-                </p>
-              </div>
-            </div>
+          <div class="services-trust-summary">
+            <p data-i18n="servicesTrustMerged">
+              بنضمنلك تواصل مباشر ورد سريع مع عمر وجاد لمناقشة كل تفاصيل فكرتك، تسليم دقيق في الميعاد المتفق عليه بدون مماطلة، ودعم فني مستمر بعد الإطلاق لمساعدتك في أي تعديل وصيانة.
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- 6. 7P STUDIO PROJECT ARCHITECT & LIVE ESTIMATOR -->
-      <section id="estimator" class="estimator-section">
+      <!-- 4. REVIEWS SECTION -->
+      <!-- 7.5 CLIENT TESTIMONIALS (PROMINENT & NOTICEABLE REVIEWS) -->
+      <section id="testimonials" class="testimonials-section">
         <div class="container">
           <div class="section-header text-center">
-            <div class="badge-pill" style="margin-inline: auto;">
-              <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-magenta);"></i>
-              <span data-i18n="estimatorBadge">حاسبة ومواصفات مشروعك</span>
-            </div>
+            <h2 class="section-title" data-i18n="testimonialsTitle">
+              آراء وتجارب <span class="highlight">أصحاب المشاريع وعملاؤنا</span>
+            </h2>
+            <p class="section-desc" data-i18n="testimonialsDesc">
+              تجارب حقيقية لعملاء اشتغلنا معاهم ونفذنا مواقعهم، ورأيهم في جودة الشغل وسرعة التسليم:
+            </p>
+          </div>
+
+          <div class="testimonials-grid" id="testimonials-container">
+            <!-- Dynamically populated from src/utils/testimonials.js -->
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- 5. COMBINED ESTIMATOR & CONTACT SECTION -->
+      <section id="estimator" class="estimator-section combined-estimator-contact" style="padding: 5rem 0;">
+        <div class="container">
+          <div class="section-header text-center">
             <h2 class="section-title" data-i18n="estimatorTitle">
-              احسب تفاصيل مشروعك واستلم <span class="highlight">كوتيشن واتساب فوري</span>
+              احسب تفاصيل مشروعك وتواصل معانا
             </h2>
             <p class="section-desc" data-i18n="estimatorDesc">
               اختر نوع فكرتك والميزات اللي محتاجها، وشوف جدول التسليم والتقنيات المقترحة، وابدأ تواصل فوري بضغطة زر واحدة.
@@ -966,8 +739,7 @@
                       <span class="hud-light violet"></span>
                       <span class="hud-light cyan"></span>
                     </div>
-                    <span class="hud-system-title">7P STUDIO ENGINE</span>
-                    <span class="hud-quote-id" id="hud-quote-id">#7P-Q9384</span>
+                    <span class="hud-system-title" data-i18n="hudSummaryTitle">ملخص طلبك</span>
                   </div>
 
                   <div class="hud-metrics-list">
@@ -1020,362 +792,19 @@
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        
 
-      <!-- 7. TRUST & LIVE PROOF SECTION -->
-      <section id="trust" class="trust-section">
-        <div class="container">
-          <div class="section-header text-center" style="margin-bottom: 2.5rem;">
-            <div class="badge-pill badge-pill-emerald" style="margin-inline: auto;">
-              <i class="fa-solid fa-shield-check"></i>
-              <span data-i18n="trustBadge">ثقة وأمان</span>
-            </div>
-            <h2 class="section-title" data-i18n="trustTitle">
-              ليه تثق في <span class="highlight">7P Studio</span> لشغلك؟
-            </h2>
-            <p class="section-desc" data-i18n="trustSubtitle">
-              شغل شفاف، التزام كامل بالمواعيد، وضمان جودة حقيقي بعد التسليم:
-            </p>
-          </div>
-
-          <div class="trust-bento-grid">
-            <!-- Left: Real Live Sites Check -->
-            <div class="trust-live-list">
-              <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="trustLiveHeader">
-                7 نماذج ومشاريع لايف (مشاريع حقيقية + نماذج تجريبية):
-              </h4>
-
-              <a href="https://aya-accessories.vercel.app/" target="_blank" rel="noopener noreferrer" class="trust-live-item">
-                <div class="trust-live-info">
-                  <span class="trust-live-dot"></span>
-                  <div>
-                    <div class="trust-live-title">متجر آية للاكسسوارات (Aya Accessories)</div>
-                    <div class="trust-live-url">aya-accessories.vercel.app</div>
-                  </div>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-dim); font-size: 0.85rem;"></i>
-              </a>
-
-              <a href="https://flowers-pi-two.vercel.app/" target="_blank" rel="noopener noreferrer" class="trust-live-item">
-                <div class="trust-live-info">
-                  <span class="trust-live-dot" style="background: #E11D48; box-shadow: 0 0 10px #E11D48;"></span>
-                  <div>
-                    <div class="trust-live-title">بوتيك جاردان فيفانت للزهور (Jardin Vivant) <span class="tab-badge-demo" style="margin-inline-start: 6px;">تجريبي</span></div>
-                    <div class="trust-live-url">flowers-pi-two.vercel.app · تجريبي</div>
-                  </div>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-dim); font-size: 0.85rem;"></i>
-              </a>
-
-              <a href="https://festival-fivestar.vercel.app/" target="_blank" rel="noopener noreferrer" class="trust-live-item">
-                <div class="trust-live-info">
-                  <span class="trust-live-dot"></span>
-                  <div>
-                    <div class="trust-live-title">حلواني فيستيفال فايف ستار (Festival Pastry)</div>
-                    <div class="trust-live-url">festival-fivestar.vercel.app</div>
-                  </div>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-dim); font-size: 0.85rem;"></i>
-              </a>
-
-              <a href="https://elvaranda.vercel.app/" target="_blank" rel="noopener noreferrer" class="trust-live-item">
-                <div class="trust-live-info">
-                  <span class="trust-live-dot"></span>
-                  <div>
-                    <div class="trust-live-title">مساحة عمل الڤراندا (El Veranda Coworking)</div>
-                    <div class="trust-live-url">elvaranda.vercel.app</div>
-                  </div>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-dim); font-size: 0.85rem;"></i>
-              </a>
-
-              <a href="https://kayan-clothes.vercel.app/" target="_blank" rel="noopener noreferrer" class="trust-live-item">
-                <div class="trust-live-info">
-                  <span class="trust-live-dot" style="background: var(--accent-magenta); box-shadow: 0 0 10px var(--accent-magenta);"></span>
-                  <div>
-                    <div class="trust-live-title">كيان للأزياء الفاخرة (Kayan Fashion) <span class="tab-badge-demo" style="margin-inline-start: 6px;">تجريبي</span></div>
-                    <div class="trust-live-url">kayan-clothes.vercel.app · تجريبي</div>
-                  </div>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-dim); font-size: 0.85rem;"></i>
-              </a>
-
-              <a href="https://demo-perfume-sigma.vercel.app/" target="_blank" rel="noopener noreferrer" class="trust-live-item">
-                <div class="trust-live-info">
-                  <span class="trust-live-dot" style="background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan);"></span>
-                  <div>
-                    <div class="trust-live-title">متجر رَوْنَـق للعطور الفاخرة 3D (Rawnaq 3D) <span class="tab-badge-demo" style="margin-inline-start: 6px;">تجريبي</span></div>
-                    <div class="trust-live-url">demo-perfume-sigma.vercel.app · تجريبي</div>
-                  </div>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-dim); font-size: 0.85rem;"></i>
-              </a>
-
-              <a href="https://demoplaystaion-plum.vercel.app/" target="_blank" rel="noopener noreferrer" class="trust-live-item">
-                <div class="trust-live-info">
-                  <span class="trust-live-dot" style="background: #C69255; box-shadow: 0 0 10px #C69255;"></span>
-                  <div>
-                    <div class="trust-live-title">لاونج إكس أو بلايستيشن (XO PS Lounge) <span class="tab-badge-demo" style="margin-inline-start: 6px;">تجريبي</span> <span style="font-size: 0.75rem; color: #E0A96D; margin-inline-start: 6px; font-weight: 600;">بالشراكة مع بشمهندس ياسين</span></div>
-                    <div class="trust-live-url">demoplaystaion-plum.vercel.app · تجريبي (بالشراكة مع بشمهندس ياسين)</div>
-                  </div>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-dim); font-size: 0.85rem;"></i>
-              </a>
-            </div>
-
-            <!-- Right: Team Commitments / Promises Card -->
-            <div class="trust-promises-card chamfer-card">
-              <div class="promise-item">
-                <div class="promise-icon">
-                  <i class="fa-solid fa-comments"></i>
-                </div>
-                <div>
-                  <div class="promise-title" data-i18n="trustPromise1Title">رد سريع وتواصل مباشر</div>
-                  <div class="promise-desc" data-i18n="trustPromise1Desc">
-                    تواصل مباشر مع عمر وجاد، بنسمع تفاصيل بيزنسك وبنرد علطول بدون تأخير.
-                  </div>
-                </div>
-              </div>
-
-              <div class="promise-item">
-                <div class="promise-icon" style="background: rgba(255, 61, 240, 0.12); color: var(--accent-magenta);">
-                  <i class="fa-solid fa-calendar-check"></i>
-                </div>
-                <div>
-                  <div class="promise-title" data-i18n="trustPromise2Title">تسليم في الميعاد المحدد</div>
-                  <div class="promise-desc" data-i18n="trustPromise2Desc">
-                    بنتفق على جدول زمني واضح وبنلتزم بيه باليوم والساعة بدون مماطلة.
-                  </div>
-                </div>
-              </div>
-
-              <div class="promise-item">
-                <div class="promise-icon" style="background: rgba(46, 230, 255, 0.12); color: var(--accent-cyan);">
-                  <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div>
-                  <div class="promise-title" data-i18n="trustPromise3Title">دعم فني وضمان بعد الإطلاق</div>
-                  <div class="promise-desc" data-i18n="trustPromise3Desc">
-                    مش بنسيبك بعد التسليم؛ بنفضل معاك في أي تعديل وصيانة وتدريب على إدارة موقعك.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 7.5 CLIENT TESTIMONIALS (PROMINENT & NOTICEABLE REVIEWS) -->
-      <section id="testimonials" class="testimonials-section">
-        <div class="container">
-          <div class="section-header text-center">
-            <div class="badge-pill" style="margin-inline: auto; background: rgba(232, 163, 61, 0.1); border-color: rgba(232, 163, 61, 0.3); color: #E8A33D;">
-              <i class="fa-solid fa-quote-left"></i>
-              <span data-i18n="testimonialsBadge">آراء العملاء وتقييماتهم</span>
-            </div>
-            <h2 class="section-title" data-i18n="testimonialsTitle">
-              آراء وتجارب <span class="highlight">أصحاب المشاريع وعملاؤنا</span>
-            </h2>
-            <p class="section-desc" data-i18n="testimonialsDesc">
-              تجارب حقيقية لعملاء اشتغلنا معاهم ونفذنا مواقعهم، ورأيهم في جودة الشغل وسرعة التسليم:
-            </p>
-          </div>
-
-          <!-- Trust & Rating Highlights Banner -->
-          <div class="testimonials-trust-bar" style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; padding: 1rem 1.5rem; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); text-align: center;">
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span style="font-weight: 700; font-size: 1.25rem; color: #E8A33D;">5.0</span>
-              <div style="color: #E8A33D; font-size: 0.9rem;">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <span style="color: var(--text-muted); font-size: 0.88rem; margin-inline-start: 4px;">تقييم كامل</span>
-            </div>
-            <div style="width: 1px; height: 24px; background: var(--border-subtle);"></div>
-            <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-main); font-size: 0.9rem;">
-              <i class="fa-solid fa-circle-check" style="color: #E8A33D;"></i>
-              <span>مشاريع حقيقية معتمدة وموثقة</span>
-            </div>
-            <div style="width: 1px; height: 24px; background: var(--border-subtle);"></div>
-            <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-main); font-size: 0.9rem;">
-              <i class="fa-solid fa-clock-rotate-left" style="color: #E8A33D;"></i>
-              <span>التزام كامل بمواعيد التسليم المتفق عليها</span>
-            </div>
-          </div>
-
-          <div class="testimonials-grid" id="testimonials-container">
-            <!-- Dynamically populated from src/utils/testimonials.js -->
-          </div>
-        </div>
-      </section>
-
-      <!-- 8. ABOUT SECTION -->
-      <section id="about" class="about-section">
-        <div class="container">
-          <div class="section-header">
-            <div class="badge-pill badge-pill-orange">
-              <i class="fa-solid fa-user"></i>
-              <span data-i18n="aboutBadge">عن الفريق</span>
-            </div>
-            <h2 class="section-title" data-i18n="aboutTitle">من غير لف ودوران.. موقعك معمول على كيفك مع عمر وجاد.</h2>
-            <p class="section-desc" data-i18n="aboutDesc">
-              هدفنا إن موقعك يكون شكله رايق، سريع جداً على الموبايل والكمبيوتر، ومريح للعميل اللي بيفتحه.
-            </p>
-          </div>
-
-          <div class="about-grid">
-            <div class="about-bio">
-              <p data-i18n="aboutP1">
-                إحنا عمر وجاد، شركاء ومطورو ويب في 7P Studio. بنبني مواقع من الصفر أو بنعدل على موقعك القديم، وبنصلح أي مشكلة برمجية عشان يرجع يشتغل تمام بأعلى أداء.
+          <!-- Direct Contact Anchor & Section -->
+          <div id="contact" style="scroll-margin-top: 100px; padding-top: 4rem;">
+            <div class="section-header text-center" style="margin-bottom: 2.5rem;">
+              <h2 class="section-title" data-i18n="contactTitle">عندك فكرة مشروع وعايز تحولها لويبسايت جامد؟</h2>
+              <p class="section-desc" data-i18n="contactDesc">
+                كلمنا فوراً وخلينا نبدأ — شات واتساب فوري وسريع، أو سيب بياناتك في الفورم وهنرد عليك علطول.
               </p>
-              <p data-i18n="aboutP2">
-                لو عندك فكرة موقع جديدة، أو عندك موقع حالي وفيه باجات ومحتاج صيانة، تسريع، أو إضافة ميزات وصفحات إضافية — بنعملهولك خطوة بخطوة وبتنسيق كامل يناسب بيزنسك.
-              </p>
-
-              <div class="about-pillars">
-                <div class="pillar-card chamfer-card-sm">
-                  <div class="pillar-icon" style="color: var(--accent-violet); background: rgba(139, 61, 255, 0.1);">
-                    <i class="fa-solid fa-code"></i>
-                  </div>
-                  <h3 class="pillar-title" data-i18n="pillar1Title">سريع وخفيف في التصفح</h3>
-                  <p class="pillar-desc" data-i18n="pillar1Desc">الموقع بيفتح في ثواني وخفيف في التصفح على أي موبايل ومفيهوش تقل.</p>
-                </div>
-
-                <div class="pillar-card chamfer-card-sm">
-                  <div class="pillar-icon" style="color: #EF4444; background: rgba(239, 68, 68, 0.1);">
-                    <i class="fa-solid fa-bug-slash"></i>
-                  </div>
-                  <h3 class="pillar-title" data-i18n="pillar2Title">تصليح الباجات والمشاكل</h3>
-                  <p class="pillar-desc" data-i18n="pillar2Desc">بنلاقي سبب المشكلة في الكود أو التصميم وبنحلها علطول بدل ما تضيع وقت.</p>
-                </div>
-
-                <div class="pillar-card chamfer-card-sm">
-                  <div class="pillar-icon" style="color: var(--accent-magenta); background: rgba(255, 61, 240, 0.1);">
-                    <i class="fa-solid fa-cubes"></i>
-                  </div>
-                  <h3 class="pillar-title" data-i18n="pillar3Title">لمسات 3D وحركات خفيفة</h3>
-                  <p class="pillar-desc" data-i18n="pillar3Desc">حركات ناعمة ومجسم 3D Three.js يدي موقعك شكل مميز وعصري.</p>
-                </div>
-
-                <div class="pillar-card chamfer-card-sm">
-                  <div class="pillar-icon" style="color: var(--accent-cyan); background: rgba(46, 230, 255, 0.1);">
-                    <i class="fa-solid fa-sliders"></i>
-                  </div>
-                  <h3 class="pillar-title" data-i18n="pillar4Title">تعديل وتفصيل على طلبك</h3>
-                  <p class="pillar-desc" data-i18n="pillar4Desc">بنظبط الألوان والتصميم والأقسام على حسب طلبك ونوع شغلك.</p>
-                </div>
-              </div>
             </div>
 
-            <!-- Interactive 3D Skills Display -->
-            <div class="skills-container">
-              <div class="skills-interactive-box chamfer-card">
-                <div class="skills-canvas-wrap">
-                  <canvas id="skills-canvas"></canvas>
-                </div>
-
-                <div class="skills-matrix">
-                  <div class="skill-tag" data-skill="JavaScript">
-                    <span class="skill-icon"><i class="fa-brands fa-js"></i></span>
-                    <span data-i18n="skillJs">جافاسكريبت (JavaScript)</span>
-                  </div>
-                  <div class="skill-tag" data-skill="HTML5">
-                    <span class="skill-icon"><i class="fa-brands fa-html5"></i></span>
-                    <span data-i18n="skillHtml">HTML5 القياسي</span>
-                  </div>
-                  <div class="skill-tag" data-skill="CSS3">
-                    <span class="skill-icon"><i class="fa-brands fa-css3-alt"></i></span>
-                    <span data-i18n="skillCss">CSS3 وتصميم متجاوب</span>
-                  </div>
-                  <div class="skill-tag" data-skill="GSAP">
-                    <span class="skill-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
-                    <span data-i18n="skillGsap">أنيميشن وحركات GSAP</span>
-                  </div>
-                  <div class="skill-tag" data-skill="Three.js">
-                    <span class="skill-icon"><i class="fa-solid fa-cubes"></i></span>
-                    <span data-i18n="skillThree">أبعاد ثلاثية Three.js</span>
-                  </div>
-                  <div class="skill-tag" data-skill="Responsive">
-                    <span class="skill-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
-                    <span data-i18n="skillResp">تصميم متجاوب للموبايل</span>
-                  </div>
-                  <div class="skill-tag" data-skill="Bug Fixing">
-                    <span class="skill-icon"><i class="fa-solid fa-wrench"></i></span>
-                    <span data-i18n="skillBug">حل وتصليح المشاكل</span>
-                  </div>
-                  <div class="skill-tag" data-skill="Customization">
-                    <span class="skill-icon"><i class="fa-solid fa-palette"></i></span>
-                    <span data-i18n="skillCustom">تعديل وتخصيص المواقع</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 9. PROCESS SECTION -->
-      <section id="process" class="process-section">
-        <div class="container">
-          <div class="section-header text-center">
-            <div class="badge-pill" style="margin-inline: auto;">
-              <i class="fa-solid fa-route"></i>
-              <span data-i18n="processBadge">طريقة شغلنا</span>
-            </div>
-            <h2 class="section-title" data-i18n="processTitle">بنشتغل إزاي؟</h2>
-            <p class="section-desc" data-i18n="processDesc">
-              أربع خطوات بسيطة بدون تضييع وقت وبدون تعقيد:
-            </p>
-          </div>
-
-          <ol class="process-steps-list">
-            <li class="process-step-item">
-              <span class="process-step-label" data-i18n="pr1Title">فكرة</span>
-              <p class="process-step-desc" data-i18n="pr1Desc">
-                بنتكلم شات أو مكالمة سريعة، بنعرف منك محتاج إيه بالظبط وبنحدد الوقت والتكلفة بدقة.
-              </p>
-            </li>
-            <li class="process-step-item">
-              <span class="process-step-label" data-i18n="pr2Title">تصميم</span>
-              <p class="process-step-desc" data-i18n="pr2Desc">
-                بنستقر على التصميم والألوان وتقسيمة الصفحات المناسبة لفكرتك ولجمهورك المستهدف.
-              </p>
-            </li>
-            <li class="process-step-item">
-              <span class="process-step-label" data-i18n="pr3Title">كود</span>
-              <p class="process-step-desc" data-i18n="pr3Desc">
-                بنبني الموقع بأحدث تقنيات الويب، وبنختبر السرعة والتجاوب على كل الموبايلات والشاشات.
-              </p>
-            </li>
-            <li class="process-step-item">
-              <span class="process-step-label" data-i18n="pr4Title">تسليم</span>
-              <p class="process-step-desc" data-i18n="pr4Desc">
-                بنرفع الموقع لايف ونربطه بالدومين، وبنفضل معاك بالدعم والتعديلات لضمان نجاحه.
-              </p>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <!-- 10. CONTACT SECTION -->
-      <section id="contact" class="contact-section">
-        <div class="container">
-          <div class="section-header">
-            <div class="badge-pill badge-pill-teal">
-              <i class="fa-solid fa-comment-dots"></i>
-              <span data-i18n="contactBadge">تواصل معانا</span>
-            </div>
-            <h2 class="section-title" data-i18n="contactTitle">عندك فكرة مشروع وعايز تحولها لويبسايت جامد؟</h2>
-            <p class="section-desc" data-i18n="contactDesc">
-              كلمنا فوراً وخلينا نبدأ — شات واتساب فوري وسريع، أو سيب بياناتك في الفورم وهنرد عليك علطول.
-            </p>
-          </div>
-
-          <div class="contact-grid">
+            <div class="contact-grid">
+              
             <!-- Direct Contact Methods -->
             <div class="contact-info">
               <!-- Prominent WhatsApp Action Card -->
@@ -1488,9 +917,25 @@
                 </div>
               </form>
             </div>
+          
+            </div>
           </div>
         </div>
       </section>
+
+
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
 
       <!-- 11. FOOTER SECTION -->
       <footer class="footer">

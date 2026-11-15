@@ -172,31 +172,33 @@ export const translations = {
 
  // Services Section
  servicesBadge:'خدماتنا',
- servicesTitle:'إيه اللي نقدر نساعدك فيه؟',
+ servicesTitle:'خدماتنا',
+ servicesIntro:'إحنا عمر وجاد، بنصمم ونبرمج مواقع ويب عصرية وسريعة تركز على مبيعات بيزنسك وراحة العميل. بنبني مواقع جديدة من الصفر أو بنطور موقعك القديم ونحل أي مشكلة برمجية بكفاءة وبدون تعقيد.',
  servicesDesc:'اضغط على أي خدمة لترى التفاصيل الكاملة وما يتضمنه التنفيذ:',
- s1Title:'تطوير موقع كامل (Landing Page / E-commerce)',
- s1Desc:'من الفكرة والتصميم لحد كود شغال وسريع، متوافق مع الموبايل ومربوط بسلة شراء ودومين واستضافة جاهزة.',
+ s1Title:'تصميم وتطوير مواقع كاملة ومتاجر إلكترونية متوافقة مع الموبايل',
+ s1Desc:'من الفكرة والتصميم حتى كود شغال وسريع، متوافق مع الموبايل ومربوط بسلة شراء ودومين واستضافة جاهزة.',
  s1DeliverablesTitle:'ما يتضمنه العمل:',
  s1Deliverables:'تصميم واجهة متجاوبة، سلة شراء وفاتورة، لوحة تحكم سهلة، ربط دومين واستضافة.',
  s1AudienceTitle:'مناسب لمين:',
  s1Audience:'المتاجر والمطاعم، البراندات، والأنشطة التجارية الراغبة في مبيعات رقمية.',
 
- s2Title:'حل الباجات والصيانة السريعة',
- s2Desc:'لو موقعك فيه مشكلة، بطيء، أزرار مش شغالة، أو شكله متلخبط على التليفون، بنصلحهولك فوري وبدون صداع.',
+ s2Title:'حل المشاكل البرمجية والباجات وتسريع تحميل الموقع',
+ s2Desc:'فحص شامل للأخطاء في الأكواد أو التصميم، تسريع التصفح، وضبط تجاوب الشاشات لضمان عدم ضياع أي زبون.',
  s2DeliverablesTitle:'ما يتضمنه العمل:',
  s2Deliverables:'فحص الأخطاء البرمجية، تسريع الصور والأكواد، وضبط العرض على كل شاشات الموبايل.',
  s2AudienceTitle:'مناسب لمين:',
  s2Audience:'أصحاب المواقع التي تعاني من بطء في التحميل أو أخطاء تمنع إتمام الطلبات.',
 
- s3Title:'تعديل وتطوير الـ UI/UX',
- s3Desc:'تظبيط وتحديث شكل موقعك الحالي وتحويله لتصميم عصري جذاب يريح الزبون ويزود ثقته في بيزنسك.',
+ s3Title:'تطوير وتحديث واجهات المستخدم (UI/UX)',
+ s3Desc:'تجديد شكل موقعك الحالي بتصميم عصري وألوان متناسقة تريح الزائر وتزيد من ثقته في البراند الخاص بك.',
  s3DeliverablesTitle:'ما يتضمنه العمل:',
  s3Deliverables:'إعادة هيكلة الصفحات، ألوان متناسقة، أيقونات وفونتات مميزة، وتحسين رحلة المستخدم.',
  s3AudienceTitle:'مناسب لمين:',
  s3Audience:'المواقع القديمة التي تحتاج مظهر عصري ينافس في السوق الحالي.',
 
- s4Title:'ربط واتساب وسلة طلبات فورية',
- s4Desc:'ربط مباشر لطلبات الشراء على الواتساب، فورمات تواصل وحجز سريعة، ولمسات تفاعلية 3D تميزك عن غيرك.',
+ s4Title:'ربط سلة طلبات الواتساب ونماذج التواصل السريعة',
+ s4Desc:'تحويل الزوار لعملاء فعليين بربط الطلبات المباشرة وفواتير المنتجات على الواتساب فوراً وبدون تعقيد.',
+ servicesTrustMerged:'بنضمنلك تواصل مباشر ورد سريع مع عمر وجاد لمناقشة كل تفاصيل فكرتك، تسليم دقيق في الميعاد المتفق عليه بدون مماطلة، ودعم فني مستمر بعد الإطلاق لمساعدتك في أي تعديل وصيانة.',
  s4DeliverablesTitle:'ما يتضمنه العمل:',
  s4Deliverables:'ربط سلة الواتساب التلقائية، مجسمات 3D تفاعلية بـ Three.js، وأنيميشن ناعم بـ GSAP.',
  s4AudienceTitle:'مناسب لمين:',
@@ -204,7 +206,7 @@ export const translations = {
 
  // 7P Project Estimator
  estimatorBadge:'حاسبة ومواصفات مشروعك',
- estimatorTitle:'احسب تفاصيل مشروعك واستلم <span class="highlight">كوتيشن واتساب فوري</span>',
+ estimatorTitle:'احسب تفاصيل مشروعك وتواصل معانا',
  estimatorDesc:'اختر نوع فكرتك والميزات اللي محتاجها، وشوف جدول التسليم والتقنيات المقترحة، وابدأ تواصل فوري بضغطة زر واحدة.',
  estStep1Title:'نوع المشروع الأساسي',
  estStep1Desc:'اختر نوع واحد',
@@ -241,6 +243,7 @@ export const translations = {
  hudCtaBtn:'إرسال الكوتيشن لواتساب وبدء التنفيذ',
  hudSaveQuoteBtn:'نسخ وحفظ تفاصيل الكوتيشن',
  hudSubhint:'تجهيز فوري للرسالة والتواصل المباشر مع عمر وجاد',
+ hudSummaryTitle:'ملخص طلبك',
 
  // Process Section
  processBadge:'طريقة شغلنا',
@@ -392,8 +395,8 @@ export const translations = {
 
   // Testimonials
   testimonialsBadge: 'Client Reviews & Feedback',
-  testimonialsTitle: 'Feedback from <span class="highlight">Clients & Business Owners</span>',
-  testimonialsDesc: 'Authentic reviews from clients we partnered with and completed real projects for:',
+  testimonialsTitle: 'Client Feedback & Reviews',
+  testimonialsDesc: 'Real feedback and community notes (demo models pending final client confirmation):',
 
  // Trust Section
  trustBadge:'Trust & Guarantees',
@@ -437,31 +440,33 @@ export const translations = {
 
  // Services
  servicesBadge:'Our Services',
- servicesTitle:'What We Can Do for Your Business',
+ servicesTitle:'Our Services',
+ servicesIntro:'We are Omar and Gad. We design and build modern, fast websites focused on conversions and effortless customer experience. We build new websites from scratch or optimize your existing site and fix any technical bugs cleanly.',
  servicesDesc:'Click on any service tile to view full deliverables and target fit:',
- s1Title:'Full Website Development (Landing / E-commerce)',
- s1Desc:'From concept and design to clean, performant code with shopping cart, domain, and hosting ready.',
+ s1Title:'Full Website & E-commerce Development (Mobile-Ready)',
+ s1Desc:'From concept and design to clean, fast production code with integrated shopping cart, domain, and hosting ready.',
  s1DeliverablesTitle:'What is included:',
  s1Deliverables:'Responsive UI, WhatsApp cart & checkout, easy management, domain & hosting configuration.',
  s1AudienceTitle:'Who it is for:',
  s1Audience:'E-commerce brands, restaurants, and businesses seeking high-converting digital storefronts.',
 
- s2Title:'Bug Fixing & Rapid Maintenance',
- s2Desc:'If your site is slow, buttons fail, or layout breaks on mobile, we fix it cleanly and promptly.',
+ s2Title:'Bug Fixing, Maintenance & Speed Optimization',
+ s2Desc:'Full inspection of code and design errors, performance acceleration, and responsive fixes so no customer bounces.',
  s2DeliverablesTitle:'What is included:',
  s2Deliverables:'Bug debugging, image/asset compression, mobile CSS repair, and speed optimization.',
  s2AudienceTitle:'Who it is for:',
  s2Audience:'Site owners experiencing performance bottlenecks or glitches preventing checkout.',
 
- s3Title:'UI/UX Redesign & Modernization',
- s3Desc:'Modernizing your existing layout into a sleek, trustworthy digital experience.',
+ s3Title:'UI/UX Redesign & Layout Modernization',
+ s3Desc:'Modernizing your existing layout with harmonious styling and refined UX that elevates customer trust.',
  s3DeliverablesTitle:'What is included:',
  s3Deliverables:'Page restructuring, unified typography and color harmony, conversion UX improvements.',
  s3AudienceTitle:'Who it is for:',
  s3Audience:'Outdated websites needing a competitive visual upgrade.',
 
- s4Title:'WhatsApp Integration & 3D Features',
- s4Desc:'Direct WhatsApp sales funnel, booking modals, and interactive 3D touches.',
+ s4Title:'WhatsApp Cart Integration & Quick Contact Funnels',
+ s4Desc:'Turn visitors into paying clients with direct WhatsApp ordering, itemized invoices, and seamless communication.',
+ servicesTrustMerged:'We guarantee direct communication and fast replies with Omar & Gad to discuss every detail, strict on-time delivery with zero delays, and dedicated post-launch support and maintenance.',
  s4DeliverablesTitle:'What is included:',
  s4Deliverables:'Automated WhatsApp cart messages, Three.js 3D models, and smooth GSAP choreography.',
  s4AudienceTitle:'Who it is for:',
@@ -469,7 +474,7 @@ export const translations = {
 
  // Estimator
  estimatorBadge:'7P Project Architect',
- estimatorTitle:'Calculate your scope and receive <span class="highlight">instant WhatsApp quote</span>',
+ estimatorTitle:'Calculate Your Project & Get in Touch',
  estimatorDesc:'Choose your scope and features to view estimated turnaround, stack, and kick off immediately.',
  estStep1Title:'Primary Project Type',
  estStep1Desc:'Select one type',
@@ -506,6 +511,7 @@ export const translations = {
  hudCtaBtn:'Send Quote to WhatsApp & Start',
  hudSaveQuoteBtn:'Copy & Save Quote Details',
  hudSubhint:'Instant WhatsApp message preparation for Omar & Gad',
+ hudSummaryTitle:'Order Summary',
 
  // Process
  processBadge:'Our Process',
