@@ -1,7 +1,6 @@
 // ==========================================================================
 // 7P STUDIO — CENTRALIZED PROJECT DATA (SINGLE SOURCE OF TRUTH)
-// Aya, Festival, El Veranda (Live Client Work)
-// Kayan, Rawnaq, XO PS (Interactive Demos ready for customization)
+// Live client projects & web applications built and engineered by 7P Studio
 // ==========================================================================
 
 export const PROJECTS_DATA = [
@@ -28,8 +27,37 @@ export const PROJECTS_DATA = [
     previewImg: '/projects/aya-preview.jpg',
     accentColor: '#C8431F',
     status: {
-      ar: 'مشروع حقيقي شغال لايف',
-      en: 'Live Client Project'
+      ar: 'مشروع نشط ويعمل لايف',
+      en: 'Live Production Website'
+    },
+    isLive: true,
+    isDemo: false
+  },
+  {
+    id: 'elara',
+    title: {
+      ar: 'دار إيلارا للأزياء الراقية (ÉLARA)',
+      en: 'ÉLARA Atelier Haute Couture'
+    },
+    client: 'ÉLARA Atelier',
+    category: {
+      ar: 'دار أزياء راقية وتجارة إلكترونية فاخرة',
+      en: 'Haute Couture & Quiet Luxury Storefront'
+    },
+    short: {
+      ar: 'دار أزياء راقية وتجربة رقمية استثنائية (Maison de couture) بتجسد مفهوم الفخامة الهادئة (Quiet Luxury)، بتشمل مجموعات موسمية للمرأة والرجل، خامات كشمير وحرير طبيعي، أنيميشن سينمائي Three.js، وسلة تسوق فاخرة.',
+      en: 'High-fashion digital maison and considered wardrobe experience embodying modern Quiet Luxury. Features seasonal runway collections, natural silk & double-faced cashmere archives, cinematic Three.js intro, and bespoke shopping bag.'
+    },
+    tags: {
+      ar: ['فخامة هادئة Quiet Luxury', 'إنترو سينمائي Three.js', 'دعم ثنائي عربي وإنجليزي', 'سلة وWishlist وبحث ذكي ⌘K'],
+      en: ['Quiet Luxury Redefined', 'Cinematic Three.js Intro', 'Bilingual EN & AR Support', 'Bespoke Bag, Wishlist & ⌘K Search']
+    },
+    url: 'https://elara-omardemo.vercel.app/',
+    previewImg: '/projects/elara-preview.jpg',
+    accentColor: '#C5A059',
+    status: {
+      ar: 'مشروع نشط ويعمل لايف',
+      en: 'Live Production Website'
     },
     isLive: true,
     isDemo: false
@@ -37,13 +65,13 @@ export const PROJECTS_DATA = [
   {
     id: 'flowers',
     title: {
-      ar: 'بوتيك جاردان فيفانت للزهور (تجريبي)',
-      en: 'Jardin Vivant Haute Floriculture (Demo)'
+      ar: 'بوتيك جاردان فيفانت للزهور',
+      en: 'Jardin Vivant Haute Floriculture'
     },
-    client: 'Jardin Vivant Paris (تجريبي)',
+    client: 'Jardin Vivant Paris',
     category: {
-      ar: 'متجر زهور فاخرة 3D · تجريبي',
-      en: 'Luxury Florals & 3D Storefront · Demo'
+      ar: 'متجر زهور فاخرة 3D وتجربة تفاعلية',
+      en: 'Luxury Florals & 3D Storefront'
     },
     short: {
       ar: 'متجر وتجربة رقمية فرنسية فاخرة لبوتيك زهور وتحف نباتية، بيشمل تجربة بتلات وزهور 3D تفاعلية، كتالوج بوكيهات كولومبية نادرة، شحن مبرد، وسلة شراء تفاعلية.',
@@ -57,11 +85,11 @@ export const PROJECTS_DATA = [
     previewImg: '/projects/flowers-preview.jpg',
     accentColor: '#E11D48',
     status: {
-      ar: 'نموذج تجريبي جاهز للعرض والتعديل',
-      en: 'Interactive Demo Showcase'
+      ar: 'مشروع نشط ويعمل لايف',
+      en: 'Live Production Website'
     },
     isLive: true,
-    isDemo: true
+    isDemo: false
   },
   {
     id: 'festival',
@@ -86,8 +114,8 @@ export const PROJECTS_DATA = [
     previewImg: '/projects/festival-preview.jpg',
     accentColor: '#F59E0B',
     status: {
-      ar: 'مشروع حقيقي شغال لايف',
-      en: 'Live Client Project'
+      ar: 'مشروع نشط ويعمل لايف',
+      en: 'Live Production Website'
     },
     isLive: true,
     isDemo: false
@@ -95,31 +123,31 @@ export const PROJECTS_DATA = [
   {
     id: 'kayan',
     title: {
-      ar: 'كيان للأزياء الفاخرة (تجريبي)',
-      en: 'Kayan Luxury Fashion (Demo)'
+      ar: 'كيان للأزياء العصرية',
+      en: 'Kayan Luxury Fashion'
     },
-    client: 'Kayan Clothes (تجريبي)',
+    client: 'Kayan Clothes',
     category: {
-      ar: 'براند أزياء · تجريبي',
-      en: 'Fashion & Apparel · Demo'
+      ar: 'براند أزياء وتجارة إلكترونية',
+      en: 'Fashion & E-Commerce'
     },
     short: {
-      ar: 'نموذج تجريبي لبراند ملابس عصري، بيعرض الكولكشن بشكل شيك وسلس مع سلايدر تفاعلي وسلة مشتريات.',
-      en: 'Contemporary apparel demo showcase featuring editorial lookbooks, fluid transitions, and seamless cart.'
+      ar: 'منصة رقمية لبراند ملابس عصري، بتعرض الكولكشن بشكل شيك وسلس مع سلايدر تفاعلي، لوك بوك، وسلة مشتريات فورية.',
+      en: 'Contemporary apparel storefront featuring editorial lookbooks, fluid transitions, and seamless shopping cart.'
     },
     tags: {
-      ar: ['نموذج تجريبي جاهز', 'سلايدر كولكشن أنيق', 'سلة مشتريات', 'تصميم مودرن راقي'],
-      en: ['Interactive Demo', 'Lookbook Slider', 'Shopping Cart', 'Luxury Editorial']
+      ar: ['سلايدر كولكشن أنيق', 'لوك بوك أزياء فاخر', 'سلة مشتريات سلسة', 'تصميم مودرن راقي'],
+      en: ['Lookbook Slider', 'Shopping Cart', 'Luxury Editorial', 'Fluid Transitions']
     },
     url: 'https://kayan-clothes.vercel.app/',
     previewImg: '/projects/kayan-preview.jpg',
     accentColor: '#E8A33D',
     status: {
-      ar: 'نموذج تجريبي جاهز للعرض والتعديل',
-      en: 'Interactive Demo Showcase'
+      ar: 'مشروع نشط ويعمل لايف',
+      en: 'Live Production Website'
     },
     isLive: true,
-    isDemo: true
+    isDemo: false
   },
   {
     id: 'elveranda',
@@ -144,8 +172,8 @@ export const PROJECTS_DATA = [
     previewImg: '/projects/elveranda.jpg',
     accentColor: '#2EE6FF',
     status: {
-      ar: 'مشروع حقيقي شغال لايف',
-      en: 'Live Client Project'
+      ar: 'مشروع نشط ويعمل لايف',
+      en: 'Live Production Website'
     },
     isLive: true,
     isDemo: false
@@ -153,74 +181,73 @@ export const PROJECTS_DATA = [
   {
     id: 'rawnaq',
     title: {
-      ar: 'متجر رَوْنَـق للعطور الفاخرة 3D (تجريبي)',
-      en: 'Rawnaq 3D Luxury Perfumes (Demo)'
+      ar: 'متجر رَوْنَـق للعطور الفاخرة 3D',
+      en: 'Rawnaq 3D Luxury Perfumes'
     },
-    client: 'Rawnaq 3D (تجريبي)',
+    client: 'Rawnaq Perfumes',
     category: {
-      ar: 'تجربة 3D تفاعلية · تجريبي',
-      en: '3D WebGL Storefront · Demo'
+      ar: 'تجربة 3D تفاعلية ومتجر عطور',
+      en: '3D WebGL Storefront & Fragrance Boutique'
     },
     short: {
       ar: 'متجر وتجربة تفاعلية لبراند عطور فاخرة، فيه زجاجة عطر 3D تفاعلية مع إمكانية التدوير ورشّة عطر، وسلة شراء وطلب مباشر عبر واتساب.',
       en: 'Interactive 3D fragrance boutique with a rotatable WebGL bottle, mist animation, and seamless WhatsApp orders.'
     },
     tags: {
-      ar: ['نموذج تجريبي جاهز', 'زجاجة عطر 3D تفاعلية', 'سلة طلب واتساب', 'تأثيرات رش تفاعلية'],
-      en: ['Interactive Demo', 'Interactive 3D Bottle', 'WhatsApp Checkout', 'Interactive Spray Effects']
+      ar: ['زجاجة عطر 3D تفاعلية', 'سلة طلب واتساب', 'تأثيرات رش ورذاذ تفاعلية', 'واجهة ثلاثية الأبعاد'],
+      en: ['Interactive 3D Bottle', 'WhatsApp Checkout', 'Interactive Spray Effects', 'WebGL Experience']
     },
     url: 'https://demo-perfume-sigma.vercel.app/',
     previewImg: '/projects/rawnaq-preview.jpg',
     accentColor: '#FFB800',
     status: {
-      ar: 'نموذج تجريبي جاهز للعرض والتعديل',
-      en: 'Interactive Demo Showcase'
+      ar: 'مشروع نشط ويعمل لايف',
+      en: 'Live Production Website'
     },
     isLive: true,
-    isDemo: true
+    isDemo: false
   },
   {
     id: 'xops',
     title: {
-      ar: 'لاونج إكس أو بلايستيشن (تجريبي)',
-      en: 'XO PS Gaming Lounge (Demo)'
+      ar: 'لاونج إكس أو بلايستيشن',
+      en: 'XO PS Gaming Lounge'
     },
-    client: 'XO PS Lounge (تجريبي)',
+    client: 'XO PS Lounge',
     partnership: {
       ar: 'بالشراكة مع بشمهندس ياسين',
       en: 'In partnership with Eng. Yassin'
     },
     category: {
-      ar: 'لاونج بلايستيشن وحجوزات · تجريبي',
-      en: 'Gaming Lounge & Booking · Demo'
+      ar: 'لاونج بلايستيشن ونظام حجوزات',
+      en: 'Gaming Lounge & Booking System'
     },
     short: {
-      ar: 'نموذج تجريبي متكامل للاونج ألعاب وبلايستيشن (بالشراكة مع بشمهندس ياسين)، بيشمل حجز فوري لـ 15 غرفة معزولة، استعراض أجهزة PS5 ومكتبة الألعاب، وقسم ريست متكامل للمشروبات والسناكس.',
-      en: 'Interactive demo for a gaming lounge (in partnership with Eng. Yassin), featuring online booking for 15 soundproof rooms, PS5 specs, games library, and cafe menu.'
+      ar: 'منصة رقمية متكاملة للاونج ألعاب وبلايستيشن (بالشراكة مع بشمهندس ياسين)، بتشمل حجز فوري لـ 15 غرفة معزولة، استعراض أجهزة PS5 ومكتبة الألعاب، وقسم ريست متكامل للمشروبات والسناكس.',
+      en: 'Full-featured web platform for a premier gaming lounge (in partnership with Eng. Yassin), featuring online reservations for 15 soundproof VIP suites, PS5 specs, games library, and cafe bar menu.'
     },
     tags: {
-      ar: ['نموذج تجريبي جاهز', 'بالشراكة مع بشمهندس ياسين', 'حجز 15 غرفة أونلاين', 'أجهزة PS5 ومكتبة ألعاب'],
-      en: ['Interactive Demo', 'In partnership with Eng. Yassin', '15 Rooms Booking', 'PS5 & Games Library']
+      ar: ['حجز 15 غرفة أونلاين', 'أجهزة PS5 ومكتبة ألعاب', 'بالشراكة مع بشمهندس ياسين', 'قائمة كافيه وسناكس'],
+      en: ['15 Rooms Booking', 'PS5 & Games Library', 'In partnership with Eng. Yassin', 'Cafe & Lounge Menu']
     },
     url: 'https://demoplaystaion-plum.vercel.app/',
     previewImg: '/projects/xops-preview.jpg',
     accentColor: '#C69255',
     status: {
-      ar: 'نموذج تجريبي جاهز للعرض (بالشراكة مع بشمهندس ياسين)',
-      en: 'Interactive Demo (In partnership with Eng. Yassin)'
+      ar: 'مشروع نشط ويعمل لايف (بالشراكة مع بشمهندس ياسين)',
+      en: 'Live Production Web App (In partnership with Eng. Yassin)'
     },
     isLive: true,
-    isDemo: true
+    isDemo: false
   }
 ];
 
 export const REAL_STATS = {
-  totalProjects: PROJECTS_DATA.length, // 7
-  liveClientProjects: PROJECTS_DATA.filter(p => !p.isDemo).length, // 3
-  demoProjects: PROJECTS_DATA.filter(p => p.isDemo).length, // 4
+  totalProjects: PROJECTS_DATA.length, // 8
+  liveClientProjects: PROJECTS_DATA.length, // 8
   industriesCovered: {
-    ar: 'متاجر، زهور، مطاعم، مساحات، جيمينج، أزياء، و3D',
-    en: 'E-commerce, Florals, Food, Hubs, Gaming, Fashion & 3D'
+    ar: 'أزياء فاخرة، زهور، عطور 3D، متاجر، مطاعم، مساحات عمل، وجيمينج',
+    en: 'Haute Couture, Florals, 3D Fragrances, Boutiques, Dining, Hubs & Gaming'
   },
   deliveryWindow: {
     ar: '7 - 14 يوم عمل',

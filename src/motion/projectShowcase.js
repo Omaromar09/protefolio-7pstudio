@@ -1,6 +1,6 @@
 // ==========================================================================
 // 7P STUDIO — INTERACTIVE PINNED PROJECT SHOWCASE
-// Fast, preloaded, touch-swipe & responsive tabs showcasing 7 live & demo projects
+// Fast, preloaded, touch-swipe & responsive tabs showcasing 8 live projects
 // ==========================================================================
 
 import gsap from 'gsap';
@@ -46,7 +46,6 @@ function renderTabsHTML(lang) {
             aria-selected="${idx === activeIndex}">
       <span class="tab-dot" style="background: ${p.accentColor}"></span>
       <span class="tab-title">${p.title[lang] || p.title.ar}</span>
-      ${p.isDemo ? `<span class="tab-badge-demo">${lang === 'ar' ? 'تجريبي' : 'Demo'}</span>` : ''}
     </button>
   `).join('');
 }
