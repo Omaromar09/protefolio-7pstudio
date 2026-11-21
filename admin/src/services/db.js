@@ -5,9 +5,9 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// Environment variables
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+// Environment variables with active cloud fallback
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://fvsvlajnngwdptosvfat.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_37c7ysGfzAC7pPYbtHMVCA_xrebnczT';
 
 let supabase = null;
 let isSupabaseConfigured = false;
@@ -38,7 +38,7 @@ export function setLocalData(key, value) {
   try {
     localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
   } catch (e) {
-    console.error('[7P DB] LocalStorage write error:', e);
+    console.warn(`[7P DB] Failed to save ${key} locally:`, e);
   }
 }
 

@@ -312,12 +312,33 @@ function setupInteractiveControls() {
         createdAt: new Date().toISOString()
       };
 
-      // 1. Asynchronously send to Serverless /api/contact
+      // 1. Asynchronously send to Serverless /api/contact & direct Supabase Cloud
       fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(leadPayload)
       }).catch(err => console.warn('[7P Lead API Warning]:', err));
+
+      fetch('https://fvsvlajnngwdptosvfat.supabase.co/rest/v1/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': 'sb_publishable_37c7ysGfzAC7pPYbtHMVCA_xrebnczT',
+          'Authorization': 'Bearer sb_publishable_37c7ysGfzAC7pPYbtHMVCA_xrebnczT',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          name,
+          phone: contact.includes('@') ? null : contact,
+          email: contact.includes('@') ? contact : null,
+          message,
+          project_type: 'Website Project Inquiry',
+          form_name: 'portfolio-contact',
+          source_url: window.location.href,
+          status: 'new',
+          is_read: false
+        })
+      }).catch(err => console.warn('[Supabase Direct Post Error]:', err));
 
       // 2. Direct browser sync for instant visibility in admin dashboard
       try {

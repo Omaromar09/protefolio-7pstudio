@@ -101,8 +101,8 @@ export default async function handler(req, res) {
     };
 
     // Attempt to persist to Supabase if configured
-    const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+    const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || 'https://fvsvlajnngwdptosvfat.supabase.co';
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || 'sb_publishable_37c7ysGfzAC7pPYbtHMVCA_xrebnczT';
 
     let savedLead = null;
     if (supabaseUrl && supabaseKey) {
