@@ -376,7 +376,7 @@ function setupInteractiveControls() {
       fireSuccessConfetti();
 
       const successToast = lang === 'ar'
-        ? `شكراً ليك يا ${name}! تم إرسال تفاصيل مشروعك إلى لوحة تحكم 7P Studio بنجاح. سنتواصل معك سريعاً عبر ${contact}.`
+        ? `شكراً ليك يا ${name}! تم إرسال تفاصيل مشروعك إلى فريق 7P Studio بنجاح. سنتواصل معك سريعاً عبر ${contact}.`
         : `Thank you ${name}! Your project inquiry was delivered to 7P Studio Control Center. We will contact you shortly.`;
       showToast(successToast, 'success');
 

@@ -280,7 +280,7 @@ export const translations = {
  formMsgLabel:'تفاصيل مشروعك أو مشكلتك',
  formMsgPlaceholder:'اكتب باختصار محتاج موقع جديد، متجر، أو عندك مشكلة معينة عايز تصلحها...',
  formSubmitBtn: 'إرسال تفاصيل المشروع إلى الاستوديو',
- formPrivacyNote: 'يتم إرسال بياناتك مباشرة وبأمان إلى لوحة تحكم 7P Studio للرد عليك',
+ formPrivacyNote: 'يتم إرسال بياناتك مباشرة وبأمان إلى فريق 7P Studio للرد عليك',
  privacyPolicyLink:'سياسة الخصوصية',
 
  // Sticky Mobile CTA
