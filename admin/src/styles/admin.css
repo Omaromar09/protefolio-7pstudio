@@ -1,0 +1,300 @@
+/* ==============================================================================
+   7P STUDIO CONTROL CENTER — CORE DESIGN SYSTEM (admin.css)
+   Carefully calibrated to replicate the exact reference visual identity
+   ============================================================================== */
+
+:root {
+  --bg-obsidian: #080808;
+  --bg-sidebar: #0C0C0D;
+  --bg-card: #131315;
+  --bg-card-hover: #18181B;
+  --bg-card-subtle: #161619;
+  --bg-input: #17171A;
+  --bg-input-focus: #1E1E22;
+  
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --border-orange-subtle: rgba(255, 133, 0, 0.22);
+  --border-orange-glow: rgba(255, 133, 0, 0.45);
+
+  --accent-orange: #FF8500;
+  --accent-orange-bright: #FF9E2C;
+  --accent-orange-dark: #E66A00;
+  --accent-gold: #FFB347;
+  --accent-gold-soft: #FDE047;
+
+  --text-white: #FFFFFF;
+  --text-primary: #F4F4F5;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --text-dark: #52525B;
+
+  --status-green: #22C55E;
+  --status-green-bg: rgba(34, 197, 94, 0.12);
+  --status-green-border: rgba(34, 197, 94, 0.25);
+
+  --status-amber: #F59E0B;
+  --status-amber-bg: rgba(245, 158, 11, 0.12);
+  --status-amber-border: rgba(245, 158, 11, 0.25);
+
+  --status-red: #EF4444;
+  --status-red-bg: rgba(239, 68, 68, 0.12);
+  --status-red-border: rgba(239, 68, 68, 0.25);
+
+  --status-blue: #3B82F6;
+  --status-blue-bg: rgba(59, 130, 246, 0.12);
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Space Grotesk', 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 0 25px -4px rgba(255, 133, 0, 0.22);
+  --shadow-glow-strong: 0 0 35px 2px rgba(255, 133, 0, 0.35);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+}
+
+/* Light Theme Variables */
+html.light {
+  --bg-obsidian: #F4F4F5;
+  --bg-sidebar: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --bg-card-subtle: #F1F5F9;
+  --bg-input: #F1F5F9;
+  --bg-input-focus: #E2E8F0;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+  --text-white: #09090B;
+  --text-primary: #18181B;
+  --text-secondary: #52525B;
+  --text-muted: #71717A;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-obsidian);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Top Subtle Orange Ambient Glow as seen in reference image */
+body::before {
+  content: '';
+  position: fixed;
+  top: -150px;
+  left: 20%;
+  right: 10%;
+  height: 400px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 133, 0, 0.09) 0%, rgba(255, 133, 0, 0.02) 50%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 133, 0, 0.4);
+}
+
+/* Utility Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.11);
+}
+
+.glass-panel-glow {
+  border: 1px solid var(--border-orange-subtle);
+  box-shadow: var(--shadow-glow);
+}
+
+.glass-panel-glow:hover {
+  border-color: var(--border-orange-glow);
+  box-shadow: var(--shadow-glow-strong);
+}
+
+/* Pill Badges */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.badge-status.published,
+.badge-status.live,
+.badge-status.success {
+  background: var(--status-green-bg);
+  color: var(--status-green);
+  border: 1px solid var(--status-green-border);
+}
+
+.badge-status.warning {
+  background: var(--status-amber-bg);
+  color: var(--status-amber);
+  border: 1px solid var(--status-amber-border);
+}
+
+.badge-status.danger,
+.badge-status.rejected {
+  background: var(--status-red-bg);
+  color: var(--status-red);
+  border: 1px solid var(--status-red-border);
+}
+
+.badge-status.draft,
+.badge-status.archived,
+.badge-status.neutral {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+.badge-status.discussion,
+.badge-status.new {
+  background: rgba(255, 133, 0, 0.12);
+  color: var(--accent-orange);
+  border: 1px solid var(--border-orange-subtle);
+}
+
+.badge-status .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge-status .dot.pulse {
+  animation: pulse-dot 1.8s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #FF8500 0%, #FF6000 100%);
+  color: #000000;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 12px rgba(255, 133, 0, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #FF951A 0%, #FF7000 100%);
+  box-shadow: 0 4px 18px rgba(255, 133, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.88rem;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--text-white);
+}
+
+.btn-icon {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  transition: all 0.18s ease;
+}
+
+.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: var(--text-white);
+  border-color: rgba(255, 255, 255, 0.18);
+}

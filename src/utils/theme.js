@@ -87,7 +87,7 @@ function updateThemeIcons(theme) {
 export function initTheme() {
   let savedTheme = 'dark';
   try {
-    const stored = localStorage.getItem('7p_theme') || localStorage.getItem('omar_theme');
+    const stored = localStorage.getItem('7p_theme');
     if (stored === 'light' || stored === 'dark') {
       savedTheme = stored;
     } else {

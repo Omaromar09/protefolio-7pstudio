@@ -143,79 +143,64 @@
   }
 }
 
-/* 3D Centerpiece in Hero — 7P SVG/CSS 3D Logo Component */
+/* 3D Centerpiece in Hero */
 .hero-3d-wrap {
   width: 100%;
   max-width: 100%;
+  height: 340px;
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
 }
 
-/* Stage: perspective container */
-.stage {
-  --size: min(78vw, 420px);
-  --step: calc(var(--size) * .0046);               /* سمك الطبقة الواحدة */
-  width: var(--size);
-  height: calc(var(--size) * .92);
-  perspective: 1900px;
+@media (min-width: 768px) {
+  .hero-3d-wrap {
+    height: 460px;
+  }
 }
 
-.logo3d {
-  --e: 0;      /* 1 = الطبقات مفرودة، 0 = متقفلة */
-  --k: 1;      /* معامل المسافة بين الطبقات */
-  --om: 1;     /* ظهور الطبقات الوسيطة */
-  --fo: 1;     /* تعبية الطبقات باللون */
-  --wo: 0;     /* ظهور خطوط الرسم */
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transform: rotateX(-10deg) rotateY(-24deg);
+@media (min-width: 992px) {
+  .hero-3d-wrap {
+    height: 520px;
+  }
 }
 
-.layer {
+#hero-3d-canvas {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  display: block;
+  cursor: grab;
+}
+
+#hero-3d-canvas:active {
+  cursor: grabbing;
+}
+
+.hero-3d-hint {
   position: absolute;
-  inset: 0;
-  transform: translateZ(calc(var(--i) * var(--step) * var(--k)));
-}
-.layer.mid { opacity: var(--om); }
-.layer svg { width: 100%; height: 100%; display: block; overflow: visible; }
-.layer .fillp { fill-opacity: var(--fo); stroke-opacity: var(--fo); }
-.layer.front .fillp { fill-opacity: 1; stroke-opacity: 1; }
-.layer .wire {
-  fill: none;
-  stroke: var(--accent, #E8A33D);
-  stroke-width: 1.6;
-  stroke-opacity: var(--wo);
-  vector-effect: non-scaling-stroke;
-}
-
-/* مراحل الشغل */
-.steps {
-  display: flex;
-  gap: 22px;
-  font-size: 16px;
-  color: var(--muted, #A39B8E);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.steps span {
-  padding: 6px 2px;
-  border-bottom: 2px solid transparent;
-  transition: color .3s, border-color .3s;
-  cursor: default;
-}
-.steps span.on {
-  color: var(--text, #ECE7DD);
-  border-color: var(--accent, #E8A33D);
+  bottom: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #ECE7DD;
+  background: rgba(28, 26, 23, 0.88);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(232, 163, 61, 0.35);
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .steps span { transition: none; }
+[data-theme="dark"] .hero-3d-hint {
+  background: rgba(28, 26, 23, 0.92);
+  color: #ECE7DD;
+  border: 1px solid rgba(232, 163, 61, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
 }
 
 
@@ -2449,19 +2434,11 @@ html[dir="ltr"] .fa-arrow-up-right-from-square {
   }
 }
 
-/* On mobile: 7P logo fills 70-78% width, sits above headline (grid stacks with order: -1) */
 @media (max-width: 991px) {
   .hero-3d-wrap {
-    order: -1; /* placed above the headline */
-    padding: 0.5rem 0 1rem;
-    width: 100%;
-  }
-  .stage {
-    --size: min(76vw, 340px);
-  }
-  .steps {
-    gap: 16px;
-    font-size: 14px;
+    order: -1;
+    height: 320px;
+    padding: 0.5rem 0;
   }
 }
 

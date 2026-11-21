@@ -100,13 +100,57 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
-// 2. 3D SCENES SETUP (Skills Constellation only — Hero replaced by CSS/SVG 7P logo)
+// 2. 3D SCENES SETUP (Hero 3D Centerpiece + Skills Constellation)
 // ==========================================================================
+let heroSceneInstance = null;
 let skillsSceneInstance = null;
+let heroLoaded = false;
 let skillsLoaded = false;
 
+export async function ensureHeroSceneLoaded() {
+  if (heroLoaded) return;
+  const heroCanvas = document.getElementById('hero-3d-canvas');
+  if (!heroCanvas) return;
+  heroLoaded = true;
+
+  try {
+    const { HeroScene } = await import('./3d/heroScene.js');
+    heroSceneInstance = new HeroScene(heroCanvas);
+
+    window.addEventListener('scroll', () => {
+      if (heroSceneInstance) {
+        const progress = Math.min(window.scrollY / window.innerHeight, 1.5);
+        heroSceneInstance.setScroll(progress);
+      }
+    }, { passive: true });
+  } catch (err) {
+    console.warn('Hero 3D lazy load skipped or failed:', err);
+  }
+}
+
 function setup3DScenes() {
-  // Skills 3D Constellation (unchanged)
+  const heroCanvas = document.getElementById('hero-3d-canvas');
+  if (heroCanvas) {
+    const onUserInteraction = () => {
+      ensureHeroSceneLoaded();
+      ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'].forEach(evt => {
+        window.removeEventListener(evt, onUserInteraction);
+      });
+    };
+    ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'].forEach(evt => {
+      window.addEventListener(evt, onUserInteraction, { once: true, passive: true });
+    });
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => {
+        setTimeout(ensureHeroSceneLoaded, 1200);
+      }, { timeout: 2800 });
+    } else {
+      setTimeout(ensureHeroSceneLoaded, 1500);
+    }
+  }
+
+  // Skills 3D Constellation
   const skillsCanvas = document.getElementById('skills-canvas');
   if (skillsCanvas) {
     const skillsObserver = new IntersectionObserver(async (entries) => {
@@ -199,6 +243,7 @@ function executeOrangeHandoff(introScreen, orangeHandoff) {
 }
 
 function triggerHeroReveal() {
+  ensureHeroSceneLoaded();
   const heroContent = document.querySelector('.hero-content');
   const hero3d = document.querySelector('.hero-3d-wrap');
 

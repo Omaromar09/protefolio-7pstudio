@@ -5,14 +5,14 @@
     <script>
       (function() {
         try {
-          var savedTheme = localStorage.getItem('7p_theme') || localStorage.getItem('omar_theme');
+          var savedTheme = localStorage.getItem('7p_theme');
           var theme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : 'dark';
           document.documentElement.setAttribute('data-theme', theme);
           var metaTheme = document.querySelector('meta[name="theme-color"]');
           if (metaTheme) {
             metaTheme.setAttribute('content', theme === 'dark' ? '#121110' : '#F5F2EC');
           }
-          var savedLang = localStorage.getItem('7p_portfolio_lang') || localStorage.getItem('omar_portfolio_lang');
+          var savedLang = localStorage.getItem('7p_portfolio_lang');
           var lang = (savedLang === 'ar' || savedLang === 'en') ? savedLang : 'ar';
           document.documentElement.setAttribute('lang', lang);
           document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
@@ -46,14 +46,14 @@
     <link rel="prefetch" as="image" href="/projects/xops-preview.jpg" />
 
     <!-- Favicon & App Icons Set (Google Search & Multi-Device Optimized) -->
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=3" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=3" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png?v=3" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="shortcut icon" href="/favicon.ico?v=3" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48 32x32 16x16" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=4" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=4" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png?v=4" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=4" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=4" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=4" />
     <meta name="theme-color" content="#121110" />
 
     <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
@@ -327,15 +327,13 @@
             </div>
           </div>
 
-          <!-- Hero 7P Animated Logo (Replaces old Three.js 3D object) -->
+          <!-- Hero 3D Centerpiece -->
           <div class="hero-3d-wrap">
-            <div class="stage" aria-hidden="true"><div class="logo3d" id="logo3d"></div></div>
-            <div class="steps" id="steps" aria-hidden="true">
-              <span data-i18n="step7pIdea">فكرة</span>
-              <span data-i18n="step7pDesign">تصميم</span>
-              <span data-i18n="step7pCode">كود</span>
-              <span data-i18n="step7pDelivery">تسليم</span>
-            </div>
+            <canvas id="hero-3d-canvas"></canvas>
+            <span class="hero-3d-hint">
+              <i class="fa-solid fa-arrows-spin" style="margin-inline-end: 4px;"></i>
+              <span data-i18n="hero3dHint">تفاعل مع المجسم 3D</span>
+            </span>
           </div>
         </div>
       </section>
@@ -1025,73 +1023,6 @@
     <!-- Main JavaScript Application Entry -->
     <script type="module" src="./src/main.js"></script>
 
-    <!-- 7P Logo 3D Animation Component (Pure SVG/CSS/JS - Zero Three.js) -->
-    <script>
-    (function(){
-      var N = 44, root = document.getElementById('logo3d');
-      if (!root) return;
-      var stepsEl = document.querySelectorAll('#steps span');
-      var PERIOD = 18;                               // مدة الدورة بالثواني
-
-      var D = [
-        'M10 20 H125 V48 L62 220 H30 L92 48 H10 Z',
-        'M145 20 H205 Q250 20 250 70 Q250 120 205 120 H175 V220 H145 Z',
-        'M175 47 V93 H202 Q220 93 220 70 Q220 47 202 47 Z'
-      ].join(' ');
-
-      function mix(a,b,t){ return Math.round(a+(b-a)*t) }
-      function sideColor(t){ return 'rgb(' + mix(104,166,t) + ',' + mix(70,112,t) + ',' + mix(18,28,t) + ')' }
-      function clamp(x){ return Math.max(0, Math.min(1, x)) }
-      function smooth(x){ x = clamp(x); return x*x*(3-2*x) }
-
-      for (var i = 0; i < N; i++){
-        var isFront = (i === N-1), isBack = (i === 0), key = (i % 4 === 3);
-        var fill = isFront ? '#E8A33D' : isBack ? '#B97F23' : sideColor(i/(N-1));
-        var layer = document.createElement('div');
-        layer.className = 'layer' + (isFront ? ' front' : '') + (key ? '' : ' mid');
-        layer.style.setProperty('--i', (i - (N-1)/2).toFixed(2));
-        layer.innerHTML =
-          '<svg viewBox="0 0 260 240">' +
-          '<path class="fillp" fill-rule="evenodd" d="' + D + '" fill="' + fill + '" stroke="' + fill + '" stroke-width="3" stroke-linejoin="round"/>' +
-          (key ? '<path class="wire" fill-rule="evenodd" d="' + D + '"/>' : '') +
-          '</svg>';
-        root.appendChild(layer);
-      }
-
-      var K = 3.6;                                   // قد إيه الطبقات بتتفرد
-      var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var override = null;
-
-      // الخط الزمني: u من 0 لـ 1
-      function explode(u){
-        if (u < .25) return 1;
-        if (u < .60) return 1 - smooth((u-.25)/.35);
-        if (u < .90) return 0;
-        return smooth((u-.90)/.10);
-      }
-      function stageIndex(u){ return u < .25 ? 0 : u < .45 ? 1 : u < .60 ? 2 : u < .90 ? 3 : 0 }
-
-      function render(u){
-        var e = explode(u);
-        var yaw = -20 + 42*Math.sin(u*Math.PI*4);
-        root.style.setProperty('--k', (1 + K*e).toFixed(3));
-        root.style.setProperty('--om', clamp(1 - e*1.8).toFixed(3));
-        root.style.setProperty('--fo',  clamp((0.5 - e)/0.5).toFixed(3));
-        root.style.setProperty('--wo',  clamp(e*1.4).toFixed(3));
-        root.style.transform = 'rotateX(-10deg) rotateY(' + yaw.toFixed(2) + 'deg)';
-        var s = stageIndex(u);
-        for (var j = 0; j < stepsEl.length; j++) stepsEl[j].classList.toggle('on', j === s);
-      }
-
-      function frame(now){
-        var u = override !== null ? override : ((now/1000) % PERIOD) / PERIOD;
-        render(u);
-        if (override === null && !reduce) requestAnimationFrame(frame);
-      }
-
-      window.setU = function(u){ override = u; render(u) };   // للاختبار
-      if (reduce){ render(.75) } else { requestAnimationFrame(frame) }
-    })();
-    </script>
+    
   </body>
 </html>

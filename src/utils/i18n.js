@@ -573,7 +573,7 @@ export const translations = {
 let currentLang ='ar';
 
 export function initLanguage() {
- const savedLang = localStorage.getItem('7p_portfolio_lang') || localStorage.getItem('omar_portfolio_lang') || 'ar';
+ const savedLang = localStorage.getItem('7p_portfolio_lang') || 'ar';
  setLanguage(savedLang, false);
 
  const langButtons = document.querySelectorAll('.lang-btn');
