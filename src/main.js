@@ -100,86 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
-// 2. 3D SCENES SETUP (Hero 3D Centerpiece + Skills Constellation)
+// 2. 3D SCENES SETUP
 // ==========================================================================
-let heroSceneInstance = null;
-let skillsSceneInstance = null;
-let heroLoaded = false;
-let skillsLoaded = false;
-
-export async function ensureHeroSceneLoaded() {
-  if (heroLoaded) return;
-  const heroCanvas = document.getElementById('hero-3d-canvas');
-  if (!heroCanvas) return;
-  heroLoaded = true;
-
-  try {
-    const { HeroScene } = await import('./3d/heroScene.js');
-    heroSceneInstance = new HeroScene(heroCanvas);
-
-    window.addEventListener('scroll', () => {
-      if (heroSceneInstance) {
-        const progress = Math.min(window.scrollY / window.innerHeight, 1.5);
-        heroSceneInstance.setScroll(progress);
-      }
-    }, { passive: true });
-  } catch (err) {
-    console.warn('Hero 3D lazy load skipped or failed:', err);
-  }
-}
-
 function setup3DScenes() {
-  const heroCanvas = document.getElementById('hero-3d-canvas');
-  if (heroCanvas) {
-    const onUserInteraction = () => {
-      ensureHeroSceneLoaded();
-      ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'].forEach(evt => {
-        window.removeEventListener(evt, onUserInteraction);
-      });
-    };
-    ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'].forEach(evt => {
-      window.addEventListener(evt, onUserInteraction, { once: true, passive: true });
-    });
-
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(() => {
-        setTimeout(ensureHeroSceneLoaded, 1200);
-      }, { timeout: 2800 });
-    } else {
-      setTimeout(ensureHeroSceneLoaded, 1500);
-    }
-  }
-
-  // Skills 3D Constellation
-  const skillsCanvas = document.getElementById('skills-canvas');
-  if (skillsCanvas) {
-    const skillsObserver = new IntersectionObserver(async (entries) => {
-      if (entries[0].isIntersecting && !skillsLoaded) {
-        skillsLoaded = true;
-        skillsObserver.disconnect();
-
-        try {
-          const { SkillsScene } = await import('./3d/skillsScene.js');
-          skillsSceneInstance = new SkillsScene(skillsCanvas);
-
-          const skillTags = document.querySelectorAll('.skill-tag');
-          skillTags.forEach((tag) => {
-            const skillName = tag.getAttribute('data-skill') || tag.innerText;
-            tag.addEventListener('mouseenter', () => {
-              if (skillsSceneInstance) skillsSceneInstance.highlightSkill(skillName);
-            });
-            tag.addEventListener('mouseleave', () => {
-              if (skillsSceneInstance) skillsSceneInstance.resetHighlights();
-            });
-          });
-        } catch (err) {
-          console.warn('Skills 3D lazy load skipped or failed:', err);
-        }
-      }
-    }, { rootMargin: '300px' });
-
-    skillsObserver.observe(skillsCanvas);
-  }
+  // Hero 3D removed for clean full-width layout
 }
 
 
@@ -243,28 +167,14 @@ function executeOrangeHandoff(introScreen, orangeHandoff) {
 }
 
 function triggerHeroReveal() {
-  ensureHeroSceneLoaded();
   const heroContent = document.querySelector('.hero-content');
-  const hero3d = document.querySelector('.hero-3d-wrap');
-
   if (heroContent) {
     gsap.from(heroContent.children, {
-      y: 40,
+      y: 35,
       opacity: 0,
       duration: 0.85,
       stagger: 0.12,
       ease: 'power3.out',
-      clearProps: 'all'
-    });
-  }
-
-  if (hero3d) {
-    gsap.from(hero3d, {
-      scale: 0.85,
-      opacity: 0,
-      duration: 1,
-      ease: 'power3.out',
-      delay: 0.2,
       clearProps: 'all'
     });
   }
@@ -381,6 +291,47 @@ function setupInteractiveControls() {
       }
 
       fireSuccessConfetti();
+
+      // Persist Lead to 7P Studio Control Center Backend
+      const leadPayload = {
+        name,
+        contact,
+        message,
+        projectType: 'Website Project Inquiry',
+        sourceUrl: window.location.href,
+        formName: 'portfolio-contact',
+        createdAt: new Date().toISOString()
+      };
+
+      // 1. Asynchronously send to Serverless /api/contact
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(leadPayload)
+      }).catch(err => console.warn('[7P Lead API Warning]:', err));
+
+      // 2. Direct browser sync for instant visibility in admin dashboard
+      try {
+        const stored = JSON.parse(localStorage.getItem('7p_studio_leads_list') || '[]');
+        const localLead = {
+          id: 'lead_' + Date.now(),
+          name,
+          phone: contact.includes('@') ? null : contact,
+          email: contact.includes('@') ? contact : null,
+          message,
+          project_type: 'Website Project Inquiry',
+          status: 'new',
+          priority: 'normal',
+          is_read: false,
+          is_starred: false,
+          form_name: 'portfolio-contact',
+          source_url: window.location.href,
+          created_at: new Date().toISOString(),
+          notes: []
+        };
+        stored.unshift(localLead);
+        localStorage.setItem('7p_studio_leads_list', JSON.stringify(stored));
+      } catch (localErr) {}
 
       const whatsappText = lang === 'ar'
         ? `مساء الخير (7P Studio)، أنا *${name}*\n\nوسيلة التواصل: ${contact}\n\nتفاصيل مشروعي:\n${message}\n\n---\nمرسلة من موقع 7P Studio (7pstudio.tech)`

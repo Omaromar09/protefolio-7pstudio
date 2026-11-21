@@ -74,7 +74,7 @@ export const AnalyticsService = {
         { name: 'Egypt', code: 'EG', flag: '🇪🇬', share: '68%' },
         { name: 'Saudi Arabia', code: 'SA', flag: '🇸🇦', share: '14%' },
         { name: 'United Arab Emirates', code: 'AE', flag: '🇦🇪', share: '9%' },
-        { name: 'United States & Other', code: 'US', flag: '🌐', share: '9%' }
+        { name: 'United States & Other', code: 'US', flag: 'INTL', share: '9%' }
       ]
     };
   }

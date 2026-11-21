@@ -1,5 +1,8 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 // Lightweight local API middleware for development
 function localApiPlugin() {
@@ -88,7 +91,8 @@ export default defineConfig({
     chunkSizeWarningLimit: 1200,
     rollupOptions: {
       input: {
-        main: resolve(process.cwd(), 'index.html')
+        main: resolve(__dirname, 'index.html'),
+        admin: resolve(__dirname, 'admin/index.html')
       },
       output: {
         manualChunks(id) {

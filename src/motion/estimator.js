@@ -179,6 +179,47 @@ Can we discuss pricing and kickoff details?`;
     fireSuccessConfetti(0.5, 0.6);
     const isAr = getLanguage() === 'ar';
     showToast(isAr ? 'تم تجهيز مواصفات مشروعك وتوجيهك لواتساب ' : 'Project specifications prepared! Redirecting to WhatsApp ', 'success');
+
+    // Register inquiry in 7P Studio Control Center
+    try {
+      const activeTypeBtn = typeContainer.querySelector(`.type-btn[data-type-id="${activeTypeId}"]`);
+      const typeName = activeTypeBtn ? (isAr ? activeTypeBtn.getAttribute('data-name-ar') : activeTypeBtn.getAttribute('data-name-en')) : 'Custom Project';
+      
+      const payload = {
+        name: 'Estimator Client',
+        contact: quoteId,
+        quoteId,
+        projectType: typeName,
+        message: `Project estimate configured for ${typeName}. Turnaround: ${valDeliveryEl ? valDeliveryEl.textContent : 'Standard'}.`,
+        formName: 'estimator',
+        sourceUrl: window.location.href
+      };
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+
+      const stored = JSON.parse(localStorage.getItem('7p_studio_leads_list') || '[]');
+      stored.unshift({
+        id: 'lead_' + Date.now(),
+        name: `Inquiry (${quoteId})`,
+        phone: null,
+        email: null,
+        quote_id: quoteId,
+        project_type: typeName,
+        message: `Calculated quote for ${typeName}`,
+        status: 'new',
+        priority: 'high',
+        is_read: false,
+        form_name: 'estimator',
+        source_url: window.location.href,
+        created_at: new Date().toISOString(),
+        notes: []
+      });
+      localStorage.setItem('7p_studio_leads_list', JSON.stringify(stored));
+    } catch (e) {}
   });
 
   // Initial HUD calculation

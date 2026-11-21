@@ -133,10 +133,10 @@ export default async function handler(req, res) {
           body: JSON.stringify({
             from: '7P Studio Leads <leads@7pstudio.tech>',
             to: [adminEmail],
-            subject: `⚡ New Lead: ${leadPayload.name} (${leadPayload.project_type})`,
+            subject: `[New Lead] ${leadPayload.name} (${leadPayload.project_type})`,
             html: `
               <div style="font-family: sans-serif; background: #080808; color: #fff; padding: 24px; border-radius: 8px;">
-                <h2 style="color: #FF8500; margin-top: 0;">⚡ 7P STUDIO — New Lead Received</h2>
+                <h2 style="color: #FF8500; margin-top: 0;">7P STUDIO — New Lead Received</h2>
                 <p><strong>Name:</strong> ${leadPayload.name}</p>
                 <p><strong>Phone / WhatsApp:</strong> ${leadPayload.phone || 'N/A'}</p>
                 <p><strong>Email:</strong> ${leadPayload.email || 'N/A'}</p>

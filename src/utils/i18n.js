@@ -330,7 +330,7 @@ export const translations = {
 
  // Hero Section
  heroBadge1:' Studio specializing in high-performance business web development',
- heroBadge2:'Interactive 3D WebGL & lightning fast mobile responsiveness',
+ heroBadge2:'Handcrafted custom code 100% — zero templates',
  heroTitle:'7P Studio — Modern websites, <span class="highlight">looking sharp,</span> converting visitors.',
  heroSubtitle: "Welcome to 7P Studio! We craft high-performance websites that convert visitors into paying clients, resolve complex bugs, and engineer your digital presence headache-free.",
  heroCtaWork:'See Our Work',
