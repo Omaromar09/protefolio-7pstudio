@@ -1,15 +1,16 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — SIDEBAR COMPONENT (Sidebar.js)
-// Replicating the exact reference image sidebar structure, glowing pill & card
+// Bilingual Arabic (Default) & English Sidebar
 // ==============================================================================
 
 import { LeadsService } from '../services/leadsService.js';
+import { AdminI18n } from '../services/i18nAdmin.js';
 
 export class Sidebar {
   constructor(activeRoute, onNavigate) {
     this.activeRoute = activeRoute || 'overview';
     this.onNavigate = onNavigate;
-    this.unreadLeadsCount = 12; // Initial reference count
+    this.unreadLeadsCount = 0;
     this.initBadge();
   }
 
@@ -17,23 +18,28 @@ export class Sidebar {
     try {
       this.unreadLeadsCount = await LeadsService.getUnreadCount();
       const badgeEl = document.getElementById('sidebar-leads-badge');
-      if (badgeEl) badgeEl.textContent = this.unreadLeadsCount;
+      if (badgeEl) {
+        badgeEl.textContent = this.unreadLeadsCount;
+        badgeEl.style.display = this.unreadLeadsCount > 0 ? 'inline-block' : 'none';
+      }
     } catch (e) {}
   }
 
   render() {
+    const t = (k) => AdminI18n.t(k);
+
     const navItems = [
-      { id: 'overview', label: 'Overview', icon: 'fa-solid fa-house' },
-      { id: 'projects', label: 'Projects', icon: 'fa-solid fa-folder-closed', hasChevron: true },
-      { id: 'media', label: 'Media Library', icon: 'fa-solid fa-photo-film' },
-      { id: 'services', label: 'Services', icon: 'fa-solid fa-puzzle-piece' },
-      { id: 'testimonials', label: 'Testimonials', icon: 'fa-solid fa-quote-left' },
-      { id: 'leads', label: 'Messages / Leads', icon: 'fa-solid fa-envelope', badge: this.unreadLeadsCount },
-      { id: 'pages', label: 'Pages & Sections', icon: 'fa-solid fa-table-columns' },
-      { id: 'analytics', label: 'Analytics', icon: 'fa-solid fa-chart-line' },
-      { id: 'performance', label: 'Performance', icon: 'fa-solid fa-gauge-high' },
-      { id: 'monitoring', label: 'Error Monitoring', icon: 'fa-solid fa-triangle-exclamation' },
-      { id: 'settings', label: 'Settings', icon: 'fa-solid fa-gear' }
+      { id: 'overview', label: t('overview'), icon: 'fa-solid fa-house' },
+      { id: 'projects', label: t('projects'), icon: 'fa-solid fa-folder-closed', hasChevron: true },
+      { id: 'media', label: t('mediaLibrary'), icon: 'fa-solid fa-photo-film' },
+      { id: 'services', label: t('services'), icon: 'fa-solid fa-puzzle-piece' },
+      { id: 'testimonials', label: t('testimonials'), icon: 'fa-solid fa-quote-left' },
+      { id: 'leads', label: t('messagesLeads'), icon: 'fa-solid fa-envelope', badge: this.unreadLeadsCount },
+      { id: 'pages', label: t('pagesSections'), icon: 'fa-solid fa-table-columns' },
+      { id: 'analytics', label: t('analytics'), icon: 'fa-solid fa-chart-line' },
+      { id: 'performance', label: t('performance'), icon: 'fa-solid fa-gauge-high' },
+      { id: 'monitoring', label: t('errorMonitoring'), icon: 'fa-solid fa-triangle-exclamation' },
+      { id: 'settings', label: t('settings'), icon: 'fa-solid fa-gear' }
     ];
 
     const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -46,8 +52,8 @@ export class Sidebar {
             <i class="fa-solid fa-bolt"></i>
           </div>
           <div class="studio-brand-text">
-            <span class="studio-brand-name">7P STUDIO</span>
-            <span class="studio-brand-sub">Control Center</span>
+            <span class="studio-brand-name">${t('studioName')}</span>
+            <span class="studio-brand-sub">${t('controlCenter')}</span>
           </div>
         </div>
 
@@ -57,7 +63,7 @@ export class Sidebar {
             <div class="nav-item ${this.activeRoute === item.id ? 'active' : ''}" data-route="${item.id}">
               <i class="${item.icon}"></i>
               <span>${item.label}</span>
-              ${item.badge !== undefined ? `<span class="nav-badge" id="sidebar-leads-badge">${item.badge}</span>` : ''}
+              ${item.badge !== undefined && item.badge > 0 ? `<span class="nav-badge" id="sidebar-leads-badge">${item.badge}</span>` : ''}
               ${item.hasChevron ? `<i class="fa-solid fa-chevron-down nav-chevron"></i>` : ''}
             </div>
           `).join('')}
@@ -68,11 +74,11 @@ export class Sidebar {
           <div class="upgrade-rocket-icon">
             <i class="fa-solid fa-rocket"></i>
           </div>
-          <h4 class="upgrade-title">Upgrade Your Plan</h4>
-          <p class="upgrade-desc">Unlock more features and take your studio further.</p>
+          <h4 class="upgrade-title">${t('upgradePlan')}</h4>
+          <p class="upgrade-desc">${t('upgradeDesc')}</p>
           <button class="upgrade-btn" id="upgrade-plan-btn">
-            <span>View Plans</span>
-            <i class="fa-solid fa-arrow-right"></i>
+            <span>${t('viewPlans')}</span>
+            <i class="fa-solid fa-arrow-right" style="transform: ${AdminI18n.getLanguage() === 'ar' ? 'rotate(180deg)' : 'none'};"></i>
           </button>
         </div>
 
@@ -80,9 +86,9 @@ export class Sidebar {
         <div class="sidebar-footer">
           <div class="system-status-indicator">
             <span class="dot"></span>
-            <span>System Online</span>
+            <span>${t('systemOnline')}</span>
           </div>
-          <span>Last updated: ${currentTime}</span>
+          <span>${t('lastUpdated')}: ${currentTime}</span>
         </div>
       </aside>
     `;
@@ -101,7 +107,9 @@ export class Sidebar {
     const upgradeBtn = container.querySelector('#upgrade-plan-btn');
     if (upgradeBtn) {
       upgradeBtn.addEventListener('click', () => {
-        alert('7P STUDIO Pro Plan: Dedicated High-Speed Node, Unlimited Custom Leads Webhooks, and Automated Backup Archiving are active.');
+        alert(AdminI18n.getLanguage() === 'ar'
+          ? 'باقة 7P STUDIO الاحترافية: سيرفر فائق السرعة، استلام غير محدود لطلبات العملاء، ونسخ احتياطي فوري متصلة بنجاح.'
+          : '7P STUDIO Pro Plan: High-Speed Node, Unlimited Customer Leads, and Live Cloud Sync are active.');
       });
     }
   }

@@ -1,7 +1,9 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — KPI CARDS (KpiCards.js)
-// 4 Stat Cards with SVG Glowing Sparklines matching reference screenshot
+// 4 Stat Cards with SVG Glowing Sparklines & Zero Mock Values
 // ==============================================================================
+
+import { AdminI18n } from '../services/i18nAdmin.js';
 
 export class KpiCards {
   constructor(stats) {
@@ -9,15 +11,15 @@ export class KpiCards {
   }
 
   generateSparklineSvg(dataPoints, id, color = '#FF8500') {
-    const min = Math.min(...dataPoints);
-    const max = Math.max(...dataPoints) || 1;
+    const pointsArr = Array.isArray(dataPoints) && dataPoints.length >= 2 ? dataPoints : [1, 2, 3, 4, 5];
+    const min = Math.min(...pointsArr);
+    const max = Math.max(...pointsArr) || 1;
     const width = 100;
     const height = 36;
     const range = (max - min) || 1;
 
-    // Calculate smooth path
-    const points = dataPoints.map((val, idx) => {
-      const x = (idx / (dataPoints.length - 1)) * width;
+    const points = pointsArr.map((val, idx) => {
+      const x = (idx / (pointsArr.length - 1)) * width;
       const y = height - ((val - min) / range) * (height - 8) - 4;
       return [x, y];
     });
@@ -49,7 +51,7 @@ export class KpiCards {
 
     return `
       <div class="kpi-cards-grid">
-        <!-- Card 1: Total Visitors -->
+        <!-- Card 1: Total Visitors (Real) -->
         <div class="kpi-card">
           <div class="kpi-card-top">
             <div class="kpi-icon-square">
@@ -59,7 +61,7 @@ export class KpiCards {
               ${this.generateSparklineSvg(totalVisitors.sparkline, 'visitors')}
             </div>
           </div>
-          <div class="kpi-label">Total Visitors</div>
+          <div class="kpi-label">${AdminI18n.t('totalVisitors')}</div>
           <div class="kpi-value-row">
             <span class="kpi-big-value">${totalVisitors.display}</span>
             <span class="kpi-trend-pill">
@@ -69,7 +71,7 @@ export class KpiCards {
           </div>
         </div>
 
-        <!-- Card 2: Page Views -->
+        <!-- Card 2: Page Views (Real) -->
         <div class="kpi-card">
           <div class="kpi-card-top">
             <div class="kpi-icon-square">
@@ -79,7 +81,7 @@ export class KpiCards {
               ${this.generateSparklineSvg(pageViews.sparkline, 'pageviews')}
             </div>
           </div>
-          <div class="kpi-label">Page Views</div>
+          <div class="kpi-label">${AdminI18n.t('pageViews')}</div>
           <div class="kpi-value-row">
             <span class="kpi-big-value">${pageViews.display}</span>
             <span class="kpi-trend-pill">
@@ -89,7 +91,7 @@ export class KpiCards {
           </div>
         </div>
 
-        <!-- Card 3: Projects -->
+        <!-- Card 3: Active Projects (8 Authentic) -->
         <div class="kpi-card">
           <div class="kpi-card-top">
             <div class="kpi-icon-square">
@@ -99,17 +101,17 @@ export class KpiCards {
               ${this.generateSparklineSvg(projects.sparkline, 'projects')}
             </div>
           </div>
-          <div class="kpi-label">Projects</div>
+          <div class="kpi-label">${AdminI18n.t('activeProjects')}</div>
           <div class="kpi-value-row">
             <span class="kpi-big-value">${projects.display}</span>
             <span class="kpi-trend-pill neutral">
-              <i class="fa-solid fa-arrow-up"></i>
+              <i class="fa-solid fa-check"></i>
               <span>${projects.change}</span>
             </span>
           </div>
         </div>
 
-        <!-- Card 4: New Leads -->
+        <!-- Card 4: New Leads (Real Inbox) -->
         <div class="kpi-card">
           <div class="kpi-card-top">
             <div class="kpi-icon-square">
@@ -119,11 +121,11 @@ export class KpiCards {
               ${this.generateSparklineSvg(newLeads.sparkline, 'leads')}
             </div>
           </div>
-          <div class="kpi-label">New Leads</div>
+          <div class="kpi-label">${AdminI18n.t('newLeads')}</div>
           <div class="kpi-value-row">
             <span class="kpi-big-value">${newLeads.display}</span>
-            <span class="kpi-trend-pill">
-              <i class="fa-solid fa-arrow-up"></i>
+            <span class="kpi-trend-pill ${Number(newLeads.raw) > 0 ? '' : 'neutral'}">
+              <i class="fa-solid fa-bolt"></i>
               <span>${newLeads.change}</span>
             </span>
           </div>

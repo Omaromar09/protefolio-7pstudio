@@ -1,13 +1,16 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — PROJECTS CMS SERVICE (projectsService.js)
-// Real projects source of truth with full CRUD, reordering & tag management
+// 100% synchronized with the 8 live portfolio projects (Kayan Fashion included, El Mohtaref removed)
+// Real clicks & views tracked directly from portfolio outbound links
 // ==============================================================================
 
 import { supabase, isSupabaseConfigured, getLocalData, setLocalData } from './db.js';
 import { ActivityService } from './activityService.js';
+import { getRealAnalytics } from '../../../src/utils/realTracker.js';
 
 const PROJECTS_STORAGE_KEY = 'projects_list';
 
+// The exact 8 live portfolio projects
 const INITIAL_PROJECTS = [
   {
     id: 'aya',
@@ -27,7 +30,7 @@ const INITIAL_PROJECTS = [
     accentColor: '#C8431F',
     status: 'published',
     isFeatured: true,
-    viewsCount: 12400,
+    viewsCount: 0,
     displayOrder: 1,
     createdAt: '2026-10-26T16:03:00.000Z'
   },
@@ -49,7 +52,7 @@ const INITIAL_PROJECTS = [
     accentColor: '#C5A059',
     status: 'published',
     isFeatured: true,
-    viewsCount: 9800,
+    viewsCount: 0,
     displayOrder: 2,
     createdAt: '2026-11-18T22:06:00.000Z'
   },
@@ -71,7 +74,7 @@ const INITIAL_PROJECTS = [
     accentColor: '#E87A90',
     status: 'published',
     isFeatured: true,
-    viewsCount: 7300,
+    viewsCount: 0,
     displayOrder: 3,
     createdAt: '2026-11-11T19:53:00.000Z'
   },
@@ -93,31 +96,31 @@ const INITIAL_PROJECTS = [
     accentColor: '#F59E0B',
     status: 'published',
     isFeatured: false,
-    viewsCount: 6200,
+    viewsCount: 0,
     displayOrder: 4,
     createdAt: '2026-11-11T19:54:00.000Z'
   },
   {
-    id: 'elmohtaref',
-    title: { ar: 'مطعم المحترف للمشويات', en: 'El Mohtaref Grills & Dining' },
-    client: 'El Mohtaref',
-    category: { ar: 'مطعم مشويات ومأكولات شرقية', en: 'Dining & Online Ordering' },
+    id: 'kayan',
+    title: { ar: 'كيان للأزياء العصرية', en: 'Kayan Luxury Fashion' },
+    client: 'Kayan Clothes',
+    category: { ar: 'براند أزياء وتجارة إلكترونية', en: 'Fashion & E-Commerce' },
     short: {
-      ar: 'منصة رقمية كاملة لمطعم مشويات مع منيو ذكي وسلة دليفري.',
-      en: 'Full digital restaurant platform with smart menu and fast delivery cart.'
+      ar: 'منصة تسوق رقمية لبراند أزياء وملابس عصرية، بتشمل لوك بوك تفاعلي للموديلات، وسلة تسوق سهلة مع طلب عبر واتساب.',
+      en: 'Fashion e-commerce storefront with curated seasonal lookbooks, smooth sizing selections, and direct WhatsApp shopping cart.'
     },
     tags: {
-      ar: ['منيو رقمي', 'سلة دليفري', 'مواعيد الفروع'],
-      en: ['Digital Menu', 'Delivery Cart', 'Branch Hours']
+      ar: ['سلايدر لوك بوك', 'سلة تسوق', 'تصميم أزياء فاخر', 'حركات سلسة'],
+      en: ['Lookbook Slider', 'Shopping Cart', 'Luxury Editorial', 'Fluid Transitions']
     },
-    url: 'https://el-mohtaref-restaurant.vercel.app/',
-    previewImg: '/projects/elmo7taref-preview.jpg',
-    accentColor: '#EF4444',
+    url: 'https://kayan-clothes.vercel.app/',
+    previewImg: '/projects/kayan-preview.jpg',
+    accentColor: '#E8A33D',
     status: 'published',
-    isFeatured: false,
-    viewsCount: 5400,
+    isFeatured: true,
+    viewsCount: 0,
     displayOrder: 5,
-    createdAt: '2026-10-26T16:03:00.000Z'
+    createdAt: '2026-11-15T18:00:00.000Z'
   },
   {
     id: 'elveranda',
@@ -137,7 +140,7 @@ const INITIAL_PROJECTS = [
     accentColor: '#2EE6FF',
     status: 'published',
     isFeatured: false,
-    viewsCount: 4100,
+    viewsCount: 0,
     displayOrder: 6,
     createdAt: '2026-11-11T19:54:00.000Z'
   },
@@ -159,7 +162,7 @@ const INITIAL_PROJECTS = [
     accentColor: '#FFB800',
     status: 'published',
     isFeatured: false,
-    viewsCount: 3900,
+    viewsCount: 0,
     displayOrder: 7,
     createdAt: '2026-11-11T19:55:00.000Z'
   },
@@ -181,7 +184,7 @@ const INITIAL_PROJECTS = [
     accentColor: '#C69255',
     status: 'published',
     isFeatured: false,
-    viewsCount: 3100,
+    viewsCount: 0,
     displayOrder: 8,
     createdAt: '2026-11-11T19:55:00.000Z'
   }
@@ -189,12 +192,23 @@ const INITIAL_PROJECTS = [
 
 export const ProjectsService = {
   async getProjects() {
-    const local = getLocalData(PROJECTS_STORAGE_KEY, null);
-    if (!local) {
-      setLocalData(PROJECTS_STORAGE_KEY, INITIAL_PROJECTS);
-      return INITIAL_PROJECTS;
+    let list = getLocalData(PROJECTS_STORAGE_KEY, null);
+
+    // If never saved or has old elmohtaref, re-initialize with authentic 8 projects
+    if (!list || list.some(p => p.id === 'elmohtaref') || !list.some(p => p.id === 'kayan')) {
+      list = INITIAL_PROJECTS;
+      setLocalData(PROJECTS_STORAGE_KEY, list);
     }
-    return local;
+
+    // Sync with real outbound click counts from actual visitors
+    const analytics = getRealAnalytics();
+    const clicks = analytics.projectClicks || {};
+
+    list.forEach(p => {
+      p.viewsCount = clicks[p.id] || p.viewsCount || 0;
+    });
+
+    return list;
   },
 
   async addProject(projectData) {

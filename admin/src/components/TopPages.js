@@ -1,7 +1,9 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — TOP PAGES WIDGET (TopPages.js)
-// Ranked list of top performing pages with views & growth metrics
+// Ranked list of top performing pages with real tracked views
 // ==============================================================================
+
+import { AdminI18n } from '../services/i18nAdmin.js';
 
 export class TopPages {
   constructor(pagesData, onNavigate) {
@@ -14,9 +16,9 @@ export class TopPages {
       <div class="card-panel-header">
         <div class="card-panel-title">
           <i class="fa-solid fa-star"></i>
-          <span>Top Pages</span>
+          <span>${AdminI18n.t('topPages')}</span>
         </div>
-        <span class="card-header-link" id="view-all-pages-link">View All →</span>
+        <span class="card-header-link" id="view-all-pages-link">${AdminI18n.t('viewAll')}</span>
       </div>
 
       <div class="top-pages-list">

@@ -1,3 +1,4 @@
+import { initRealTracker } from './utils/realTracker.js';
 import './style.css';
 import { DeterministicIntro } from './intro/deterministicIntro.js';
 import { initLanguage, getLanguage, setLanguage } from './utils/i18n.js';
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Light / Dark Theme Switcher
   initTheme();
   initLiquidGlass();
+  initRealTracker();
 
   // Initialize Smooth Scrolling & Lenis
   initSmoothScroll();
@@ -292,10 +294,17 @@ function setupInteractiveControls() {
 
       fireSuccessConfetti();
 
-      // Persist Lead to 7P Studio Control Center Backend
+      // Direct Lead Submission to 7P Studio Control Center
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>${lang === 'ar' ? 'جاري إرسال مشروعك...' : 'Submitting inquiry...'}</span>`;
+
       const leadPayload = {
         name,
         contact,
+        email: contact.includes('@') ? contact : null,
+        phone: contact.includes('@') ? null : contact,
         message,
         projectType: 'Website Project Inquiry',
         sourceUrl: window.location.href,
@@ -321,7 +330,7 @@ function setupInteractiveControls() {
           message,
           project_type: 'Website Project Inquiry',
           status: 'new',
-          priority: 'normal',
+          priority: 'urgent',
           is_read: false,
           is_starred: false,
           form_name: 'portfolio-contact',
@@ -331,36 +340,24 @@ function setupInteractiveControls() {
         };
         stored.unshift(localLead);
         localStorage.setItem('7p_studio_leads_list', JSON.stringify(stored));
+        window.dispatchEvent(new CustomEvent('7p-notification', { detail: localLead }));
       } catch (localErr) {}
 
-      const whatsappText = lang === 'ar'
-        ? `مساء الخير (7P Studio)، أنا *${name}*\n\nوسيلة التواصل: ${contact}\n\nتفاصيل مشروعي:\n${message}\n\n---\nمرسلة من موقع 7P Studio (7pstudio.tech)`
-        : `Hello 7P Studio, I am *${name}*\n\nContact: ${contact}\n\nProject details:\n${message}\n\n---\nSent from 7P Studio (7pstudio.tech)`;
-
-      const encodedMsg = encodeURIComponent(whatsappText);
-      const whatsappUrl = `https://wa.me/201515047449?text=${encodedMsg}`;
+      // Fire celebratory confetti & notification toast
+      fireSuccessConfetti();
 
       const successToast = lang === 'ar'
-        ? `شكراً ليك يا ${name}، بنحولك على واتساب الآن بالرسالة جاهزة...`
-        : `Thank you, ${name}! Redirecting to WhatsApp with your details...`;
-      showToast(successToast);
+        ? `شكراً ليك يا ${name}! تم إرسال تفاصيل مشروعك إلى لوحة تحكم 7P Studio بنجاح. سنتواصل معك سريعاً عبر ${contact}.`
+        : `Thank you ${name}! Your project inquiry was delivered to 7P Studio Control Center. We will contact you shortly.`;
+      showToast(successToast, 'success');
 
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalBtnHTML = submitBtn.innerHTML;
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = `<i class="fa-solid fa-check"></i> <span>${lang === 'ar' ? 'تم تجهيز الرسالة!' : 'Message Ready!'}</span>`;
+      submitBtn.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${lang === 'ar' ? 'تم استلام مشروعك بنجاح ✓' : 'Inquiry Delivered ✓'}</span>`;
+      contactForm.reset();
 
       setTimeout(() => {
-        const opened = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-        if (!opened || opened.closed || typeof opened.closed === 'undefined') {
-          window.location.href = whatsappUrl;
-        }
-        contactForm.reset();
-        setTimeout(() => {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnHTML;
-        }, 2500);
-      }, 400);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      }, 3500);
     });
   }
 

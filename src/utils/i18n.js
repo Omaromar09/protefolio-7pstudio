@@ -279,8 +279,8 @@ export const translations = {
  formContactPlaceholder:'01XXXXXXXXX',
  formMsgLabel:'تفاصيل مشروعك أو مشكلتك',
  formMsgPlaceholder:'اكتب باختصار محتاج موقع جديد، متجر، أو عندك مشكلة معينة عايز تصلحها...',
- formSubmitBtn:'ابعت التفاصيل على واتساب',
- formPrivacyNote:'بياناتك بتتبعت على واتساب بس ومش بنحفظها',
+ formSubmitBtn: 'إرسال تفاصيل المشروع إلى الاستوديو',
+ formPrivacyNote: 'يتم إرسال بياناتك مباشرة وبأمان إلى لوحة تحكم 7P Studio للرد عليك',
  privacyPolicyLink:'سياسة الخصوصية',
 
  // Sticky Mobile CTA
@@ -547,8 +547,8 @@ export const translations = {
  formContactPlaceholder:'01XXXXXXXXX or International',
  formMsgLabel:'Project Details or Issue',
  formMsgPlaceholder:'Briefly describe your vision, new site requirements, or bugs you need fixed...',
- formSubmitBtn:'Send Details via WhatsApp',
- formPrivacyNote:'Your details are sent strictly to WhatsApp and never stored on any server',
+ formSubmitBtn: 'Send Project Details to Studio',
+ formPrivacyNote: 'Your details are sent securely to 7P Studio Control Center to get back to you',
  privacyPolicyLink:'Privacy Policy',
 
  // Sticky Mobile CTA

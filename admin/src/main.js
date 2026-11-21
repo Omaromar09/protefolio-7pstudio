@@ -1,5 +1,6 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — MASTER APPLICATION BOOTSTRAP (main.js)
+// Bilingual Arabic (Primary) / English with Live Language Switching
 // ==============================================================================
 
 import { Sidebar } from './components/Sidebar.js';
@@ -7,6 +8,7 @@ import { TopNav } from './components/TopNav.js';
 import { CommandPalette } from './components/CommandPalette.js';
 import { AdminToast } from './components/Toast.js';
 import { AuthService } from './services/auth.js';
+import { AdminI18n } from './services/i18nAdmin.js';
 
 // Views
 import { OverviewView } from './views/OverviewView.js';
@@ -41,6 +43,9 @@ class AdminApp {
   }
 
   init() {
+    // 1. Apply primary language and direction to DOM (Arabic default)
+    AdminI18n.applyToDOM();
+
     const appRoot = document.getElementById('admin-app');
     if (!appRoot) return;
 
@@ -71,6 +76,22 @@ class AdminApp {
       this.topNav.attachEvents(topNavMount);
     }
 
+    // Language Change Listener -> Live re-render
+    window.addEventListener('admin-lang-change', () => {
+      if (this.topNav && topNavMount) {
+        topNavMount.innerHTML = this.topNav.render();
+        this.topNav.attachEvents(topNavMount);
+      }
+      const sidebarMount = document.getElementById('sidebar-mount-point');
+      if (sidebarMount) {
+        this.sidebar = new Sidebar(this.currentRoute, (targetRoute) => this.navigate(targetRoute));
+        sidebarMount.innerHTML = this.sidebar.render();
+        this.sidebar.attachEvents(sidebarMount);
+      }
+      this.renderRoute(this.currentRoute);
+      AdminToast.show(AdminI18n.getLanguage() === 'ar' ? 'تم تحويل اللغة إلى العربية (افتراضي)' : 'Switched to English', 'info');
+    });
+
     // Hash change listener
     window.addEventListener('hashchange', () => {
       const newRoute = this.getRouteFromHash();
@@ -82,7 +103,8 @@ class AdminApp {
 
     // Initial Welcome Toast
     setTimeout(() => {
-      AdminToast.show('Welcome to 7P STUDIO Control Center', 'info');
+      const isAr = AdminI18n.getLanguage() === 'ar';
+      AdminToast.show(isAr ? 'مرحباً بك في لوحة تحكم 7P STUDIO المركزية' : 'Welcome to 7P STUDIO Control Center', 'info');
     }, 400);
   }
 

@@ -1,10 +1,11 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — TOP NAVIGATION (TopNav.js)
-// Search bar (Ctrl+K), Notification center badge, theme toggle, profile avatar
+// Search bar (Ctrl+K), Language Switcher, Notifications, Theme, Profile
 // ==============================================================================
 
 import { NotificationsService } from '../services/notificationsService.js';
 import { AuthService } from '../services/auth.js';
+import { AdminI18n } from '../services/i18nAdmin.js';
 
 export class TopNav {
   constructor(onOpenCommandPalette, onNavigate) {
@@ -15,29 +16,37 @@ export class TopNav {
 
   render() {
     const user = AuthService.getCurrentUser();
+    const currentLang = AdminI18n.getLanguage();
+    const isAr = currentLang === 'ar';
 
     return `
       <header class="top-navbar">
         <!-- Global Search Input with Keyboard Shortcut -->
         <div class="global-search-container" id="global-search-trigger">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          <span>Search anything...</span>
+          <span>${AdminI18n.t('searchPlaceholder')}</span>
           <span class="kbd-shortcut">Ctrl + K</span>
         </div>
 
         <!-- Top Right Actions -->
         <div class="top-navbar-actions">
+          <!-- Language Toggle Pill -->
+          <button class="lang-switch-btn" id="lang-switch-btn" title="تبديل اللغة / Switch Language">
+            <i class="fa-solid fa-globe"></i>
+            <span>${isAr ? '🇬🇧 English' : '🇸🇦 العربية'}</span>
+          </button>
+
           <!-- Notification Bell -->
           <div class="relative-wrap" style="position: relative;">
-            <button class="nav-icon-btn" id="notif-bell-btn" title="Notifications">
+            <button class="nav-icon-btn" id="notif-bell-btn" title="${AdminI18n.t('notifications')}">
               <i class="fa-regular fa-bell"></i>
               ${this.unreadNotifsCount > 0 ? `<span class="badge-count" id="top-notif-count">${this.unreadNotifsCount}</span>` : ''}
             </button>
-            <div id="notif-dropdown-box" style="display: none; position: absolute; right: 0; top: 48px; width: 340px; background: #141416; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 50; padding: 14px;"></div>
+            <div id="notif-dropdown-box" style="display: none; position: absolute; ${isAr ? 'left: 0;' : 'right: 0;'} top: 48px; width: 340px; background: #141416; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 50; padding: 14px;"></div>
           </div>
 
           <!-- Theme Toggle -->
-          <button class="nav-icon-btn" id="theme-toggle-btn" title="Toggle Theme">
+          <button class="nav-icon-btn" id="theme-toggle-btn" title="${AdminI18n.t('toggleTheme')}">
             <i class="fa-regular fa-sun" id="theme-toggle-icon"></i>
           </button>
 
@@ -55,6 +64,13 @@ export class TopNav {
     if (searchTrigger) {
       searchTrigger.addEventListener('click', () => {
         if (this.onOpenCommandPalette) this.onOpenCommandPalette();
+      });
+    }
+
+    const langBtn = container.querySelector('#lang-switch-btn');
+    if (langBtn) {
+      langBtn.addEventListener('click', () => {
+        AdminI18n.toggleLanguage();
       });
     }
 
@@ -89,7 +105,7 @@ export class TopNav {
       });
     }
 
-    // Avatar click -> User Management / Settings
+    // Avatar click -> Settings
     const profileBtn = container.querySelector('#user-profile-btn');
     if (profileBtn) {
       profileBtn.addEventListener('click', () => {
@@ -119,11 +135,13 @@ export class TopNav {
     const list = NotificationsService.getNotifications().slice(0, 4);
     container.innerHTML = `
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle);">
-        <span style="font-weight: 700; font-size: 0.88rem; color: #fff;">Notifications</span>
-        <button id="mark-all-read-btn" style="font-size: 0.74rem; color: var(--accent-orange); font-weight: 600;">Mark all read</button>
+        <span style="font-weight: 700; font-size: 0.88rem; color: #fff;">${AdminI18n.t('notifications')}</span>
+        <button id="mark-all-read-btn" style="font-size: 0.74rem; color: var(--accent-orange); font-weight: 600; cursor: pointer; background: none; border: none;">${AdminI18n.t('markAllRead')}</button>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px;">
-        ${list.map(n => `
+        ${list.length === 0 ? `
+          <div style="text-align: center; color: var(--text-muted); font-size: 0.8rem; padding: 12px;">${AdminI18n.t('noNotifications')}</div>
+        ` : list.map(n => `
           <div style="padding: 10px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid ${n.is_read ? 'transparent' : 'rgba(255,133,0,0.3)'};">
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <span style="font-size: 0.82rem; font-weight: 600; color: #fff;">${n.title}</span>
@@ -134,7 +152,7 @@ export class TopNav {
         `).join('')}
       </div>
       <div style="margin-top: 12px; text-align: center;">
-        <button id="view-all-notifs-btn" style="font-size: 0.76rem; color: var(--text-secondary); font-weight: 600;">View All Notifications →</button>
+        <button id="view-all-notifs-btn" style="font-size: 0.76rem; color: var(--text-secondary); font-weight: 600; cursor: pointer; background: none; border: none;">${AdminI18n.t('viewAllNotifications')}</button>
       </div>
     `;
 

@@ -1,6 +1,6 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — OVERVIEW VIEW (OverviewView.js)
-// Exact replication of the attached reference dashboard composition & layout
+// Exact replication of the reference dashboard with real metrics & bilingual RTL
 // ==============================================================================
 
 import { HeaderBanner } from '../components/HeaderBanner.js';
@@ -22,7 +22,7 @@ export class OverviewView {
   }
 
   async render() {
-    const stats = AnalyticsService.getStats(this.timeRange);
+    const stats = await AnalyticsService.getStats(this.timeRange);
     const projects = await ProjectsService.getProjects();
     const activities = ActivityService.getLogs();
 

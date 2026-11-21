@@ -1,6 +1,6 @@
 /* ==============================================================================
    7P STUDIO CONTROL CENTER — CORE DESIGN SYSTEM (admin.css)
-   Carefully calibrated to replicate the exact reference visual identity
+   Bilingual RTL & LTR support with Arabic Default
    ============================================================================== */
 
 :root {
@@ -44,8 +44,8 @@
   --status-blue: #3B82F6;
   --status-blue-bg: rgba(59, 130, 246, 0.12);
 
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Space Grotesk', 'Syne', sans-serif;
+  --font-sans: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Cairo', 'Space Grotesk', 'Syne', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.65);
@@ -91,7 +91,55 @@ body {
   position: relative;
 }
 
-/* Top Subtle Orange Ambient Glow as seen in reference image */
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+  font-family: 'Cairo', sans-serif;
+}
+
+[dir="rtl"] .global-search-container .kbd-shortcut {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .nav-item .nav-badge,
+[dir="rtl"] .nav-item .nav-chevron {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .search-input-wrap i {
+  left: auto;
+  right: 12px;
+}
+
+[dir="rtl"] .search-input-field {
+  padding: 8px 36px 8px 12px;
+}
+
+[dir="rtl"] .data-table th,
+[dir="rtl"] .data-table td {
+  text-align: right;
+}
+
+[dir="rtl"] .drawer-container {
+  right: auto;
+  left: 0;
+  border-left: none;
+  border-right: 1px solid var(--border-subtle);
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .drawer-container.is-open {
+  transform: translateX(0);
+}
+
+[dir="rtl"] .admin-sidebar {
+  border-right: none;
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* Top Subtle Orange Ambient Glow */
 body::before {
   content: '';
   position: fixed;
@@ -120,10 +168,10 @@ body::before {
   background: rgba(255, 133, 0, 0.4);
 }
 
-/* Utility Typography */
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 a {
@@ -241,7 +289,7 @@ input, textarea, select {
   gap: 8px;
   background: linear-gradient(135deg, #FF8500 0%, #FF6000 100%);
   color: #000000;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.88rem;
   padding: 8px 16px;
   border-radius: var(--radius-full);
@@ -253,10 +301,6 @@ input, textarea, select {
   background: linear-gradient(135deg, #FF951A 0%, #FF7000 100%);
   box-shadow: 0 4px 18px rgba(255, 133, 0, 0.5);
   transform: translateY(-1px);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
 }
 
 .btn-secondary {
@@ -297,4 +341,30 @@ input, textarea, select {
   background: rgba(255, 255, 255, 0.09);
   color: var(--text-white);
   border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Language Switcher Pill */
+.lang-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 133, 0, 0.12);
+  border: 1px solid rgba(255, 133, 0, 0.35);
+  color: var(--accent-orange-bright);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+}
+.lang-switch-btn:hover {
+  background: rgba(255, 133, 0, 0.24);
+  border-color: var(--accent-orange);
+  transform: translateY(-1px);
+  box-shadow: 0 0 14px rgba(255, 133, 0, 0.35);
+}
+.lang-switch-btn i {
+  font-size: 0.85rem;
 }

@@ -1,17 +1,16 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — VISITOR TRAFFIC CHART (TrafficChart.js)
-// Interactive SVG chart matching reference line curves, grid lines & tooltip
+// Dynamic SVG chart reflecting real visitor & pageview telemetry
 // ==============================================================================
+
+import { AdminI18n } from '../services/i18nAdmin.js';
 
 export class TrafficChart {
   constructor(chartData) {
-    this.chartData = chartData;
+    this.chartData = chartData || {};
   }
 
   render() {
-    // Width: 520, Height: 190
-    // Values: 0 to 50k
-    const maxVal = 50000;
     const h = 170;
     const w = 500;
     const paddingLeft = 35;
@@ -19,14 +18,17 @@ export class TrafficChart {
     const chartW = w - paddingLeft;
     const chartH = h - paddingBottom;
 
-    // Y values points for Visitors [18k, 26k, 24k, 36k, 31k, 48.7k]
-    const visitorsData = [18000, 26000, 24000, 36000, 31000, 48700];
-    const pageviewsData = [12000, 19000, 16000, 25000, 22000, 34000];
+    const visitorsData = this.chartData?.visitors?.length >= 2 ? this.chartData.visitors : [1, 2, 3, 4, 5];
+    const pageviewsData = this.chartData?.pageviews?.length >= 2 ? this.chartData.pageviews : [1, 3, 5, 7, 9];
+    const labels = this.chartData?.labels?.length === visitorsData.length ? this.chartData.labels : ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Today'];
+
+    const rawMax = Math.max(...visitorsData, ...pageviewsData, 5);
+    const maxVal = Math.ceil(rawMax * 1.25);
 
     const getX = (idx, total) => paddingLeft + (idx / (total - 1)) * chartW;
     const getY = (val) => chartH - (val / maxVal) * chartH + 10;
 
-    // Generate Visitors Path
+    // Visitors Path
     let pathVisitors = `M ${getX(0, visitorsData.length)} ${getY(visitorsData[0])}`;
     for (let i = 1; i < visitorsData.length; i++) {
       const prevX = getX(i - 1, visitorsData.length);
@@ -37,7 +39,7 @@ export class TrafficChart {
       pathVisitors += ` C ${c1x} ${prevY}, ${c1x} ${currY}, ${currX} ${currY}`;
     }
 
-    // Generate Page Views Path
+    // Pageviews Path
     let pathViews = `M ${getX(0, pageviewsData.length)} ${getY(pageviewsData[0])}`;
     for (let i = 1; i < pageviewsData.length; i++) {
       const prevX = getX(i - 1, pageviewsData.length);
@@ -48,24 +50,30 @@ export class TrafficChart {
       pathViews += ` C ${c1x} ${prevY}, ${c1x} ${currY}, ${currX} ${currY}`;
     }
 
-    // Tooltip position at end of Visitors curve (Oct 30)
-    const tipX = getX(visitorsData.length - 1, visitorsData.length);
-    const tipY = getY(visitorsData[visitorsData.length - 1]);
+    const lastIdx = visitorsData.length - 1;
+    const tipX = getX(lastIdx, visitorsData.length);
+    const tipY = getY(visitorsData[lastIdx]);
+    const latestVal = visitorsData[lastIdx];
+    const latestDisplay = latestVal > 999 ? (latestVal / 1000).toFixed(1) + 'K' : String(latestVal);
+
+    // Dynamic Y ticks
+    const step = maxVal / 5;
+    const yTicks = [maxVal, step * 4, step * 3, step * 2, step, 0];
 
     return `
       <div class="card-panel-header">
         <div class="card-panel-title">
           <i class="fa-solid fa-chart-simple"></i>
-          <span>Visitor Traffic</span>
+          <span>${AdminI18n.t('visitorTraffic')}</span>
         </div>
         <div style="display: flex; align-items: center; gap: 16px;">
           <div class="traffic-legend-bar">
-            <span><span class="traffic-legend-dot visitors"></span>Visitors</span>
-            <span><span class="traffic-legend-dot pageviews"></span>Page Views</span>
+            <span><span class="traffic-legend-dot visitors"></span>${AdminI18n.t('visitors')}</span>
+            <span><span class="traffic-legend-dot pageviews"></span>${AdminI18n.t('views')}</span>
           </div>
           <button class="date-selector-btn" style="padding: 4px 10px; font-size: 0.74rem;">
-            <span>Last 30 Days</span>
-            <i class="fa-solid fa-chevron-down" style="font-size: 0.65rem; margin-left: 3px;"></i>
+            <span>${AdminI18n.t('last30Days')}</span>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.65rem; margin-inline-start: 3px;"></i>
           </button>
         </div>
       </div>
@@ -84,30 +92,16 @@ export class TrafficChart {
 
           <!-- Horizontal Grid Lines & Y-Labels -->
           <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
-            <line x1="${paddingLeft}" y1="${getY(50000)}" x2="${w}" y2="${getY(50000)}" />
-            <line x1="${paddingLeft}" y1="${getY(40000)}" x2="${w}" y2="${getY(40000)}" />
-            <line x1="${paddingLeft}" y1="${getY(30000)}" x2="${w}" y2="${getY(30000)}" />
-            <line x1="${paddingLeft}" y1="${getY(20000)}" x2="${w}" y2="${getY(20000)}" />
-            <line x1="${paddingLeft}" y1="${getY(10000)}" x2="${w}" y2="${getY(10000)}" />
-            <line x1="${paddingLeft}" y1="${getY(0)}" x2="${w}" y2="${getY(0)}" stroke="rgba(255,255,255,0.12)" />
+            ${yTicks.map(val => `<line x1="${paddingLeft}" y1="${getY(val)}" x2="${w}" y2="${getY(val)}" ${val === 0 ? 'stroke="rgba(255,255,255,0.12)"' : ''} />`).join('')}
           </g>
 
           <g fill="#71717A" font-size="9" font-family="'JetBrains Mono', monospace" text-anchor="end">
-            <text x="${paddingLeft - 8}" y="${getY(50000) + 3}">50k</text>
-            <text x="${paddingLeft - 8}" y="${getY(40000) + 3}">40k</text>
-            <text x="${paddingLeft - 8}" y="${getY(30000) + 3}">30k</text>
-            <text x="${paddingLeft - 8}" y="${getY(20000) + 3}">20k</text>
-            <text x="${paddingLeft - 8}" y="${getY(10000) + 3}">10k</text>
-            <text x="${paddingLeft - 8}" y="${getY(0) + 3}">0</text>
+            ${yTicks.map(val => `<text x="${paddingLeft - 8}" y="${getY(val) + 3}">${val > 999 ? Math.round(val / 1000) + 'k' : Math.round(val)}</text>`).join('')}
           </g>
 
           <!-- X-Axis Labels -->
-          <g fill="#71717A" font-size="9" font-family="'Inter', sans-serif">
-            <text x="${getX(0, 5)}" y="185">Oct 01</text>
-            <text x="${getX(1, 5)}" y="185">Oct 07</text>
-            <text x="${getX(2, 5)}" y="185">Oct 14</text>
-            <text x="${getX(3, 5)}" y="185">Oct 21</text>
-            <text x="${getX(4, 5)}" y="185">Oct 30</text>
+          <g fill="#71717A" font-size="9" font-family="'Cairo', 'Inter', sans-serif">
+            ${labels.map((lbl, idx) => `<text x="${getX(idx, labels.length)}" y="185" text-anchor="middle">${lbl}</text>`).join('')}
           </g>
 
           <!-- Page Views Curve (Secondary Gray) -->
@@ -122,14 +116,14 @@ export class TrafficChart {
           <!-- Vertical Guideline at Tooltip -->
           <line x1="${tipX}" y1="${tipY}" x2="${tipX}" y2="${getY(0)}" stroke="rgba(255,133,0,0.4)" stroke-dasharray="3 3" />
 
-          <!-- Glowing Tooltip Dot at Oct 30 Point -->
+          <!-- Glowing Tooltip Dot at latest Point -->
           <circle cx="${tipX}" cy="${tipY}" r="5" fill="#FF8500" stroke="#FFFFFF" stroke-width="2" filter="url(#orange-glow)" />
 
-          <!-- Tooltip Box: 48.7K Visitors -->
-          <g transform="translate(${tipX - 70}, ${tipY - 38})">
+          <!-- Tooltip Box: Real Visitors -->
+          <g transform="translate(${Math.max(paddingLeft, tipX - 70)}, ${Math.max(10, tipY - 38)})">
             <rect width="78" height="26" rx="6" fill="#18181B" stroke="rgba(255,133,0,0.5)" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.6))" />
-            <text x="39" y="13" fill="#FFFFFF" font-size="9.5" font-weight="700" font-family="'Inter', sans-serif" text-anchor="middle">48.7K</text>
-            <text x="39" y="21" fill="#A1A1AA" font-size="7" font-family="'Inter', sans-serif" text-anchor="middle">Visitors</text>
+            <text x="39" y="13" fill="#FFFFFF" font-size="9.5" font-weight="700" font-family="'Inter', sans-serif" text-anchor="middle">${latestDisplay}</text>
+            <text x="39" y="21" fill="#A1A1AA" font-size="7" font-family="'Cairo', 'Inter', sans-serif" text-anchor="middle">${AdminI18n.t('visitors')}</text>
           </g>
         </svg>
       </div>
