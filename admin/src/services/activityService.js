@@ -48,8 +48,9 @@ const INITIAL_LOGS = [
 
 export const ActivityService = {
   getLogs() {
-    const local = getLocalData(ACTIVITY_STORAGE_KEY, null);
-    if (!local) {
+    let local = getLocalData(ACTIVITY_STORAGE_KEY, null);
+    if (!local || local.some(l => l.details && (l.details.includes('E-Commerce Store') || l.details.includes('Tarek')))) {
+      local = INITIAL_LOGS;
       setLocalData(ACTIVITY_STORAGE_KEY, INITIAL_LOGS);
       return INITIAL_LOGS;
     }
