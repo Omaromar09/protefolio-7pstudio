@@ -5,14 +5,14 @@
     <script>
       (function() {
         try {
-          var savedTheme = localStorage.getItem('omar_theme');
+          var savedTheme = localStorage.getItem('7p_theme') || localStorage.getItem('omar_theme');
           var theme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : 'dark';
           document.documentElement.setAttribute('data-theme', theme);
           var metaTheme = document.querySelector('meta[name="theme-color"]');
           if (metaTheme) {
             metaTheme.setAttribute('content', theme === 'dark' ? '#121110' : '#F5F2EC');
           }
-          var savedLang = localStorage.getItem('omar_portfolio_lang');
+          var savedLang = localStorage.getItem('7p_portfolio_lang') || localStorage.getItem('omar_portfolio_lang');
           var lang = (savedLang === 'ar' || savedLang === 'en') ? savedLang : 'ar';
           document.documentElement.setAttribute('lang', lang);
           document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
@@ -24,10 +24,10 @@
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7P Studio | 7pstudio — تصميم وبرمجة مواقع ويب عصرية وسريعة (عمر وجاد)</title>
-    <meta name="description" content="7P Studio (7pstudio / عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية وسريعة وتفاعلية مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعات بيزنسك." />
-    <meta name="keywords" content="7pstudio, 7P Studio, 7p studio, 7pstudio.tech, 7PStudio, ستوديو 7P, استوديو 7P, عمر وجاد, برمجة مواقع, تصميم مواقع, web design egypt" />
-    <meta name="author" content="7P Studio (Omar & Gad)" />
+    <title>7P Studio | تصميم وبرمجة مواقع ويب عصرية وسريعة وتفاعلية</title>
+    <meta name="description" content="7P Studio — استوديو تصميم وبرمجة مواقع ويب عصرية وسريعة وتفاعلية مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعات بيزنسك." />
+    <meta name="keywords" content="7pstudio, 7P Studio, 7p studio, 7pstudio.tech, 7PStudio, ستوديو 7P, استوديو 7P, برمجة مواقع, تصميم مواقع, web design egypt" />
+    <meta name="author" content="7P Studio" />
 
     <!-- Canonical URL (Single Canonical, no fake hreflang) -->
     <link rel="canonical" href="https://7pstudio.tech/" />
@@ -37,6 +37,7 @@
     <link rel="preload" href="/fonts/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YPO_-CRXMR5Kw.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Performance: Prefetch Project Showcase Images for Instant 0ms Switching -->
+    <link rel="prefetch" as="image" href="/projects/elara-preview.jpg" />
     <link rel="prefetch" as="image" href="/projects/flowers-preview.jpg" />
     <link rel="prefetch" as="image" href="/projects/festival-preview.jpg" />
     <link rel="prefetch" as="image" href="/projects/kayan-preview.jpg" />
@@ -61,21 +62,21 @@
     <meta property="og:locale" content="ar_EG" />
     <meta property="og:locale:alternate" content="ar_EG" />
     <meta property="og:url" content="https://7pstudio.tech/" />
-    <meta property="og:title" content="7P Studio | 7pstudio — تصميم وبرمجة مواقع ويب عصرية وسريعة (عمر وجاد)" />
-    <meta property="og:description" content="7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية وسريعة وتفاعلية مع ربط واتساب مباشر ودعم فني مستمر." />
+    <meta property="og:title" content="7P Studio — استوديو مواقع ويب عصرية وتفاعلية وسريعة" />
+    <meta property="og:description" content="7P Studio — استوديو تصميم وبرمجة مواقع ويب عصرية وسريعة وتفاعلية مع ربط واتساب مباشر ودعم فني مستمر." />
     <meta property="og:image" content="https://7pstudio.tech/og-image.jpg?v=3" />
     <meta property="og:image:secure_url" content="https://7pstudio.tech/og-image.jpg?v=3" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="7P Studio (عمر وجاد) — استوديو مواقع عصرية وتفاعلية وسريعة" />
+    <meta property="og:image:alt" content="7P Studio — استوديو مواقع عصرية وتفاعلية وسريعة" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@7p__studio" />
     <meta name="twitter:creator" content="@7p__studio" />
-    <meta name="twitter:title" content="7P Studio | 7pstudio — تصميم وبرمجة مواقع ويب عصرية وسريعة (عمر وجاد)" />
-    <meta name="twitter:description" content="7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية، سريعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر." />
+    <meta name="twitter:title" content="7P Studio — استوديو مواقع ويب عصرية وتفاعلية وسريعة" />
+    <meta name="twitter:description" content="7P Studio — استوديو تصميم وبرمجة مواقع ويب عصرية، سريعة وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر." />
     <meta name="twitter:image" content="https://7pstudio.tech/og-image.jpg?v=3" />
 
     <!-- Vercel Web Analytics (Production only) -->
@@ -98,7 +99,7 @@
           "@id": "https://7pstudio.tech/#website",
           "url": "https://7pstudio.tech/",
           "name": "7P Studio",
-          "alternateName": ["7pstudio", "7PSTUDIO", "7p studio", "7P Studio", "7pstudio.tech", "7P Studio Tech", "ستوديو 7P", "استوديو 7P", "عمر وجاد"],
+          "alternateName": ["7pstudio", "7PSTUDIO", "7p studio", "7P Studio", "7pstudio.tech", "7P Studio Tech", "ستوديو 7P", "استوديو 7P"],
           "description": "استوديو 7P Studio لتصميم وتطوير مواقع الويب العصرية والسريعة والتفاعلية 3D",
           "inLanguage": ["ar-EG", "en-US"]
         },
@@ -106,7 +107,7 @@
           "@type": ["Organization", "ProfessionalService"],
           "@id": "https://7pstudio.tech/#organization",
           "name": "7P Studio",
-          "alternateName": ["7pstudio", "7PSTUDIO", "7p studio", "7P Studio", "7pstudio.tech", "7P Studio Tech", "ستوديو 7P", "استوديو 7P", "عمر وجاد"],
+          "alternateName": ["7pstudio", "7PSTUDIO", "7p studio", "7P Studio", "7pstudio.tech", "7P Studio Tech", "ستوديو 7P", "استوديو 7P"],
           "url": "https://7pstudio.tech/",
           "logo": "https://7pstudio.tech/logo-7p.png",
           "image": "https://7pstudio.tech/og-image.jpg?v=3",
@@ -123,29 +124,6 @@
             { "@type": "Country", "name": "United Arab Emirates" },
             { "@type": "Country", "name": "Worldwide" }
           ],
-          "founders": [
-            {
-              "@type": "Person",
-              "name": "Omar",
-              "alternateName": "عمر",
-              "jobTitle": "Co-Founder & Web Developer",
-              "sameAs": [
-                "https://www.instagram.com/7p__studio",
-                "https://www.tiktok.com/@7p.studio6",
-                "https://wa.me/201515047449"
-              ]
-            },
-            {
-              "@type": "Person",
-              "name": "Gad",
-              "alternateName": "جاد",
-              "jobTitle": "Co-Founder & Web Developer",
-              "sameAs": [
-                "https://www.instagram.com/7p__studio",
-                "https://wa.me/201515047449"
-              ]
-            }
-          ],
           "contactPoint": [
             {
               "@type": "ContactPoint",
@@ -158,8 +136,7 @@
           "sameAs": [
             "https://www.instagram.com/7p__studio",
             "https://www.tiktok.com/@7p.studio6",
-            "https://wa.me/201515047449",
-            "https://github.com/Omaromar09"
+            "https://wa.me/201515047449"
           ]
         }
       ]
@@ -335,7 +312,7 @@
             </h1>
 
             <p class="hero-subtitle" data-i18n="heroSubtitle">
-              أهلاً بيك! إحنا <strong>عمر</strong> و<strong>جاد</strong> في 7P Studio. بنبني مواقع عصرية وسريعة تُحوّل زوارك لعملاء فعليين، بنحل المشاكل البرمجية، وبنظبط موقعك بأعلى كفاءة وبدون صداع.
+              أهلاً بيك في 7P Studio! بنبني مواقع عصرية وسريعة تُحوّل زوارك لعملاء فعليين، بنحل المشاكل البرمجية، وبنظبط موقعك بأعلى كفاءة وبدون صداع.
             </p>
 
             <div class="hero-cta-group">
@@ -577,7 +554,7 @@
           <div class="section-header">
             <h2 class="section-title" data-i18n="servicesTitle">خدماتنا</h2>
             <p class="section-desc" data-i18n="servicesIntro">
-              إحنا عمر وجاد، بنصمم ونبرمج مواقع ويب عصرية وسريعة تركز على مبيعات بيزنسك وراحة العميل. بنبني مواقع جديدة من الصفر أو بنطور موقعك القديم ونحل أي مشكلة برمجية بكفاءة وبدون تعقيد.
+              في 7P Studio، بنصمم ونبرمج مواقع ويب عصرية وسريعة تركز على مبيعات بيزنسك وراحة العميل. بنبني مواقع جديدة من الصفر أو بنطور موقعك القديم ونحل أي مشكلة برمجية بكفاءة وبدون تعقيد.
             </p>
           </div>
 
@@ -602,7 +579,7 @@
 
           <div class="services-trust-summary">
             <p data-i18n="servicesTrustMerged">
-              بنضمنلك تواصل مباشر ورد سريع مع عمر وجاد لمناقشة كل تفاصيل فكرتك، تسليم دقيق في الميعاد المتفق عليه بدون مماطلة، ودعم فني مستمر بعد الإطلاق لمساعدتك في أي تعديل وصيانة.
+              بنضمنلك تواصل مباشر ورد سريع من فريقنا لمناقشة كل تفاصيل فكرتك، تسليم دقيق في الميعاد المتفق عليه بدون مماطلة، ودعم فني مستمر بعد الإطلاق لمساعدتك في أي تعديل وصيانة.
             </p>
           </div>
         </div>
@@ -807,7 +784,7 @@
 
                   <div class="hud-subhint">
                     <i class="fa-solid fa-bolt" style="color: #00F0FF;"></i>
-                    <span data-i18n="hudSubhint">تجهيز فوري للرسالة والتواصل المباشر مع عمر وجاد</span>
+                    <span data-i18n="hudSubhint">تجهيز فوري للرسالة والتواصل المباشر مع فريق 7P Studio</span>
                   </div>
                 </div>
               </div>
@@ -829,7 +806,7 @@
             <!-- Direct Contact Methods -->
             <div class="contact-info">
               <!-- Prominent WhatsApp Action Card -->
-              <a href="https://wa.me/201515047449?text=%D9%85%D8%B3%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%20%D9%8A%D8%A7%20%D8%B9%D9%85%D8%B1%20%D9%88%D9%8A%D8%A7%20%D8%AC%D8%A7%D8%AF%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D9%85%D9%88%D9%82%D8%B9%20%D9%84%D8%A8%D9%8A%D8%B2%D9%86%D8%B3%D9%8A" target="_blank" rel="noopener noreferrer" class="whatsapp-hero-cta-card">
+              <a href="https://wa.me/201515047449?text=%D9%85%D8%B3%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%20(7P%20Studio)%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D9%85%D9%88%D9%82%D8%B9%20%D9%84%D8%A8%D9%8A%D8%B2%D9%86%D8%B3%D9%8A" target="_blank" rel="noopener noreferrer" class="whatsapp-hero-cta-card">
                 <div class="wa-card-content">
                   <div class="wa-badge-pill">
                     <span class="wa-status-dot"></span>
@@ -962,7 +939,7 @@
       <footer class="footer">
         <div class="container footer-inner">
           <div class="footer-copy" data-i18n="footerCopy">
-            &copy; 2026 7P Studio (عمر & جاد) — جميع الحقوق محفوظة. مواقع عصرية معمولة على كيفك.
+            &copy; 2026 7P Studio — جميع الحقوق محفوظة. مواقع عصرية معمولة على كيفك.
           </div>
           <div class="footer-links">
             <button class="footer-back-to-top magnetic">
@@ -978,9 +955,9 @@
     <div class="mobile-sticky-cta" id="mobile-sticky-cta">
       <div class="mobile-sticky-text">
         <span class="mobile-sticky-title" data-i18n="stickyCtaTitle">عندك فكرة مشروع؟</span>
-        <span class="mobile-sticky-sub" data-i18n="stickyCtaSub">عمر وجاد متاحين الآن</span>
+        <span class="mobile-sticky-sub" data-i18n="stickyCtaSub">فريقنا متاح للرد الآن</span>
       </div>
-      <a href="https://wa.me/201515047449?text=%D9%85%D8%B3%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%20%D9%8A%D8%A7%20%D8%B9%D9%85%D8%B1%20%D9%88%D9%8A%D8%A7%20%D8%AC%D8%A7%D8%AF%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D9%85%D9%88%D9%82%D8%B9" target="_blank" rel="noopener noreferrer" class="mobile-sticky-btn">
+      <a href="https://wa.me/201515047449?text=%D9%85%D8%B3%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%20(7P%20Studio)%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D9%85%D9%88%D9%82%D8%B9" target="_blank" rel="noopener noreferrer" class="mobile-sticky-btn">
         <i class="fa-brands fa-whatsapp"></i>
         <span data-i18n="stickyCtaBtn">كلمنا واتساب</span>
       </a>
@@ -1002,7 +979,7 @@
             <span class="wa-tooltip-sub" data-i18n="waTooltipSub">كلمنا واتساب مباشر</span>
           </div>
         </div>
-        <a href="https://wa.me/201515047449?text=%D9%85%D8%B3%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%20%D9%8A%D8%A7%20%D8%B9%D9%85%D8%B1%20%D9%88%D9%8A%D8%A7%20%D8%AC%D8%A7%D8%AF%D8%8C%20%D8%B4%D9%88%D9%81%D8%AA%20%D9%85%D9%88%D9%82%D8%B9%207P%20Studio%20%D9%88%D8%AD%D8%A7%D8%A8%D8%A8%20%D9%86%D8%AA%D9%83%D9%84%D9%85%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%8A" 
+        <a href="https://wa.me/201515047449?text=%D9%85%D8%B3%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%20(7P%20Studio)%D8%8C%20%D8%B4%D9%88%D9%81%D8%AA%20%D9%85%D9%88%D9%82%D8%B9%D9%83%D9%85%20%D9%88%D8%AD%D8%A7%D8%A8%D8%A8%20%D9%86%D8%AA%D9%83%D9%84%D9%85%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%8A" 
            target="_blank" 
            rel="noopener noreferrer" 
            class="floating-btn whatsapp-floating-btn" 

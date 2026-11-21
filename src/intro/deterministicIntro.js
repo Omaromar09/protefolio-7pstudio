@@ -141,7 +141,7 @@ export class DeterministicIntro {
       ctx.font = studioLabelFont;
       ctx.fillStyle = 'rgba(18, 17, 16, 0.85)';
       ctx.textAlign = 'left';
-      const labelText = isAr ? 'عمر وجاد — 7P STUDIO' : '7P STUDIO — OMAR & GAD';
+      const labelText = isAr ? 'استوديو 7P الرقمي' : '7P DIGITAL STUDIO';
       ctx.fillText(labelText, targetX, 480);
 
       // Headline
@@ -227,9 +227,9 @@ export class DeterministicIntro {
       ctx.letterSpacing = '-0.02em';
       ctx.fillText('7P STUDIO', 0, -28);
 
-      // Subtitle (Omar & Gad) — Large, bold & prominent as requested by user
+      // Subtitle — Studio tagline
       if (titleScaleY > 0.2) {
-        const partnerName = isAr ? 'عمر وجاد — OMAR & GAD' : 'OMAR & GAD — PARTNERS';
+        const partnerName = isAr ? 'تصميم وبرمجة ويب متطورة' : 'PREMIUM WEB ENGINEERING';
         const partnerFont = isPortrait ? '800 52px "Plus Jakarta Sans", "Alexandria", "Cairo", system-ui, sans-serif' : '800 36px "Plus Jakarta Sans", "Alexandria", "Cairo", system-ui, sans-serif';
         ctx.font = partnerFont;
         ctx.fillStyle = `rgba(232, 163, 61, ${titleOpacity * 0.98})`;

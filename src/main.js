@@ -25,8 +25,8 @@ function updateGlobalWhatsAppLinks(lang) {
   const floatingBtn = document.querySelector('.whatsapp-floating-btn');
   if (floatingBtn) {
     const text = isAr
-      ? 'مساء الخير يا عمر ويا جاد، شوفت موقع 7P Studio وحابب نتكلم عن مشروعي'
-      : 'Hi Omar & Gad, I visited 7P Studio and would like to discuss my project';
+      ? 'مساء الخير (7P Studio)، شوفت موقعكم وحابب نتكلم عن مشروعي'
+      : 'Hello 7P Studio, I visited your website and would like to discuss my project';
     floatingBtn.href = `https://wa.me/201515047449?text=${encodeURIComponent(text)}`;
   }
 
@@ -34,8 +34,8 @@ function updateGlobalWhatsAppLinks(lang) {
   const stickyBtn = document.querySelector('.mobile-sticky-btn');
   if (stickyBtn) {
     const text = isAr
-      ? 'مساء الخير يا عمر ويا جاد، عايز أستفسر عن تنفيذ موقع لبيزنسي'
-      : 'Hi Omar & Gad, I would like to inquire about building a website for my business';
+      ? 'مساء الخير (7P Studio)، عايز أستفسر عن تنفيذ موقع لبيزنسي'
+      : 'Hello 7P Studio, I would like to inquire about building a website for my business';
     stickyBtn.href = `https://wa.me/201515047449?text=${encodeURIComponent(text)}`;
   }
 
@@ -43,8 +43,8 @@ function updateGlobalWhatsAppLinks(lang) {
   const contactCard = document.querySelector('.whatsapp-hero-cta-card');
   if (contactCard) {
     const text = isAr
-      ? 'مساء الخير يا عمر ويا جاد، عايز أستفسر عن تنفيذ موقع لبيزنسي'
-      : 'Hi Omar & Gad, I would like to inquire about building a website for my business';
+      ? 'مساء الخير (7P Studio)، عايز أستفسر عن تنفيذ موقع لبيزنسي'
+      : 'Hello 7P Studio, I would like to inquire about building a website for my business';
     contactCard.href = `https://wa.me/201515047449?text=${encodeURIComponent(text)}`;
   }
 }
@@ -338,8 +338,8 @@ function setupInteractiveControls() {
       fireSuccessConfetti();
 
       const whatsappText = lang === 'ar'
-        ? `مساء الخير يا عمر ويا جاد، أنا *${name}*\n\nوسيلة التواصل: ${contact}\n\nتفاصيل مشروعي:\n${message}\n\n---\nمرسلة من موقع 7P Studio (7pstudio.tech)`
-        : `Hi Omar & Gad, I am *${name}*\n\nContact: ${contact}\n\nProject details:\n${message}\n\n---\nSent from 7P Studio (7pstudio.tech)`;
+        ? `مساء الخير (7P Studio)، أنا *${name}*\n\nوسيلة التواصل: ${contact}\n\nتفاصيل مشروعي:\n${message}\n\n---\nمرسلة من موقع 7P Studio (7pstudio.tech)`
+        : `Hello 7P Studio, I am *${name}*\n\nContact: ${contact}\n\nProject details:\n${message}\n\n---\nSent from 7P Studio (7pstudio.tech)`;
 
       const encodedMsg = encodeURIComponent(whatsappText);
       const whatsappUrl = `https://wa.me/201515047449?text=${encodedMsg}`;

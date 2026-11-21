@@ -1,7 +1,7 @@
 /**
  * ==========================================================================
  * BILINGUAL i18n SYSTEM — ARABIC (DEFAULT) & ENGLISH
- * 7P Studio (Omar & Mostafa Gad) — High Performance, Clean Web Development
+ * 7P Studio — High Performance, Clean Web Development
  * Egyptian Arabic, confident, direct, light humor, no inflated titles.
  * ==========================================================================
  */
@@ -22,8 +22,8 @@ export const PRICING_CONFIG = {
 export const translations = {
  ar: {
  // Page Meta
- pageTitle:'7P Studio — عمر وجاد | مواقع عصرية وتفاعلية وسريعة - 7PSTUDIO',
- pageMetaDesc:'7P Studio (عمر وجاد) — استوديو تصميم وبرمجة مواقع ويب عصرية، سريعة جداً وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك.',
+ pageTitle:'7P Studio | مواقع عصرية وتفاعلية وسريعة - 7PSTUDIO',
+ pageMetaDesc:'7P Studio — استوديو تصميم وبرمجة مواقع ويب عصرية، سريعة جداً وتفاعلية 3D مع ربط واتساب مباشر ودعم فني مستمر. احصل على موقع يضاعف مبيعاتك.',
 
  // Intro Stage
  skipIntro:'تخطي',
@@ -51,7 +51,7 @@ export const translations = {
  heroBadge1:' استوديو متخصص في بناء مواقع البيزنس الحديثة',
  heroBadge2:'برمجة يدوية 100% بدون قوالب جاهزة',
  heroTitle:'7P Studio — مواقع عصرية، <span class="highlight">شكلها رايق،</span> وسريعة بتجيب زباين.',
- heroSubtitle:'أهلاً بيك! إحنا <strong>عمر</strong> و<strong>جاد</strong> في 7P Studio. بنصمم ونكود موقعك بإيدينا من الصفر بأعلى كفاءة وسرعة، بدون قوالب جاهزة مكررة، وبنربطه بسلة واتساب مباشرة بتضاعف مبيعاتك.',
+ heroSubtitle:'أهلاً بيك في 7P Studio! بنصمم ونكود موقعك بإيدينا من الصفر بأعلى كفاءة وسرعة، بدون قوالب جاهزة مكررة، وبنربطه بسلة واتساب مباشرة بتضاعف مبيعاتك.',
  heroCtaWork:'شوف شغلنا',
  heroCtaEstimator:'اعرف سعر مشروعك في 30 ثانية',
  heroCtaContact:'ابدأ مشروعك معانا',
@@ -136,7 +136,7 @@ export const translations = {
  trustSubtitle:'شغل شفاف، التزام كامل بالمواعيد، وضمان جودة حقيقي بعد التسليم:',
  trustLiveHeader:'8 مشاريع وتجارب رقمية لايف قمنا بتنفيذها:',
  trustPromise1Title:'رد سريع وتواصل مباشر',
- trustPromise1Desc:'تواصل مباشر مع عمر وجاد، بنسمع تفاصيل بيزنسك وبنرد علطول بدون تأخير.',
+ trustPromise1Desc:'تواصل مباشر وسريع مع فريق العمل، بنسمع تفاصيل بيزنسك وبنرد علطول بدون تأخير.',
  trustPromise2Title:'تسليم في الميعاد المحدد',
  trustPromise2Desc:'بنتفق على جدول زمني واضح وبنلتزم بيه باليوم والساعة بدون مماطلة.',
  trustPromise3Title:'دعم فني وضمان بعد الإطلاق',
@@ -144,9 +144,9 @@ export const translations = {
 
  // About Section
  aboutBadge:'عن الفريق',
- aboutTitle:'من غير لف ودوران.. موقعك معمول على كيفك مع عمر وجاد.',
+ aboutTitle:'من غير لف ودوران.. موقعك معمول على كيفك مع 7P Studio.',
  aboutDesc:'هدفنا إن موقعك يكون شكله رايق، سريع جداً على الموبايل والكمبيوتر، ومريح للعميل اللي بيفتحه.',
- aboutP1:'إحنا عمر وجاد، شركاء ومطورو ويب في 7P Studio. بنبني مواقع من الصفر أو بنعدل على موقعك القديم، وبنصلح أي مشكلة برمجية عشان يرجع يشتغل تمام بأعلى أداء.',
+ aboutP1:'في 7P Studio، بنبني مواقع من الصفر أو بنعدل على موقعك القديم، وبنصلح أي مشكلة برمجية عشان يرجع يشتغل تمام بأعلى أداء وراحة بال.',
  aboutP2:'لو عندك فكرة موقع جديدة، أو عندك موقع حالي وفيه باجات ومحتاج صيانة، تسريع، أو إضافة ميزات وصفحات إضافية — بنعملهولك خطوة بخطوة وبتنسيق كامل يناسب بيزنسك.',
 
  // About Pillars
@@ -173,7 +173,7 @@ export const translations = {
  // Services Section
  servicesBadge:'خدماتنا',
  servicesTitle:'خدماتنا',
- servicesIntro:'إحنا عمر وجاد، بنصمم ونبرمج مواقع ويب عصرية وسريعة تركز على مبيعات بيزنسك وراحة العميل. بنبني مواقع جديدة من الصفر أو بنطور موقعك القديم ونحل أي مشكلة برمجية بكفاءة وبدون تعقيد.',
+ servicesIntro:'في 7P Studio، بنصمم ونبرمج مواقع ويب عصرية وسريعة تركز على مبيعات بيزنسك وراحة العميل. بنبني مواقع جديدة من الصفر أو بنطور موقعك القديم ونحل أي مشكلة برمجية بكفاءة وبدون تعقيد.',
  servicesDesc:'اضغط على أي خدمة لترى التفاصيل الكاملة وما يتضمنه التنفيذ:',
  s1Title:'تصميم وتطوير مواقع كاملة ومتاجر إلكترونية متوافقة مع الموبايل',
  s1Desc:'من الفكرة والتصميم حتى كود شغال وسريع، متوافق مع الموبايل ومربوط بسلة شراء ودومين واستضافة جاهزة.',
@@ -198,7 +198,7 @@ export const translations = {
 
  s4Title:'ربط سلة طلبات الواتساب ونماذج التواصل السريعة',
  s4Desc:'تحويل الزوار لعملاء فعليين بربط الطلبات المباشرة وفواتير المنتجات على الواتساب فوراً وبدون تعقيد.',
- servicesTrustMerged:'بنضمنلك تواصل مباشر ورد سريع مع عمر وجاد لمناقشة كل تفاصيل فكرتك، تسليم دقيق في الميعاد المتفق عليه بدون مماطلة، ودعم فني مستمر بعد الإطلاق لمساعدتك في أي تعديل وصيانة.',
+ servicesTrustMerged:'بنضمنلك تواصل مباشر ورد سريع من فريقنا لمناقشة كل تفاصيل فكرتك، تسليم دقيق في الميعاد المتفق عليه بدون مماطلة، ودعم فني مستمر بعد الإطلاق لمساعدتك في أي تعديل وصيانة.',
  s4DeliverablesTitle:'ما يتضمنه العمل:',
  s4Deliverables:'ربط سلة الواتساب التلقائية، مجسمات 3D تفاعلية بـ Three.js، وأنيميشن ناعم بـ GSAP.',
  s4AudienceTitle:'مناسب لمين:',
@@ -242,7 +242,7 @@ export const translations = {
  hudGuaranteeText:'ضمان جودة 7P Studio: تسليم بدون باجات، كود نظيف وسريع، وتعديلات ومتابعة مستمرة بعد التسليم.',
  hudCtaBtn:'إرسال الكوتيشن لواتساب وبدء التنفيذ',
  hudSaveQuoteBtn:'نسخ وحفظ تفاصيل الكوتيشن',
- hudSubhint:'تجهيز فوري للرسالة والتواصل المباشر مع عمر وجاد',
+ hudSubhint:'تجهيز فوري للرسالة والتواصل المباشر مع فريق 7P Studio',
  hudSummaryTitle:'ملخص طلبك',
 
  // Process Section
@@ -285,7 +285,7 @@ export const translations = {
 
  // Sticky Mobile CTA
  stickyCtaTitle:'عندك فكرة مشروع؟',
- stickyCtaSub:'عمر وجاد متاحين الآن',
+ stickyCtaSub:'فريقنا متاح للرد الآن',
  stickyCtaBtn:'كلمنا واتساب',
 
  // Privacy Modal
@@ -297,14 +297,14 @@ export const translations = {
  privacyModalCloseBtn:'فهمت، إغلاق',
 
  // Footer
- footerCopy:'© 2026 7P Studio (عمر & جاد) — جميع الحقوق محفوظة. مواقع عصرية معمولة على كيفك.',
+ footerCopy:'© 2026 7P Studio — جميع الحقوق محفوظة. مواقع عصرية معمولة على كيفك.',
  backToTopBtn:'للأعلى'
  },
 
  en: {
  // Page Meta
- pageTitle:'7P Studio — Omar & Gad | Modern & Fast Interactive Websites - 7PSTUDIO',
- pageMetaDesc:'7P Studio (Omar & Gad) — Custom high-performance web development, 3D interactive experiences, direct WhatsApp integration, and dedicated ongoing support.',
+ pageTitle:'7P Studio | Modern & Fast Interactive Websites - 7PSTUDIO',
+ pageMetaDesc:'7P Studio — Custom high-performance web development, 3D interactive experiences, direct WhatsApp integration, and dedicated ongoing support.',
 
  // Intro Stage
  skipIntro:'Skip',
@@ -332,7 +332,7 @@ export const translations = {
  heroBadge1:' Studio specializing in high-performance business web development',
  heroBadge2:'Interactive 3D WebGL & lightning fast mobile responsiveness',
  heroTitle:'7P Studio — Modern websites, <span class="highlight">looking sharp,</span> converting visitors.',
- heroSubtitle: "Hey there! We are <strong>Omar</strong> and <strong>Gad</strong> (7P Studio). We craft high-performance websites that convert visitors into paying clients, resolve complex bugs, and engineer your digital presence headache-free.",
+ heroSubtitle: "Welcome to 7P Studio! We craft high-performance websites that convert visitors into paying clients, resolve complex bugs, and engineer your digital presence headache-free.",
  heroCtaWork:'See Our Work',
  heroCtaEstimator:'Calculate Your Quote in 30s',
  heroCtaContact:'Start Your Project With Us',
@@ -404,7 +404,7 @@ export const translations = {
  trustSubtitle:'Transparent workflow, strict adherence to deadlines, and post-launch quality guarantee:',
  trustLiveHeader:'8 live projects & digital experiences built by 7P Studio:',
  trustPromise1Title:'Swift direct communication',
- trustPromise1Desc:'Direct access to Omar and Gad with zero middleman friction.',
+ trustPromise1Desc:'Direct communication with our engineering team with zero middleman friction.',
  trustPromise2Title:'Guaranteed on-time delivery',
  trustPromise2Desc:'We commit to clear milestones and deliver on schedule without delays.',
  trustPromise3Title:'Post-launch warranty & support',
@@ -412,9 +412,9 @@ export const translations = {
 
  // About Section
  aboutBadge:'About the Team',
- aboutTitle:'No fluff, no headache. Engineered your way with Omar & Gad.',
+ aboutTitle:'No fluff, no headache. Engineered your way with 7P Studio.',
  aboutDesc:'Our goal is to build sites that look stunning, run lightning fast on mobile and desktop, and feel effortless to use.',
- aboutP1: "We are Omar and Gad, web development partners at 7P Studio. We build websites from scratch, revamp existing platforms, and resolve technical bugs so your digital presence runs at peak performance.",
+ aboutP1: "At 7P Studio, we engineer custom web experiences from scratch, revamp existing platforms, and resolve technical bugs so your digital presence runs at peak performance.",
  aboutP2: "Whether you have a new project idea, an existing site requiring optimization or bug fixing, or want to expand with new pages and custom integrations — we engineer it step by step to fit your business perfectly.",
 
  // Pillars
@@ -441,7 +441,7 @@ export const translations = {
  // Services
  servicesBadge:'Our Services',
  servicesTitle:'Our Services',
- servicesIntro:'We are Omar and Gad. We design and build modern, fast websites focused on conversions and effortless customer experience. We build new websites from scratch or optimize your existing site and fix any technical bugs cleanly.',
+ servicesIntro:'At 7P Studio, we design and build modern, fast websites focused on conversions and effortless customer experience. We build new websites from scratch or optimize your existing site and fix any technical bugs cleanly.',
  servicesDesc:'Click on any service tile to view full deliverables and target fit:',
  s1Title:'Full Website & E-commerce Development (Mobile-Ready)',
  s1Desc:'From concept and design to clean, fast production code with integrated shopping cart, domain, and hosting ready.',
@@ -466,7 +466,7 @@ export const translations = {
 
  s4Title:'WhatsApp Cart Integration & Quick Contact Funnels',
  s4Desc:'Turn visitors into paying clients with direct WhatsApp ordering, itemized invoices, and seamless communication.',
- servicesTrustMerged:'We guarantee direct communication and fast replies with Omar & Gad to discuss every detail, strict on-time delivery with zero delays, and dedicated post-launch support and maintenance.',
+ servicesTrustMerged:'We guarantee direct communication and fast replies from our team to discuss every detail, strict on-time delivery with zero delays, and dedicated post-launch support and maintenance.',
  s4DeliverablesTitle:'What is included:',
  s4Deliverables:'Automated WhatsApp cart messages, Three.js 3D models, and smooth GSAP choreography.',
  s4AudienceTitle:'Who it is for:',
@@ -510,7 +510,7 @@ export const translations = {
  hudGuaranteeText:'7P Studio Guarantee: Bug-free delivery, clean performant code, and post-launch support.',
  hudCtaBtn:'Send Quote to WhatsApp & Start',
  hudSaveQuoteBtn:'Copy & Save Quote Details',
- hudSubhint:'Instant WhatsApp message preparation for Omar & Gad',
+ hudSubhint:'Instant WhatsApp message preparation for 7P Studio team',
  hudSummaryTitle:'Order Summary',
 
  // Process
@@ -553,7 +553,7 @@ export const translations = {
 
  // Sticky Mobile CTA
  stickyCtaTitle:'Have a project idea?',
- stickyCtaSub:'Omar & Gad are online',
+ stickyCtaSub:'7P Studio team is online',
  stickyCtaBtn:'Chat WhatsApp',
 
  // Privacy Modal
@@ -565,7 +565,7 @@ export const translations = {
  privacyModalCloseBtn:'Understood, Close',
 
  // Footer
- footerCopy:'© 2026 7P Studio (Omar & Gad) — All Rights Reserved. Modern Websites Engineered Your Way.',
+ footerCopy:'© 2026 7P Studio — All Rights Reserved. Modern Websites Engineered Your Way.',
  backToTopBtn:'Top'
  }
 };
@@ -573,7 +573,7 @@ export const translations = {
 let currentLang ='ar';
 
 export function initLanguage() {
- const savedLang = localStorage.getItem('omar_portfolio_lang') ||'ar';
+ const savedLang = localStorage.getItem('7p_portfolio_lang') || localStorage.getItem('omar_portfolio_lang') || 'ar';
  setLanguage(savedLang, false);
 
  const langButtons = document.querySelectorAll('.lang-btn');
@@ -594,7 +594,7 @@ export function setLanguage(lang, persist = true) {
 
  if (persist) {
  try {
- localStorage.setItem('omar_portfolio_lang', lang);
+ localStorage.setItem('7p_portfolio_lang', lang);
  } catch (e) {}
  }
 

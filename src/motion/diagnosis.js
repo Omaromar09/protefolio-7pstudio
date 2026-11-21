@@ -312,8 +312,8 @@ function showDiagnosisResult(mount, answers, branch) {
  });
 
  const closingMsg = lang ==='ar'
- ?'\n---\nمساء الخير يا عمر ويا جاد، عملت اختبار التشخيص وحابب نتناقش في التفاصيل ونبدأ.'
- :'\n---\nHi Omar & Gad, I completed the website diagnosis quiz and would like to discuss next steps.';
+ ?'\n---\nمساء الخير (7P Studio)، عملت اختبار التشخيص وحابب نتناقش في التفاصيل ونبدأ.'
+ :'\n---\nHello 7P Studio, I completed the website diagnosis quiz and would like to discuss next steps.';
  lines.push(closingMsg);
 
  const waUrl = `https://wa.me/201515047449?text=${encodeURIComponent(lines.join('\n'))}`;

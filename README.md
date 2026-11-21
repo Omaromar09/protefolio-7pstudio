@@ -1,4 +1,4 @@
-# 7P Studio — Eng. Omar & Eng. Mostafa Gad | Web Development Portfolio
+# 7P Studio — Modern Web Development Studio Portfolio
 
 A personal portfolio built with **Vite**, **Three.js**, **GSAP & ScrollTrigger**, and **Lenis** smooth scrolling.
 

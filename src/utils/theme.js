@@ -21,7 +21,7 @@ export function setTheme(theme, silent = false) {
   currentTheme = theme;
 
   try {
-    localStorage.setItem('omar_theme', theme);
+    localStorage.setItem('7p_theme', theme);
   } catch (e) {
     console.warn('localStorage not accessible for theme persistence:', e);
   }
@@ -87,7 +87,7 @@ function updateThemeIcons(theme) {
 export function initTheme() {
   let savedTheme = 'dark';
   try {
-    const stored = localStorage.getItem('omar_theme');
+    const stored = localStorage.getItem('7p_theme') || localStorage.getItem('omar_theme');
     if (stored === 'light' || stored === 'dark') {
       savedTheme = stored;
     } else {

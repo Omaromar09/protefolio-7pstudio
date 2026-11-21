@@ -214,28 +214,25 @@ export const PROJECTS_DATA = [
       en: 'XO PS Gaming Lounge'
     },
     client: 'XO PS Lounge',
-    partnership: {
-      ar: 'بالشراكة مع بشمهندس ياسين',
-      en: 'In partnership with Eng. Yassin'
-    },
+
     category: {
       ar: 'لاونج بلايستيشن ونظام حجوزات',
       en: 'Gaming Lounge & Booking System'
     },
     short: {
-      ar: 'منصة رقمية متكاملة للاونج ألعاب وبلايستيشن (بالشراكة مع بشمهندس ياسين)، بتشمل حجز فوري لـ 15 غرفة معزولة، استعراض أجهزة PS5 ومكتبة الألعاب، وقسم ريست متكامل للمشروبات والسناكس.',
-      en: 'Full-featured web platform for a premier gaming lounge (in partnership with Eng. Yassin), featuring online reservations for 15 soundproof VIP suites, PS5 specs, games library, and cafe bar menu.'
+      ar: 'منصة رقمية متكاملة للاونج ألعاب وبلايستيشن، بتشمل حجز فوري لـ 15 غرفة معزولة، استعراض أجهزة PS5 ومكتبة الألعاب، وقسم ريست متكامل للمشروبات والسناكس.',
+      en: 'Full-featured web platform for a premier gaming lounge, featuring online reservations for 15 soundproof VIP suites, PS5 specs, games library, and cafe bar menu.'
     },
     tags: {
-      ar: ['حجز 15 غرفة أونلاين', 'أجهزة PS5 ومكتبة ألعاب', 'بالشراكة مع بشمهندس ياسين', 'قائمة كافيه وسناكس'],
-      en: ['15 Rooms Booking', 'PS5 & Games Library', 'In partnership with Eng. Yassin', 'Cafe & Lounge Menu']
+      ar: ['حجز 15 غرفة أونلاين', 'أجهزة PS5 ومكتبة ألعاب', 'تصميم Dark Mode عصري', 'قائمة كافيه وسناكس'],
+      en: ['15 Rooms Booking', 'PS5 & Games Library', 'Modern Dark Mode', 'Cafe & Lounge Menu']
     },
     url: 'https://demoplaystaion-plum.vercel.app/',
     previewImg: '/projects/xops-preview.jpg',
     accentColor: '#C69255',
     status: {
-      ar: 'مشروع نشط ويعمل لايف (بالشراكة مع بشمهندس ياسين)',
-      en: 'Live Production Web App (In partnership with Eng. Yassin)'
+      ar: 'مشروع نشط ويعمل لايف',
+      en: 'Live Production Web App'
     },
     isLive: true,
     isDemo: false
