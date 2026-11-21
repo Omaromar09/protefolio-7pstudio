@@ -1,6 +1,7 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — LEADS & INQUIRIES SERVICE (leadsService.js)
 // Real messages inbox: Zero fake/mock entries. Displays real incoming inquiries.
+// Real-time synchronization across tabs and Supabase WebSocket channels
 // ==============================================================================
 
 import { supabase, isSupabaseConfigured, getLocalData, setLocalData } from './db.js';
@@ -24,24 +25,49 @@ function filterRealLeads(list) {
 
 export const LeadsService = {
   async getLeads() {
+    let cloudLeads = [];
+
+    // 1. If Supabase is configured client-side
     if (isSupabaseConfigured && supabase) {
       try {
         const { data, error } = await supabase.from('leads').select('*').order('created_at', { ascending: false });
-        if (!error && data) return filterRealLeads(data);
+        if (!error && data && data.length > 0) {
+          cloudLeads = filterRealLeads(data);
+        }
       } catch (e) {
         console.warn('[LeadsService] Supabase fetch error, fallback to local:', e);
       }
     }
-    const local = getLocalData(LEADS_STORAGE_KEY, null);
-    if (!local) {
-      setLocalData(LEADS_STORAGE_KEY, INITIAL_LEADS);
-      return INITIAL_LEADS;
+
+    // 2. Fetch from Serverless /api/leads
+    if (cloudLeads.length === 0) {
+      try {
+        const res = await fetch('/api/leads');
+        if (res.ok) {
+          const json = await res.json();
+          if (json.configured && Array.isArray(json.leads) && json.leads.length > 0) {
+            cloudLeads = filterRealLeads(json.leads);
+          }
+        }
+      } catch (apiErr) {}
     }
-    const cleaned = filterRealLeads(local);
-    if (cleaned.length !== local.length) {
-      setLocalData(LEADS_STORAGE_KEY, cleaned);
+
+    // 3. Local Storage leads (direct from browser)
+    const local = getLocalData(LEADS_STORAGE_KEY, null) || [];
+    const cleanedLocal = filterRealLeads(local);
+
+    // Merge without duplicates by id or timestamp+name
+    const mergedMap = new Map();
+    cleanedLocal.forEach(l => mergedMap.set(l.id || (l.name + '_' + l.created_at), l));
+    cloudLeads.forEach(l => mergedMap.set(l.id || (l.name + '_' + l.created_at), l));
+
+    const result = Array.from(mergedMap.values()).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+    if (result.length > 0) {
+      setLocalData(LEADS_STORAGE_KEY, result);
     }
-    return cleaned;
+
+    return result;
   },
 
   async addLead(leadData) {
@@ -70,33 +96,27 @@ export const LeadsService = {
     leads.unshift(newLead);
     setLocalData(LEADS_STORAGE_KEY, leads);
 
-    NotificationsService.addNotification({
-      type: 'lead',
-      title: 'New lead from website',
-      message: `${newLead.name} submitted an inquiry for ${newLead.project_type || 'Website'}`,
-      link: '/admin/#leads',
-      severity: 'info'
-    });
-
     ActivityService.logAction({
       action: 'new_lead',
       category: 'lead',
-      details: `New lead received: ${newLead.name} (${newLead.project_type})`
+      details: `طلب مشروع جديد من "${newLead.name}" (${newLead.project_type || 'طلب عام'})`
+    });
+
+    NotificationsService.addNotification({
+      title: 'طلب مشروع جديد 🚀',
+      message: `${newLead.name} أرسل تفاصيل مشروع جديد: ${newLead.project_type}`,
+      type: 'lead',
+      action_url: '#leads'
     });
 
     return newLead;
   },
 
   async updateLeadStatus(id, newStatus) {
-    const validStatuses = ['new', 'contacted', 'discussion', 'proposal_sent', 'in_progress', 'completed', 'rejected'];
-    if (!validStatuses.includes(newStatus)) return;
-
     if (isSupabaseConfigured && supabase) {
       try {
         await supabase.from('leads').update({ status: newStatus, updated_at: new Date().toISOString() }).eq('id', id);
-      } catch (e) {
-        console.warn('[LeadsService] Supabase update status error:', e);
-      }
+      } catch (e) {}
     }
 
     const leads = await this.getLeads();
@@ -105,36 +125,57 @@ export const LeadsService = {
       target.status = newStatus;
       target.updated_at = new Date().toISOString();
       setLocalData(LEADS_STORAGE_KEY, leads);
-
-      ActivityService.logAction({
-        action: 'lead_status_changed',
-        category: 'lead',
-        details: `Updated status of ${target.name} to "${newStatus}"`
-      });
     }
+    return target;
   },
 
-  async toggleRead(id, isRead) {
+  async toggleStar(id) {
     const leads = await this.getLeads();
     const target = leads.find(l => String(l.id) === String(id));
     if (target) {
-      target.is_read = isRead;
+      target.is_starred = !target.is_starred;
+      if (isSupabaseConfigured && supabase) {
+        try {
+          await supabase.from('leads').update({ is_starred: target.is_starred }).eq('id', id);
+        } catch (e) {}
+      }
       setLocalData(LEADS_STORAGE_KEY, leads);
     }
+    return target;
   },
 
-  async addNote(id, noteText, author = 'Omar') {
+  async toggleRead(id, status = true) {
     const leads = await this.getLeads();
     const target = leads.find(l => String(l.id) === String(id));
     if (target) {
-      if (!target.notes) target.notes = [];
+      target.is_read = status;
+      if (isSupabaseConfigured && supabase) {
+        try {
+          await supabase.from('leads').update({ is_read: status }).eq('id', id);
+        } catch (e) {}
+      }
+      setLocalData(LEADS_STORAGE_KEY, leads);
+    }
+    return target;
+  },
+
+  async addNote(id, noteText, author = 'Admin') {
+    const leads = await this.getLeads();
+    const target = leads.find(l => String(l.id) === String(id));
+    if (target) {
+      if (!Array.isArray(target.notes)) target.notes = [];
       const note = {
         id: 'note_' + Date.now(),
-        author,
         text: noteText,
+        author,
         created_at: new Date().toISOString()
       };
       target.notes.push(note);
+      if (isSupabaseConfigured && supabase) {
+        try {
+          await supabase.from('leads').update({ notes: target.notes }).eq('id', id);
+        } catch (e) {}
+      }
       setLocalData(LEADS_STORAGE_KEY, leads);
       return note;
     }
@@ -149,41 +190,48 @@ export const LeadsService = {
     const leads = await this.getLeads();
     const updated = leads.filter(l => String(l.id) !== String(id));
     setLocalData(LEADS_STORAGE_KEY, updated);
-
-    ActivityService.logAction({
-      action: 'lead_deleted',
-      category: 'lead',
-      details: `Lead #${id} deleted`
-    });
-  },
-
-  async getUnreadCount() {
-    const leads = await this.getLeads();
-    return leads.filter(l => !l.is_read && !l.is_archived).length;
   },
 
   exportToCSV(leads) {
-    const headers = ['ID', 'Name', 'Email', 'Phone', 'Project Type', 'Budget', 'Status', 'Message', 'Date', 'Source'];
+    const headers = ['ID', 'Name', 'Phone', 'Email', 'Project Type', 'Status', 'Date', 'Message'];
     const rows = leads.map(l => [
-      l.id,
+      `"${l.id || ''}"`,
       `"${(l.name || '').replace(/"/g, '""')}"`,
-      `"${(l.email || '').replace(/"/g, '""')}"`,
-      `"${(l.phone || '').replace(/"/g, '""')}"`,
-      `"${(l.project_type || '').replace(/"/g, '""')}"`,
-      `"${(l.budget || '').replace(/"/g, '""')}"`,
-      l.status,
-      `"${(l.message || '').replace(/"/g, '""').replace(/\n/g, ' ')}"`,
-      l.created_at,
-      l.source_url || '7pstudio.tech'
+      `"${l.phone || ''}"`,
+      `"${l.email || ''}"`,
+      `"${l.project_type || ''}"`,
+      `"${l.status || ''}"`,
+      `"${l.created_at || ''}"`,
+      `"${(l.message || '').replace(/"/g, '""').replace(/\n/g, ' ')}"`
     ]);
 
-    const csvContent = 'data:text/csv;charset=utf-8,\uFEFF' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
-    const encodedUri = encodeURI(csvContent);
+    const csvContent = '\uFEFF' + [headers.join(','), ...rows.map(r => r.join(','))].join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `7p_studio_leads_${new Date().toISOString().slice(0, 10)}.csv`);
+    link.href = url;
+    link.setAttribute('download', `7P_STUDIO_Leads_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  },
+
+  // Setup Realtime WebSocket Listener via Supabase
+  setupRealtimeListener(onNewLead) {
+    if (!isSupabaseConfigured || !supabase) return null;
+    try {
+      const channel = supabase
+        .channel('realtime:leads')
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'leads' }, (payload) => {
+          if (payload && payload.new && onNewLead) {
+            onNewLead(payload.new);
+          }
+        })
+        .subscribe();
+      return channel;
+    } catch (err) {
+      console.warn('[LeadsService] Realtime channel setup warning:', err);
+      return null;
+    }
   }
 };

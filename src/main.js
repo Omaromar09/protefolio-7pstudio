@@ -340,6 +340,14 @@ function setupInteractiveControls() {
         };
         stored.unshift(localLead);
         localStorage.setItem('7p_studio_leads_list', JSON.stringify(stored));
+        localStorage.setItem('7p_studio_last_lead_ping', String(Date.now()));
+        if (typeof BroadcastChannel !== 'undefined') {
+          try {
+            const syncChan = new BroadcastChannel('7p_studio_sync_channel');
+            syncChan.postMessage({ type: 'NEW_LEAD', lead: localLead });
+            syncChan.close();
+          } catch (e) {}
+        }
         window.dispatchEvent(new CustomEvent('7p-notification', { detail: localLead }));
       } catch (localErr) {}
 

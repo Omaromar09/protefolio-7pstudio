@@ -1,6 +1,6 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — MASTER APPLICATION BOOTSTRAP (main.js)
-// Bilingual Arabic (Primary) / English with Live Language Switching
+// Real-time synchronization engine with BroadcastChannel, Audio Chime, & WebSockets
 // ==============================================================================
 
 import { Sidebar } from './components/Sidebar.js';
@@ -9,6 +9,8 @@ import { CommandPalette } from './components/CommandPalette.js';
 import { AdminToast } from './components/Toast.js';
 import { AuthService } from './services/auth.js';
 import { AdminI18n } from './services/i18nAdmin.js';
+import { LeadsService } from './services/leadsService.js';
+import { NotificationsService } from './services/notificationsService.js';
 
 // Views
 import { OverviewView } from './views/OverviewView.js';
@@ -29,12 +31,33 @@ import { NotificationsView } from './views/NotificationsView.js';
 import { UserManagementView } from './views/UserManagementView.js';
 import { SettingsView } from './views/SettingsView.js';
 
+// Web Audio API Synth Chime (Zero external mp3 needed)
+function playLeadArrivalChime() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(587.33, ctx.currentTime); // Note D5
+    osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.14); // Note A5
+    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.45);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.5);
+  } catch (e) {}
+}
+
 class AdminApp {
   constructor() {
     this.currentRoute = this.getRouteFromHash() || 'overview';
     this.sidebar = null;
     this.topNav = null;
     this.commandPalette = null;
+    this._lastLeadCount = 0;
   }
 
   getRouteFromHash() {
@@ -97,6 +120,84 @@ class AdminApp {
       const newRoute = this.getRouteFromHash();
       this.renderRoute(newRoute);
     });
+
+    // Real-Time Cross-Tab Synchronization Handlers
+    const handleIncomingLead = (lead) => {
+      playLeadArrivalChime();
+      const isAr = AdminI18n.getLanguage() === 'ar';
+      const clientName = lead?.name || (isAr ? 'عميل جديد' : 'New Client');
+      AdminToast.show(
+        isAr ? `🔔 طلب مشروع جديد وصل الآن من: ${clientName}!` : `🔔 New project inquiry received from: ${clientName}!`,
+        'success'
+      );
+
+      // Add to internal notifications
+      NotificationsService.addNotification({
+        title: isAr ? 'طلب مشروع جديد 🚀' : 'New Project Inquiry 🚀',
+        message: `${clientName} (${lead?.project_type || 'طلب عام'})`,
+        type: 'lead',
+        action_url: '#leads'
+      });
+
+      // Update badge live
+      if (this.topNav) this.topNav.updateBadge();
+
+      // Refresh sidebar badge
+      const sidebarMount = document.getElementById('sidebar-mount-point');
+      if (sidebarMount) {
+        this.sidebar = new Sidebar(this.currentRoute, (targetRoute) => this.navigate(targetRoute));
+        sidebarMount.innerHTML = this.sidebar.render();
+        this.sidebar.attachEvents(sidebarMount);
+      }
+
+      // Live Re-render active view to show lead immediately without refresh
+      this.renderRoute(this.currentRoute);
+    };
+
+    // 1. BroadcastChannel (Millisecond instant sync between portfolio & control center tabs)
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        const syncChannel = new BroadcastChannel('7p_studio_sync_channel');
+        syncChannel.onmessage = (event) => {
+          if (event.data && event.data.type === 'NEW_LEAD') {
+            handleIncomingLead(event.data.lead);
+          }
+        };
+      } catch (bcErr) {}
+    }
+
+    // 2. Cross-tab Storage Listener
+    window.addEventListener('storage', (e) => {
+      if (e.key === '7p_studio_last_lead_ping' || e.key === '7p_studio_leads_list') {
+        try {
+          const stored = JSON.parse(localStorage.getItem('7p_studio_leads_list') || '[]');
+          if (stored.length > 0) {
+            handleIncomingLead(stored[0]);
+          }
+        } catch (err) {}
+      }
+    });
+
+    // 3. Same-window custom event listener
+    window.addEventListener('7p-notification', (e) => {
+      if (e.detail) handleIncomingLead(e.detail);
+    });
+
+    // 4. Supabase Realtime WebSocket Listener (For cross-device & mobile-to-laptop instant sync)
+    LeadsService.setupRealtimeListener((newLead) => {
+      handleIncomingLead(newLead);
+    });
+
+    // 5. Background Heartbeat Auto-Sync Polling (Every 3 seconds)
+    setInterval(async () => {
+      try {
+        const leads = await LeadsService.getLeads();
+        if (this._lastLeadCount > 0 && leads.length > this._lastLeadCount) {
+          handleIncomingLead(leads[0]);
+        }
+        this._lastLeadCount = leads.length;
+      } catch (pollErr) {}
+    }, 3000);
 
     // Initial render
     this.renderRoute(this.currentRoute);
@@ -196,8 +297,6 @@ class AdminApp {
     if (viewInstance.attachEvents) {
       viewInstance.attachEvents(viewMount);
     }
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
