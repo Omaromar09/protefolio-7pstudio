@@ -1,11 +1,12 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — MASTER APPLICATION BOOTSTRAP (main.js)
-// Real-time synchronization engine with BroadcastChannel, Audio Chime, & WebSockets
+// Protected Access Gate (7pstudio / 010010), Responsive Mobile UI, Silent Auto-Sync
 // ==============================================================================
 
 import { Sidebar } from './components/Sidebar.js';
 import { TopNav } from './components/TopNav.js';
 import { CommandPalette } from './components/CommandPalette.js';
+import { LoginScreen } from './components/LoginScreen.js';
 import { AdminToast } from './components/Toast.js';
 import { AuthService } from './services/auth.js';
 import { AdminI18n } from './services/i18nAdmin.js';
@@ -31,33 +32,14 @@ import { NotificationsView } from './views/NotificationsView.js';
 import { UserManagementView } from './views/UserManagementView.js';
 import { SettingsView } from './views/SettingsView.js';
 
-// Web Audio API Synth Chime (Zero external mp3 needed)
-function playLeadArrivalChime() {
-  try {
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return;
-    const ctx = new AudioCtx();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(587.33, ctx.currentTime); // Note D5
-    osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.14); // Note A5
-    gain.gain.setValueAtTime(0.2, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.45);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.5);
-  } catch (e) {}
-}
-
 class AdminApp {
   constructor() {
     this.currentRoute = this.getRouteFromHash() || 'overview';
     this.sidebar = null;
     this.topNav = null;
     this.commandPalette = null;
-    this._lastLeadCount = 0;
+    this._notifiedLeadIds = new Set();
+    this._isFirstLoad = true;
   }
 
   getRouteFromHash() {
@@ -66,15 +48,25 @@ class AdminApp {
   }
 
   init() {
-    // 1. Apply primary language and direction to DOM (Arabic default)
     AdminI18n.applyToDOM();
 
     const appRoot = document.getElementById('admin-app');
     if (!appRoot) return;
 
-    // Build the master shell layout
+    // 1. Check Authentication Gate
+    if (!AuthService.isAuthenticated()) {
+      const login = new LoginScreen(() => {
+        this.init();
+      });
+      appRoot.innerHTML = login.render();
+      login.attachEvents(appRoot);
+      return;
+    }
+
+    // 2. Build the master shell layout with mobile backdrop
     appRoot.innerHTML = `
       <div class="admin-shell">
+        <div class="mobile-sidebar-backdrop" id="mobile-sidebar-backdrop"></div>
         <div id="sidebar-mount-point"></div>
         <div class="admin-main">
           <div id="topnav-mount-point"></div>
@@ -82,6 +74,16 @@ class AdminApp {
         </div>
       </div>
     `;
+
+    // Close mobile sidebar when clicking backdrop
+    const backdrop = document.getElementById('mobile-sidebar-backdrop');
+    if (backdrop) {
+      backdrop.addEventListener('click', () => {
+        const sidebar = document.querySelector('.admin-sidebar');
+        if (sidebar) sidebar.classList.remove('mobile-open');
+        backdrop.classList.remove('is-visible');
+      });
+    }
 
     // Instantiate Command Palette
     this.commandPalette = new CommandPalette((targetRoute) => {
@@ -119,42 +121,40 @@ class AdminApp {
     window.addEventListener('hashchange', () => {
       const newRoute = this.getRouteFromHash();
       this.renderRoute(newRoute);
+      // Close mobile sidebar on navigation
+      const sidebar = document.querySelector('.admin-sidebar');
+      const backdropEl = document.getElementById('mobile-sidebar-backdrop');
+      if (sidebar) sidebar.classList.remove('mobile-open');
+      if (backdropEl) backdropEl.classList.remove('is-visible');
     });
 
-    // Real-Time Cross-Tab Synchronization Handlers
+    // Silent, Deduplicated Lead Handler (Sound is completely muted as requested)
     const handleIncomingLead = (lead) => {
-      playLeadArrivalChime();
-      const isAr = AdminI18n.getLanguage() === 'ar';
-      const clientName = lead?.name || (isAr ? 'عميل جديد' : 'New Client');
-      AdminToast.show(
-        isAr ? `🔔 طلب مشروع جديد وصل الآن من: ${clientName}!` : `🔔 New project inquiry received from: ${clientName}!`,
-        'success'
-      );
+      if (!lead || !lead.id) return;
+      if (this._notifiedLeadIds.has(String(lead.id))) return;
+      this._notifiedLeadIds.add(String(lead.id));
 
-      // Add to internal notifications
-      NotificationsService.addNotification({
-        title: isAr ? 'طلب مشروع جديد 🚀' : 'New Project Inquiry 🚀',
-        message: `${clientName} (${lead?.project_type || 'طلب عام'})`,
-        type: 'lead',
-        action_url: '#leads'
-      });
+      if (!this._isFirstLoad) {
+        const isAr = AdminI18n.getLanguage() === 'ar';
+        const clientName = lead.name || (isAr ? 'عميل جديد' : 'New Client');
+        AdminToast.show(
+          isAr ? `طلب مشروع جديد من: ${clientName}` : `New lead from: ${clientName}`,
+          'success'
+        );
 
-      // Update badge live
-      if (this.topNav) this.topNav.updateBadge();
-
-      // Refresh sidebar badge
-      const sidebarMount = document.getElementById('sidebar-mount-point');
-      if (sidebarMount) {
-        this.sidebar = new Sidebar(this.currentRoute, (targetRoute) => this.navigate(targetRoute));
-        sidebarMount.innerHTML = this.sidebar.render();
-        this.sidebar.attachEvents(sidebarMount);
+        NotificationsService.addNotification({
+          title: isAr ? 'طلب مشروع جديد' : 'New Project Inquiry',
+          message: `${clientName} (${lead.project_type || 'طلب عام'})`,
+          type: 'lead',
+          action_url: '#leads'
+        });
       }
 
-      // Live Re-render active view to show lead immediately without refresh
+      if (this.topNav) this.topNav.updateBadge();
       this.renderRoute(this.currentRoute);
     };
 
-    // 1. BroadcastChannel (Millisecond instant sync between portfolio & control center tabs)
+    // BroadcastChannel for instant same-browser cross-tab sync
     if (typeof BroadcastChannel !== 'undefined') {
       try {
         const syncChannel = new BroadcastChannel('7p_studio_sync_channel');
@@ -166,7 +166,7 @@ class AdminApp {
       } catch (bcErr) {}
     }
 
-    // 2. Cross-tab Storage Listener
+    // Cross-tab storage listener
     window.addEventListener('storage', (e) => {
       if (e.key === '7p_studio_last_lead_ping' || e.key === '7p_studio_leads_list') {
         try {
@@ -178,29 +178,29 @@ class AdminApp {
       }
     });
 
-    // 3. Same-window custom event listener
-    window.addEventListener('7p-notification', (e) => {
-      if (e.detail) handleIncomingLead(e.detail);
-    });
-
-    // 4. Supabase Realtime WebSocket Listener (For cross-device & mobile-to-laptop instant sync)
+    // Supabase Realtime WebSocket Listener (Silent & instantaneous)
     LeadsService.setupRealtimeListener((newLead) => {
       handleIncomingLead(newLead);
     });
 
-    // 5. Background Heartbeat Auto-Sync Polling (Every 3 seconds)
+    // Silent background auto-sync heartbeat (every 5 seconds)
     setInterval(async () => {
       try {
         const leads = await LeadsService.getLeads();
-        if (this._lastLeadCount > 0 && leads.length > this._lastLeadCount) {
-          handleIncomingLead(leads[0]);
-        }
-        this._lastLeadCount = leads.length;
+        leads.forEach(l => {
+          if (l && l.id && !this._notifiedLeadIds.has(String(l.id))) {
+            handleIncomingLead(l);
+          }
+        });
       } catch (pollErr) {}
-    }, 3000);
+    }, 5000);
 
     // Initial render
-    this.renderRoute(this.currentRoute);
+    this.renderRoute(this.currentRoute).then(() => {
+      setTimeout(() => {
+        this._isFirstLoad = false;
+      }, 1500);
+    });
 
     // Initial Welcome Toast
     setTimeout(() => {
@@ -226,12 +226,6 @@ class AdminApp {
 
     const viewMount = document.getElementById('view-mount-point');
     if (!viewMount) return;
-
-    viewMount.innerHTML = `
-      <div style="display: flex; align-items: center; justify-content: center; height: 300px; color: var(--accent-orange);">
-        <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem;"></i>
-      </div>
-    `;
 
     let viewInstance = null;
 

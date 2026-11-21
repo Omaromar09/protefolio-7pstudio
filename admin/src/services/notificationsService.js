@@ -1,6 +1,6 @@
 // ==============================================================================
 // 7P STUDIO CONTROL CENTER — NOTIFICATIONS SERVICE (notificationsService.js)
-// Central notification bus with unread counters, toasts, and alert feeds
+// Central notification bus with deduplication and unread counters
 // ==============================================================================
 
 import { getLocalData, setLocalData } from './db.js';
@@ -9,41 +9,22 @@ const NOTIFICATIONS_STORAGE_KEY = 'notifications_list';
 
 const INITIAL_NOTIFICATIONS = [
   {
-    id: 'notif_1',
-    type: 'lead',
-    title: 'New lead from contact form',
-    message: 'Tarek Mansour submitted inquiry for E-Commerce Store with WhatsApp request.',
+    id: 'notif_welcome',
+    type: 'system',
+    title: 'لوحة التحكم متصلة بالسحابة 🚀',
+    message: 'تم تفعيل قاعدة البيانات السحابية والمزامنة اللحظية بنجاح.',
     link: '#leads',
     is_read: false,
-    severity: 'info',
-    created_at: new Date(Date.now() - 2 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'notif_2',
-    type: 'alert',
-    title: 'Contact form delivery needs attention',
-    message: 'Some messages are not being delivered to email inbox. Check your webhook or Resend key.',
-    link: '#settings',
-    is_read: false,
-    severity: 'warning',
-    created_at: new Date(Date.now() - 40 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'notif_3',
-    type: 'deployment',
-    title: 'Deployment Successful',
-    message: 'Your site is up and running perfectly on Vercel at 7pstudio.tech.',
-    link: '#deployment',
-    is_read: false,
     severity: 'success',
-    created_at: new Date(Date.now() - 60 * 60 * 1000).toISOString()
+    created_at: new Date().toISOString()
   }
 ];
 
 export const NotificationsService = {
   getNotifications() {
-    const local = getLocalData(NOTIFICATIONS_STORAGE_KEY, null);
-    if (!local) {
+    let local = getLocalData(NOTIFICATIONS_STORAGE_KEY, null);
+    // If someone has more than 50 spam notifications from the loop, clean up
+    if (!local || (Array.isArray(local) && local.length > 30)) {
       setLocalData(NOTIFICATIONS_STORAGE_KEY, INITIAL_NOTIFICATIONS);
       return INITIAL_NOTIFICATIONS;
     }
@@ -57,6 +38,11 @@ export const NotificationsService = {
 
   addNotification(notif) {
     const list = this.getNotifications();
+    
+    // Deduplicate by title + message
+    const isDuplicate = list.some(n => n.title === notif.title && n.message === notif.message && (Date.now() - new Date(n.created_at).getTime() < 60000));
+    if (isDuplicate) return null;
+
     const item = {
       id: 'notif_' + Date.now(),
       created_at: new Date().toISOString(),
@@ -64,8 +50,9 @@ export const NotificationsService = {
       ...notif
     };
     list.unshift(item);
+    if (list.length > 50) list.pop();
     setLocalData(NOTIFICATIONS_STORAGE_KEY, list);
-    window.dispatchEvent(new CustomEvent('7p-notification', { detail: item }));
+    window.dispatchEvent(new CustomEvent('7p-notifications-updated'));
     return item;
   },
 
@@ -83,6 +70,11 @@ export const NotificationsService = {
     const list = this.getNotifications();
     list.forEach(n => { n.is_read = true; });
     setLocalData(NOTIFICATIONS_STORAGE_KEY, list);
+    window.dispatchEvent(new CustomEvent('7p-notifications-updated'));
+  },
+
+  clearAll() {
+    setLocalData(NOTIFICATIONS_STORAGE_KEY, []);
     window.dispatchEvent(new CustomEvent('7p-notifications-updated'));
   }
 };
