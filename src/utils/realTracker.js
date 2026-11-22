@@ -19,6 +19,7 @@ export function getRealAnalytics() {
     projectClicks: {
       aya: 0,
       elara: 0,
+      vanta: 0,
       flowers: 0,
       festival: 0,
       kayan: 0,
@@ -102,7 +103,8 @@ export function initRealTracker() {
     const href = link.href.toLowerCase();
     let matchedId = null;
 
-    if (href.includes('aya-accessories')) matchedId = 'aya';
+    if (href.includes('vanta-carsdemo') || href.includes('vanta')) matchedId = 'vanta';
+    else if (href.includes('aya-accessories')) matchedId = 'aya';
     else if (href.includes('elara-omardemo')) matchedId = 'elara';
     else if (href.includes('demo-flowershop')) matchedId = 'flowers';
     else if (href.includes('festival-pastry')) matchedId = 'festival';

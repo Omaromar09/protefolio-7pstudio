@@ -57,6 +57,28 @@ const INITIAL_PROJECTS = [
     createdAt: '2026-11-18T22:06:00.000Z'
   },
   {
+    id: 'vanta',
+    title: { ar: 'ڤانتا للسيارات الفارهة (VANTA)', en: 'VANTA Luxury Automotive & 3D Studio' },
+    client: 'VANTA Automotive',
+    category: { ar: 'استوديو 3D وتجربة سيارات خارقة', en: '3D Hypercar Configurator & Luxury Experience' },
+    short: {
+      ar: 'تجربة رقمية سينمائية استثنائية لعلامة سيارات خارقة، بتشمل استوديو 3D تفاعلي بزاوية 360° لتخصيص الألوان والجنوط، مدخل فيديو سينمائي، وتخصيص باقات الصيانة وحجز المواعيد.',
+      en: 'Cinematic luxury automotive digital experience featuring real-time 360° 3D studio configurator, dynamic paint & rim personalization, cinematic video entrance, and bespoke nanotech booking.'
+    },
+    tags: {
+      ar: ['استوديو 3D تفاعلي 360°', 'تخصيص سيارات ولون تفاعلي', 'إنترو فيديو سينمائي', 'حجز صيانة وباقات VIP'],
+      en: ['Interactive 360° 3D Studio', 'Realtime Configurator', 'Cinematic Video Entrance', 'VIP Booking & Bay Allocation']
+    },
+    url: 'https://vanta-carsdemo.vercel.app/',
+    previewImg: '/projects/vanta-preview.jpg',
+    accentColor: '#FF6A00',
+    status: 'published',
+    isFeatured: true,
+    viewsCount: 0,
+    displayOrder: 3,
+    createdAt: '2026-11-22T00:00:00.000Z'
+  },
+  {
     id: 'flowers',
     title: { ar: 'بوتيك جاردان فيفانت للزهور', en: 'Jardin Vivant Haute Floriculture' },
     client: 'Jardin Vivant Paris',
@@ -75,7 +97,7 @@ const INITIAL_PROJECTS = [
     status: 'published',
     isFeatured: true,
     viewsCount: 0,
-    displayOrder: 3,
+    displayOrder: 4,
     createdAt: '2026-11-11T19:53:00.000Z'
   },
   {
@@ -97,7 +119,7 @@ const INITIAL_PROJECTS = [
     status: 'published',
     isFeatured: false,
     viewsCount: 0,
-    displayOrder: 4,
+    displayOrder: 5,
     createdAt: '2026-11-11T19:54:00.000Z'
   },
   {
@@ -119,7 +141,7 @@ const INITIAL_PROJECTS = [
     status: 'published',
     isFeatured: true,
     viewsCount: 0,
-    displayOrder: 5,
+    displayOrder: 6,
     createdAt: '2026-11-15T18:00:00.000Z'
   },
   {
@@ -141,7 +163,7 @@ const INITIAL_PROJECTS = [
     status: 'published',
     isFeatured: false,
     viewsCount: 0,
-    displayOrder: 6,
+    displayOrder: 7,
     createdAt: '2026-11-11T19:54:00.000Z'
   },
   {
@@ -163,7 +185,7 @@ const INITIAL_PROJECTS = [
     status: 'published',
     isFeatured: false,
     viewsCount: 0,
-    displayOrder: 7,
+    displayOrder: 8,
     createdAt: '2026-11-11T19:55:00.000Z'
   },
   {
@@ -185,7 +207,7 @@ const INITIAL_PROJECTS = [
     status: 'published',
     isFeatured: false,
     viewsCount: 0,
-    displayOrder: 8,
+    displayOrder: 9,
     createdAt: '2026-11-11T19:55:00.000Z'
   }
 ];
@@ -194,8 +216,8 @@ export const ProjectsService = {
   async getProjects() {
     let list = getLocalData(PROJECTS_STORAGE_KEY, null);
 
-    // If never saved or has old elmohtaref, re-initialize with authentic 8 projects
-    if (!list || list.some(p => p.id === 'elmohtaref') || !list.some(p => p.id === 'kayan')) {
+    // If never saved or has old elmohtaref or missing vanta/kayan, re-initialize with authentic 9 projects
+    if (!list || list.some(p => p.id === 'elmohtaref') || !list.some(p => p.id === 'kayan') || !list.some(p => p.id === 'vanta')) {
       list = INITIAL_PROJECTS;
       setLocalData(PROJECTS_STORAGE_KEY, list);
     }

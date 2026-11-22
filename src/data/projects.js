@@ -63,6 +63,35 @@ export const PROJECTS_DATA = [
     isDemo: false
   },
   {
+    id: 'vanta',
+    title: {
+      ar: 'ڤانتا للسيارات الفارهة (VANTA)',
+      en: 'VANTA Luxury Automotive & 3D Studio'
+    },
+    client: 'VANTA Automotive',
+    category: {
+      ar: 'استوديو 3D وتجربة سيارات خارقة',
+      en: '3D Hypercar Configurator & Luxury Experience'
+    },
+    short: {
+      ar: 'تجربة رقمية سينمائية استثنائية لعلامة سيارات خارقة، بتشمل استوديو 3D تفاعلي بزاوية 360° لتخصيص الألوان والجنوط، مدخل فيديو سينمائي، وتخصيص باقات الصيانة وحجز المواعيد.',
+      en: 'Cinematic luxury automotive digital experience featuring real-time 360° 3D studio configurator, dynamic paint & rim personalization, cinematic video entrance, and bespoke nanotech booking.'
+    },
+    tags: {
+      ar: ['استوديو 3D تفاعلي 360°', 'تخصيص سيارات ولون تفاعلي', 'إنترو فيديو سينمائي', 'حجز صيانة وباقات VIP'],
+      en: ['Interactive 360° 3D Studio', 'Realtime Configurator', 'Cinematic Video Entrance', 'VIP Booking & Bay Allocation']
+    },
+    url: 'https://vanta-carsdemo.vercel.app/',
+    previewImg: '/projects/vanta-preview.jpg',
+    accentColor: '#FF6A00',
+    status: {
+      ar: 'مشروع نشط ويعمل لايف',
+      en: 'Live Production Website'
+    },
+    isLive: true,
+    isDemo: false
+  },
+  {
     id: 'flowers',
     title: {
       ar: 'بوتيك جاردان فيفانت للزهور',
@@ -240,11 +269,11 @@ export const PROJECTS_DATA = [
 ];
 
 export const REAL_STATS = {
-  totalProjects: PROJECTS_DATA.length, // 8
-  liveClientProjects: PROJECTS_DATA.length, // 8
+  totalProjects: PROJECTS_DATA.length, // 9
+  liveClientProjects: PROJECTS_DATA.length, // 9
   industriesCovered: {
-    ar: 'أزياء فاخرة، زهور، عطور 3D، متاجر، مطاعم، مساحات عمل، وجيمينج',
-    en: 'Haute Couture, Florals, 3D Fragrances, Boutiques, Dining, Hubs & Gaming'
+    ar: 'سيارات فارهة 3D، أزياء راقية، زهور، عطور 3D، متاجر، مطاعم، مساحات عمل، وجيمينج',
+    en: 'Luxury 3D Automotive, Haute Couture, Florals, 3D Fragrances, Boutiques, Dining, Hubs & Gaming'
   },
   deliveryWindow: {
     ar: '7 - 14 يوم عمل',
